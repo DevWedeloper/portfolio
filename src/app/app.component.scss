@@ -631,7 +631,7 @@ section {
 }
 
 .submit-modal-content {
-  width: 400px;
+  width: clamp(350px, 400px, 600px);
   padding: 2rem;
   text-align: center;
   font-size: var(--font-size-regular-desktop);

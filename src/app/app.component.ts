@@ -336,7 +336,7 @@ export class AppComponent implements OnInit {
 
     this.submitted = true;
     this.contactForm.get('date')?.setValue(new Date().toISOString());
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxtL659ZWZxJohU69yfUJCJ3Eb4Raa6vkNDK0Vgxej4NxIp5mzq-UFe32581yUwZ5QF/exec';
+    const scriptURL = 'shttps://script.google.com/macros/s/AKfycbxtL659ZWZxJohU69yfUJCJ3Eb4Raa6vkNDK0Vgxej4NxIp5mzq-UFe32581yUwZ5QF/exec';
     const formData = new FormData();
     formData.append('name', this.contactForm.get('name')?.value);
     formData.append('email', this.contactForm.get('email')?.value);
