@@ -2,17 +2,18 @@
   <h1>Nathan.</h1>
   <div class="navbar-mobile">
     <a class="icon-link" (click)="themeOnClick()">
-      <img class="theme-icon theme-icon-menu" src="assets/moon.svg"/></a>
-      <a class="icon-link adjustable-icon" (click)="menuOnClick()">
-        <img id="menu-icon" [src]="menuIconSrc"/></a>
-    </div>
+      <img class="theme-icon theme-icon-menu" id="theme-icon" src="{{ isDarkMode ? 'assets/sun.svg' : 'assets/moon.svg' }}" /></a>
+    <a class="icon-link icon" (click)="menuOnClick()"
+      [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }">
+        <img id="menu-icon" src="{{ this.isMenuOpen ? 'assets/close.png' : 'assets/menu.png' }}"/></a>
+  </div>
   <ul>
-    <li><a href="#home" class="active" (click)="isMenuOpen && closeMenu()">Home</a></li>
-    <li><a href="#about" (click)="isMenuOpen && closeMenu()">About</a></li>
-    <li><a href="#contact" (click)="isMenuOpen && closeMenu()">Contact</a></li>
+    <li><a href="#home" class="active" (click)="closeMenu()">Home</a></li>
+    <li><a href="#about" (click)="closeMenu()">About</a></li>
+    <li><a href="#contact" (click)="closeMenu()">Contact</a></li>
     <li>
       <a class="icon-link" (click)="themeOnClick()">
-        <img class="theme-icon" src="assets/moon.svg" />
+        <img class="theme-icon" id="theme-icon" src="{{ isDarkMode ? 'assets/sun.svg' : 'assets/moon.svg' }}" />
       </a>
     </li>
   </ul>
@@ -34,7 +35,8 @@
   <div class="home-img hidden from-right"></div>
 </section>
 <section class="about" id="about">
-  <div class="about-img hidden from-left"></div>
+  <div class="about-img hidden from-left" 
+  [style.background-image]="isDarkMode ? 'url(/assets/about-night.png)' : 'url(/assets/about-day.png)'"></div>
   <div class="hidden from-right">
     <h3>About Me</h3>
     <p>
@@ -155,7 +157,7 @@
               <img
                 class="icon"
                 id="github-icon"
-                src="assets/github-dark.svg"
+                src="{{ isDarkMode ? 'assets/github-light.svg' : 'assets/github-dark.svg' }}"
                 alt="GitHub logo"
               />
               <span class="tooltip-text">GitHub</span>
@@ -176,7 +178,7 @@
               <img
                 class="icon"
                 id="aws-icon"
-                src="assets/aws-dark.svg"
+                src="{{ isDarkMode ? 'assets/aws-light.svg' : 'assets/aws-dark.svg' }}"
                 alt="AWS logo"
                 loading="lazy"
               />
@@ -203,13 +205,12 @@
             <span>Internship at Cloudstaff</span>
             <span class="superscript-container">
               <img
-                class="adjustable-icon adjustable-icon-size superscript-icon"
+                class="icon icon-size-adjust superscript-icon"
                 src="assets/open-in-new.png"
                 alt="Open In New Icon"
-                (click)="
-                  openModal('experience-modal', 'experience-modal-content')
-                "
+                (click)="openModal(experienceTemplate)"
                 loading="lazy"
+                [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }"
               />
             </span>
           </li>
@@ -234,10 +235,11 @@
     <h4>Contact Me</h4>
     <div class="contact-information-item">
       <img
-        class="adjustable-icon adjustable-icon-size"
+        class="icon icon-size-adjust"
         src="assets/email.png"
         alt="Email Icon"
         loading="lazy"
+        [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }"
       />
       <div class="contact-information-item-copy-area">
         <p id="emailText">vicnathangabrielle@gmail.com</p>
@@ -247,20 +249,22 @@
           (click)="copyText('emailText', 'emailBtn')"
         >
           <img
-            class="adjustable-icon adjustable-icon-size"
+            class="icon icon-size-adjust"
             src="assets/copy.png"
             alt="Copy Icon"
             loading="lazy"
+            [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }"
           />
         </span>
       </div>
     </div>
     <div class="contact-information-item">
       <img
-        class="adjustable-icon adjustable-icon-size"
+        class="icon icon-size-adjust"
         src="assets/phone.png"
         alt="Phone Icon"
         loading="lazy"
+        [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }"
       />
       <div class="contact-information-item-copy-area">
         <p id="phoneText">+63 965 558 5778</p>
@@ -270,10 +274,11 @@
           (click)="copyText('phoneText', 'phoneBtn')"
         >
           <img
-            class="adjustable-icon adjustable-icon-size"
+            class="icon icon-size-adjust"
             src="assets/copy.png"
             alt="Copy Icon"
             loading="lazy"
+            [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }"
           />
         </span>
       </div>
@@ -357,24 +362,40 @@
     <li></li>
   </ul>
 </div>
-<div
-  class="modal"
-  id="experience-modal"
-  (click)="closeModal('experience-modal', 'experience-modal-content')"
->
-  <div
-    class="modal-content experience-modal-content"
-    id="experience-modal-content"
-    (click)="modalStopPropagation($event)"
-  >
+<app-modal #modalRef>
+  <ng-container *ngTemplateOutlet="modalContent"></ng-container>
+</app-modal>
+
+<ng-template #sorryTemplate>
+  <div class="submit-modal-content">
+    <h5>Sorry.</h5>
+    <p>The message was not sent. Please try again next time</p>
+    <button class="btn" (click)="closeModal()">Here</button>
+  </div>
+</ng-template>
+
+<ng-template #thankYouTemplate>
+  <div class="submit-modal-content">
+    <h5>Thank You!</h5>
+    <p>
+      The message was sent. Your feedback will help shape me to become a better
+      developer. Thanks!
+    </p>
+    <button class="btn" (click)="closeModal()">Here</button>
+  </div>
+</ng-template>
+
+<ng-template #experienceTemplate>
+  <div class="experience-modal-content">
     <div class="experience-modal-header">
       <h3>Project Name: SuiteView</h3>
       <span>
         <img
-          class="adjustable-icon adjustable-icon-size"
+          class="icon icon-size-adjust"
           src="assets/close.png"
           alt="Close Logo"
-          (click)="closeModal('experience-modal', 'experience-modal-content')"
+          (click)="closeModal()"
+          [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }"
         />
       </span>
     </div>
@@ -436,47 +457,4 @@
       </ul>
     </ul>
   </div>
-</div>
-<div
-  class="modal"
-  id="submit-modal"
-  (click)="closeModal('submit-modal', 'submit-modal-content')"
->
-  <div
-    class="modal-content submit-modal-content"
-    id="submit-modal-content"
-    (click)="modalStopPropagation($event)"
-  >
-    <h5>Thank You!</h5>
-    <p>
-      The message was sent. Your feedback will help shape me to become a better
-      developer. Thanks!
-    </p>
-    <button
-      class="btn"
-      (click)="closeModal('submit-modal', 'submit-modal-content')"
-    >
-      Cool!
-    </button>
-  </div>
-</div>
-<div
-  class="modal"
-  id="submit-error-modal"
-  (click)="closeModal('submit-error-modal', 'submit-error-modal-content')"
->
-  <div
-    class="modal-content submit-modal-content"
-    id="submit-error-modal-content"
-    (click)="modalStopPropagation($event)"
-  >
-    <h5>Sorry.</h5>
-    <p>The message was not sent. Please try again next time</p>
-    <button
-      class="btn"
-      (click)="closeModal('submit-error-modal', 'submit-error-modal-content')"
-    >
-      OK
-    </button>
-  </div>
-</div>
+</ng-template>
