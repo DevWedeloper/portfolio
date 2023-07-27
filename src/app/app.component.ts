@@ -1,6 +1,7 @@
-import { Component, HostListener, OnInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, HostListener, OnInit, Renderer2, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ModalComponent } from './modal/modal.component';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,11 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit {
   title = 'portfolio';
 
+  isDarkMode: boolean = false;
+
   contactForm!: FormGroup;
   submitted = false;
 
-  menuIconSrc: string = 'assets/menu.png';
   isMenuOpen: boolean = false;
   resizeTimer: any;
 
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
+    this.checkPreferredTheme();
     this.addScrollAnimation();
     this.addScrollNavigationListeners();
     this.addTypeEffect();
@@ -42,6 +45,17 @@ export class AppComponent implements OnInit {
     this.resizeTimer = setTimeout(() => {
       this.renderer.removeClass(navbar, 'resize-animation-stopper');
     }, 1);
+  }
+
+  @ViewChild('modalRef') modalRef!: ModalComponent; 
+  modalContent!: TemplateRef<any>;
+  openModal(templateRef: TemplateRef<any>): void {
+    this.modalContent = templateRef;
+    this.modalRef.openModal();
+  }
+
+  closeModal(): void {
+    this.modalRef.closeModal();
   }
 
   initializeForm(): void {
@@ -124,7 +138,6 @@ export class AppComponent implements OnInit {
   }
 
   addButtonEffect(): void {
-  // Button effect
   const buttons =  Array.from(document.querySelectorAll('.btn-effect')) as HTMLElement[];
 
   buttons.forEach(button => {
@@ -177,18 +190,14 @@ export class AppComponent implements OnInit {
 
   menuOnClick(): void {
     const navbar = document.querySelector('.navbar') as HTMLElement;
-
     this.isMenuOpen = !this.isMenuOpen;
-    this.menuIconSrc = this.isMenuOpen ? 'assets/close.png' : 'assets/menu.png';
-
     navbar.classList.toggle('active');
   }
 
   closeMenu(): void {
     const navbar = document.querySelector('.navbar') as HTMLElement;
 
-    this.isMenuOpen = false;
-    this.menuIconSrc = 'assets/menu.png';
+    this.isMenuOpen = false;;
 
     navbar.classList.remove('active');
   }
@@ -213,48 +222,39 @@ export class AppComponent implements OnInit {
   }  
   
   themeOnClick(): void {
-    const body = document.body;
+    this.isDarkMode = !this.isDarkMode;
     const aboutImage = document.querySelector('.about-img') as HTMLElement;
 
-    const themeIcons = document.querySelectorAll(".theme-icon") as NodeListOf<HTMLImageElement>;
-    const githubIcon = document.getElementById("github-icon") as HTMLImageElement;
-    const awsIcon = document.getElementById("aws-icon") as HTMLImageElement;
-
-    const contactIcons = document.querySelectorAll('.adjustable-icon') as NodeListOf<HTMLImageElement>;
-
-    body.classList.toggle("dark-theme");
-    aboutImage.classList.add('blur-animation');
-    
-    if (body.classList.contains("dark-theme")) {
-      themeIcons.forEach(icon => {
-        icon.src = "assets/sun.svg";
-      });
-      githubIcon.src = "assets/github-light.svg";
-      awsIcon.src = "assets/aws-light.svg";
-      contactIcons.forEach(icon => {
-        icon.style.filter = "invert(100%) grayscale(100%)";
-      });
+    if (this.isDarkMode) {
+      this.renderer.addClass(document.body, 'dark-theme');
+      localStorage.setItem('preferredTheme', 'dark');
     } else {
-      themeIcons.forEach(icon => {
-        icon.src = "assets/moon.svg";
-      });
-      githubIcon.src = "assets/github-dark.svg";
-      awsIcon.src = "assets/aws-dark.svg";
-      contactIcons.forEach(icon => {
-        icon.style.filter = "grayscale(100%)";
-      });
+      this.renderer.removeClass(document.body, 'dark-theme');
+      localStorage.setItem('preferredTheme', 'light');
     }
+    aboutImage.classList.add('blur-animation');
     
     aboutImage.addEventListener('animationend', () => {
       aboutImage.classList.remove('blur-animation');
     }, { once: true });
-    
+  }
+
+  checkPreferredTheme(): void {
+    const preferredTheme = localStorage.getItem('preferredTheme');
+
+    if (preferredTheme === 'dark') {
+      this.isDarkMode = true;
+      this.renderer.addClass(document.body, 'dark-theme');
+    } else {
+      this.isDarkMode = false;
+      this.renderer.removeClass(document.body, 'dark-theme');
+    }
   }
 
   addTypeEffect(): void {
     const id = 'type-effect';
     const txtList: string[] = ['Software Engineer!', 'Full-stack Engineer!'];
-    let i = 0;
+    let index = 0;
     let currentTextIndex = 0;
     const typeSpeed = 55;
     let reverse = false;
@@ -267,17 +267,17 @@ export class AppComponent implements OnInit {
       const currentText = txtList[currentTextIndex];
   
       if (reverse) {
-        element.innerHTML = currentText.substring(0, i);
-        i--;
-        if (i === -1) {
+        element.innerHTML = currentText.substring(0, index);
+        index--;
+        if (index === -1) {
           reverse = false;
-          i = 0;
+          index = 0;
           moveToNextText();
         }
-      } else if (i < currentText.length) {
-        element.innerHTML += currentText.charAt(i);
-        i++;
-        if (i === currentText.length) {
+      } else if (index < currentText.length) {
+        element.innerHTML += currentText.charAt(index);
+        index++;
+        if (index === currentText.length) {
           setTimeout(() => {
             reverse = true;
             typeWriter();
@@ -327,6 +327,8 @@ export class AppComponent implements OnInit {
     }, 2000);
   }
   
+  @ViewChild('thankYouTemplate') thankYouTemplate!: TemplateRef<any>;
+  @ViewChild('sorryTemplate') sorryTemplate!: TemplateRef<any>;
   onSubmit() {
     if (this.contactForm.invalid) {
       return;
@@ -344,36 +346,17 @@ export class AppComponent implements OnInit {
 
     this._http.post(scriptURL, formData).subscribe(
       response => {
-        this.openModal('submit-modal', 'submit-modal-content');
+        this.openModal(this.thankYouTemplate);
         this.contactForm.reset();
         this.submitted = false; 
         
       }, 
       error => {
-        this.openModal('submit-error-modal', 'submit-error-modal-content');
+        this.openModal(this.sorryTemplate);
         this.contactForm.reset();
         this.submitted = false; 
       }
     );
-  }
-
-  openModal(modalID: string, modalContent: string): void {
-    const modal = document.getElementById(modalID) as HTMLElement;
-    const content = document.getElementById(modalContent) as HTMLElement;
-    
-    modal.classList.add('open-modal');
-    setTimeout(() => {
-      content.classList.add('open-modal-content');
-    }, 1);
-
-  }
-
-  closeModal(modalID: string, modalContent: string): void {
-    const content = document.getElementById(modalContent) as HTMLElement;
-    const modal = document.getElementById(modalID) as HTMLElement;
-
-    modal.classList.remove('open-modal');
-    content.classList.remove('open-modal-content');
   }
 
   modalStopPropagation(event: MouseEvent): void {
