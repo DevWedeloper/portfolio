@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChildren } from '@angular/core';
 import { SharedService } from 'src/services/shared.service';
 
 @Component({
@@ -7,8 +7,9 @@ import { SharedService } from 'src/services/shared.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  @ViewChildren('homeLink, aboutLink, contactLink') navAnchors!: QueryList<ElementRef>;
+
   sections!: HTMLElement[];
-  navAnchors!: HTMLElement[];
   isMenuOpen: boolean = false;
   
   resizeTimer: any;
@@ -21,8 +22,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.sections = Array.from(document.querySelectorAll('section'));
-    this.navAnchors = Array.from(document.querySelectorAll('.navbar a'));
     this.checkPreferredTheme();
+    this.highlightNavAnchors();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -69,10 +70,10 @@ export class NavbarComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: Event): void {
-    this.highlightNavLinks();
+    this.highlightNavAnchors();
   }
 
-  highlightNavLinks(): void {
+  highlightNavAnchors(): void {
     const top = window.scrollY;
     const offset = 150;
 
@@ -87,13 +88,13 @@ export class NavbarComponent implements OnInit {
     });
 
     this.navAnchors.forEach((anchor) => {
-      const href = anchor.getAttribute('href');
+      const href = anchor.nativeElement.getAttribute('href');
       const id = href ? href.substr(1) : '';
 
       if (id === activeSectionId) {
-        this.renderer.addClass(anchor, 'active');
+        this.renderer.addClass(anchor.nativeElement, 'active');
       } else {
-        this.renderer.removeClass(anchor, 'active');
+        this.renderer.removeClass(anchor.nativeElement, 'active');
       }
     });
   }
@@ -128,6 +129,5 @@ export class NavbarComponent implements OnInit {
   closeMenu(): void {
     this.isMenuOpen = false;;
   }
-  
   
 }
