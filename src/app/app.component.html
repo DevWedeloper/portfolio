@@ -2,10 +2,22 @@
   <h1>Nathan.</h1>
   <div class="navbar-mobile">
     <a class="icon-link" (click)="themeOnClick()">
-      <img class="theme-icon theme-icon-menu" id="theme-icon" src="{{ isDarkMode ? 'assets/sun.svg' : 'assets/moon.svg' }}" /></a>
-    <a class="icon-link icon" (click)="menuOnClick()"
-      [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }">
-        <img id="menu-icon" src="{{ this.isMenuOpen ? 'assets/close.png' : 'assets/menu.png' }}"/></a>
+      <img
+        class="theme-icon theme-icon-menu"
+        id="theme-icon"
+        src="{{ isDarkMode ? 'assets/sun.svg' : 'assets/moon.svg' }}"
+    /></a>
+    <a
+      class="icon-link icon"
+      (click)="menuOnClick()"
+      [ngStyle]="{
+        filter: isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)'
+      }"
+    >
+      <img
+        id="menu-icon"
+        src="{{ this.isMenuOpen ? 'assets/close.png' : 'assets/menu.png' }}"
+    /></a>
   </div>
   <ul>
     <li><a href="#home" class="active" (click)="closeMenu()">Home</a></li>
@@ -13,7 +25,11 @@
     <li><a href="#contact" (click)="closeMenu()">Contact</a></li>
     <li>
       <a class="icon-link" (click)="themeOnClick()">
-        <img class="theme-icon" id="theme-icon" src="{{ isDarkMode ? 'assets/sun.svg' : 'assets/moon.svg' }}" />
+        <img
+          class="theme-icon"
+          id="theme-icon"
+          src="{{ isDarkMode ? 'assets/sun.svg' : 'assets/moon.svg' }}"
+        />
       </a>
     </li>
   </ul>
@@ -22,7 +38,10 @@
   <div class="home-content hidden from-left">
     <h2>Hi, I'm Nathan</h2>
     <h2 class="type-effect-text">
-      And I'm a <span class="highlight-text"><h2 class="type-effect-text" id="type-effect"></h2></span>
+      And I'm a
+      <span class="highlight-text"
+        ><h2 class="type-effect-text" id="type-effect"></h2
+      ></span>
     </h2>
     <p>
       Driven problem-solver dedicated to delivering high-quality software
@@ -35,16 +54,20 @@
   <div class="home-img hidden from-right"></div>
 </section>
 <section class="about" id="about">
-  <div class="about-img hidden from-left" 
-  [style.background-image]="isDarkMode ? 'url(assets/about-night.png)' : 'url(assets/about-day.png)'"></div>
+  <div
+    class="about-img hidden from-left"
+    [style.background-image]="
+      isDarkMode ? 'url(assets/about-night.png)' : 'url(assets/about-day.png)'
+    "
+  ></div>
   <div class="hidden from-right">
     <h3>About Me</h3>
     <p>
       Driven by my passion for software engineering, I excel in critical
       thinking and thrive in collaborative environments. My adaptability
-      empowers me to embrace new challenges confidently, while my dedication
-      to lifelong learning fuels my ambition to create exceptional and
-      innovative software solutions.
+      empowers me to embrace new challenges confidently, while my dedication to
+      lifelong learning fuels my ambition to create exceptional and innovative
+      software solutions.
     </p>
     <div class="tab-container">
       <ul class="tab-titles">
@@ -57,142 +80,132 @@
         <ul class="skills-content content">
           <li class="skills-item">Front-End:</li>
           <li class="skills-item">
-            <span class="tooltip">
+            <span class="tooltip" appTooltip="HTML">
               <img
                 class="icon"
                 src="assets/html.svg"
                 alt="HTML Logo"
                 loading="lazy"
               />
-              <span class="tooltip-text">HTML</span>
             </span>
-            <span class="tooltip">
+            <span class="tooltip" appTooltip="CSS">
               <img
                 class="icon"
                 src="assets/css.svg"
                 alt="CSS Logo"
                 loading="lazy"
               />
-              <span class="tooltip-text">CSS</span>
             </span>
-            <span class="tooltip">
+            <span class="tooltip" appTooltip="JavaScript">
               <img
                 class="icon"
                 src="assets/javascript.svg"
                 alt="JavaScript Logo"
                 loading="lazy"
-              />
-              <span class="tooltip-text">JavaScript</span>
-            </span>
-            <span class="tooltip">
+              /></span
+            >
+            <span class="tooltip" appTooltip="Angular">
               <img
                 class="icon"
                 src="assets/angular.svg"
                 alt="Angular Logo"
                 loading="lazy"
-              />
-              <span class="tooltip-text">Angular</span>
-            </span>
-            <span class="tooltip">
+              /></span
+            >
+            <span class="tooltip" appTooltip="TypeScript">
               <img
                 class="icon"
                 src="assets/typescript.svg"
                 alt="TypeScript Logo"
                 loading="lazy"
-              />
-              <span class="tooltip-text">TypeScript</span>
-            </span>
-            <span class="tooltip">
+              /></span
+            >
+            <span class="tooltip" appTooltip="SASS">
               <img
                 class="icon"
                 src="assets/sass.svg"
                 alt="SASS Logo"
                 loading="lazy"
-              />
-              <span class="tooltip-text">SASS</span>
-            </span>
+              /></span
+            >
           </li>
           <li class="skills-item">Back-End:</li>
           <li class="skills-item">
-            <span class="tooltip">
+            <span class="tooltip" appTooltip="Laravel">
               <img
                 class="icon"
                 src="assets/laravel.svg"
                 alt="Laravel Logo"
                 loading="lazy"
-              />
-              <span class="tooltip-text">Laravel</span>
-            </span>
-            <span class="tooltip">
+              /></span
+            >
+            <span class="tooltip" appTooltip="Lumen">
               <img
                 class="icon"
                 src="assets/lumen.svg"
                 alt="Lumen Logo"
                 loading="lazy"
-              />
-              <span class="tooltip-text">Lumen</span>
-            </span>
-            <span class="tooltip">
+              /></span
+            >
+            <span class="tooltip" appTooltip="Python">
               <img
                 class="icon"
                 src="assets/python.svg"
                 alt="Python Logo"
                 loading="lazy"
-              />
-              <span class="tooltip-text">Python</span>
-            </span>
+              /></span
+            >
           </li>
           <li class="skills-item">Tools:</li>
           <li class="skills-item">
-            <span class="tooltip">
+            <span class="tooltip" appTooltip="Git">
               <img
                 class="icon"
                 src="assets/git.svg"
                 alt="Git logo"
                 loading="lazy"
-              />
-              <span class="tooltip-text">Git</span>
-            </span>
-            <span class="tooltip">
+              /></span
+            >
+            <span class="tooltip" appTooltip="GitHub">
               <img
                 class="icon"
-                id="github-icon"
-                src="{{ isDarkMode ? 'assets/github-light.svg' : 'assets/github-dark.svg' }}"
+                src="{{
+                  isDarkMode
+                    ? 'assets/github-light.svg'
+                    : 'assets/github-dark.svg'
+                }}"
                 alt="GitHub logo"
-              />
-              <span class="tooltip-text">GitHub</span>
-            </span>
-            <span class="tooltip">
+              /></span
+            >
+            <span class="tooltip" appTooltip="Jira">
               <img
                 class="icon"
                 src="assets/jira.svg"
                 alt="Jira logo"
                 loading="lazy"
-              />
-              <span class="tooltip-text">Jira</span>
-            </span>
+              /></span
+            >
           </li>
           <li class="skills-item">Technologies:</li>
           <li class="skills-item">
-            <span class="tooltip">
+            <span class="tooltip" appTooltip="AWS">
               <img
                 class="icon"
-                id="aws-icon"
-                src="{{ isDarkMode ? 'assets/aws-light.svg' : 'assets/aws-dark.svg' }}"
+                src="{{
+                  isDarkMode ? 'assets/aws-light.svg' : 'assets/aws-dark.svg'
+                }}"
                 alt="AWS logo"
                 loading="lazy"
-              />
-              <span class="tooltip-text">AWS</span>
-            </span>
-            <span class="tooltip">
+              /></span
+            >
+            <span class="tooltip" appTooltip="API">
               <img
                 class="icon"
                 src="assets/api.svg"
                 alt="API logo"
                 loading="lazy"
-              />
-              <span class="tooltip-text">API</span>
-            </span>
+              /></span
+            >
           </li>
         </ul>
       </div>
@@ -210,7 +223,11 @@
                 alt="Open In New Icon"
                 (click)="openModal(experienceTemplate)"
                 loading="lazy"
-                [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }"
+                [ngStyle]="{
+                  filter: isDarkMode
+                    ? 'invert(100%) grayscale(100%)'
+                    : 'grayscale(100%)'
+                }"
               />
             </span>
           </li>
@@ -239,7 +256,11 @@
         src="assets/email.png"
         alt="Email Icon"
         loading="lazy"
-        [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }"
+        [ngStyle]="{
+          filter: isDarkMode
+            ? 'invert(100%) grayscale(100%)'
+            : 'grayscale(100%)'
+        }"
       />
       <div class="contact-information-item-copy-area">
         <p id="emailText">vicnathangabrielle@gmail.com</p>
@@ -253,7 +274,11 @@
             src="assets/copy.png"
             alt="Copy Icon"
             loading="lazy"
-            [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }"
+            [ngStyle]="{
+              filter: isDarkMode
+                ? 'invert(100%) grayscale(100%)'
+                : 'grayscale(100%)'
+            }"
           />
         </span>
       </div>
@@ -264,7 +289,11 @@
         src="assets/phone.png"
         alt="Phone Icon"
         loading="lazy"
-        [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }"
+        [ngStyle]="{
+          filter: isDarkMode
+            ? 'invert(100%) grayscale(100%)'
+            : 'grayscale(100%)'
+        }"
       />
       <div class="contact-information-item-copy-area">
         <p id="phoneText">+63 965 558 5778</p>
@@ -278,7 +307,11 @@
             src="assets/copy.png"
             alt="Copy Icon"
             loading="lazy"
-            [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }"
+            [ngStyle]="{
+              filter: isDarkMode
+                ? 'invert(100%) grayscale(100%)'
+                : 'grayscale(100%)'
+            }"
           />
         </span>
       </div>
@@ -295,8 +328,7 @@
         <div
           class="error-tooltip"
           *ngIf="
-            contactForm.get('name')?.invalid &&
-            contactForm.get('name')?.touched
+            contactForm.get('name')?.invalid && contactForm.get('name')?.touched
           "
         >
           <div *ngIf="contactForm.get('name')?.hasError('required')">
@@ -362,6 +394,7 @@
     <li></li>
   </ul>
 </div>
+
 <app-modal #modalRef>
   <ng-container *ngTemplateOutlet="modalContent"></ng-container>
 </app-modal>
@@ -392,52 +425,52 @@
       <span>
         <img
           class="icon icon-size-adjust"
+          style="-webkit-tap-highlight-color: transparent"
           src="assets/close.png"
           alt="Close Logo"
           (click)="closeModal()"
-          [ngStyle]="{ 'filter': isDarkMode ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)' }"
+          [ngStyle]="{
+            filter: isDarkMode
+              ? 'invert(100%) grayscale(100%)'
+              : 'grayscale(100%)'
+          }"
         />
       </span>
     </div>
     <ul class="experience-modal-body">
       <li class="experience-modal-body-title">Tech-Stack:</li>
       <li>
-        <span class="tooltip">
+        <span class="tooltip" appTooltip="Angular">
           <img
             class="icon"
             src="assets/angular.svg"
             alt="Angular Logo"
             loading="lazy"
-          />
-          <span class="tooltip-text">Angular</span>
-        </span>
-        <span class="tooltip">
+          /></span
+        >
+        <span class="tooltip" appTooltip="Laravel">
           <img
             class="icon"
             src="assets/laravel.svg"
             alt="Laravel Logo"
             loading="lazy"
-          />
-          <span class="tooltip-text">Laravel</span>
-        </span>
-        <span class="tooltip">
+          /></span
+        >
+        <span class="tooltip" appTooltip="Lumen">
           <img
             class="icon"
             src="assets/lumen.svg"
             alt="Lumen Logo"
             loading="lazy"
-          />
-          <span class="tooltip-text">Lumen</span>
-        </span>
-        <span class="tooltip">
+          /></span
+        >
+        <span class="tooltip" appTooltip="AWS S3 Bucket">
           <img
             class="icon"
             src="assets/aws-s3-bucket.svg"
             alt="AWS S3 Bucket Logo"
             loading="lazy"
-          />
-          <span class="tooltip-text">AWS S3 Bucket</span>
-        </span>
+        /></span>
       </li>
       <li class="experience-modal-body-title">Description:</li>
       <li>

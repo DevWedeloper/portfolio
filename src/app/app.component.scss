@@ -380,6 +380,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  position: relative;
 }
 
 .skills-content li span {
@@ -391,46 +392,8 @@ section {
   user-select: none;
 }
 
-.github-icon {
-  background-color: var(--text-color);
-  border-radius: 2rem;
-}
-
-.aws-icon {
-  background-color: var(--text-color);
-}
-
 .tooltip {
   position: relative;
-}
-
-.tooltip .tooltip-text {
-  visibility: hidden;
-  width: max-content;
-  background-color: var(--text-color);
-  color: var(--text-color-reverse);
-  text-align: center;
-  border-radius: .5rem;
-  padding: .5rem;
-  font-size: var(--font-size-tooltip-desktop);
-  
-  position: absolute;
-  z-index: 1;
-  top: calc(100% + 1px);
-  left: 50%;
-  transform: translateX(-50%);
-
-  opacity: 0;
-  transition: opacity .3s;
-}
-
-.tooltip:hover .tooltip-text {
-  visibility: visible;
-  opacity: 1;
-}
-
-.tooltip .tooltip-text:hover {
-  visibility: hidden;
 }
 
 .experience-modal-content {

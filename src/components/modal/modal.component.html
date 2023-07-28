@@ -1,0 +1,8 @@
+<div class="modal" *ngIf="isVisible" (click)="closeModal()"></div>
+<div
+  class="modal-content"
+  [ngClass]="{ 'open-modal-content': isVisible }"
+  [ngStyle]="{ 'visibility': isVisible ? 'visible' : 'hidden' }"
+>
+  <ng-content></ng-content>
+</div>

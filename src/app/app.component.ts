@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit, Renderer2, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { ModalComponent } from './modal/modal.component';
+import { ModalComponent } from 'src/components/modal/modal.component';
 
 @Component({
   selector: 'app-root',

@@ -6,14 +6,14 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ModalComponent } from './modal/modal.component';
-
-
+import { ModalComponent } from 'src/components/modal/modal.component';
+import { TooltipDirective } from 'src/directives/tooltip.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ModalComponent
+    ModalComponent,
+    TooltipDirective
   ],
   imports: [
     BrowserModule,
