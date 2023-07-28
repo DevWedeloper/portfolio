@@ -10,7 +10,7 @@ import { SharedService } from 'src/services/shared.service';
 export class NavbarComponent implements OnInit {
   @ViewChildren('homeLink, aboutLink, contactLink') navAnchors!: QueryList<ElementRef>;
 
-  sections!: HTMLElement[];
+  sections!: ElementRef[];
   isMenuOpen: boolean = false;
   
   resizeTimer: any;
@@ -81,11 +81,11 @@ export class NavbarComponent implements OnInit {
 
     let activeSectionId: string | null = null;
     this.sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
+      const sectionTop = section.nativeElement.offsetTop;
+      const sectionHeight = section.nativeElement.offsetHeight;
 
       if (top >= sectionTop - offset && top < sectionTop + sectionHeight - offset) {
-        activeSectionId = section.getAttribute('id');
+        activeSectionId = section.nativeElement.getAttribute('id');
       }
     });
 

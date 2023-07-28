@@ -18,7 +18,7 @@ export class AboutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sectionService.registerSection(this.section.nativeElement);
+    this.sectionService.registerSection(this.section);
     this.addTabAndLineListeners();
   }
   

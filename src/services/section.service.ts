@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SectionService {
-  private sections: HTMLElement[] = [];
+  private sections: ElementRef<HTMLElement>[] = [];
 
-  registerSection(section: HTMLElement): void {
+  registerSection(section: ElementRef<HTMLElement>): void {
     this.sections.push(section);
   }
 
-  getSections(): HTMLElement[] {
+  getSections(): ElementRef<HTMLElement>[] {
     return this.sections;
   }
 }
