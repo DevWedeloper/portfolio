@@ -29,8 +29,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.checkPreferredTheme();
+    this.highlightNavLinks();
     this.addScrollAnimation();
-    this.addScrollNavigationListeners();
     this.addTypeEffect();
     this.addButtonEffect();
     this.addTabAndLineListeners();
@@ -68,6 +68,26 @@ export class AppComponent implements OnInit {
     });
   }
 
+  highlightNavLinks(): void {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.navbar a');
+  
+    window.addEventListener('scroll', () => {
+      sections.forEach((sec) => {
+        const top = window.scrollY;
+        const offset = sec.offsetTop - 150;
+        const height = sec.offsetHeight;
+        const id = sec.getAttribute('id');
+        if (top >= offset && top < offset + height) {
+          navLinks.forEach((links) => {
+            links.classList.remove('active');
+            document.querySelector(`nav ul li a[href*='${id}']`)?.classList.add('active');
+          });
+        }
+      });
+    });
+  }
+
   addScrollAnimation(): void {
     type Options = {
       threshold: number;
@@ -92,49 +112,6 @@ export class AppComponent implements OnInit {
 
     const elements = document.querySelectorAll('.hidden');
     elements.forEach((element) => appearOnScroll.observe(element));
-  }
-
-  addScrollNavigationListeners(): void {
-    // Scroll event for sections and navigation links
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.navbar a');
-    const shapes = document.querySelectorAll('.progress li');
-  
-    window.addEventListener('scroll', () => {
-      sections.forEach((sec, sectionIndex) => {
-        const top = window.scrollY;
-        const offset = sec.offsetTop - 150;
-        const height = sec.offsetHeight;
-        const id = sec.getAttribute('id');
-        if (top >= offset && top < offset + height) {
-          navLinks.forEach((links) => {
-            links.classList.remove('active');
-            document.querySelector(`nav ul li a[href*='${id}']`)?.classList.add('active');
-          });
-          shapes.forEach((shape, shapeIndex) => {
-            shape.classList.remove('active');
-            if (sectionIndex === shapeIndex) {
-              shape.classList.add('active');
-            }
-          });
-        }
-      });
-    });
-  
-    document.addEventListener('DOMContentLoaded', () => {
-      window.addEventListener('scroll', () => {
-        const scroll = window.pageYOffset || document.documentElement.scrollTop;
-        const doc = Math.max(
-          document.body.scrollHeight,
-          document.documentElement.scrollHeight
-        );
-        const win = window.innerHeight || document.documentElement.clientHeight;
-        const value = (scroll / (doc - win)) * 100;
-        const line = document.querySelector('.line') as HTMLElement;
-        line.style.height = value + '%';
-      });
-    });
-  
   }
 
   addButtonEffect(): void {
