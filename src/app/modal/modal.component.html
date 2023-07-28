@@ -1,5 +1,0 @@
-<div class="modal" *ngIf="isVisible" (click)="closeModal()">
-  <div class="modal-content" [ngClass]="{'open-modal-content': isTransitioning}" (click)="stopPropagation($event)">
-    <ng-content></ng-content>
-  </div>
-</div>
