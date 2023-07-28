@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChildren } from '@angular/core';
+import { SectionService } from 'src/services/section.service';
 import { SharedService } from 'src/services/shared.service';
 
 @Component({
@@ -17,11 +18,12 @@ export class NavbarComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
     private sharedService: SharedService,
+    private sectionService: SectionService,
     private el: ElementRef
   ) {}
 
   ngOnInit(): void {
-    this.sections = Array.from(document.querySelectorAll('section'));
+    this.sections = this.sectionService.getSections();
     this.checkPreferredTheme();
     this.highlightNavAnchors();
   }

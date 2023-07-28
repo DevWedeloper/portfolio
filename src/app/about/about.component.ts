@@ -1,5 +1,6 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ModalComponent } from 'src/components/modal/modal.component';
+import { SectionService } from 'src/services/section.service';
 import { SharedService } from 'src/services/shared.service';
 
 @Component({
@@ -8,12 +9,17 @@ import { SharedService } from 'src/services/shared.service';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
+  @ViewChild('section') section!: ElementRef;
 
   constructor(
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private sectionService: SectionService,
+    private el: ElementRef
   ) {}
 
   ngOnInit(): void {
+    const section = this.el.nativeElement.querySelector('section');
+    this.sectionService.registerSection(section);
     this.addTabAndLineListeners();
   }
   

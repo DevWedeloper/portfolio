@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { SectionService } from 'src/services/section.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit{
 
+  constructor(
+    private sectionService: SectionService,
+    private el: ElementRef
+  ){}
+
   ngOnInit(): void {
+    const section = this.el.nativeElement.querySelector('section');
+    this.sectionService.registerSection(section);
     this.addTypeEffect();
   }
 

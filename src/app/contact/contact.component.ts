@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalComponent } from 'src/components/modal/modal.component';
+import { SectionService } from 'src/services/section.service';
 import { SharedService } from 'src/services/shared.service';
 
 @Component({
@@ -16,10 +17,14 @@ export class ContactComponent implements OnInit{
   constructor(
     private _http: HttpClient,
     private _formBuilder: FormBuilder,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private sectionService: SectionService,
+    private el: ElementRef
   ) {}
 
   ngOnInit(): void {
+    const section = this.el.nativeElement.querySelector('section');
+    this.sectionService.registerSection(section);
     this.initializeForm();
   }
 
