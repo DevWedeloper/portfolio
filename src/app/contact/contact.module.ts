@@ -9,5 +9,6 @@ import { ContactComponent } from './contact.component';
     CommonModule,
     SharedModule,
   ],
+  exports: [ContactComponent],
 })
 export class ContactModule { }
