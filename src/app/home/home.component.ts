@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SectionService } from 'src/services/section.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { SectionService } from 'src/services/section.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit{
+  @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
 
   constructor(
     private sectionService: SectionService,
@@ -14,8 +15,7 @@ export class HomeComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    const section = this.el.nativeElement.querySelector('section');
-    this.sectionService.registerSection(section);
+    this.sectionService.registerSection(this.section.nativeElement);
     this.addTypeEffect();
   }
 

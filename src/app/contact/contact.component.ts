@@ -11,6 +11,7 @@ import { SharedService } from 'src/services/shared.service';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit{
+  @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
   contactForm!: FormGroup;
   submitted = false;
   
@@ -23,8 +24,7 @@ export class ContactComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    const section = this.el.nativeElement.querySelector('section');
-    this.sectionService.registerSection(section);
+    this.sectionService.registerSection(this.section.nativeElement);
     this.initializeForm();
   }
 

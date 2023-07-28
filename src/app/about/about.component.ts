@@ -9,7 +9,7 @@ import { SharedService } from 'src/services/shared.service';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-  @ViewChild('section') section!: ElementRef;
+  @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
 
   constructor(
     private sharedService: SharedService,
@@ -18,8 +18,7 @@ export class AboutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const section = this.el.nativeElement.querySelector('section');
-    this.sectionService.registerSection(section);
+    this.sectionService.registerSection(this.section.nativeElement);
     this.addTabAndLineListeners();
   }
   
