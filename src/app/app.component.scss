@@ -171,160 +171,6 @@ section {
   }
 }
 
-.contact {
-  display: flex;
-  gap: 2rem;
-  overflow-x: hidden;
-}
-
-.contact > *:nth-child(1) {
-  flex: 1 1 40%;
-}
-
-.contact > *:nth-child(2) {
-  flex: 1 1 60%;
-}
-
-.contact h4 {
-  font-size: var(--font-size-big-desktop);
-  font-weight: 700;
-}
-
-.contact p {
-  font-size: var(--font-size-regular-desktop);
-}
-
-.contact-information-item {
-  display: flex;
-  margin-top: 1.5rem;
-}
-
-.contact-information-item > img {
-  margin-right: 1rem;
-}
-
-.contact-information-item-copy-area {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.copy-btn {
-  padding: 0.5rem;
-  margin: -0.5rem;
-  border-radius: 50%;
-  width: min-content;
-  height: min-content;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.contact-form form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.contact-form form input,
-.contact-form form textarea {
-  width: 100%;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  background-color: var(--secondary-color);
-  color: var(--text-color);
-}
-
-.contact-form form input::placeholder,
-.contact-form form textarea::placeholder {
-  color: var(--text-color);
-}
-
-.contact-form form textarea {
-  resize: none;
-}
-
-.contact-form form textarea::-webkit-scrollbar-track {
-  background: var(--secondary-color);
-}
-
-.contact-form form button {
-  grid-column: span 1;
-  width: 50%;
-  padding: 1rem;
-  font-size: 1.2rem;
-}
-
-.contact-form form button:disabled {
-  transform: none;
-  background-color: var(--secondary-color);
-  cursor: not-allowed;
-}
-
-.form-item-container {
-  position: relative;
-}
-
-.form-item-container:nth-child(1) {
-  grid-column: span 1;
-}
-
-.form-item-container:nth-child(2) {
-  grid-column: span 1;
-}
-
-.form-item-container:nth-child(3) {
-  grid-column: span 2;
-}
-
-.form-item-container:nth-child(4) {
-  grid-column: span 2;
-}
-
-.form-item-container:nth-child(5) {
-  grid-column: span 1;
-}
-
-.error-tooltip {
-  position: absolute;
-  bottom: calc(100% + 0.5rem);
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  background-color: rgba(255, 0, 0, 0.8);
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  font-size: var(--font-size-tooltip-desktop);
-  z-index: 1;
-  align-items: flex-start;
-  user-select: none;
-}
-
-.submit-modal-content {
-  width: clamp(350px, 400px, 600px);
-  padding: 2rem;
-  text-align: center;
-  font-size: var(--font-size-regular-desktop);
-}
-
-.submit-modal-content h5 {
-  font-size: var(--font-size-big-desktop);
-  font-weight: 700;
-  padding: 1rem;
-}
-
-.submit-modal-content p {
-  margin-bottom: 1rem;
-}
-
-.submit-modal-content button {
-  width: 100%;
-  padding: 1rem;
-}
-
 .from-left {
   transform: translateX(-50%);
 }
@@ -360,32 +206,8 @@ section {
     padding: 10rem 3%;
   }
 
-  .form-item-container:nth-child(1) {
-    grid-column: span 2;
-  }
-
-  .form-item-container:nth-child(2) {
-    grid-column: span 2;
-  }
-
-  .form-item-container:nth-child(5) {
-    grid-column: span 2;
-  }
-
-  .contact h4,
-  .submit-modal-content h5 {
-    font-size: var(--font-size-big-tablet);
-  }
-
-  .btn,
-  .contact p,
-  .submit-modal-content {
+  .btn {
     font-size: var(--font-size-regular-tablet);
-  }
-
-  .tooltip .tooltip-text,
-  .error-tooltip {
-    font-size: var(--font-size-tooltip-tablet);
   }
 
   .icon-size-adjust {
@@ -402,25 +224,8 @@ section {
     padding: 5rem 9%;
   }
 
-  .contact {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .contact h4,
-  .submit-modal-content h5 {
-    font-size: var(--font-size-big-mobile);
-  }
-
-  .btn,
-  .contact p,
-  .submit-modal-content {
+  .btn {
     font-size: var(--font-size-regular-mobile);
-  }
-
-  .tooltip .tooltip-text,
-  .error-tooltip {
-    font-size: var(--font-size-tooltip-mobile);
   }
 
   .icon-size-adjust {
@@ -433,22 +238,9 @@ section {
 }
 
 @media (max-width: 500px) {
-  .contact h4,
-  .submit-modal-content h5 {
-    font-size: var(--font-size-big-small-mobile);
-  }
-
-  .btn,
-  .contact p,
-  .submit-modal-content {
+  .btn {
     font-size: var(--font-size-regular-small-mobile);
   }
-
-  .tooltip .tooltip-text,
-  .error-tooltip {
-    font-size: var(--font-size-tooltip-small-mobile);
-  }
-
   .icon-size-adjust {
     width: var(--icon-size-adjust-small-mobile);
   }

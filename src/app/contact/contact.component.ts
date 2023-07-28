@@ -1,10 +1,113 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalComponent } from 'src/components/modal/modal.component';
+import { SharedService } from 'src/services/shared.service';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit{
+  contactForm!: FormGroup;
+  submitted = false;
+  
+  constructor(
+    private _http: HttpClient,
+    private _formBuilder: FormBuilder,
+    private sharedService: SharedService
+  ) {}
 
-}
+  ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  isDarkMode(): boolean {
+    return this.sharedService.getIsDarkMode();
+  }
+
+  @ViewChild('modalRef') modalRef!: ModalComponent; 
+  modalContent!: TemplateRef<any>;
+  openModal(templateRef: TemplateRef<any>): void {
+    this.modalContent = templateRef;
+    this.modalRef.openModal();
+  }
+
+  closeModal(): void {
+    this.modalRef.closeModal();
+  }
+
+  initializeForm(): void {
+    this.contactForm = this._formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      subject: [''],
+      message: ['', Validators.required],
+      date: [new Date().toISOString()]
+    });
+  }
+  
+  copyText(copyID: string, btnID: string): void {
+    const textElement = document.getElementById(copyID) as HTMLParagraphElement;
+    const textToCopy = textElement.textContent || "";
+    const copyBtnSpan = document.getElementById(btnID) as HTMLSpanElement;
+    const buttonImage = copyBtnSpan.querySelector("img") as HTMLImageElement;
+  
+    const tempTextArea = document.createElement("textarea");
+    tempTextArea.value = textToCopy;
+    document.body.appendChild(tempTextArea);
+  
+    tempTextArea.select();
+    document.execCommand("copy");
+  
+    document.body.removeChild(tempTextArea);
+  
+    buttonImage.src = "assets/check.png";
+  
+    copyBtnSpan.style.backgroundColor = "var(--main-color)";
+  
+    copyBtnSpan.removeAttribute("id");
+  
+    setTimeout(() => {
+      buttonImage.src = "assets/copy.png";
+      copyBtnSpan.style.backgroundColor = "";
+  
+      copyBtnSpan.setAttribute("id", btnID);
+    }, 2000);
+  }
+  
+  @ViewChild('thankYouTemplate') thankYouTemplate!: TemplateRef<any>;
+  @ViewChild('sorryTemplate') sorryTemplate!: TemplateRef<any>;
+  onSubmit() {
+    if (this.contactForm.invalid) {
+      return;
+    }
+
+    this.submitted = true;
+    this.contactForm.get('date')?.setValue(new Date().toISOString());
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxtL659ZWZxJohU69yfUJCJ3Eb4Raa6vkNDK0Vgxej4NxIp5mzq-UFe32581yUwZ5QF/exec';
+    const formData = new FormData();
+    formData.append('name', this.contactForm.get('name')?.value);
+    formData.append('email', this.contactForm.get('email')?.value);
+    formData.append('subject', this.contactForm.get('subject')?.value);
+    formData.append('message', this.contactForm.get('message')?.value);
+    formData.append('date', this.contactForm.get('date')?.value);
+
+    this._http.post(scriptURL, formData).subscribe(
+      response => {
+        this.openModal(this.thankYouTemplate);
+        this.contactForm.reset();
+        this.submitted = false; 
+        
+      }, 
+      error => {
+        this.openModal(this.sorryTemplate);
+        this.contactForm.reset();
+        this.submitted = false; 
+      }
+    );
+  }
+
+} 
+
