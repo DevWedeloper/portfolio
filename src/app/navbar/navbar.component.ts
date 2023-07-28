@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
 import { SharedService } from 'src/services/shared.service';
 
 @Component({
@@ -9,14 +9,47 @@ import { SharedService } from 'src/services/shared.service';
 export class NavbarComponent implements OnInit {
   isMenuOpen: boolean = false;
   
+  resizeTimer: any;
+
   constructor(
     private renderer: Renderer2,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private el: ElementRef
   ) {}
 
   ngOnInit(): void {
     this.highlightNavLinks();
     this.checkPreferredTheme();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(event: Event): void {
+    const navbar = this.el.nativeElement.querySelector('.navbar');
+    this.renderer.addClass(navbar, 'resize-animation-stopper');
+
+    clearTimeout(this.resizeTimer);
+    this.resizeTimer = setTimeout(() => {
+      this.renderer.removeClass(navbar, 'resize-animation-stopper');
+    }, 1);
+  }
+
+  @HostListener('click', ['$event'])
+  onClick(event: Event) {
+    const target = event.target as HTMLAnchorElement;
+    if (target.tagName === 'A' && target.closest('.navbar')) {
+      event.preventDefault();
+      const targetElement = target.getAttribute('href');
+      if (targetElement) {
+        this.scrollToElement(targetElement);
+      }
+    }
+  } 
+  
+  scrollToElement(targetElement: string) {
+    const element = document.querySelector(targetElement);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   checkPreferredTheme(): void {

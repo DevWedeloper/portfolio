@@ -9,5 +9,6 @@ import { AboutComponent } from './about.component';
     CommonModule,
     SharedModule,
   ],
+  exports: [AboutComponent],
 })
 export class AboutModule { }

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, Renderer2, ElementRef, ViewChild, TemplateRef } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild, TemplateRef, Renderer2, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ModalComponent } from 'src/components/modal/modal.component';
@@ -14,33 +14,19 @@ export class AppComponent implements OnInit {
 
   contactForm!: FormGroup;
   submitted = false;
-  resizeTimer: any;
+
 
   constructor(
     private _formBuilder: FormBuilder,
     private _http: HttpClient,
-    private renderer: Renderer2, 
-    private el: ElementRef,
     private sharedService: SharedService
   ) {}
 
   ngOnInit(): void {
     this.initializeForm();
     this.addScrollAnimation();
-    this.addTypeEffect();
     this.addButtonEffect();
     this.addTabAndLineListeners();
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onWindowResize(event: Event): void {
-    const navbar = this.el.nativeElement.querySelector('.navbar');
-    this.renderer.addClass(navbar, 'resize-animation-stopper');
-
-    clearTimeout(this.resizeTimer);
-    this.resizeTimer = setTimeout(() => {
-      this.renderer.removeClass(navbar, 'resize-animation-stopper');
-    }, 1);
   }
 
   isDarkMode(): boolean {
@@ -143,72 +129,6 @@ export class AppComponent implements OnInit {
     window.addEventListener('resize', updateTabLine.bind(this));
 
     adjustTabLinePosition();
-  }
-
-  scrollToElement(targetElement: string) {
-    const element = document.querySelector(targetElement);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-  
-  @HostListener('click', ['$event'])
-  onClick(event: Event) {
-    const target = event.target as HTMLAnchorElement;
-    if (target.tagName === 'A' && target.closest('.navbar')) {
-      event.preventDefault();
-      const targetElement = target.getAttribute('href');
-      if (targetElement) {
-        this.scrollToElement(targetElement);
-      }
-    }
-  }  
-
-  addTypeEffect(): void {
-    const id = 'type-effect';
-    const txtList: string[] = ['Software Engineer!', 'Full-stack Engineer!'];
-    let index = 0;
-    let currentTextIndex = 0;
-    const typeSpeed = 55;
-    let reverse = false;
-    const reverseDelay = 1000;
-  
-    function typeWriter(): void {
-      const element = document.getElementById(id);
-      if (!element) return;
-  
-      const currentText = txtList[currentTextIndex];
-  
-      if (reverse) {
-        element.innerHTML = currentText.substring(0, index);
-        index--;
-        if (index === -1) {
-          reverse = false;
-          index = 0;
-          moveToNextText();
-        }
-      } else if (index < currentText.length) {
-        element.innerHTML += currentText.charAt(index);
-        index++;
-        if (index === currentText.length) {
-          setTimeout(() => {
-            reverse = true;
-            typeWriter();
-          }, reverseDelay);
-          return;
-        }
-      }
-      setTimeout(typeWriter, typeSpeed);
-    }
-  
-    function moveToNextText(): void {
-      currentTextIndex++;
-      if (currentTextIndex === txtList.length) {
-        currentTextIndex = 0;
-      }
-    }
-  
-    typeWriter();
   }
 
   copyText(copyID: string, btnID: string): void {
