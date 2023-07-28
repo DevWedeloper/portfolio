@@ -7,6 +7,8 @@ import { SharedService } from 'src/services/shared.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  sections!: HTMLElement[];
+  navAnchors!: HTMLElement[];
   isMenuOpen: boolean = false;
   
   resizeTimer: any;
@@ -18,7 +20,8 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.highlightNavLinks();
+    this.sections = Array.from(document.querySelectorAll('section'));
+    this.navAnchors = Array.from(document.querySelectorAll('.navbar a'));
     this.checkPreferredTheme();
   }
 
@@ -64,23 +67,34 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: Event): void {
+    this.highlightNavLinks();
+  }
+
   highlightNavLinks(): void {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.navbar a');
-  
-    window.addEventListener('scroll', () => {
-      sections.forEach((sec) => {
-        const top = window.scrollY;
-        const offset = sec.offsetTop - 150;
-        const height = sec.offsetHeight;
-        const id = sec.getAttribute('id');
-        if (top >= offset && top < offset + height) {
-          navLinks.forEach((links) => {
-            links.classList.remove('active');
-            document.querySelector(`nav ul li a[href*='${id}']`)?.classList.add('active');
-          });
-        }
-      });
+    const top = window.scrollY;
+    const offset = 150;
+
+    let activeSectionId: string | null = null;
+    this.sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+
+      if (top >= sectionTop - offset && top < sectionTop + sectionHeight - offset) {
+        activeSectionId = section.getAttribute('id');
+      }
+    });
+
+    this.navAnchors.forEach((anchor) => {
+      const href = anchor.getAttribute('href');
+      const id = href ? href.substr(1) : '';
+
+      if (id === activeSectionId) {
+        this.renderer.addClass(anchor, 'active');
+      } else {
+        this.renderer.removeClass(anchor, 'active');
+      }
     });
   }
 
@@ -108,17 +122,12 @@ export class NavbarComponent implements OnInit {
   }
 
   menuOnClick(): void {
-    const navbar = document.querySelector('.navbar') as HTMLElement;
     this.isMenuOpen = !this.isMenuOpen;
-    navbar.classList.toggle('active');
   }
 
   closeMenu(): void {
-    const navbar = document.querySelector('.navbar') as HTMLElement;
-
     this.isMenuOpen = false;;
-
-    navbar.classList.remove('active');
   }
+  
   
 }
