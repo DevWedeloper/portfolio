@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit, Renderer2, ElementRef, ViewChild, Temp
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ModalComponent } from 'src/components/modal/modal.component';
+import { SharedService } from 'src/services/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -11,26 +12,21 @@ import { ModalComponent } from 'src/components/modal/modal.component';
 export class AppComponent implements OnInit {
   title = 'portfolio';
 
-  isDarkMode: boolean = false;
-
   contactForm!: FormGroup;
   submitted = false;
-
-  isMenuOpen: boolean = false;
   resizeTimer: any;
 
   constructor(
     private _formBuilder: FormBuilder,
     private _http: HttpClient,
     private renderer: Renderer2, 
-    private el: ElementRef
+    private el: ElementRef,
+    private sharedService: SharedService
   ) {}
 
   ngOnInit(): void {
     this.initializeForm();
-    this.checkPreferredTheme();
     this.addScrollAnimation();
-    this.addScrollNavigationListeners();
     this.addTypeEffect();
     this.addButtonEffect();
     this.addTabAndLineListeners();
@@ -45,6 +41,10 @@ export class AppComponent implements OnInit {
     this.resizeTimer = setTimeout(() => {
       this.renderer.removeClass(navbar, 'resize-animation-stopper');
     }, 1);
+  }
+
+  isDarkMode(): boolean {
+    return this.sharedService.getIsDarkMode();
   }
 
   @ViewChild('modalRef') modalRef!: ModalComponent; 
@@ -92,49 +92,6 @@ export class AppComponent implements OnInit {
 
     const elements = document.querySelectorAll('.hidden');
     elements.forEach((element) => appearOnScroll.observe(element));
-  }
-
-  addScrollNavigationListeners(): void {
-    // Scroll event for sections and navigation links
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.navbar a');
-    const shapes = document.querySelectorAll('.progress li');
-  
-    window.addEventListener('scroll', () => {
-      sections.forEach((sec, sectionIndex) => {
-        const top = window.scrollY;
-        const offset = sec.offsetTop - 150;
-        const height = sec.offsetHeight;
-        const id = sec.getAttribute('id');
-        if (top >= offset && top < offset + height) {
-          navLinks.forEach((links) => {
-            links.classList.remove('active');
-            document.querySelector(`nav ul li a[href*='${id}']`)?.classList.add('active');
-          });
-          shapes.forEach((shape, shapeIndex) => {
-            shape.classList.remove('active');
-            if (sectionIndex === shapeIndex) {
-              shape.classList.add('active');
-            }
-          });
-        }
-      });
-    });
-  
-    document.addEventListener('DOMContentLoaded', () => {
-      window.addEventListener('scroll', () => {
-        const scroll = window.pageYOffset || document.documentElement.scrollTop;
-        const doc = Math.max(
-          document.body.scrollHeight,
-          document.documentElement.scrollHeight
-        );
-        const win = window.innerHeight || document.documentElement.clientHeight;
-        const value = (scroll / (doc - win)) * 100;
-        const line = document.querySelector('.line') as HTMLElement;
-        line.style.height = value + '%';
-      });
-    });
-  
   }
 
   addButtonEffect(): void {
@@ -188,20 +145,6 @@ export class AppComponent implements OnInit {
     adjustTabLinePosition();
   }
 
-  menuOnClick(): void {
-    const navbar = document.querySelector('.navbar') as HTMLElement;
-    this.isMenuOpen = !this.isMenuOpen;
-    navbar.classList.toggle('active');
-  }
-
-  closeMenu(): void {
-    const navbar = document.querySelector('.navbar') as HTMLElement;
-
-    this.isMenuOpen = false;;
-
-    navbar.classList.remove('active');
-  }
-
   scrollToElement(targetElement: string) {
     const element = document.querySelector(targetElement);
     if (element) {
@@ -220,36 +163,6 @@ export class AppComponent implements OnInit {
       }
     }
   }  
-  
-  themeOnClick(): void {
-    this.isDarkMode = !this.isDarkMode;
-    const aboutImage = document.querySelector('.about-img') as HTMLElement;
-
-    if (this.isDarkMode) {
-      this.renderer.addClass(document.body, 'dark-theme');
-      localStorage.setItem('preferredTheme', 'dark');
-    } else {
-      this.renderer.removeClass(document.body, 'dark-theme');
-      localStorage.setItem('preferredTheme', 'light');
-    }
-    aboutImage.classList.add('blur-animation');
-    
-    aboutImage.addEventListener('animationend', () => {
-      aboutImage.classList.remove('blur-animation');
-    }, { once: true });
-  }
-
-  checkPreferredTheme(): void {
-    const preferredTheme = localStorage.getItem('preferredTheme');
-
-    if (preferredTheme === 'dark') {
-      this.isDarkMode = true;
-      this.renderer.addClass(document.body, 'dark-theme');
-    } else {
-      this.isDarkMode = false;
-      this.renderer.removeClass(document.body, 'dark-theme');
-    }
-  }
 
   addTypeEffect(): void {
     const id = 'type-effect';
@@ -357,10 +270,6 @@ export class AppComponent implements OnInit {
         this.submitted = false; 
       }
     );
-  }
-
-  modalStopPropagation(event: MouseEvent): void {
-    event.stopPropagation();
   }
 
 }
