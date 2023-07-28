@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild, TemplateRef, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ModalComponent } from 'src/components/modal/modal.component';
@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
   contactForm!: FormGroup;
   submitted = false;
 
-
   constructor(
     private _formBuilder: FormBuilder,
     private _http: HttpClient,
@@ -26,7 +25,6 @@ export class AppComponent implements OnInit {
     this.initializeForm();
     this.addScrollAnimation();
     this.addButtonEffect();
-    this.addTabAndLineListeners();
   }
 
   isDarkMode(): boolean {
@@ -92,43 +90,6 @@ export class AppComponent implements OnInit {
       }, 600);
       });
     });
-  }
-
-  addTabAndLineListeners(): void {
-    const tabs = Array.from(document.querySelectorAll('.tab-links')) as HTMLElement[];
-    const line = document.querySelector('.tab-line') as HTMLElement;
-    const tabContent = Array.from(document.getElementsByClassName('tab-content')) as HTMLElement[];
-
-    function updateTabLine() {
-      const activeTab = document.querySelector('.tab-links.active') as HTMLElement;
-      if (activeTab) {
-        line.style.width = activeTab.offsetWidth + "px";
-        line.style.left = activeTab.offsetLeft + "px";
-        line.style.top = activeTab.offsetHeight + "px";
-      }
-    }
-
-    function adjustTabLinePosition(): void {
-      const initialActiveTab = document.querySelector('.tab-links.active') as HTMLElement;
-      if (initialActiveTab) {
-        line.style.width = initialActiveTab.offsetWidth + "px";
-        line.style.left = initialActiveTab.offsetLeft + "px";
-        line.style.top = initialActiveTab.offsetHeight + "px";
-      }
-    }
-
-    tabs.forEach((tab, index) => tab.addEventListener('click', (event) => {
-      tabs.forEach((tab) => tab.classList.remove('active'));
-      const clickedTab = event.currentTarget as HTMLElement;
-      clickedTab.classList.add('active');
-      tabContent.forEach((tab) => {tab.classList.remove('active')});
-      tabContent[index].classList.add('active');
-      updateTabLine.bind(this)();
-    }));
-
-    window.addEventListener('resize', updateTabLine.bind(this));
-
-    adjustTabLinePosition();
   }
 
   copyText(copyID: string, btnID: string): void {

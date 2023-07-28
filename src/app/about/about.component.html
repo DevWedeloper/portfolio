@@ -1,1 +1,255 @@
-<p>about works!</p>
+<section class="about" id="about">
+  <div
+    class="about-img hidden from-left"
+    [style.background-image]="
+      isDarkMode() ? 'url(assets/about-night.png)' : 'url(assets/about-day.png)'
+    "
+  ></div>
+  <div class="hidden from-right">
+    <h3>About Me</h3>
+    <p>
+      Driven by my passion for software engineering, I excel in critical
+      thinking and thrive in collaborative environments. My adaptability
+      empowers me to embrace new challenges confidently, while my dedication to
+      lifelong learning fuels my ambition to create exceptional and innovative
+      software solutions.
+    </p>
+    <div class="tab-container">
+      <ul class="tab-titles">
+        <li class="tab-links active"><p>Skills</p></li>
+        <li class="tab-links"><p>Experience</p></li>
+        <li class="tab-links"><p>Education</p></li>
+        <div class="tab-line"></div>
+      </ul>
+      <div class="tab-content highlight-text active">
+        <ul class="skills-content content">
+          <li class="skills-item">Front-End:</li>
+          <li class="skills-item">
+            <span class="tooltip" appTooltip="HTML">
+              <img
+                class="icon"
+                src="assets/html.svg"
+                alt="HTML Logo"
+                loading="lazy"
+              />
+            </span>
+            <span class="tooltip" appTooltip="CSS">
+              <img
+                class="icon"
+                src="assets/css.svg"
+                alt="CSS Logo"
+                loading="lazy"
+              />
+            </span>
+            <span class="tooltip" appTooltip="JavaScript">
+              <img
+                class="icon"
+                src="assets/javascript.svg"
+                alt="JavaScript Logo"
+                loading="lazy"
+            /></span>
+            <span class="tooltip" appTooltip="Angular">
+              <img
+                class="icon"
+                src="assets/angular.svg"
+                alt="Angular Logo"
+                loading="lazy"
+            /></span>
+            <span class="tooltip" appTooltip="TypeScript">
+              <img
+                class="icon"
+                src="assets/typescript.svg"
+                alt="TypeScript Logo"
+                loading="lazy"
+            /></span>
+            <span class="tooltip" appTooltip="SASS">
+              <img
+                class="icon"
+                src="assets/sass.svg"
+                alt="SASS Logo"
+                loading="lazy"
+            /></span>
+          </li>
+          <li class="skills-item">Back-End:</li>
+          <li class="skills-item">
+            <span class="tooltip" appTooltip="Laravel">
+              <img
+                class="icon"
+                src="assets/laravel.svg"
+                alt="Laravel Logo"
+                loading="lazy"
+            /></span>
+            <span class="tooltip" appTooltip="Lumen">
+              <img
+                class="icon"
+                src="assets/lumen.svg"
+                alt="Lumen Logo"
+                loading="lazy"
+            /></span>
+            <span class="tooltip" appTooltip="Python">
+              <img
+                class="icon"
+                src="assets/python.svg"
+                alt="Python Logo"
+                loading="lazy"
+            /></span>
+          </li>
+          <li class="skills-item">Tools:</li>
+          <li class="skills-item">
+            <span class="tooltip" appTooltip="Git">
+              <img
+                class="icon"
+                src="assets/git.svg"
+                alt="Git logo"
+                loading="lazy"
+            /></span>
+            <span class="tooltip" appTooltip="GitHub">
+              <img
+                class="icon"
+                src="{{
+                  isDarkMode()
+                    ? 'assets/github-light.svg'
+                    : 'assets/github-dark.svg'
+                }}"
+                alt="GitHub logo"
+            /></span>
+            <span class="tooltip" appTooltip="Jira">
+              <img
+                class="icon"
+                src="assets/jira.svg"
+                alt="Jira logo"
+                loading="lazy"
+            /></span>
+          </li>
+          <li class="skills-item">Technologies:</li>
+          <li class="skills-item">
+            <span class="tooltip" appTooltip="AWS">
+              <img
+                class="icon"
+                src="{{
+                  isDarkMode() ? 'assets/aws-light.svg' : 'assets/aws-dark.svg'
+                }}"
+                alt="AWS logo"
+                loading="lazy"
+            /></span>
+            <span class="tooltip" appTooltip="API">
+              <img
+                class="icon"
+                src="assets/api.svg"
+                alt="API logo"
+                loading="lazy"
+            /></span>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <ul class="experience-content content">
+          <li>
+            <span class="highlight-text">2023 Feb - 2023 May</span>
+          </li>
+          <li>
+            <span>Internship at Cloudstaff</span>
+            <span class="superscript-container">
+              <img
+                class="icon icon-size-adjust superscript-icon"
+                src="assets/open-in-new.png"
+                alt="Open In New Icon"
+                (click)="openModal(experienceTemplate)"
+                loading="lazy"
+                [ngStyle]="{
+                  filter: isDarkMode()
+                    ? 'invert(100%) grayscale(100%)'
+                    : 'grayscale(100%)'
+                }"
+              />
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <ul class="education-content content">
+          <li><span class="highlight-text">2019 - 2023</span></li>
+          <li>
+            <span
+              >Bachelor of Science in Computer Science at Holy Angel
+              University</span
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<app-modal #modalRef>
+  <ng-container *ngTemplateOutlet="modalContent"></ng-container>
+</app-modal>
+<ng-template #experienceTemplate>
+  <div class="experience-modal-content">
+    <div class="experience-modal-header">
+      <h3>Project Name: SuiteView</h3>
+      <span>
+        <img
+          class="icon icon-size-adjust"
+          style="-webkit-tap-highlight-color: transparent"
+          src="assets/close.png"
+          alt="Close Logo"
+          (click)="closeModal()"
+          [ngStyle]="{
+            filter: isDarkMode()
+              ? 'invert(100%) grayscale(100%)'
+              : 'grayscale(100%)'
+          }"
+        />
+      </span>
+    </div>
+    <ul class="experience-modal-body">
+      <li class="experience-modal-body-title">Tech-Stack:</li>
+      <li>
+        <span class="tooltip" appTooltip="Angular">
+          <img
+            class="icon"
+            src="assets/angular.svg"
+            alt="Angular Logo"
+            loading="lazy"
+        /></span>
+        <span class="tooltip" appTooltip="Laravel">
+          <img
+            class="icon"
+            src="assets/laravel.svg"
+            alt="Laravel Logo"
+            loading="lazy"
+        /></span>
+        <span class="tooltip" appTooltip="Lumen">
+          <img
+            class="icon"
+            src="assets/lumen.svg"
+            alt="Lumen Logo"
+            loading="lazy"
+        /></span>
+        <span class="tooltip" appTooltip="AWS S3 Bucket">
+          <img
+            class="icon"
+            src="assets/aws-s3-bucket.svg"
+            alt="AWS S3 Bucket Logo"
+            loading="lazy"
+        /></span>
+      </li>
+      <li class="experience-modal-body-title">Description:</li>
+      <li>
+        This project involved integrating a CCTV system, that takes a photo
+        every minute and uploads it to an AWS S3 Bucket. The back-end, written
+        in Laravel Lumen, fetches the data from the S3 Bucket. The front-end,
+        written in Angular, gets the data from the back-end via API pull. This
+        project was presented to the CEO and became an actual product.
+      </li>
+      <li class="experience-modal-body-title">Role/s:</li>
+      <ul>
+        <li>
+          Front-End heavy, designing the web app basing from a mock web UI.
+        </li>
+        <li>Making the web UI responsive, user friendly.</li>
+        <li>Connecting the FE to BE via API pull.</li>
+      </ul>
+    </ul>
+  </div>
+</ng-template>
