@@ -10,6 +10,7 @@ import { SharedService } from 'src/services/shared.service';
 export class NavbarComponent implements OnInit, AfterViewInit {
   @ViewChildren('homeLink, aboutLink, contactLink') navAnchors!: QueryList<ElementRef>;
   @ViewChild('homeLink', { static: true }) homeLink!: ElementRef<HTMLElement>;
+  @ViewChild('navbar', { static: true}) navbar!: ElementRef<HTMLElement>;
 
   sections!: ElementRef[];
   isMenuOpen: boolean = false;
@@ -46,7 +47,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   @HostListener('click', ['$event'])
   onClick(event: Event) {
     const target = event.target as HTMLAnchorElement;
-    if (target.tagName === 'A' && target.closest('.navbar')) {
+    const navbarElement = this.navbar.nativeElement;
+  
+    if (target.tagName === 'A' && navbarElement.contains(target)) {
       event.preventDefault();
       const targetElement = target.getAttribute('href');
       if (targetElement) {
