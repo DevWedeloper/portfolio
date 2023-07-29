@@ -12,6 +12,7 @@ export class ScrollIndicatorComponent implements OnInit, OnDestroy {
   shapes: number[] = [];
   sections!: ElementRef[];
   progress: number = 0;
+  activeShapeIndex: number | null = null; 
 
   private scrollSubscription!: Subscription | undefined;
 
@@ -25,6 +26,10 @@ export class ScrollIndicatorComponent implements OnInit, OnDestroy {
     this.sections = this.sectionService.getSections();
     this.shapes = Array.from({ length: this.sections.length }, (_, index) => index + 1);
     this.subscribeToScrollEvents();
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollPosition === 0) {
+      this.activeShapeIndex = 0;
+    }
   }
 
   ngOnDestroy(): void {
@@ -72,13 +77,7 @@ export class ScrollIndicatorComponent implements OnInit, OnDestroy {
       this.progress = (scroll / (doc - win)) * 100;
     
       if (top >= offset && top < offset + height) {
-        this.shapeElements.forEach((shape, shapeIndex) => {
-          if (shapeIndex === index) {
-            shape.nativeElement.classList.add('active');
-          } else {
-            shape.nativeElement.classList.remove('active');
-          }
-        });
+        this.activeShapeIndex = index;
       }
     });
   };
