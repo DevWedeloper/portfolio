@@ -1,11 +1,11 @@
-.progress {
+.progress-bar {
   position: fixed;
   top: 50%;
   right: 15px;
   transform: translateY(-50%);
 }
 
-.progress ul {
+.progress-bar ul {
   list-style: none;
   height: 300px;
   width: 60px;
@@ -16,7 +16,7 @@
   position: relative;
 }
 
-.progress li {
+.progress-bar li {
   display: block;
   height: 10px;
   width: 10px;
@@ -27,7 +27,7 @@
   z-index: 1;
 }
 
-.progress li.active {
+.progress-bar li.active {
   outline: 1px solid var(--main-color);
   height: 20px;
   width: 20px;
@@ -40,7 +40,7 @@
 }
 
 @media (max-width: 991px) {
-  .progress,
+  .progress-bar,
   .line {
     display: none;
   }

@@ -1,6 +1,6 @@
-<div class="progress">
+<div class="progress-bar">
   <ul>
-    <span class="line"></span>
-    <li *ngFor="let shape of shapes" #shapeElement></li>
+    <span class="line" [style.height.%]="progress"></span>
+    <li #shapeElement *ngFor="let shape of shapes"></li>
   </ul>
 </div>
