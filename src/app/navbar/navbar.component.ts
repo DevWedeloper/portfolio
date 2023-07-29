@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { SectionService } from 'src/services/section.service';
 import { SharedService } from 'src/services/shared.service';
 
@@ -7,8 +7,9 @@ import { SharedService } from 'src/services/shared.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, AfterViewInit {
   @ViewChildren('homeLink, aboutLink, contactLink') navAnchors!: QueryList<ElementRef>;
+  @ViewChild('homeLink', { static: true }) homeLink!: ElementRef<HTMLElement>;
 
   sections!: ElementRef[];
   isMenuOpen: boolean = false;
@@ -25,6 +26,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.sections = this.sectionService.getSections();
     this.checkPreferredTheme();
+  }
+
+  ngAfterViewInit(): void {
     this.highlightNavAnchors();
   }
 
