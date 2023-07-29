@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { SectionService } from 'src/services/section.service';
 import { fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
@@ -15,8 +15,6 @@ export class ScrollIndicatorComponent implements OnInit, OnDestroy {
   activeShapeIndex: number | null = null; 
 
   private scrollSubscription!: Subscription | undefined;
-
-  @ViewChildren('shapeElement') shapeElements!: QueryList<ElementRef<HTMLLIElement>>;
 
   constructor(
     private sectionService: SectionService
