@@ -104,8 +104,6 @@ export class NavbarComponent implements OnInit {
   themeOnClick(): void {
     const isDarkMode = this.sharedService.getIsDarkMode();
     this.sharedService.setIsDarkMode(!isDarkMode);
-    const aboutImage = document.querySelector('.about-img') as HTMLElement;
-
     if (this.sharedService.getIsDarkMode()) {
       this.renderer.addClass(document.body, 'dark-theme');
       localStorage.setItem('preferredTheme', 'dark');
@@ -113,11 +111,6 @@ export class NavbarComponent implements OnInit {
       this.renderer.removeClass(document.body, 'dark-theme');
       localStorage.setItem('preferredTheme', 'light');
     }
-    aboutImage.classList.add('blur-animation');
-    
-    aboutImage.addEventListener('animationend', () => {
-      aboutImage.classList.remove('blur-animation');
-    }, { once: true });
   }
 
   isDarkMode(): boolean {
