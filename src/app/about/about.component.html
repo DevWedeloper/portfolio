@@ -1,5 +1,6 @@
-<section class="about" id="about">
+<section #section class="about" id="about">
   <div
+    #aboutImg
     class="about-img hidden from-left"
     [style.background-image]="
       isDarkMode() ? 'url(assets/about-night.png)' : 'url(assets/about-day.png)'
@@ -21,7 +22,7 @@
         <li class="tab-links"><p>Education</p></li>
         <div class="tab-line"></div>
       </ul>
-      <div class="tab-content highlight-text active">
+      <div class="tab-content active" highlightText>
         <ul class="skills-content content">
           <li class="skills-item">Front-End:</li>
           <li class="skills-item">
@@ -145,7 +146,7 @@
       <div class="tab-content">
         <ul class="experience-content content">
           <li>
-            <span class="highlight-text">2023 Feb - 2023 May</span>
+            <span highlightText>2023 Feb - 2023 May</span>
           </li>
           <li>
             <span>Internship at Cloudstaff</span>
@@ -168,7 +169,7 @@
       </div>
       <div class="tab-content">
         <ul class="education-content content">
-          <li><span class="highlight-text">2019 - 2023</span></li>
+          <li><span highlightText>2019 - 2023</span></li>
           <li>
             <span
               >Bachelor of Science in Computer Science at Holy Angel

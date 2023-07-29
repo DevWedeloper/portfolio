@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChildren } from '@angular/core';
+import { SectionService } from 'src/services/section.service';
 import { SharedService } from 'src/services/shared.service';
 
 @Component({
@@ -7,6 +8,9 @@ import { SharedService } from 'src/services/shared.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  @ViewChildren('homeLink, aboutLink, contactLink') navAnchors!: QueryList<ElementRef>;
+
+  sections!: ElementRef[];
   isMenuOpen: boolean = false;
   
   resizeTimer: any;
@@ -14,12 +18,14 @@ export class NavbarComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
     private sharedService: SharedService,
+    private sectionService: SectionService,
     private el: ElementRef
   ) {}
 
   ngOnInit(): void {
-    this.highlightNavLinks();
+    this.sections = this.sectionService.getSections();
     this.checkPreferredTheme();
+    this.highlightNavAnchors();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -64,31 +70,40 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  highlightNavLinks(): void {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.navbar a');
-  
-    window.addEventListener('scroll', () => {
-      sections.forEach((sec) => {
-        const top = window.scrollY;
-        const offset = sec.offsetTop - 150;
-        const height = sec.offsetHeight;
-        const id = sec.getAttribute('id');
-        if (top >= offset && top < offset + height) {
-          navLinks.forEach((links) => {
-            links.classList.remove('active');
-            document.querySelector(`nav ul li a[href*='${id}']`)?.classList.add('active');
-          });
-        }
-      });
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: Event): void {
+    this.highlightNavAnchors();
+  }
+
+  highlightNavAnchors(): void {
+    const top = window.scrollY;
+    const offset = 150;
+
+    let activeSectionId: string | null = null;
+    this.sections.forEach((section) => {
+      const sectionTop = section.nativeElement.offsetTop;
+      const sectionHeight = section.nativeElement.offsetHeight;
+
+      if (top >= sectionTop - offset && top < sectionTop + sectionHeight - offset) {
+        activeSectionId = section.nativeElement.getAttribute('id');
+      }
+    });
+
+    this.navAnchors.forEach((anchor) => {
+      const href = anchor.nativeElement.getAttribute('href');
+      const id = href ? href.substr(1) : '';
+
+      if (id === activeSectionId) {
+        this.renderer.addClass(anchor.nativeElement, 'active');
+      } else {
+        this.renderer.removeClass(anchor.nativeElement, 'active');
+      }
     });
   }
 
   themeOnClick(): void {
     const isDarkMode = this.sharedService.getIsDarkMode();
     this.sharedService.setIsDarkMode(!isDarkMode);
-    const aboutImage = document.querySelector('.about-img') as HTMLElement;
-
     if (this.sharedService.getIsDarkMode()) {
       this.renderer.addClass(document.body, 'dark-theme');
       localStorage.setItem('preferredTheme', 'dark');
@@ -96,11 +111,6 @@ export class NavbarComponent implements OnInit {
       this.renderer.removeClass(document.body, 'dark-theme');
       localStorage.setItem('preferredTheme', 'light');
     }
-    aboutImage.classList.add('blur-animation');
-    
-    aboutImage.addEventListener('animationend', () => {
-      aboutImage.classList.remove('blur-animation');
-    }, { once: true });
   }
 
   isDarkMode(): boolean {
@@ -108,17 +118,11 @@ export class NavbarComponent implements OnInit {
   }
 
   menuOnClick(): void {
-    const navbar = document.querySelector('.navbar') as HTMLElement;
     this.isMenuOpen = !this.isMenuOpen;
-    navbar.classList.toggle('active');
   }
 
   closeMenu(): void {
-    const navbar = document.querySelector('.navbar') as HTMLElement;
-
     this.isMenuOpen = false;;
-
-    navbar.classList.remove('active');
   }
   
 }

@@ -18,10 +18,10 @@
         src="{{ this.isMenuOpen ? 'assets/close.png' : 'assets/menu.png' }}"
     /></a>
   </div>
-  <ul>
-    <li><a href="#home" class="active" (click)="closeMenu()">Home</a></li>
-    <li><a href="#about" (click)="closeMenu()">About</a></li>
-    <li><a href="#contact" (click)="closeMenu()">Contact</a></li>
+  <ul [ngStyle]="{ transform: isMenuOpen? 'translateX(0)': '' }">
+    <li><a #homeLink href="#home" class="active" (click)="closeMenu()">Home</a></li>
+    <li><a #aboutLink href="#about" (click)="closeMenu()">About</a></li>
+    <li><a #contactLink href="#contact" (click)="closeMenu()">Contact</a></li>
     <li>
       <a class="icon-link" (click)="themeOnClick()">
         <img

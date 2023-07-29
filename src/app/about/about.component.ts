@@ -1,5 +1,6 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 import { ModalComponent } from 'src/components/modal/modal.component';
+import { SectionService } from 'src/services/section.service';
 import { SharedService } from 'src/services/shared.service';
 
 @Component({
@@ -8,15 +9,31 @@ import { SharedService } from 'src/services/shared.service';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
+  @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
+  @ViewChild('aboutImg', { static: true }) aboutImg!: ElementRef<HTMLElement>;
 
   constructor(
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private sectionService: SectionService,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit(): void {
+    this.sectionService.registerSection(this.section);
     this.addTabAndLineListeners();
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.triggerAnimation();
+    });
   }
   
+  triggerAnimation(): void {
+    this.renderer.addClass(this.aboutImg.nativeElement, 'blur-animation');
+
+    this.renderer.listen(this.aboutImg.nativeElement, 'animationend', () => {
+      this.renderer.removeClass(this.aboutImg.nativeElement, 'blur-animation');
+    });
+  }
+
   @ViewChild('modalRef') modalRef!: ModalComponent; 
   modalContent!: TemplateRef<any>;
   openModal(templateRef: TemplateRef<any>): void {

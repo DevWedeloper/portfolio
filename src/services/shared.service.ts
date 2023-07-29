@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
-  private isDarkMode: boolean = false;
+  private isDarkModeSubject = new BehaviorSubject<boolean>(false);
+  isDarkMode$: Observable<boolean> = this.isDarkModeSubject.asObservable();
 
   getIsDarkMode(): boolean {
-    return this.isDarkMode;
+    return this.isDarkModeSubject.value;
   }
 
   setIsDarkMode(value: boolean): void {
-    this.isDarkMode = value;
+    this.isDarkModeSubject.next(value);
   }
 }
