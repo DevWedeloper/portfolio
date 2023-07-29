@@ -1,53 +1,83 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { SectionService } from 'src/services/section.service';
+import { fromEvent, Subscription } from 'rxjs';
+import { throttleTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-scroll-indicator',
   templateUrl: './scroll-indicator.component.html',
   styleUrls: ['./scroll-indicator.component.scss']
 })
-export class ScrollIndicatorComponent implements OnInit {
+export class ScrollIndicatorComponent implements OnInit, OnDestroy {
   shapes: number[] = [];
-  sections!: NodeListOf<HTMLElement>;
+  sections!: ElementRef[];
+  progress: number = 0;
+  activeShapeIndex: number | null = null; 
 
-  @ViewChildren('shapeElement') shapeElements!: QueryList<ElementRef<HTMLLIElement>>;
+  private scrollSubscription!: Subscription | undefined;
+
+  constructor(
+    private sectionService: SectionService
+  ) {}
 
   ngOnInit(): void {
-    this.sections = document.querySelectorAll('section');
+    this.sections = this.sectionService.getSections();
     this.shapes = Array.from({ length: this.sections.length }, (_, index) => index + 1);
-    this.updateShapesAndProgressBar();
+    this.subscribeToScrollEvents();
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollPosition === 0) {
+      this.activeShapeIndex = 0;
+    }
   }
-  
-  updateShapesAndProgressBar(): void {
 
-    window.addEventListener('scroll', () => {
-      this.sections.forEach(((sec, index) => {
-        const top = window.scrollY;
-        const offset = sec.offsetTop - 150;
-        const height = sec.offsetHeight;
+  ngOnDestroy(): void {
+    if (this.scrollSubscription) {
+      this.scrollSubscription.unsubscribe();
+    }
+  }
 
-        const scroll = window.pageYOffset || document.documentElement.scrollTop;
-        const doc = Math.max(
-          document.body.scrollHeight,
-          document.documentElement.scrollHeight
-        );
-        const win = window.innerHeight || document.documentElement.clientHeight;
-        const value = (scroll / (doc - win)) * 100;
-        const line = document.querySelector('.line') as HTMLElement;
-        line.style.height = value + '%';
+  private subscribeToScrollEvents(): void {
+    this.scrollSubscription = fromEvent(window, 'scroll')
+      .pipe(throttleTime(10))
+      .subscribe(this.updateShapesAndProgressBar);
+  }
+
+  private unsubscribeFromScrollEvents(): void {
+    if (this.scrollSubscription) {
+      this.scrollSubscription.unsubscribe();
+      this.scrollSubscription = undefined;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(event: Event): void {
+    const viewportWidth = (event.target as Window).innerWidth;
+    if (viewportWidth <= 991) {
+      this.unsubscribeFromScrollEvents();
+    } else {
+      if (!this.scrollSubscription) {
+        this.subscribeToScrollEvents();
+        this.updateShapesAndProgressBar();
+      }
+    }
+  }
+
+  private updateShapesAndProgressBar = () => {
+    const scroll = window.pageYOffset || document.documentElement.scrollTop;
+    const doc = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    const win = window.innerHeight || document.documentElement.clientHeight;
     
-        if (top >= offset && top < offset + height) {
-          this.shapeElements.forEach((shape, shapeIndex) => {
-            if (shapeIndex === index) {
-              shape.nativeElement.classList.add('active');
-            } else {
-              shape.nativeElement.classList.remove('active');
-            }
-          });
-        }
+    this.sections.forEach((sec, index) => {
+      const top = window.scrollY;
+      const offset = sec.nativeElement.offsetTop - 150;
+      const height = sec.nativeElement.offsetHeight;
 
-      }));
+      this.progress = (scroll / (doc - win)) * 100;
+    
+      if (top >= offset && top < offset + height) {
+        this.activeShapeIndex = index;
+      }
     });
-
-  }
+  };
   
 }
