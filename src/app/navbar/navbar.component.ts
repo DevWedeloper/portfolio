@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
-import { SectionService } from 'src/services/section.service';
-import { ThemeService } from 'src/services/theme.service';
+import { SectionService } from '../services/section.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-navbar',

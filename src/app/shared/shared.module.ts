@@ -3,13 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-
-import { ModalComponent } from 'src/components/modal/modal.component';
-import { ScrollIndicatorComponent } from 'src/components/scroll-indicator/scroll-indicator.component';
-
-import { TooltipDirective } from 'src/directives/tooltip.directive';
-import { HighlightTextDirective } from 'src/directives/highlight-text.directive';
-
+import { ModalComponent } from '../components/modal/modal.component';
+import { ScrollIndicatorComponent } from '../components/scroll-indicator/scroll-indicator.component';
+import { TooltipDirective } from '../directives/tooltip.directive';
+import { HighlightTextDirective } from '../directives/highlight-text.directive';
 @NgModule({
   declarations: [
     ModalComponent,

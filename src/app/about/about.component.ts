@@ -1,8 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
-import { ModalComponent } from 'src/components/modal/modal.component';
-import { SectionService } from 'src/services/section.service';
-import { ThemeService } from 'src/services/theme.service';
-
+import { ModalComponent } from '../components/modal/modal.component';
+import { SectionService } from '../services/section.service';
+import { ThemeService } from '../services/theme.service';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',

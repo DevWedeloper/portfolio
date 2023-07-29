@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { SectionService } from 'src/services/section.service';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { SectionService } from '../services/section.service';
+import { TypeEffectService } from '../services/type-effect.service';
 
 interface TypingEffect {
   phrases: string[];
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private sectionService: SectionService,
-    private renderer: Renderer2,
+    private typeEffectService: TypeEffectService
   ){}
 
   ngOnInit(): void {
@@ -32,57 +33,7 @@ export class HomeComponent implements OnInit {
       reverseDelay: 1000,
       loop: true,
     };
-    this.addTypeEffect(typingEffectOptions);
-  }
-
-  private addTypeEffect(typingEffectOptions: TypingEffect): void {
-    let letterIndex = 0;
-    let phraseIndex = 0;
-    let reverse = false;
-
-    const element = this.typeEffect.nativeElement;
-    const updateText = (text: string) => this.renderer.setProperty(element, 'textContent', text);
-
-    const typeWriter = () => {
-      const currentText = typingEffectOptions.phrases[phraseIndex];
-
-      if (reverse) {
-        updateText(currentText.substring(0, letterIndex));
-        letterIndex--;
-        if (letterIndex === -1) {
-          reverse = false;
-          letterIndex = 0;
-          moveToNextText();
-        }
-      } else if (letterIndex < currentText.length) {
-        updateText(currentText.substring(0, letterIndex + 1));
-        letterIndex++;
-        if (letterIndex === currentText.length) {
-          if (phraseIndex === typingEffectOptions.phrases.length - 1 && !typingEffectOptions.loop) {
-            return; 
-          }
-          setTimeout(() => {
-            reverse = true;
-            typeWriter();
-          }, typingEffectOptions.reverseDelay);
-          return;
-        }
-      }
-      setTimeout(typeWriter, reverse ? typingEffectOptions.reverseSpeed : typingEffectOptions.typeSpeed);
-    };
-
-    function moveToNextText(): void {
-      phraseIndex++;
-      if (phraseIndex === typingEffectOptions.phrases.length) {
-        if (typingEffectOptions.loop) {
-          phraseIndex = 0;
-        } else {
-          return;
-        }
-      }
-    }
-
-    typeWriter();
+    this.typeEffectService.addTypeEffect(typingEffectOptions, this.typeEffect.nativeElement);
   }
 
 }

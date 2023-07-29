@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalComponent } from 'src/components/modal/modal.component';
-import { SectionService } from 'src/services/section.service';
-import { ThemeService } from 'src/services/theme.service';
+import { ModalComponent } from '../components/modal/modal.component';
+import { SectionService } from '../services/section.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-contact',

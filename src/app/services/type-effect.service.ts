@@ -1,4 +1,4 @@
-import { Injectable, Renderer2 } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 
 interface TypingEffect {
   phrases: string[];
@@ -11,8 +11,11 @@ interface TypingEffect {
 @Injectable({
   providedIn: 'root'
 })
-export class TypingEffectService {
-  constructor(private renderer: Renderer2) {}
+export class TypeEffectService {
+  private renderer: Renderer2;
+  constructor(private rendererFactory: RendererFactory2) {
+    this.renderer = this.rendererFactory.createRenderer(null, null);
+  }
 
   addTypeEffect(typingEffectOptions: TypingEffect, element: HTMLElement): void {
     let letterIndex = 0;
