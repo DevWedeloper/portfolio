@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { SectionService } from 'src/services/section.service';
-import { SharedService } from 'src/services/shared.service';
+import { ThemeService } from 'src/services/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   constructor(
     private renderer: Renderer2,
-    private sharedService: SharedService,
+    private themeService: ThemeService,
     private sectionService: SectionService,
     private el: ElementRef
   ) {}
@@ -69,10 +69,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     const preferredTheme = localStorage.getItem('preferredTheme');
 
     if (preferredTheme === 'dark') {
-      this.sharedService.setIsDarkMode(true);
+      this.themeService.setIsDarkMode(true);
       this.renderer.addClass(document.body, 'dark-theme');
     } else {
-      this.sharedService.setIsDarkMode(false);
+      this.themeService.setIsDarkMode(false);
       this.renderer.removeClass(document.body, 'dark-theme');
     }
   }
@@ -109,9 +109,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   themeOnClick(): void {
-    const isDarkMode = this.sharedService.getIsDarkMode();
-    this.sharedService.setIsDarkMode(!isDarkMode);
-    if (this.sharedService.getIsDarkMode()) {
+    const isDarkMode = this.themeService.getIsDarkMode();
+    this.themeService.setIsDarkMode(!isDarkMode);
+    if (this.themeService.getIsDarkMode()) {
       this.renderer.addClass(document.body, 'dark-theme');
       localStorage.setItem('preferredTheme', 'dark');
     } else {
@@ -121,7 +121,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   isDarkMode(): boolean {
-    return this.sharedService.getIsDarkMode();
+    return this.themeService.getIsDarkMode();
   }
 
   menuOnClick(): void {

@@ -3,7 +3,7 @@ import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalComponent } from 'src/components/modal/modal.component';
 import { SectionService } from 'src/services/section.service';
-import { SharedService } from 'src/services/shared.service';
+import { ThemeService } from 'src/services/theme.service';
 
 @Component({
   selector: 'app-contact',
@@ -18,9 +18,8 @@ export class ContactComponent implements OnInit{
   constructor(
     private _http: HttpClient,
     private _formBuilder: FormBuilder,
-    private sharedService: SharedService,
-    private sectionService: SectionService,
-    private el: ElementRef
+    private themeService: ThemeService,
+    private sectionService: SectionService
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +28,7 @@ export class ContactComponent implements OnInit{
   }
 
   isDarkMode(): boolean {
-    return this.sharedService.getIsDarkMode();
+    return this.themeService.getIsDarkMode();
   }
 
   @ViewChild('modalRef') modalRef!: ModalComponent; 

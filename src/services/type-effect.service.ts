@@ -1,5 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { SectionService } from 'src/services/section.service';
+import { Injectable, Renderer2 } from '@angular/core';
 
 interface TypingEffect {
   phrases: string[];
@@ -9,38 +8,17 @@ interface TypingEffect {
   loop: boolean;
 }
 
-@Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+@Injectable({
+  providedIn: 'root'
 })
-export class HomeComponent implements OnInit {
-  @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
-  @ViewChild('typeEffect', { static: true }) typeEffect!: ElementRef<HTMLElement>;
+export class TypingEffectService {
+  constructor(private renderer: Renderer2) {}
 
-  constructor(
-    private sectionService: SectionService,
-    private renderer: Renderer2,
-  ){}
-
-  ngOnInit(): void {
-    this.sectionService.registerSection(this.section);
-    const typingEffectOptions: TypingEffect = {
-      phrases: ['Software Engineer!', 'Full-stack Engineer!'],
-      typeSpeed: 55,
-      reverseSpeed: 40,
-      reverseDelay: 1000,
-      loop: true,
-    };
-    this.addTypeEffect(typingEffectOptions);
-  }
-
-  private addTypeEffect(typingEffectOptions: TypingEffect): void {
+  addTypeEffect(typingEffectOptions: TypingEffect, element: HTMLElement): void {
     let letterIndex = 0;
     let phraseIndex = 0;
     let reverse = false;
 
-    const element = this.typeEffect.nativeElement;
     const updateText = (text: string) => this.renderer.setProperty(element, 'textContent', text);
 
     const typeWriter = () => {
@@ -59,7 +37,7 @@ export class HomeComponent implements OnInit {
         letterIndex++;
         if (letterIndex === currentText.length) {
           if (phraseIndex === typingEffectOptions.phrases.length - 1 && !typingEffectOptions.loop) {
-            return; 
+            return;
           }
           setTimeout(() => {
             reverse = true;
@@ -84,5 +62,4 @@ export class HomeComponent implements OnInit {
 
     typeWriter();
   }
-
 }

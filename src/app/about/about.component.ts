@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 import { ModalComponent } from 'src/components/modal/modal.component';
 import { SectionService } from 'src/services/section.service';
-import { SharedService } from 'src/services/shared.service';
+import { ThemeService } from 'src/services/theme.service';
 
 @Component({
   selector: 'app-about',
@@ -13,7 +13,7 @@ export class AboutComponent implements OnInit {
   @ViewChild('aboutImg', { static: true }) aboutImg!: ElementRef<HTMLElement>;
 
   constructor(
-    private sharedService: SharedService,
+    private themeService: ThemeService,
     private sectionService: SectionService,
     private renderer: Renderer2
   ) {}
@@ -21,7 +21,7 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
     this.sectionService.registerSection(this.section);
     this.addTabAndLineListeners();
-    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+    this.themeService.isDarkMode$.subscribe((isDarkMode) => {
       this.triggerAnimation();
     });
   }
@@ -46,7 +46,7 @@ export class AboutComponent implements OnInit {
   }
 
   isDarkMode(): boolean {
-    return this.sharedService.getIsDarkMode();
+    return this.themeService.getIsDarkMode();
   }
 
   addTabAndLineListeners(): void {
