@@ -4,7 +4,8 @@
     class="about-img hidden from-left"
     [style.background-image]="
       isDarkMode() ? 'url(assets/about-night.png)' : 'url(assets/about-day.png)'
-    "
+    "z
+    [@blurAnimation]="blurAnimationState"
   ></div>
   <div class="hidden from-right">
     <h3>About Me</h3>
@@ -20,7 +21,7 @@
         <li class="tab-links active"><p>Skills</p></li>
         <li class="tab-links"><p>Experience</p></li>
         <li class="tab-links"><p>Education</p></li>
-        <div class="tab-line"></div>
+        <div #line class="tab-line"></div>
       </ul>
       <div class="tab-content active" highlightText>
         <ul class="skills-content content">
