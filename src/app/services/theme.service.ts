@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SharedService {
+export class ThemeService {
   private isDarkModeSubject = new BehaviorSubject<boolean>(false);
   isDarkMode$: Observable<boolean> = this.isDarkModeSubject.asObservable();
 

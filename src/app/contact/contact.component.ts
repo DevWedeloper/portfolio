@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalComponent } from 'src/components/modal/modal.component';
-import { SectionService } from 'src/services/section.service';
-import { SharedService } from 'src/services/shared.service';
+import { ModalComponent } from '../components/modal/modal.component';
+import { SectionService } from '../services/section.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-contact',
@@ -18,9 +18,8 @@ export class ContactComponent implements OnInit{
   constructor(
     private _http: HttpClient,
     private _formBuilder: FormBuilder,
-    private sharedService: SharedService,
-    private sectionService: SectionService,
-    private el: ElementRef
+    private themeService: ThemeService,
+    private sectionService: SectionService
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +28,7 @@ export class ContactComponent implements OnInit{
   }
 
   isDarkMode(): boolean {
-    return this.sharedService.getIsDarkMode();
+    return this.themeService.getIsDarkMode();
   }
 
   @ViewChild('modalRef') modalRef!: ModalComponent; 
@@ -82,8 +81,8 @@ export class ContactComponent implements OnInit{
     }, 2000);
   }
   
-  @ViewChild('thankYouTemplate') thankYouTemplate!: TemplateRef<any>;
-  @ViewChild('sorryTemplate') sorryTemplate!: TemplateRef<any>;
+  @ViewChild('thankYouTemplate') thankYouTemplate!: TemplateRef<HTMLElement>;
+  @ViewChild('sorryTemplate') sorryTemplate!: TemplateRef<HTMLElement>;
   onSubmit() {
     if (this.contactForm.invalid) {
       return;

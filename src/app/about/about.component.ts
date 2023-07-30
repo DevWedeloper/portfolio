@@ -1,37 +1,66 @@
-import { Component, ElementRef, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
-import { ModalComponent } from 'src/components/modal/modal.component';
-import { SectionService } from 'src/services/section.service';
-import { SharedService } from 'src/services/shared.service';
-
+import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ModalComponent } from '../components/modal/modal.component';
+import { SectionService } from '../services/section.service';
+import { ThemeService } from '../services/theme.service';
+import { trigger, state, style, animate, keyframes, transition } from '@angular/animations';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  styleUrls: ['./about.component.scss'],
+  animations: [
+    trigger('blurAnimation', [
+      state('animated', style({ filter: 'blur(0)' })),
+      transition('* => animated', [
+        animate(
+          '0.7s ease-in-out',
+          keyframes([
+            style({ filter: 'blur(0)', offset: 0 }),
+            style({ filter: 'blur(2px)', offset: 0.5 }),
+            style({ filter: 'blur(0)', offset: 1 }),
+          ])
+        )
+      ])
+    ])
+  ]
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent implements OnInit, OnDestroy {
   @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
   @ViewChild('aboutImg', { static: true }) aboutImg!: ElementRef<HTMLElement>;
+  @ViewChild('line', { static: true }) line!: ElementRef<HTMLElement>;
+ 
+  blurAnimationState:string = '';
+
+  themeSubscription!: Subscription
+
+  tabs: string[] = ['Skills', 'Experience', 'Education'];
+  activatedTab: string = 'Skills';
 
   constructor(
-    private sharedService: SharedService,
-    private sectionService: SectionService,
-    private renderer: Renderer2
+    private themeService: ThemeService,
+    private sectionService: SectionService
   ) {}
 
   ngOnInit(): void {
     this.sectionService.registerSection(this.section);
-    this.addTabAndLineListeners();
-    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+    this.themeSubscription = this.themeService.isDarkMode$.subscribe((isDarkMode) => {
       this.triggerAnimation();
     });
   }
+
+  ngOnDestroy(): void {
+    this.themeSubscription.unsubscribe();
+  }
   
   triggerAnimation(): void {
-    this.renderer.addClass(this.aboutImg.nativeElement, 'blur-animation');
+    this.blurAnimationState = 'animated';
+    setTimeout(() => {
+      this.blurAnimationState = '';
+    }, 700)
+  }
 
-    this.renderer.listen(this.aboutImg.nativeElement, 'animationend', () => {
-      this.renderer.removeClass(this.aboutImg.nativeElement, 'blur-animation');
-    });
+  tabChange(tabIndex: string) {
+    this.activatedTab = tabIndex;
   }
 
   @ViewChild('modalRef') modalRef!: ModalComponent; 
@@ -46,44 +75,7 @@ export class AboutComponent implements OnInit {
   }
 
   isDarkMode(): boolean {
-    return this.sharedService.getIsDarkMode();
-  }
-
-  addTabAndLineListeners(): void {
-    const tabs = Array.from(document.querySelectorAll('.tab-links')) as HTMLElement[];
-    const line = document.querySelector('.tab-line') as HTMLElement;
-    const tabContent = Array.from(document.getElementsByClassName('tab-content')) as HTMLElement[];
-
-    function updateTabLine() {
-      const activeTab = document.querySelector('.tab-links.active') as HTMLElement;
-      if (activeTab) {
-        line.style.width = activeTab.offsetWidth + "px";
-        line.style.left = activeTab.offsetLeft + "px";
-        line.style.top = activeTab.offsetHeight + "px";
-      }
-    }
-
-    function adjustTabLinePosition(): void {
-      const initialActiveTab = document.querySelector('.tab-links.active') as HTMLElement;
-      if (initialActiveTab) {
-        line.style.width = initialActiveTab.offsetWidth + "px";
-        line.style.left = initialActiveTab.offsetLeft + "px";
-        line.style.top = initialActiveTab.offsetHeight + "px";
-      }
-    }
-
-    tabs.forEach((tab, index) => tab.addEventListener('click', (event) => {
-      tabs.forEach((tab) => tab.classList.remove('active'));
-      const clickedTab = event.currentTarget as HTMLElement;
-      clickedTab.classList.add('active');
-      tabContent.forEach((tab) => {tab.classList.remove('active')});
-      tabContent[index].classList.add('active');
-      updateTabLine.bind(this)();
-    }));
-
-    window.addEventListener('resize', updateTabLine.bind(this));
-
-    adjustTabLinePosition();
+    return this.themeService.getIsDarkMode();
   }
 
 }

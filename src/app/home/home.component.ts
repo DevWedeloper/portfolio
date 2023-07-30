@@ -1,69 +1,39 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { SectionService } from 'src/services/section.service';
+import { SectionService } from '../services/section.service';
+import { TypeEffectService } from '../services/type-effect.service';
+
+interface TypingEffect {
+  phrases: string[];
+  typeSpeed: number;
+  reverseSpeed: number;
+  reverseDelay: number;
+  loop: boolean;
+}
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
   @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
+  @ViewChild('typeEffect', { static: true }) typeEffect!: ElementRef<HTMLElement>;
 
   constructor(
     private sectionService: SectionService,
-    private el: ElementRef
+    private typeEffectService: TypeEffectService
   ){}
 
   ngOnInit(): void {
     this.sectionService.registerSection(this.section);
-    this.addTypeEffect();
-  }
-
-  addTypeEffect(): void {
-    const id = 'type-effect';
-    const txtList: string[] = ['Software Engineer!', 'Full-stack Engineer!'];
-    let index = 0;
-    let currentTextIndex = 0;
-    const typeSpeed = 55;
-    let reverse = false;
-    const reverseDelay = 1000;
-  
-    function typeWriter(): void {
-      const element = document.getElementById(id);
-      if (!element) return;
-  
-      const currentText = txtList[currentTextIndex];
-  
-      if (reverse) {
-        element.innerHTML = currentText.substring(0, index);
-        index--;
-        if (index === -1) {
-          reverse = false;
-          index = 0;
-          moveToNextText();
-        }
-      } else if (index < currentText.length) {
-        element.innerHTML += currentText.charAt(index);
-        index++;
-        if (index === currentText.length) {
-          setTimeout(() => {
-            reverse = true;
-            typeWriter();
-          }, reverseDelay);
-          return;
-        }
-      }
-      setTimeout(typeWriter, typeSpeed);
-    }
-  
-    function moveToNextText(): void {
-      currentTextIndex++;
-      if (currentTextIndex === txtList.length) {
-        currentTextIndex = 0;
-      }
-    }
-  
-    typeWriter();
+    const typingEffectOptions: TypingEffect = {
+      phrases: ['Software Engineer!', 'Full-stack Engineer!'],
+      typeSpeed: 55,
+      reverseSpeed: 40,
+      reverseDelay: 1000,
+      loop: true,
+    };
+    this.typeEffectService.addTypeEffect(typingEffectOptions, this.typeEffect.nativeElement);
   }
 
 }

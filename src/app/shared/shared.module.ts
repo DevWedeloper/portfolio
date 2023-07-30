@@ -3,17 +3,19 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ModalComponent } from 'src/components/modal/modal.component';
-import { ScrollIndicatorComponent } from 'src/components/scroll-indicator/scroll-indicator.component';
+import { ScrollIndicatorComponent } from '../components/scroll-indicator/scroll-indicator.component';
+import { ModalComponent } from '../components/modal/modal.component';
+import { TabsComponent } from '../components/tabs/tabs.component';
 
-import { TooltipDirective } from 'src/directives/tooltip.directive';
-import { HighlightTextDirective } from 'src/directives/highlight-text.directive';
-
+import { TooltipDirective } from '../directives/tooltip.directive';
+import { HighlightTextDirective } from '../directives/highlight-text.directive';
 @NgModule({
   declarations: [
-    ModalComponent,
     ScrollIndicatorComponent,
+    TabsComponent,
+    ModalComponent,
     TooltipDirective,
     HighlightTextDirective
   ],
@@ -22,14 +24,16 @@ import { HighlightTextDirective } from 'src/directives/highlight-text.directive'
     ReactiveFormsModule,
     HttpClientModule,
     ScrollingModule,
+    BrowserAnimationsModule
   ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
     ScrollingModule,
-    ModalComponent,
     ScrollIndicatorComponent,
+    TabsComponent,
+    ModalComponent,
     TooltipDirective,
     HighlightTextDirective
   ],

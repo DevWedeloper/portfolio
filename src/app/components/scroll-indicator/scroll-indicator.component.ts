@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { SectionService } from 'src/services/section.service';
 import { fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
+import { SectionService } from 'src/app/services/section.service';
 
 @Component({
   selector: 'app-scroll-indicator',

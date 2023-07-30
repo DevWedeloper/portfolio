@@ -157,20 +157,6 @@ section {
   }
 }
 
-.blur-animation {
-  animation: blurEffect 0.7s ease-in-out;
-}
-
-@keyframes blurEffect {
-  0%,
-  100% {
-    filter: blur(0);
-  }
-  50% {
-    filter: blur(2px);
-  }
-}
-
 .from-left {
   transform: translateX(-50%);
 }
