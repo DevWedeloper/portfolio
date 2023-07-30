@@ -43,7 +43,6 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.sectionService.registerSection(this.section);
-    this.addTabAndLineListeners();
     this.themeSubscription = this.themeService.isDarkMode$.subscribe((isDarkMode) => {
       this.triggerAnimation();
     });
@@ -62,7 +61,6 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   tabChange(tabIndex: string) {
     this.activatedTab = tabIndex;
-    
   }
 
   @ViewChild('modalRef') modalRef!: ModalComponent; 
@@ -78,42 +76,6 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   isDarkMode(): boolean {
     return this.themeService.getIsDarkMode();
-  }
-
-  addTabAndLineListeners(): void {
-    const tabs = Array.from(document.querySelectorAll('.tab-links')) as HTMLElement[];
-    const tabContent = Array.from(document.getElementsByClassName('tab-content')) as HTMLElement[];
-
-    const updateTabLine = () => {
-      const activeTab = document.querySelector('.tab-links.active') as HTMLElement;
-      if (activeTab) {
-        this.line.nativeElement.style.width = activeTab.offsetWidth + "px";
-        this.line.nativeElement.style.left = activeTab.offsetLeft + "px";
-        this.line.nativeElement.style.top = activeTab.offsetHeight + "px";
-      }
-    }
-
-    const adjustTabLinePosition = () => {
-      const initialActiveTab = document.querySelector('.tab-links.active') as HTMLElement;
-      if (initialActiveTab) {
-        this.line.nativeElement.style.width = initialActiveTab.offsetWidth + "px";
-        this.line.nativeElement.style.left = initialActiveTab.offsetLeft + "px";
-        this.line.nativeElement.style.top = initialActiveTab.offsetHeight + "px";
-      }
-    }
-
-    tabs.forEach((tab, index) => tab.addEventListener('click', (event) => {
-      tabs.forEach((tab) => tab.classList.remove('active'));
-      const clickedTab = event.currentTarget as HTMLElement;
-      clickedTab.classList.add('active');
-      tabContent.forEach((tab) => {tab.classList.remove('active')});
-      tabContent[index].classList.add('active');
-      updateTabLine.bind(this)();
-    }));
-
-    window.addEventListener('resize', updateTabLine.bind(this));
-
-    adjustTabLinePosition();
   }
 
 }
