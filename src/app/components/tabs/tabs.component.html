@@ -1,0 +1,12 @@
+<ul class="tabs">
+  <li
+    #tabLinks
+    class="tab-links"
+    *ngFor="let tab of tabsList"
+    [ngClass]="activatedTab == tab ? 'active' : ''"
+    (click)="setTab($event, tab)"
+  >
+    <p>{{ tab }}</p>
+  </li>
+  <div #line class="tab-line"></div>
+</ul>

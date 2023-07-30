@@ -26,6 +26,7 @@ export class TooltipDirective {
     }
     this.renderer.setStyle(this.tooltipElement, 'visibility', 'visible');
     this.renderer.setStyle(this.tooltipElement, 'opacity', '1');
+    this.renderer.setStyle(this.tooltipElement, 'transition', 'opacity .3s');
   }
 
   private hideTooltip() {

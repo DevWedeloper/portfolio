@@ -4,7 +4,8 @@
     class="about-img hidden from-left"
     [style.background-image]="
       isDarkMode() ? 'url(assets/about-night.png)' : 'url(assets/about-day.png)'
-    "z
+    "
+    z
     [@blurAnimation]="blurAnimationState"
   ></div>
   <div class="hidden from-right">
@@ -17,14 +18,9 @@
       software solutions.
     </p>
     <div class="tab-container">
-      <ul class="tab-titles">
-        <li class="tab-links active"><p>Skills</p></li>
-        <li class="tab-links"><p>Experience</p></li>
-        <li class="tab-links"><p>Education</p></li>
-        <div #line class="tab-line"></div>
-      </ul>
-      <div class="tab-content active" highlightText>
-        <ul class="skills-content content">
+      <app-tabs [tabsList]="tabs" (onTabChange)="tabChange($event)"></app-tabs>
+      <div [ngStyle]="{ display: activatedTab === 'Skills' ? 'block' : 'none'}" highlightText>
+        <ul class="skills-content tab-content">
           <li class="skills-item">Front-End:</li>
           <li class="skills-item">
             <span class="tooltip" appTooltip="HTML">
@@ -144,8 +140,8 @@
           </li>
         </ul>
       </div>
-      <div class="tab-content">
-        <ul class="experience-content content">
+      <div [ngStyle]="{ display: activatedTab === 'Experience' ? 'block' : 'none'}">
+        <ul class="experience-content tab-content">
           <li>
             <span highlightText>2023 Feb - 2023 May</span>
           </li>
@@ -168,8 +164,8 @@
           </li>
         </ul>
       </div>
-      <div class="tab-content">
-        <ul class="education-content content">
+      <div [ngStyle]="{ display: activatedTab === 'Education' ? 'block' : 'none'}">
+        <ul class="education-content tab-content">
           <li><span highlightText>2019 - 2023</span></li>
           <li>
             <span

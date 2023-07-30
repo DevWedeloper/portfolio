@@ -1,9 +1,9 @@
-import { Component, ElementRef, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ModalComponent } from '../components/modal/modal.component';
 import { SectionService } from '../services/section.service';
 import { ThemeService } from '../services/theme.service';
 import { trigger, state, style, animate, keyframes, transition } from '@angular/animations';
-
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -24,25 +24,33 @@ import { trigger, state, style, animate, keyframes, transition } from '@angular/
     ])
   ]
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent implements OnInit, OnDestroy {
   @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
   @ViewChild('aboutImg', { static: true }) aboutImg!: ElementRef<HTMLElement>;
   @ViewChild('line', { static: true }) line!: ElementRef<HTMLElement>;
  
   blurAnimationState:string = '';
 
+  themeSubscription!: Subscription
+
+  tabs: string[] = ['Skills', 'Experience', 'Education'];
+  activatedTab: string = 'Skills';
+
   constructor(
     private themeService: ThemeService,
-    private sectionService: SectionService,
-    private renderer: Renderer2
+    private sectionService: SectionService
   ) {}
 
   ngOnInit(): void {
     this.sectionService.registerSection(this.section);
     this.addTabAndLineListeners();
-    this.themeService.isDarkMode$.subscribe((isDarkMode) => {
+    this.themeSubscription = this.themeService.isDarkMode$.subscribe((isDarkMode) => {
       this.triggerAnimation();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.themeSubscription.unsubscribe();
   }
   
   triggerAnimation(): void {
@@ -50,6 +58,11 @@ export class AboutComponent implements OnInit {
     setTimeout(() => {
       this.blurAnimationState = '';
     }, 700)
+  }
+
+  tabChange(tabIndex: string) {
+    this.activatedTab = tabIndex;
+    
   }
 
   @ViewChild('modalRef') modalRef!: ModalComponent; 
