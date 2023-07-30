@@ -81,8 +81,8 @@ export class ContactComponent implements OnInit{
     }, 2000);
   }
   
-  @ViewChild('thankYouTemplate') thankYouTemplate!: TemplateRef<any>;
-  @ViewChild('sorryTemplate') sorryTemplate!: TemplateRef<any>;
+  @ViewChild('thankYouTemplate') thankYouTemplate!: TemplateRef<HTMLElement>;
+  @ViewChild('sorryTemplate') sorryTemplate!: TemplateRef<HTMLElement>;
   onSubmit() {
     if (this.contactForm.invalid) {
       return;
