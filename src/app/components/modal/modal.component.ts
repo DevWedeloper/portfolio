@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -8,11 +8,31 @@ import { Component } from '@angular/core';
 export class ModalComponent {
   isVisible:boolean = false;
 
+  isBodyScrollDisabled: boolean = false;
+
+  constructor(
+    private renderer: Renderer2
+  ){}
+
   openModal() {
     this.isVisible = true;
+    this.isBodyScrollDisabled = true;
+    this.toggleBodyScroll();
   }
 
   closeModal() {
     this.isVisible = false;
+    this.isBodyScrollDisabled = false;
+    this.toggleBodyScroll();
   }
+
+  private toggleBodyScroll(): void {
+    if (this.isBodyScrollDisabled) {
+      this.renderer.addClass(document.body, 'no-scroll');
+      
+    } else {
+      this.renderer.removeClass(document.body, 'no-scroll');
+    }
+  }
+
 }

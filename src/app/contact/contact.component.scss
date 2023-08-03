@@ -112,7 +112,7 @@
 }
 
 .form-item-container:nth-child(5) {
-  grid-column: span 1;
+  grid-column: span 2;
 }
 
 .error-tooltip {
@@ -133,7 +133,7 @@
 }
 
 .submit-modal-content {
-  width: clamp(350px, 400px, 600px);
+  width: 400px;
   padding: 2rem;
   text-align: center;
   font-size: var(--font-size-regular-desktop);
@@ -160,10 +160,6 @@
   }
 
   .form-item-container:nth-child(2) {
-    grid-column: span 2;
-  }
-
-  .form-item-container:nth-child(5) {
     grid-column: span 2;
   }
 
@@ -205,6 +201,10 @@
 }
 
 @media (max-width: 500px) {
+  .submit-modal-content {
+    width: 350px;
+  }
+
   .contact h4,
   .submit-modal-content h5 {
     font-size: var(--font-size-big-small-mobile);
