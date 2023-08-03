@@ -17,6 +17,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   
   resizeTimer: any;
 
+  isBodyScrollDisabled: boolean = false;
+
+
   constructor(
     private renderer: Renderer2,
     private themeService: ThemeService,
@@ -126,10 +129,23 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   menuOnClick(): void {
     this.isMenuOpen = !this.isMenuOpen;
+    this.toggleBodyScroll();
   }
 
   closeMenu(): void {
-    this.isMenuOpen = false;;
+    this.isMenuOpen = false;
+    this.toggleBodyScroll();
+  }
+
+  private toggleBodyScroll(): void {
+    if (this.isMenuOpen) {
+      this.isBodyScrollDisabled = true;
+      this.renderer.addClass(document.body, 'no-scroll');
+      
+    } else {
+      this.isBodyScrollDisabled = false;
+      this.renderer.removeClass(document.body, 'no-scroll');
+    }
   }
   
 }

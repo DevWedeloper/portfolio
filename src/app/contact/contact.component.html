@@ -69,10 +69,7 @@
     </div>
   </div>
   <div class="contact-form hidden from-right">
-    <form
-      [formGroup]="contactForm"
-      (ngSubmit)="onSubmit()"
-    >
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
       <div class="form-item-container">
         <input type="text" formControlName="name" placeholder="Name" />
         <div
@@ -145,7 +142,13 @@
   <div class="submit-modal-content">
     <h5>Sorry.</h5>
     <p>The message was not sent. Please try again next time</p>
-    <button class="btn" (click)="closeModal()">Here</button>
+    <button
+      class="btn"
+      (click)="closeModal()"
+      style="-webkit-tap-highlight-color: transparent"
+    >
+      OK
+    </button>
   </div>
 </ng-template>
 
@@ -156,6 +159,12 @@
       The message was sent. Your feedback will help shape me to become a better
       developer. Thanks!
     </p>
-    <button class="btn" (click)="closeModal()">Here</button>
+    <button
+      class="btn"
+      (click)="closeModal()"
+      style="-webkit-tap-highlight-color: transparent"
+    >
+      Cool!
+    </button>
   </div>
 </ng-template>
