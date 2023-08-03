@@ -43,6 +43,7 @@ export class TooltipDirective {
     this.renderer.appendChild(this.tooltipElement, tooltipText);
     this.renderer.addClass(this.tooltipElement, 'tooltip-text');
     this.renderer.setStyle(this.tooltipElement, 'position', 'absolute');
+    this.renderer.setStyle(this.tooltipElement, 'width', 'max-content');
     this.renderer.setStyle(this.tooltipElement, 'z-index', '1');
     this.renderer.setStyle(this.tooltipElement, 'top', 'calc(100% + 1px)');
     this.renderer.setStyle(this.tooltipElement, 'left', '50%');
