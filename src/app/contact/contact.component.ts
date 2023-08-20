@@ -67,14 +67,14 @@ export class ContactComponent implements OnInit{
   
     document.body.removeChild(tempTextArea);
   
-    buttonImage.src = "assets/check.png";
+    buttonImage.src = "assets/images/icons/check.svg";
   
     copyBtnSpan.style.backgroundColor = "var(--main-color)";
   
     copyBtnSpan.removeAttribute("id");
   
     setTimeout(() => {
-      buttonImage.src = "assets/copy.png";
+      buttonImage.src = "assets/images/icons/copy.svg";
       copyBtnSpan.style.backgroundColor = "";
   
       copyBtnSpan.setAttribute("id", btnID);
