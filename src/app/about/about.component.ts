@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
-import { ModalComponent } from '../components/modal/modal.component';
+import { ModalComponent } from '../shared/ui/components/modal/modal.component';
 import { SectionService } from '../services/section.service';
 import { ThemeService } from '../services/theme.service';
 import { trigger, state, style, animate, keyframes, transition } from '@angular/animations';
