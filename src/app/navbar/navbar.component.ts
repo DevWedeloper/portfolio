@@ -11,7 +11,7 @@ import { NgStyle } from '@angular/common';
     imports: [NgStyle]
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
-  @ViewChildren('homeLink, aboutLink, contactLink') navAnchors!: QueryList<ElementRef>;
+  @ViewChildren('homeLink, aboutLink, contactLink, projectsLink') navAnchors!: QueryList<ElementRef>;
   @ViewChild('homeLink', { static: true }) homeLink!: ElementRef<HTMLElement>;
   @ViewChild('navbar', { static: true}) navbar!: ElementRef<HTMLElement>;
 

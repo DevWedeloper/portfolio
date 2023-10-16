@@ -87,3 +87,48 @@ html {
 body {
   background-color: var(--primary-color);
 }
+
+section {
+  min-height: 100vh;
+  padding: 10rem 9%;
+  color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: var(--font-size-big-desktop);
+  font-weight: 700;
+}
+
+p {
+  font-size: var(--font-size-regular-desktop);
+}
+
+@media (max-width: 991px) {
+  h1, h2, h3, h4, h5, h6 {
+    font-size: var(--font-size-big-tablet);
+  }
+
+  p {
+    font-size: var(--font-size-regular-tablet);
+  }
+}
+
+@media (max-width: 768px) {
+  h1, h2, h3, h4, h5, h6 {
+    font-size: var(--font-size-big-mobile);
+  }
+
+  p {
+    font-size: var(--font-size-regular-mobile);
+  }
+}
+
+@media (max-width: 500px) {
+  h1, h2, h3, h4, h5, h6 {
+    font-size: var(--font-size-big-small-mobile);
+  }
+  
+  p {
+    font-size: var(--font-size-regular-small-mobile);
+  }
+}

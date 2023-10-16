@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AboutComponent } from './about/about.component';
-import { ScrollIndicatorComponent } from './shared/ui/components/scroll-indicator/scroll-indicator.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ScrollIndicatorComponent } from './shared/ui/components/scroll-indicator/scroll-indicator.component';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     NavbarComponent,
     HomeComponent,
     AboutComponent,
+    ProjectsComponent,
     ContactComponent,
     ScrollIndicatorComponent,
   ],

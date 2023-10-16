@@ -14,15 +14,6 @@
   flex: 1 1 60%;
 }
 
-.contact h4 {
-  font-size: var(--font-size-big-desktop);
-  font-weight: 700;
-}
-
-.contact p {
-  font-size: var(--font-size-regular-desktop);
-}
-
 .contact-information-item {
   display: flex;
   margin-top: 1.5rem;
@@ -141,8 +132,6 @@
 }
 
 .submit-modal-content h5 {
-  font-size: var(--font-size-big-desktop);
-  font-weight: 700;
   padding: 1rem;
 }
 
@@ -163,57 +152,11 @@
   .form-item-container:nth-child(2) {
     grid-column: span 2;
   }
-
-  .contact h4,
-  .submit-modal-content h5 {
-    font-size: var(--font-size-big-tablet);
-  }
-  .contact p,
-  .submit-modal-content {
-    font-size: var(--font-size-regular-tablet);
-  }
-
-  .tooltip .tooltip-text,
-  .error-tooltip {
-    font-size: var(--font-size-tooltip-tablet);
-  }
 }
 
 @media (max-width: 768px) {
   .contact {
     flex-direction: column;
     text-align: center;
-  }
-
-  .contact h4,
-  .submit-modal-content h5 {
-    font-size: var(--font-size-big-mobile);
-  }
-
-  .contact p,
-  .submit-modal-content {
-    font-size: var(--font-size-regular-mobile);
-  }
-
-  .tooltip .tooltip-text,
-  .error-tooltip {
-    font-size: var(--font-size-tooltip-mobile);
-  }
-}
-
-@media (max-width: 500px) {
-  .contact h4,
-  .submit-modal-content h5 {
-    font-size: var(--font-size-big-small-mobile);
-  }
-
-  .contact p,
-  .submit-modal-content {
-    font-size: var(--font-size-regular-small-mobile);
-  }
-
-  .tooltip .tooltip-text,
-  .error-tooltip {
-    font-size: var(--font-size-tooltip-small-mobile);
   }
 }
