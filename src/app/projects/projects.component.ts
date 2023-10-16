@@ -12,15 +12,11 @@ import { ThemeService } from '../shared/data-access/theme.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectsComponent implements OnInit {
-  sectionService = inject(SectionService);
-  themeService = inject(ThemeService);
+  ss = inject(SectionService);
+  ts = inject(ThemeService);
   @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
 
   ngOnInit(): void {
-    this.sectionService.registerSection(this.section);
-  }
-
-  isDarkMode(): boolean {
-    return this.themeService.getIsDarkMode();
+    this.ss.registerSection(this.section);
   }
 }

@@ -3,7 +3,9 @@
     #aboutImg
     class="about-img hidden from-left"
     [style.background-image]="
-      isDarkMode() ? 'url(assets/images/backgrounds/about-night.webp)' : 'url(assets/images/backgrounds/about-day.webp)'
+      (ts.isDarkMode$ | async)
+        ? 'url(assets/images/backgrounds/about-night.webp)'
+        : 'url(assets/images/backgrounds/about-day.webp)'
     "
     z
     [@blurAnimation]="blurAnimationState"
@@ -19,7 +21,10 @@
     </p>
     <div class="tab-container">
       <app-tabs [tabsList]="tabs" (onTabChange)="tabChange($event)"></app-tabs>
-      <div [ngStyle]="{ display: activatedTab === 'Skills' ? 'block' : 'none'}" highlightText>
+      <div
+        [ngStyle]="{ display: activatedTab === 'Skills' ? 'block' : 'none' }"
+        highlightText
+      >
         <ul class="skills-content tab-content">
           <li class="skills-item">Front-End:</li>
           <li class="skills-item">
@@ -84,9 +89,10 @@
                 alt="Express.js Logo"
                 loading="lazy"
                 [ngStyle]="{
-                  filter: isDarkMode()
-                    ? 'invert(100%) grayscale(100%)'
-                    : 'grayscale(100%)'
+                  filter:
+                    (ts.isDarkMode$ | async)
+                      ? 'invert(100%) grayscale(100%)'
+                      : 'grayscale(100%)'
                 }"
             /></span>
             <span class="tooltip" appTooltip="Node.js">
@@ -131,7 +137,7 @@
               <img
                 class="icon"
                 src="{{
-                  isDarkMode()
+                  (ts.isDarkMode$ | async)
                     ? 'assets/images/icons/github-light.svg'
                     : 'assets/images/icons/github-dark.svg'
                 }}"
@@ -158,7 +164,9 @@
               <img
                 class="icon"
                 src="{{
-                  isDarkMode() ? 'assets/images/icons/aws-light.svg' : 'assets/images/icons/aws-dark.svg'
+                  (ts.isDarkMode$ | async)
+                    ? 'assets/images/icons/aws-light.svg'
+                    : 'assets/images/icons/aws-dark.svg'
                 }}"
                 alt="AWS logo"
                 loading="lazy"
@@ -170,15 +178,20 @@
                 alt="Rest API logo"
                 loading="lazy"
                 [ngStyle]="{
-                  filter: isDarkMode()
-                    ? 'invert(100%) grayscale(100%)'
-                    : 'grayscale(100%)'
+                  filter:
+                    (ts.isDarkMode$ | async)
+                      ? 'invert(100%) grayscale(100%)'
+                      : 'grayscale(100%)'
                 }"
             /></span>
           </li>
         </ul>
       </div>
-      <div [ngStyle]="{ display: activatedTab === 'Experience' ? 'block' : 'none'}">
+      <div
+        [ngStyle]="{
+          display: activatedTab === 'Experience' ? 'block' : 'none'
+        }"
+      >
         <ul class="experience-content tab-content">
           <li>
             <span highlightText>2023 Feb - 2023 May</span>
@@ -193,16 +206,19 @@
                 (click)="openModal(experienceTemplate)"
                 loading="lazy"
                 [ngStyle]="{
-                  filter: isDarkMode()
-                    ? 'invert(100%) grayscale(100%)'
-                    : 'grayscale(100%)'
+                  filter:
+                    (ts.isDarkMode$ | async)
+                      ? 'invert(100%) grayscale(100%)'
+                      : 'grayscale(100%)'
                 }"
               />
             </span>
           </li>
         </ul>
       </div>
-      <div [ngStyle]="{ display: activatedTab === 'Education' ? 'block' : 'none'}">
+      <div
+        [ngStyle]="{ display: activatedTab === 'Education' ? 'block' : 'none' }"
+      >
         <ul class="education-content tab-content">
           <li><span highlightText>2019 - 2023</span></li>
           <li>
@@ -231,9 +247,10 @@
           alt="Close Logo"
           (click)="closeModal()"
           [ngStyle]="{
-            filter: isDarkMode()
-              ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)'
+            filter:
+              (ts.isDarkMode$ | async)
+                ? 'invert(100%) grayscale(100%)'
+                : 'grayscale(100%)'
           }"
         />
       </span>

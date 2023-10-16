@@ -1,16 +1,20 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChild, ViewChildren, inject } from '@angular/core';
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
-import { NgStyle } from '@angular/common';
 
 @Component({
     selector: 'app-navbar',
+    standalone: true,
+    imports: [CommonModule],
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
-    standalone: true,
-    imports: [NgStyle]
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
+  ts = inject(ThemeService);
+  renderer = inject(Renderer2);
+  sectionService = inject(SectionService);
+  el = inject(ElementRef);
   @ViewChildren('homeLink, aboutLink, contactLink, projectsLink') navAnchors!: QueryList<ElementRef>;
   @ViewChild('homeLink', { static: true }) homeLink!: ElementRef<HTMLElement>;
   @ViewChild('navbar', { static: true}) navbar!: ElementRef<HTMLElement>;
@@ -21,14 +25,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   resizeTimer: any;
 
   isBodyScrollDisabled: boolean = false;
-
-
-  constructor(
-    private renderer: Renderer2,
-    private themeService: ThemeService,
-    private sectionService: SectionService,
-    private el: ElementRef
-  ) {}
 
   ngOnInit(): void {
     this.sections = this.sectionService.getSections();
@@ -75,10 +71,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     const preferredTheme = localStorage.getItem('preferredTheme');
 
     if (preferredTheme === 'dark') {
-      this.themeService.setIsDarkMode(true);
+      this.ts.darkMode$.next(true);
       this.renderer.addClass(document.body, 'dark-theme');
     } else {
-      this.themeService.setIsDarkMode(false);
+      this.ts.darkMode$.next(false);
       this.renderer.removeClass(document.body, 'dark-theme');
     }
   }
@@ -115,19 +111,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   themeOnClick(): void {
-    const isDarkMode = this.themeService.getIsDarkMode();
-    this.themeService.setIsDarkMode(!isDarkMode);
-    if (this.themeService.getIsDarkMode()) {
+    this.ts.darkMode$.next(!this.ts.darkMode$.value);
+    if (this.ts.darkMode$.value) {
       this.renderer.addClass(document.body, 'dark-theme');
       localStorage.setItem('preferredTheme', 'dark');
     } else {
       this.renderer.removeClass(document.body, 'dark-theme');
       localStorage.setItem('preferredTheme', 'light');
     }
-  }
-
-  isDarkMode(): boolean {
-    return this.themeService.getIsDarkMode();
   }
 
   menuOnClick(): void {

@@ -1,37 +1,30 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ModalComponent } from '../shared/ui/components/modal/modal.component';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild, inject } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
-import { NgStyle, NgIf, NgTemplateOutlet } from '@angular/common';
+import { ModalComponent } from '../shared/ui/components/modal/modal.component';
 
 @Component({
     selector: 'app-contact',
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule, ModalComponent],
     templateUrl: './contact.component.html',
     styleUrls: ['./contact.component.scss'],
-    standalone: true,
-    imports: [NgStyle, ReactiveFormsModule, NgIf, ModalComponent, NgTemplateOutlet]
 })
 export class ContactComponent implements OnInit{
+  ts = inject(ThemeService);
+  _http = inject(HttpClient);
+  _formBuilder = inject(FormBuilder);
+  sectionService = inject(SectionService);
   @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
   contactForm!: FormGroup;
   submitted = false;
-  
-  constructor(
-    private _http: HttpClient,
-    private _formBuilder: FormBuilder,
-    private themeService: ThemeService,
-    private sectionService: SectionService
-  ) {}
 
   ngOnInit(): void {
     this.sectionService.registerSection(this.section);
     this.initializeForm();
-  }
-
-  isDarkMode(): boolean {
-    return this.themeService.getIsDarkMode();
   }
 
   @ViewChild('modalRef') modalRef!: ModalComponent; 
