@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
-import { SectionService } from '../services/section.service';
-import { ThemeService } from '../services/theme.service';
+import { SectionService } from '../shared/data-access/section.service';
+import { ThemeService } from '../shared/data-access/theme.service';
 import { NgStyle } from '@angular/common';
 
 @Component({

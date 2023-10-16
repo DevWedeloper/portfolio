@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { SectionService } from '../services/section.service';
-import { TypeEffectService } from '../services/type-effect.service';
-import { HighlightTextDirective } from '../directives/highlight-text.directive';
+import { SectionService } from '../shared/data-access/section.service';
+import { TypeEffectService } from '../shared/data-access/type-effect.service';
+import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.directive';
 
 interface TypingEffect {
   phrases: string[];

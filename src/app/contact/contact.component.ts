@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from '../shared/ui/components/modal/modal.component';
-import { SectionService } from '../services/section.service';
-import { ThemeService } from '../services/theme.service';
+import { SectionService } from '../shared/data-access/section.service';
+import { ThemeService } from '../shared/data-access/theme.service';
 import { NgStyle, NgIf, NgTemplateOutlet } from '@angular/common';
 
 @Component({

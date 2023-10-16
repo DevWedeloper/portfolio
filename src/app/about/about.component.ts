@@ -1,12 +1,12 @@
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 import { ModalComponent } from '../shared/ui/components/modal/modal.component';
-import { SectionService } from '../services/section.service';
-import { ThemeService } from '../services/theme.service';
+import { SectionService } from '../shared/data-access/section.service';
+import { ThemeService } from '../shared/data-access/theme.service';
 import { trigger, state, style, animate, keyframes, transition } from '@angular/animations';
 import { Subscription } from 'rxjs';
-import { TooltipDirective } from '../directives/tooltip.directive';
+import { TooltipDirective } from '../shared/ui/directives/tooltip.directive';
 import { NgStyle, NgTemplateOutlet } from '@angular/common';
-import { HighlightTextDirective } from '../directives/highlight-text.directive';
+import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.directive';
 import { TabsComponent } from '../shared/ui/components/tabs/tabs.component';
 @Component({
     selector: 'app-about',

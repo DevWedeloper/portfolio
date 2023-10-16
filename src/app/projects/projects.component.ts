@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
-import { SectionService } from '../services/section.service';
+import { SectionService } from '../shared/data-access/section.service';
 
 @Component({
   selector: 'app-projects',

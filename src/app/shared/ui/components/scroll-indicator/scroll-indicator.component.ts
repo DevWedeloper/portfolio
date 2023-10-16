@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
-import { SectionService } from 'src/app/services/section.service';
+import { SectionService } from 'src/app/shared/data-access/section.service';
 import { NgFor, NgClass } from '@angular/common';
 
 @Component({
