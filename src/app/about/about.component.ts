@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { TooltipDirective } from '../directives/tooltip.directive';
 import { NgStyle, NgTemplateOutlet } from '@angular/common';
 import { HighlightTextDirective } from '../directives/highlight-text.directive';
-import { TabsComponent } from '../components/tabs/tabs.component';
+import { TabsComponent } from '../shared/ui/components/tabs/tabs.component';
 @Component({
     selector: 'app-about',
     templateUrl: './about.component.html',

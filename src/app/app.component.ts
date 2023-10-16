@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AboutComponent } from './about/about.component';
-import { ScrollIndicatorComponent } from './components/scroll-indicator/scroll-indicator.component';
+import { ScrollIndicatorComponent } from './shared/ui/components/scroll-indicator/scroll-indicator.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
