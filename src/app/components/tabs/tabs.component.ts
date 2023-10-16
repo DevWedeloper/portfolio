@@ -1,9 +1,12 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { NgFor, NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-tabs',
-  templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.scss']
+    selector: 'app-tabs',
+    templateUrl: './tabs.component.html',
+    styleUrls: ['./tabs.component.scss'],
+    standalone: true,
+    imports: [NgFor, NgClass]
 })
 export class TabsComponent implements AfterViewInit {
   @ViewChild('line', { static: true }) line!: ElementRef<HTMLElement>;

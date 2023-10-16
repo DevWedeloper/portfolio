@@ -1,11 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { AboutComponent } from './about/about.component';
+import { ScrollIndicatorComponent } from './components/scroll-indicator/scroll-indicator.component';
+import { ContactComponent } from './contact/contact.component';
+import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [
+    NavbarComponent,
+    HomeComponent,
+    AboutComponent,
+    ContactComponent,
+    ScrollIndicatorComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-
 export class AppComponent implements OnInit {
   title = 'portfolio';
 
@@ -19,10 +31,10 @@ export class AppComponent implements OnInit {
       threshold: number;
       rootMargin: string;
     };
-    
+
     const appearOptions: Options = {
       threshold: 0,
-      rootMargin: "0px 0px -150px 0px"
+      rootMargin: '0px 0px -150px 0px',
     };
 
     const appearOnScroll = new IntersectionObserver((entries) => {
@@ -41,17 +53,18 @@ export class AppComponent implements OnInit {
   }
 
   addButtonEffect(): void {
-  const buttons =  Array.from(document.querySelectorAll('.btn-effect')) as HTMLElement[];
+    const buttons = Array.from(
+      document.querySelectorAll('.btn-effect')
+    ) as HTMLElement[];
 
-  buttons.forEach(button => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault
-      button.classList.add("animate");
-      setTimeout(() => {
-        button.classList.remove("animate");
-      }, 600);
+    buttons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault;
+        button.classList.add('animate');
+        setTimeout(() => {
+          button.classList.remove('animate');
+        }, 600);
       });
     });
   }
-
 }

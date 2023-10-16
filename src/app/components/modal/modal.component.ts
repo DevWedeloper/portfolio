@@ -1,9 +1,12 @@
 import { Component, Renderer2 } from '@angular/core';
+import { NgIf, NgClass, NgStyle } from '@angular/common';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+    selector: 'app-modal',
+    templateUrl: './modal.component.html',
+    styleUrls: ['./modal.component.scss'],
+    standalone: true,
+    imports: [NgIf, NgClass, NgStyle]
 })
 export class ModalComponent {
   isVisible:boolean = false;

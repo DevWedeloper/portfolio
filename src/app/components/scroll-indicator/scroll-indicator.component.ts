@@ -2,11 +2,14 @@ import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular
 import { fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 import { SectionService } from 'src/app/services/section.service';
+import { NgFor, NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-scroll-indicator',
-  templateUrl: './scroll-indicator.component.html',
-  styleUrls: ['./scroll-indicator.component.scss']
+    selector: 'app-scroll-indicator',
+    templateUrl: './scroll-indicator.component.html',
+    styleUrls: ['./scroll-indicator.component.scss'],
+    standalone: true,
+    imports: [NgFor, NgClass]
 })
 export class ScrollIndicatorComponent implements OnInit, OnDestroy {
   shapes: number[] = [];

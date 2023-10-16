@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SectionService } from '../services/section.service';
 import { TypeEffectService } from '../services/type-effect.service';
+import { HighlightTextDirective } from '../directives/highlight-text.directive';
 
 interface TypingEffect {
   phrases: string[];
@@ -11,9 +12,11 @@ interface TypingEffect {
 }
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    standalone: true,
+    imports: [HighlightTextDirective]
 })
 export class HomeComponent implements OnInit {
   @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;

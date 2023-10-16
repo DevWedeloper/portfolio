@@ -1,11 +1,14 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { SectionService } from '../services/section.service';
 import { ThemeService } from '../services/theme.service';
+import { NgStyle } from '@angular/common';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss'],
+    standalone: true,
+    imports: [NgStyle]
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
   @ViewChildren('homeLink, aboutLink, contactLink') navAnchors!: QueryList<ElementRef>;
