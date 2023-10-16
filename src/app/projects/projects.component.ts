@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { SectionService } from '../shared/data-access/section.service';
+import { ThemeService } from '../shared/data-access/theme.service';
 
 @Component({
   selector: 'app-projects',
@@ -12,9 +13,14 @@ import { SectionService } from '../shared/data-access/section.service';
 })
 export class ProjectsComponent implements OnInit {
   sectionService = inject(SectionService);
+  themeService = inject(ThemeService);
   @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
 
   ngOnInit(): void {
     this.sectionService.registerSection(this.section);
+  }
+
+  isDarkMode(): boolean {
+    return this.themeService.getIsDarkMode();
   }
 }
