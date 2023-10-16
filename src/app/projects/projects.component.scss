@@ -1,3 +1,9 @@
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .heading {
   text-align: center;
 }
@@ -7,4 +13,8 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr); 
   gap: 0.5rem; 
+}
+
+img {
+  width: 50%;
 }

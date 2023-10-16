@@ -14,7 +14,7 @@ import {
   OnInit,
   TemplateRef,
   ViewChild,
-  inject
+  inject,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription } from 'rxjs';
@@ -66,13 +66,16 @@ export class AboutComponent implements OnInit, OnDestroy {
   tabs: string[] = ['Skills', 'Experience', 'Education'];
   activatedTab: string = 'Skills';
 
-  ngOnInit(): void {
-    this.sectionService.registerSection(this.section);
+  constructor() {
     this.themeSubscription = this.ts.isDarkMode$
       .pipe(takeUntilDestroyed())
       .subscribe(() => {
         this.triggerAnimation();
       });
+  }
+
+  ngOnInit(): void {
+    this.sectionService.registerSection(this.section);
   }
 
   ngOnDestroy(): void {
