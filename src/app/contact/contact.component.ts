@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, TemplateRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
@@ -12,6 +12,7 @@ import { ModalComponent } from '../shared/ui/components/modal/modal.component';
     imports: [CommonModule, ReactiveFormsModule, ModalComponent],
     templateUrl: './contact.component.html',
     styleUrls: ['./contact.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactComponent implements OnInit{
   ts = inject(ThemeService);
