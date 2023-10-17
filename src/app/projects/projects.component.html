@@ -3,11 +3,25 @@
   <div class="projects-container">
     <app-card
       [src]="'assets/images/backgrounds/placeholder.svg'"
+      [title]="'Project One'"
       [githubLink]="'https://github.com/DevWedeloper/projectOneFrontEnd'"
       [websiteLink]="'https://project-one-front-end.vercel.app/'"
     >
       <ng-template #cardBodyTemplate>
-        <app-slider></app-slider>
+        <app-slider>
+          <ng-template #sliderTemplate>
+            <p>Project One Description 1</p>
+          </ng-template>
+          <ng-template #sliderTemplate>
+            <p>Project One Description 2</p>
+            <p>Project One Description 2</p>
+          </ng-template>
+          <ng-template #sliderTemplate>
+            <p>Project One Description 3</p>
+            <p>Project One Description 3</p>
+            <p>Project One Description 3</p>
+          </ng-template>
+        </app-slider>
       </ng-template>
     </app-card>
   </div>
