@@ -6,26 +6,24 @@
   background-position: center;
 }
 
+.leftArrow,
 .rightArrow {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
-  right: 32px;
   font-size: 45px;
   color: var(--text-color);
   z-index: 1;
   cursor: pointer;
+  user-select: none;
+}
+
+.rightArrow {
+  right: 32px;
 }
 
 .leftArrow {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
   left: 32px;
-  font-size: 45px;
-  color: var(--text-color);
-  z-index: 1;
-  cursor: pointer;
 }
 
 .slider {
