@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SectionService } from '../shared/data-access/section.service';
 import { TypeEffectService } from '../shared/data-access/type-effect.service';
 import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.directive';
@@ -13,10 +13,11 @@ interface TypingEffect {
 
 @Component({
     selector: 'app-home',
+    standalone: true,
+    imports: [HighlightTextDirective],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
-    standalone: true,
-    imports: [HighlightTextDirective]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
   @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
