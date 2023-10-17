@@ -1,0 +1,22 @@
+<div class="slider">
+  <div class="arrows">
+    <div class="left-arrow" *ngIf="index !== 0" (click)="goToPrevious()">❰</div>
+    <div
+      class="right-arrow"
+      *ngIf="index !== sliderLength - 1"
+      (click)="goToNext()"
+    >
+      ❱
+    </div>
+  </div>
+  <div class="slide-container">
+    <div [@slideAnimation]="index">
+      <ng-container *ngFor="let slide of slider; let i = index">
+        <ng-container
+          [ngTemplateOutlet]="slide"
+          *ngIf="i === index"
+        ></ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

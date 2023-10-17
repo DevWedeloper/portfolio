@@ -4,30 +4,48 @@
     <a class="icon-link" (click)="themeOnClick()">
       <img
         class="theme-icon theme-icon-menu"
-        src="{{ isDarkMode() ? 'assets/images/icons/sun.svg' : 'assets/images/icons/moon.svg' }}"
+        src="{{
+          (ts.isDarkMode$ | async)
+            ? 'assets/images/icons/sun.svg'
+            : 'assets/images/icons/moon.svg'
+        }}"
     /></a>
     <a
       class="icon-link icon"
       (click)="menuOnClick()"
       [ngStyle]="{
-        filter: isDarkMode() ? 'invert(100%) grayscale(100%)' : 'grayscale(100%)'
+        filter:
+          (ts.isDarkMode$ | async)
+            ? 'invert(100%) grayscale(100%)'
+            : 'grayscale(100%)'
       }"
     >
       <img
         id="menu-icon"
-        src="{{ this.isMenuOpen ? 'assets/images/icons/close.svg' : 'assets/images/icons/menu.svg' }}"
+        src="{{
+          this.isMenuOpen
+            ? 'assets/images/icons/close.svg'
+            : 'assets/images/icons/menu.svg'
+        }}"
     /></a>
   </div>
-  <ul [ngStyle]="{ transform: isMenuOpen? 'translateX(0)': '' }">
+  <ul [ngStyle]="{ transform: isMenuOpen ? 'translateX(0)' : '' }">
     <li><a #homeLink href="#home" (click)="closeMenu()">Home</a></li>
     <li><a #aboutLink href="#about" (click)="closeMenu()">About</a></li>
+    <li>
+      <a #projectsLink href="#projects" (click)="closeMenu()">Projects</a>
+    </li>
     <li><a #contactLink href="#contact" (click)="closeMenu()">Contact</a></li>
     <li>
       <a class="icon-link" (click)="themeOnClick()">
         <img
           class="theme-icon"
           id="theme-icon"
-          src="{{ isDarkMode() ? 'assets/images/icons/sun.svg' : 'assets/images/icons/moon.svg' }}"
+          src="{{
+            (ts.isDarkMode$ | async)
+              ? 'assets/images/icons/sun.svg'
+              : 'assets/images/icons/moon.svg'
+          }}"
         />
       </a>
     </li>

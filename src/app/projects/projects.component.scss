@@ -1,0 +1,23 @@
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.heading {
+  text-align: center;
+}
+
+.projects-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.accounts-container p {
+  text-align: center;
+}
+
+.container-item {
+  width: 100%;
+}

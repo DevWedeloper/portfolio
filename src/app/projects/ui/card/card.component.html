@@ -1,0 +1,43 @@
+<div class="card">
+  <div
+    class="image-container"
+    [style.background-image]="'url(' + src + ')'"
+  ></div>
+  <div class="card-content">
+    <div class="card-content">
+      <div class="card-header">
+        <h2>{{ title }}</h2>
+        <ul class="tag-list">
+          <li class="tag" *ngFor="let tag of tags">{{ tag }}</li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <ng-container *ngTemplateOutlet="cardBody!"></ng-container>
+      </div>
+      <div class="card-links">
+        <a [href]="websiteLink" target="_blank">
+          <img
+            class="icon-links"
+            src="/assets/images/icons/link.svg"
+            alt="Project One Image"
+            [ngStyle]="{
+              filter:
+                (ts.isDarkMode$ | async)
+                  ? 'invert(100%) grayscale(100%)'
+                  : 'grayscale(100%)'
+            }"
+        /></a>
+        <a [href]="githubLink" target="_blank">
+          <img
+            class="icon-links"
+            src="{{
+              (ts.isDarkMode$ | async)
+                ? 'assets/images/icons/github-light.svg'
+                : 'assets/images/icons/github-dark.svg'
+            }}"
+            alt="GitHub logo"
+        /></a>
+      </div>
+    </div>
+  </div>
+</div>
