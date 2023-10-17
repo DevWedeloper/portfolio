@@ -1,12 +1,25 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { NgFor, NgClass } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 
 @Component({
-    selector: 'app-tabs',
-    templateUrl: './tabs.component.html',
-    styleUrls: ['./tabs.component.scss'],
-    standalone: true,
-    imports: [NgFor, NgClass]
+  selector: 'app-tabs',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './tabs.component.html',
+  styleUrls: ['./tabs.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent implements AfterViewInit {
   @ViewChild('line', { static: true }) line!: ElementRef<HTMLElement>;
@@ -35,7 +48,9 @@ export class TabsComponent implements AfterViewInit {
   }
 
   private setInitialActiveTab(): void {
-    const initialActiveTab = this.tabLinks.find((el) => el.nativeElement.classList.contains('active'));
+    const initialActiveTab = this.tabLinks.find((el) =>
+      el.nativeElement.classList.contains('active')
+    );
     if (initialActiveTab) {
       this.activeTabElement = initialActiveTab.nativeElement;
       this.updateLinePosition();
@@ -44,10 +59,12 @@ export class TabsComponent implements AfterViewInit {
 
   private updateLinePosition(): void {
     if (this.activeTabElement) {
-      this.line.nativeElement.style.width = this.activeTabElement.offsetWidth + 'px';
-      this.line.nativeElement.style.left = this.activeTabElement.offsetLeft + 'px';
-      this.line.nativeElement.style.top = this.activeTabElement.offsetHeight + 'px';
+      this.line.nativeElement.style.width =
+        this.activeTabElement.offsetWidth + 'px';
+      this.line.nativeElement.style.left =
+        this.activeTabElement.offsetLeft + 'px';
+      this.line.nativeElement.style.top =
+        this.activeTabElement.offsetHeight + 'px';
     }
   }
-
 }
