@@ -1,3 +1,5 @@
+@import url(../../../app.component.scss);
+
 .card {
   position: relative;
   background-color: var(--secondary-color);
@@ -7,4 +9,10 @@
 
 img {
   width: 50%;
+}
+
+.card-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
 }

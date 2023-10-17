@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, Input, TemplateRef, inject } from '@angular/core';
 import { ThemeService } from 'src/app/shared/data-access/theme.service';
 
 @Component({
@@ -12,7 +12,9 @@ import { ThemeService } from 'src/app/shared/data-access/theme.service';
 })
 export class CardComponent {
   @Input({ required: true }) src!: string;
-  @Input({ required: true }) title!: string;
-  @Input({ required: true }) description!: string;
+  @Input({ required: true }) websiteLink!: string;
+  @Input({ required: true }) githubLink!: string;
+  @ContentChild('cardBodyTemplate') cardBody: TemplateRef<HTMLElement> | undefined;
+
   ts = inject(ThemeService);
 }

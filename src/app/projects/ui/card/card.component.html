@@ -9,8 +9,33 @@
           : 'grayscale(100%)'
     }"
   />
-  <div class="text-container">
-    <p>{{ title }}</p>
-    <p>{{ description }}</p>
+  <div class="card-content">
+    <div class="card-body">
+      <ng-container *ngTemplateOutlet="cardBody!"></ng-container>
+    </div>
+    <div class="card-links">
+      <a [href]="websiteLink" target="_blank">
+        <img
+          class="icon icon-size-adjust"
+          src="/assets/images/icons/link.svg"
+          alt="Project One Image"
+          [ngStyle]="{
+            filter:
+              (ts.isDarkMode$ | async)
+                ? 'invert(100%) grayscale(100%)'
+                : 'grayscale(100%)'
+          }"
+      /></a>
+      <a [href]="githubLink" target="_blank">
+        <img
+          class="icon icon-size-adjust"
+          src="{{
+            (ts.isDarkMode$ | async)
+              ? 'assets/images/icons/github-light.svg'
+              : 'assets/images/icons/github-dark.svg'
+          }}"
+          alt="GitHub logo"
+      /></a>
+    </div>
   </div>
 </div>
