@@ -9,12 +9,7 @@
 }
 
 .projects-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr); 
-  gap: 0.5rem; 
-}
-
-img {
-  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

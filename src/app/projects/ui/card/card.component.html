@@ -1,0 +1,16 @@
+<div class="card">
+  <img
+    [src]="src"
+    alt="Project One Image"
+    [ngStyle]="{
+      filter:
+        (ts.isDarkMode$ | async)
+          ? 'invert(100%) grayscale(100%)'
+          : 'grayscale(100%)'
+    }"
+  />
+  <div class="text-container">
+    <p>{{ title }}</p>
+    <p>{{ description }}</p>
+  </div>
+</div>

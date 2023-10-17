@@ -1,101 +1,10 @@
 <section #section class="projects" id="projects">
   <h2 class="heading">Projects</h2>
   <div class="projects-container">
-    <div class="card">
-      <img
-        src="assets/images/backgrounds/placeholder.svg"
-        alt="Project One Image"
-        [ngStyle]="{
-          filter:
-            (ts.isDarkMode$ | async)
-              ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)'
-        }"
-      />
-      <div class="text-container">
-        <p>Project One</p>
-        <p>Project One Description</p>
-      </div>
-    </div>
-    <div class="card">
-      <img
-        src="assets/images/backgrounds/placeholder.svg"
-        alt="Placeholder"
-        [ngStyle]="{
-          filter:
-            (ts.isDarkMode$ | async)
-              ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)'
-        }"
-      />
-      <div class="text-container">
-        <p>Placeholder Title</p>
-        <p>Placeholder Description</p>
-      </div>
-    </div>
-    <div class="card">
-      <img
-        src="assets/images/backgrounds/placeholder.svg"
-        alt="Placeholder"
-        [ngStyle]="{
-          filter:
-            (ts.isDarkMode$ | async)
-              ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)'
-        }"
-      />
-      <div class="text-container">
-        <p>Placeholder Title</p>
-        <p>Placeholder Description</p>
-      </div>
-    </div>
-    <div class="card">
-      <img
-        src="assets/images/backgrounds/placeholder.svg"
-        alt="Placeholder"
-        [ngStyle]="{
-          filter:
-            (ts.isDarkMode$ | async)
-              ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)'
-        }"
-      />
-      <div class="text-container">
-        <p>Placeholder Title</p>
-        <p>Placeholder Description</p>
-      </div>
-    </div>
-    <div class="card">
-      <img
-        src="assets/images/backgrounds/placeholder.svg"
-        alt="Placeholder"
-        [ngStyle]="{
-          filter:
-            (ts.isDarkMode$ | async)
-              ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)'
-        }"
-      />
-      <div class="text-container">
-        <p>Placeholder Title</p>
-        <p>Placeholder Description</p>
-      </div>
-    </div>
-    <div class="card">
-      <img
-        src="assets/images/backgrounds/placeholder.svg"
-        alt="Placeholder"
-        [ngStyle]="{
-          filter:
-            (ts.isDarkMode$ | async)
-              ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)'
-        }"
-      />
-      <div class="text-container">
-        <p>Placeholder Title</p>
-        <p>Placeholder Description</p>
-      </div>
-    </div>
+    <app-card
+      [src]="'assets/images/backgrounds/placeholder.svg'"
+      [title]="'Project One'"
+      [description]="'Project One Description'"
+    ></app-card>
   </div>
 </section>
