@@ -13,6 +13,7 @@ import { ThemeService } from 'src/app/shared/data-access/theme.service';
 export class CardComponent {
   @Input({ required: true }) src!: string;
   @Input({ required: true }) title!: string;
+  @Input({ required: true }) tags!: string[];
   @Input({ required: true }) websiteLink!: string;
   @Input({ required: true }) githubLink!: string;
   @ContentChild('cardBodyTemplate') cardBody: TemplateRef<HTMLElement> | undefined;

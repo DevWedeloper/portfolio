@@ -1,10 +1,12 @@
 .slider {
+  display: flex;
+  justify-content: center;
   position: relative;
   height: 100%;
 }
 
-.leftArrow,
-.rightArrow {
+.left-arrow,
+.right-arrow {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
@@ -15,14 +17,18 @@
   user-select: none;
 }
 
-.rightArrow {
-  right: 32px;
+.right-arrow {
+  right: 0;
 }
 
-.leftArrow {
-  left: 32px;
+.left-arrow {
+  left: 0;
 }
 
 .slide-container {
   overflow: hidden;
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

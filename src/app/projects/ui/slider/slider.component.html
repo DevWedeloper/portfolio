@@ -1,8 +1,8 @@
 <div class="slider">
-  <div>
-    <div class="leftArrow" *ngIf="index !== 0" (click)="goToPrevious()">❰</div>
+  <div class="arrows">
+    <div class="left-arrow" *ngIf="index !== 0" (click)="goToPrevious()">❰</div>
     <div
-      class="rightArrow"
+      class="right-arrow"
       *ngIf="index !== sliderLength - 1"
       (click)="goToNext()"
     >
