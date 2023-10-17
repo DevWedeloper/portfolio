@@ -1,9 +1,6 @@
-.slide {
-  width: 100%;
+.slider {
+  position: relative;
   height: 100%;
-  border-radius: 10px;
-  background-size: cover;
-  background-position: center;
 }
 
 .leftArrow,
@@ -24,11 +21,6 @@
 
 .leftArrow {
   left: 32px;
-}
-
-.slider {
-  position: relative;
-  height: 100%;
 }
 
 .slide-container {
