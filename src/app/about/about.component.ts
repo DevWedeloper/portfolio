@@ -8,6 +8,7 @@ import {
 } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   OnDestroy,
@@ -26,6 +27,14 @@ import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.d
 import { TooltipDirective } from '../shared/ui/directives/tooltip.directive';
 @Component({
   selector: 'app-about',
+  standalone: true,
+  imports: [
+    CommonModule,
+    TabsComponent,
+    HighlightTextDirective,
+    TooltipDirective,
+    ModalComponent,
+  ],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
   animations: [
@@ -43,14 +52,7 @@ import { TooltipDirective } from '../shared/ui/directives/tooltip.directive';
       ]),
     ]),
   ],
-  standalone: true,
-  imports: [
-    CommonModule,
-    TabsComponent,
-    HighlightTextDirective,
-    TooltipDirective,
-    ModalComponent,
-  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AboutComponent implements OnInit, OnDestroy {
   ts = inject(ThemeService);
