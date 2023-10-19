@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
@@ -10,6 +11,7 @@ import { ScrollIndicatorComponent } from './shared/ui/components/scroll-indicato
   selector: 'app-root',
   standalone: true,
   imports: [
+    CommonModule,
     NavbarComponent,
     HomeComponent,
     AboutComponent,
@@ -22,6 +24,7 @@ import { ScrollIndicatorComponent } from './shared/ui/components/scroll-indicato
 })
 export class AppComponent implements OnInit {
   title = 'portfolio';
+  isWideScreen: boolean = window.innerWidth >= 991;
 
   ngOnInit(): void {
     this.addScrollAnimation();
@@ -68,5 +71,10 @@ export class AppComponent implements OnInit {
         }, 600);
       });
     });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.isWideScreen = window.innerWidth >= 991;
   }
 }
