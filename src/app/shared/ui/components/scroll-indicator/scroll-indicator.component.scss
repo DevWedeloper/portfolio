@@ -37,10 +37,3 @@
   width: 1px;
   background: var(--text-color);
 }
-
-@media (max-width: 991px) {
-  .progress-bar,
-  .line {
-    display: none;
-  }
-}

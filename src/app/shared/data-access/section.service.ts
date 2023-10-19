@@ -4,7 +4,7 @@ import { ElementRef, Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SectionService {
-  private sections: ElementRef<HTMLElement>[] = [];
+  sections: ElementRef<HTMLElement>[] = [];
 
   registerSection(section: ElementRef<HTMLElement>): void {
     this.sections.push(section);
