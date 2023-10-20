@@ -203,7 +203,7 @@
                 class="icon icon-size-adjust superscript-icon"
                 src="assets/images/icons/open-in-new.svg"
                 alt="Open In New Icon"
-                (click)="openModal(experienceTemplate)"
+                (click)="ms.open(experienceTemplate)"
                 loading="lazy"
                 [ngStyle]="{
                   filter:
@@ -232,9 +232,7 @@
     </div>
   </div>
 </section>
-<app-modal #modalRef>
-  <ng-container *ngTemplateOutlet="modalContent"></ng-container>
-</app-modal>
+
 <ng-template #experienceTemplate>
   <div class="experience-modal-content">
     <div class="experience-modal-header">
@@ -245,7 +243,7 @@
           style="-webkit-tap-highlight-color: transparent"
           src="assets/images/icons/close.svg"
           alt="Close Logo"
-          (click)="closeModal()"
+          (click)="ms.close()"
           [ngStyle]="{
             filter:
               (ts.isDarkMode$ | async)

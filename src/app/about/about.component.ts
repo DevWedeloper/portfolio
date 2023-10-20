@@ -13,15 +13,15 @@ import {
   ElementRef,
   OnDestroy,
   OnInit,
-  TemplateRef,
   ViewChild,
-  inject,
+  inject
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription } from 'rxjs';
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
 import { ModalComponent } from '../shared/ui/components/modal/modal.component';
+import { ModalService } from '../shared/ui/components/modal/modal.service';
 import { TabsComponent } from '../shared/ui/components/tabs/tabs.component';
 import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.directive';
 import { TooltipDirective } from '../shared/ui/directives/tooltip.directive';
@@ -57,6 +57,7 @@ import { TooltipDirective } from '../shared/ui/directives/tooltip.directive';
 export class AboutComponent implements OnInit, OnDestroy {
   ts = inject(ThemeService);
   sectionService = inject(SectionService);
+  ms = inject(ModalService);
   @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
   @ViewChild('aboutImg', { static: true }) aboutImg!: ElementRef<HTMLElement>;
   @ViewChild('line', { static: true }) line!: ElementRef<HTMLElement>;
@@ -93,16 +94,5 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   tabChange(tabIndex: string) {
     this.activatedTab = tabIndex;
-  }
-
-  @ViewChild('modalRef') modalRef!: ModalComponent;
-  modalContent!: TemplateRef<any>;
-  openModal(templateRef: TemplateRef<any>): void {
-    this.modalContent = templateRef;
-    this.modalRef.openModal();
-  }
-
-  closeModal(): void {
-    this.modalRef.closeModal();
   }
 }

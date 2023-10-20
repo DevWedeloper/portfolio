@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
 import { ModalComponent } from '../shared/ui/components/modal/modal.component';
+import { ModalService } from '../shared/ui/components/modal/modal.service';
 
 @Component({
     selector: 'app-contact',
@@ -15,10 +16,11 @@ import { ModalComponent } from '../shared/ui/components/modal/modal.component';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactComponent implements OnInit{
-  ts = inject(ThemeService);
   _http = inject(HttpClient);
   _formBuilder = inject(FormBuilder);
   sectionService = inject(SectionService);
+  ts = inject(ThemeService);
+  ms = inject(ModalService);
   @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
   contactForm!: FormGroup;
   submitted = false;
@@ -26,17 +28,6 @@ export class ContactComponent implements OnInit{
   ngOnInit(): void {
     this.sectionService.registerSection(this.section);
     this.initializeForm();
-  }
-
-  @ViewChild('modalRef') modalRef!: ModalComponent; 
-  modalContent!: TemplateRef<any>;
-  openModal(templateRef: TemplateRef<any>): void {
-    this.modalContent = templateRef;
-    this.modalRef.openModal();
-  }
-
-  closeModal(): void {
-    this.modalRef.closeModal();
   }
 
   initializeForm(): void {
@@ -78,6 +69,7 @@ export class ContactComponent implements OnInit{
     }, 2000);
   }
   
+  //TODO, make service, refactor the observable
   @ViewChild('thankYouTemplate') thankYouTemplate!: TemplateRef<HTMLElement>;
   @ViewChild('sorryTemplate') sorryTemplate!: TemplateRef<HTMLElement>;
   onSubmit() {
@@ -97,13 +89,13 @@ export class ContactComponent implements OnInit{
 
     this._http.post(scriptURL, formData).subscribe(
       response => {
-        this.openModal(this.thankYouTemplate);
+        this.ms.open(this.thankYouTemplate);
         this.contactForm.reset();
         this.submitted = false; 
         
       }, 
       error => {
-        this.openModal(this.sorryTemplate);
+        this.ms.open(this.sorryTemplate);
         this.contactForm.reset();
         this.submitted = false; 
       }

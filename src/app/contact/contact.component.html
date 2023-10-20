@@ -134,17 +134,13 @@
   </div>
 </section>
 
-<app-modal #modalRef>
-  <ng-container *ngTemplateOutlet="modalContent"></ng-container>
-</app-modal>
-
 <ng-template #sorryTemplate>
   <div class="submit-modal-content">
     <h5>Sorry.</h5>
     <p>The message was not sent. Please try again next time</p>
     <button
       class="btn"
-      (click)="closeModal()"
+      (click)="ms.close()"
       style="-webkit-tap-highlight-color: transparent"
     >
       OK
@@ -161,7 +157,7 @@
     </p>
     <button
       class="btn"
-      (click)="closeModal()"
+      (click)="ms.close()"
       style="-webkit-tap-highlight-color: transparent"
     >
       Cool!
