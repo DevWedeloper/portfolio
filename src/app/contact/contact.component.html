@@ -69,7 +69,8 @@
     </div>
   </div>
   <div class="contact-form hidden from-right">
-    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <ng-container *ngIf="contactForm.valueChanges | async"></ng-container>
+    <form [formGroup]="contactForm" (ngSubmit)="cs.submitForm$.next(contactForm)">
       <div class="form-item-container">
         <input type="text" formControlName="name" placeholder="Name" />
         <div
@@ -125,7 +126,7 @@
         <button
           class="btn btn-effect"
           type="submit"
-          [disabled]="contactForm.invalid || submitted"
+          [disabled]="contactForm.invalid || (cs.submitLoading$ | async)"
         >
           Submit
         </button>
