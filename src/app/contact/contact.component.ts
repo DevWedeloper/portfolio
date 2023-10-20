@@ -20,11 +20,12 @@ import { ThemeService } from '../shared/data-access/theme.service';
 import { ModalComponent } from '../shared/ui/components/modal/modal.component';
 import { ModalService } from '../shared/ui/components/modal/modal.service';
 import { ContactService } from './data-access/contact.service';
+import { FormComponent } from './ui/form/form.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ModalComponent],
+  imports: [CommonModule, ReactiveFormsModule, ModalComponent, FormComponent],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,7 +39,6 @@ export class ContactComponent implements OnInit {
   @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
   @ViewChild('thankYouTemplate') thankYouTemplate!: TemplateRef<HTMLElement>;
   @ViewChild('sorryTemplate') sorryTemplate!: TemplateRef<HTMLElement>;
-  contactForm!: FormGroup;
 
   constructor() {
     this.cs.submitData$.pipe(takeUntilDestroyed()).subscribe({
@@ -53,17 +53,6 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.ss.registerSection(this.section);
-    this.initializeForm();
-  }
-
-  initializeForm(): void {
-    this.contactForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      subject: [''],
-      message: ['', Validators.required],
-      date: [new Date().toISOString()],
-    });
   }
 
   copyText(copyID: string, btnID: string): void {
