@@ -23,8 +23,8 @@ import { ThemeService } from '../shared/data-access/theme.service';
 import { ModalComponent } from '../shared/ui/components/modal/modal.component';
 import { ModalService } from '../shared/ui/components/modal/modal.service';
 import { TabsComponent } from '../shared/ui/components/tabs/tabs.component';
+import { TooltipDirective } from '../shared/ui/components/tooltip/tooltip.directive';
 import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.directive';
-import { TooltipDirective } from '../shared/ui/directives/tooltip.directive';
 @Component({
   selector: 'app-about',
   standalone: true,

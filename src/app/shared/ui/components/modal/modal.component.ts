@@ -17,11 +17,10 @@ import { ModalService } from './modal.service';
 
 @Component({
   selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [CommonModule],
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.scss'],
   animations: [
     trigger('fadeInOut', [
       transition(':enter', [
@@ -34,6 +33,7 @@ import { ModalService } from './modal.service';
       ]),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent implements AfterViewInit {
   ms = inject(ModalService);
