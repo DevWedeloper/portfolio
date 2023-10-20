@@ -62,12 +62,12 @@ export class AboutComponent implements OnInit, OnDestroy {
   @ViewChild('aboutImg', { static: true }) aboutImg!: ElementRef<HTMLElement>;
   @ViewChild('line', { static: true }) line!: ElementRef<HTMLElement>;
 
-  blurAnimationState: string = '';
+  blurAnimationState = '';
 
   themeSubscription!: Subscription;
 
   tabs: string[] = ['Skills', 'Experience', 'Education'];
-  activatedTab: string = 'Skills';
+  activatedTab = 'Skills';
 
   constructor() {
     this.themeSubscription = this.ts.isDarkMode$

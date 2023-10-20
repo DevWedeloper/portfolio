@@ -21,11 +21,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   @ViewChild('navbar', { static: true}) navbar!: ElementRef<HTMLElement>;
 
   sections!: ElementRef[];
-  isMenuOpen: boolean = false;
+  isMenuOpen = false;
   
   resizeTimer: any;
 
-  isBodyScrollDisabled: boolean = false;
+  isBodyScrollDisabled = false;
 
   ngOnInit(): void {
     this.sections = this.sectionService.getSections();

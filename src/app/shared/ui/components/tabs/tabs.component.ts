@@ -27,7 +27,7 @@ export class TabsComponent implements AfterViewInit {
 
   @Input() tabsList: string[] = [];
   @Output() onTabChange = new EventEmitter<string>();
-  activatedTab: string = 'Skills';
+  activatedTab = 'Skills';
   activeTabElement: HTMLElement | undefined;
 
   ngAfterViewInit(): void {

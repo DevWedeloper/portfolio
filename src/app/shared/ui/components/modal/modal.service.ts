@@ -9,7 +9,7 @@ export class ModalService<T> {
   private modalComponentRef?: ComponentRef<ModalComponent>;
   private renderer: Renderer2;
   isOpen$ = new BehaviorSubject<boolean>(false);
-  isBodyScrollDisabled: boolean = false;
+  isBodyScrollDisabled = false;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
