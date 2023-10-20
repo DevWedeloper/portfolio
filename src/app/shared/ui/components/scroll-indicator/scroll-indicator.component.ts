@@ -3,14 +3,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostListener,
-  OnDestroy,
   OnInit,
-  inject,
+  inject
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { BehaviorSubject, Subscription, fromEvent } from 'rxjs';
-import { tap, throttleTime } from 'rxjs/operators';
+import { BehaviorSubject, fromEvent } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { SectionService } from 'src/app/shared/data-access/section.service';
 
 @Component({
