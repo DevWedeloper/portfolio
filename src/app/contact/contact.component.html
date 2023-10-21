@@ -19,6 +19,8 @@
           class="copy-btn"
           id="emailBtn"
           (click)="copyText('emailText', 'emailBtn')"
+          (keydown.Enter)="copyText('emailText', 'emailBtn')"
+          tabindex="0"
         >
           <img
             class="icon icon-size-adjust"
@@ -52,6 +54,8 @@
           class="copy-btn"
           id="phoneBtn"
           (click)="copyText('phoneText', 'phoneBtn')"
+          (keydown.Enter)="copyText('phoneText', 'phoneBtn')"
+          tabindex="0"
         >
           <img
             class="icon icon-size-adjust"
@@ -69,74 +73,9 @@
     </div>
   </div>
   <div class="contact-form hidden from-right">
-    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-      <div class="form-item-container">
-        <input type="text" formControlName="name" placeholder="Name" />
-        <div
-          class="error-tooltip"
-          *ngIf="
-            contactForm.get('name')?.invalid && contactForm.get('name')?.touched
-          "
-        >
-          <div *ngIf="contactForm.get('name')?.hasError('required')">
-            Name is required.
-          </div>
-        </div>
-      </div>
-      <div class="form-item-container">
-        <input type="email" formControlName="email" placeholder="Email" />
-        <div
-          class="error-tooltip"
-          *ngIf="
-            contactForm.get('email')?.invalid &&
-            contactForm.get('email')?.touched
-          "
-        >
-          <div *ngIf="contactForm.get('email')?.hasError('required')">
-            Email is required.
-          </div>
-          <div *ngIf="contactForm.get('email')?.hasError('email')">
-            Invalid email format.
-          </div>
-        </div>
-      </div>
-      <div class="form-item-container">
-        <input type="text" formControlName="subject" placeholder="Subject" />
-      </div>
-      <div class="form-item-container">
-        <textarea
-          formControlName="message"
-          rows="8"
-          placeholder="Message"
-        ></textarea>
-        <div
-          class="error-tooltip"
-          *ngIf="
-            contactForm.get('message')?.invalid &&
-            contactForm.get('message')?.touched
-          "
-        >
-          <div *ngIf="contactForm.get('message')?.hasError('required')">
-            Message is required.
-          </div>
-        </div>
-      </div>
-      <div class="form-item-container">
-        <button
-          class="btn btn-effect"
-          type="submit"
-          [disabled]="contactForm.invalid || submitted"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
+    <app-form (submitForm)="cs.submitForm$.next($event)"></app-form>
   </div>
 </section>
-
-<app-modal #modalRef>
-  <ng-container *ngTemplateOutlet="modalContent"></ng-container>
-</app-modal>
 
 <ng-template #sorryTemplate>
   <div class="submit-modal-content">
@@ -144,7 +83,7 @@
     <p>The message was not sent. Please try again next time</p>
     <button
       class="btn"
-      (click)="closeModal()"
+      (click)="ms.close()"
       style="-webkit-tap-highlight-color: transparent"
     >
       OK
@@ -161,7 +100,7 @@
     </p>
     <button
       class="btn"
-      (click)="closeModal()"
+      (click)="ms.close()"
       style="-webkit-tap-highlight-color: transparent"
     >
       Cool!

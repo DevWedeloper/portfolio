@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,6 +7,7 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { SectionService } from '../shared/data-access/section.service';
 import { TypeEffectService } from '../shared/data-access/type-effect.service';
 import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.directive';
@@ -13,7 +15,7 @@ import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.d
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HighlightTextDirective],
+  imports: [CommonModule, HighlightTextDirective],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,8 +24,7 @@ export class HomeComponent implements OnInit {
   ss = inject(SectionService);
   tes = inject(TypeEffectService);
   @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
-  @ViewChild('typeEffect', { static: true })
-  typeEffect!: ElementRef<HTMLElement>;
+  typeEffect = new BehaviorSubject<string>('');
 
   ngOnInit(): void {
     this.ss.registerSection(this.section);
@@ -35,7 +36,7 @@ export class HomeComponent implements OnInit {
         reverseDelay: 1000,
         loop: true,
       },
-      this.typeEffect.nativeElement
+      this.typeEffect
     );
   }
 }

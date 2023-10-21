@@ -26,8 +26,8 @@ export class TabsComponent implements AfterViewInit {
   @ViewChildren('tabLinks') tabLinks!: QueryList<ElementRef<HTMLElement>>;
 
   @Input() tabsList: string[] = [];
-  @Output() onTabChange = new EventEmitter<string>();
-  activatedTab: string = 'Skills';
+  @Output() tabChange = new EventEmitter<string>();
+  activatedTab = 'Skills';
   activeTabElement: HTMLElement | undefined;
 
   ngAfterViewInit(): void {
@@ -40,9 +40,9 @@ export class TabsComponent implements AfterViewInit {
     this.updateLinePosition();
   }
 
-  setTab(event: MouseEvent, tab: string): void {
+  setTab(event: Event, tab: string): void {
     this.activatedTab = tab;
-    this.onTabChange.emit(this.activatedTab);
+    this.tabChange.emit(this.activatedTab);
     this.activeTabElement = event.currentTarget as HTMLElement;
     this.updateLinePosition();
   }

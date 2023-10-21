@@ -3,8 +3,10 @@
     #tabLinks
     class="tab-links"
     *ngFor="let tab of tabsList"
-    [ngClass]="activatedTab == tab ? 'active' : ''"
+    [ngClass]="activatedTab === tab ? 'active' : ''"
     (click)="setTab($event, tab)"
+    (keydown.Enter)="setTab($event, tab)"
+    tabindex="0"
   >
     <p>{{ tab }}</p>
   </li>

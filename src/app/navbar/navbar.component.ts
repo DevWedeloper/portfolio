@@ -21,11 +21,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   @ViewChild('navbar', { static: true}) navbar!: ElementRef<HTMLElement>;
 
   sections!: ElementRef[];
-  isMenuOpen: boolean = false;
+  isMenuOpen = false;
   
-  resizeTimer: any;
+  resizeTimer!: ReturnType<typeof setTimeout>;
 
-  isBodyScrollDisabled: boolean = false;
+  isBodyScrollDisabled = false;
+  isMobile: boolean = window.innerWidth < 768;
 
   ngOnInit(): void {
     this.sections = this.sectionService.getSections();
@@ -37,7 +38,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onWindowResize(event: Event): void {
+  onResize(): void {
+    this.isMobile = window.innerWidth < 768;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(): void {
     const navbar = this.el.nativeElement.querySelector('.navbar');
     this.renderer.addClass(navbar, 'resize-animation-stopper');
 
@@ -81,7 +87,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   @HostListener('window:scroll', ['$event'])
-  onScroll(event: Event): void {
+  onScroll(): void {
     this.highlightNavAnchors();
   }
 
