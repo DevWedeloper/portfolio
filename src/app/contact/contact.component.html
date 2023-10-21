@@ -19,6 +19,8 @@
           class="copy-btn"
           id="emailBtn"
           (click)="copyText('emailText', 'emailBtn')"
+          (keydown.Enter)="copyText('emailText', 'emailBtn')"
+          tabindex="0"
         >
           <img
             class="icon icon-size-adjust"
@@ -52,6 +54,8 @@
           class="copy-btn"
           id="phoneBtn"
           (click)="copyText('phoneText', 'phoneBtn')"
+          (keydown.Enter)="copyText('phoneText', 'phoneBtn')"
+          tabindex="0"
         >
           <img
             class="icon icon-size-adjust"

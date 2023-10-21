@@ -1,10 +1,20 @@
 <div class="slider">
   <div class="arrows">
-    <div class="left-arrow" *ngIf="index !== 0" (click)="goToPrevious()">❰</div>
+    <div
+      class="left-arrow"
+      *ngIf="index !== 0"
+      (click)="goToPrevious()"
+      (keydown.Enter)="goToPrevious()"
+      tabindex="0"
+    >
+      ❰
+    </div>
     <div
       class="right-arrow"
       *ngIf="index !== sliderLength - 1"
       (click)="goToNext()"
+      (keydown.Enter)="goToNext()"
+      tabindex="0"
     >
       ❱
     </div>

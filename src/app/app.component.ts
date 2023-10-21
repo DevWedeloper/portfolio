@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
+  onResize(): void {
     this.isWideScreen = window.innerWidth >= 991;
   }
 }

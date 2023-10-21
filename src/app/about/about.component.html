@@ -20,10 +20,10 @@
       software solutions.
     </p>
     <div class="tab-container">
-      <app-tabs [tabsList]="tabs" (onTabChange)="tabChange($event)"></app-tabs>
+      <app-tabs [tabsList]="tabs" (tabChange)="tabChange($event)"></app-tabs>
       <div
         [ngStyle]="{ display: activatedTab === 'Skills' ? 'block' : 'none' }"
-        highlightText
+        appHighlightText
       >
         <ul class="skills-content tab-content">
           <li class="skills-item">Front-End:</li>
@@ -194,7 +194,7 @@
       >
         <ul class="experience-content tab-content">
           <li>
-            <span highlightText>2023 Feb - 2023 May</span>
+            <span appHighlightText>2023 Feb - 2023 May</span>
           </li>
           <li>
             <span>Internship at Cloudstaff</span>
@@ -204,6 +204,8 @@
                 src="assets/images/icons/open-in-new.svg"
                 alt="Open In New Icon"
                 (click)="ms.open(experienceTemplate)"
+                (keydown.Enter)="ms.open(experienceTemplate)"
+                tabindex="0"
                 loading="lazy"
                 [ngStyle]="{
                   filter:
@@ -220,7 +222,7 @@
         [ngStyle]="{ display: activatedTab === 'Education' ? 'block' : 'none' }"
       >
         <ul class="education-content tab-content">
-          <li><span highlightText>2019 - 2023</span></li>
+          <li><span appHighlightText>2019 - 2023</span></li>
           <li>
             <span
               >Bachelor of Science in Computer Science at Holy Angel
@@ -244,6 +246,8 @@
           src="assets/images/icons/close.svg"
           alt="Close Logo"
           (click)="ms.close()"
+          (keydown.Enter)="ms.close()"
+          tabindex="0"
           [ngStyle]="{
             filter:
               (ts.isDarkMode$ | async)

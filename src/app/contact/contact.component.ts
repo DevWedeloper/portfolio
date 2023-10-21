@@ -11,9 +11,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
+  ReactiveFormsModule
 } from '@angular/forms';
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';

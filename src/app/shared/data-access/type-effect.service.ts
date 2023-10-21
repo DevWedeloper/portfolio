@@ -1,4 +1,5 @@
 import { Injectable, Renderer2, RendererFactory2, inject } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 interface TypingEffect {
   phrases: string[];
@@ -20,14 +21,13 @@ export class TypeEffectService {
 
   addTypeEffect(
     { phrases, typeSpeed, reverseSpeed, reverseDelay, loop }: TypingEffect,
-    element: HTMLElement
+    element: BehaviorSubject<string>
   ): void {
     let letterIndex = 0;
     let phraseIndex = 0;
     let reverse = false;
 
-    const updateText = (text: string) =>
-      this.renderer.setProperty(element, 'textContent', text);
+    const updateText = (text: string) => element.next(text);
 
     const typeWriter = () => {
       const currentText = phrases[phraseIndex];
