@@ -14,26 +14,10 @@
         }"
       />
       <div class="contact-information-item-copy-area">
-        <p id="emailText">vicnathangabrielle@gmail.com</p>
-        <span
-          class="copy-btn"
-          id="emailBtn"
-          (click)="copyText('emailText', 'emailBtn')"
-          (keydown.Enter)="copyText('emailText', 'emailBtn')"
-          tabindex="0"
-        >
-          <img
-            class="icon icon-size-adjust"
-            src="assets/images/icons/copy.svg"
-            alt="Copy Icon"
-            [ngStyle]="{
-              filter:
-                (ts.isDarkMode$ | async)
-                  ? 'invert(100%) grayscale(100%)'
-                  : 'grayscale(100%)'
-            }"
-          />
-        </span>
+        <p id="emailText">{{ email }}</p>
+        <app-copy-text
+          [text]=email
+        ></app-copy-text>
       </div>
     </div>
     <div class="contact-information-item">
@@ -49,26 +33,10 @@
         }"
       />
       <div class="contact-information-item-copy-area">
-        <p id="phoneText">+63 965 558 5778</p>
-        <span
-          class="copy-btn"
-          id="phoneBtn"
-          (click)="copyText('phoneText', 'phoneBtn')"
-          (keydown.Enter)="copyText('phoneText', 'phoneBtn')"
-          tabindex="0"
-        >
-          <img
-            class="icon icon-size-adjust"
-            src="assets/images/icons/copy.svg"
-            alt="Copy Icon"
-            [ngStyle]="{
-              filter:
-                (ts.isDarkMode$ | async)
-                  ? 'invert(100%) grayscale(100%)'
-                  : 'grayscale(100%)'
-            }"
-          />
-        </span>
+        <p id="phoneText">{{ phoneNumber }}</p>
+        <app-copy-text
+          [text]=phoneNumber
+        ></app-copy-text>
       </div>
     </div>
   </div>
