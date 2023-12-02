@@ -1,0 +1,12 @@
+<img
+  #copyImage
+  class="icon icon-size-adjust"
+  src="assets/images/icons/copy.svg"
+  alt="Copy Icon"
+  [ngStyle]="{
+    filter:
+      (ts.isDarkMode$ | async)
+        ? 'invert(100%) grayscale(100%)'
+        : 'grayscale(100%)'
+  }"
+/>
