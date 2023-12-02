@@ -1,22 +1,11 @@
-<div
-  #aboutImg
-  class="about-img hidden from-left"
-  [style.background-image]="
-    (ts.isDarkMode$ | async)
-      ? 'url(assets/images/backgrounds/about-night.webp)'
-      : 'url(assets/images/backgrounds/about-day.webp)'
-  "
-  z
-  [@blurAnimation]="blurAnimationState"
-  ></div>
-  <div class="hidden from-right">
+<app-about-hero-image/>
+<div class="hidden from-right">
   <h3>About Me</h3>
   <p>
-    Driven by my passion for software engineering, I excel in critical
-    thinking and thrive in collaborative environments. My adaptability
-    empowers me to embrace new challenges confidently, while my dedication to
-    lifelong learning fuels my ambition to create exceptional and innovative
-    software solutions.
+    Driven by my passion for software engineering, I excel in critical thinking
+    and thrive in collaborative environments. My adaptability empowers me to
+    embrace new challenges confidently, while my dedication to lifelong learning
+    fuels my ambition to create exceptional and innovative software solutions.
   </p>
   <div class="tab-container">
     <app-tabs [tabsList]="tabs" (tabChange)="tabChange($event)"></app-tabs>

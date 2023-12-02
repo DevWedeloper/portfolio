@@ -14,15 +14,6 @@
   flex: 1 1 70%;
 }
 
-.about-img {
-  width: var(--image-width-desktop);
-  height: var(--image-height-desktop);
-  border-radius: 1rem;
-  background-size: cover;
-  background-position: center;
-  object-fit: fill;
-}
-
 :host p {
   padding-top: 0.5rem;
 }
@@ -144,12 +135,5 @@
   .experience-modal-body {
     grid-template-columns: 1fr;
     text-align: center;
-  }
-}
-
-@media (max-width: 500px) {
-  .about-img {
-    width: var(--image-width-small-mobile);
-    height: var(--image-height-small-mobile);
   }
 }

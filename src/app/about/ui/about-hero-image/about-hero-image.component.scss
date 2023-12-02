@@ -1,0 +1,15 @@
+.about-img {
+  width: var(--image-width-desktop);
+  height: var(--image-height-desktop);
+  border-radius: 1rem;
+  background-size: cover;
+  background-position: center;
+  object-fit: fill;
+}
+
+@media (max-width: 500px) {
+  .about-img {
+    width: var(--image-width-small-mobile);
+    height: var(--image-height-small-mobile);
+  }
+}
