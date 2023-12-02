@@ -1,16 +1,16 @@
 @import "src/app/app.component.scss";
 
-.about {
+:host {
   display: flex;
   gap: 2rem;
   overflow-x: hidden;
 }
 
-.about > *:nth-child(1) {
+:host > *:nth-child(1) {
   flex: 1 1 30%;
 }
 
-.about > *:nth-child(2) {
+:host > *:nth-child(2) {
   flex: 1 1 70%;
 }
 
@@ -23,7 +23,7 @@
   object-fit: fill;
 }
 
-.about p {
+:host p {
   padding-top: 0.5rem;
 }
 
@@ -113,14 +113,14 @@
 }
 
 @media (max-width: 768px) {
-  .about {
+  :host {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
-  .about > *:nth-child(1),
-  .about > *:nth-child(2) {
+  :host > *:nth-child(1),
+  :host > *:nth-child(2) {
     flex: none;
   }
 

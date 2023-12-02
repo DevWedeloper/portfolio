@@ -1,16 +1,16 @@
 @import "src/app/app.component.scss";
 
-.contact {
+:host {
   display: flex;
   gap: 2rem;
   overflow-x: hidden;
 }
 
-.contact > *:nth-child(1) {
+:host > *:nth-child(1) {
   flex: 1 1 40%;
 }
 
-.contact > *:nth-child(2) {
+:host > *:nth-child(2) {
   flex: 1 1 60%;
 }
 
@@ -63,7 +63,7 @@
 }
 
 @media (max-width: 768px) {
-  .contact {
+  :host {
     flex-direction: column;
     text-align: center;
   }

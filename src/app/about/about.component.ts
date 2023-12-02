@@ -11,6 +11,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostBinding,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -58,9 +59,11 @@ export class AboutComponent implements OnInit, OnDestroy {
   ts = inject(ThemeService);
   sectionService = inject(SectionService);
   ms = inject(ModalService);
-  @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
+  elementRef = inject(ElementRef);
   @ViewChild('aboutImg', { static: true }) aboutImg!: ElementRef<HTMLElement>;
   @ViewChild('line', { static: true }) line!: ElementRef<HTMLElement>;
+  @HostBinding('attr.id') id = 'about';
+  @HostBinding('class.section') wrapperClass = true;
 
   blurAnimationState = '';
 
@@ -78,7 +81,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sectionService.registerSection(this.section);
+    this.sectionService.registerSection(this.elementRef);
   }
 
   ngOnDestroy(): void {
