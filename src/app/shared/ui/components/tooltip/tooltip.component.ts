@@ -24,8 +24,14 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
 })
 export class TooltipComponent {
   @Input() text = '';
-  @Input() left = 0;
-  @Input() top = 0;
-
+  @Input() set left(value: number) {
+    this.leftStyle = `${value}px`;
+  }
+  @Input() set top(value: number) {
+    this.topStyle = `${value}px`;
+  }
+  
+  @HostBinding('style.left') leftStyle = '0px';
+  @HostBinding('style.top') topStyle = '0px';
   @HostBinding('@fadeInOut') animate = true;
 }
