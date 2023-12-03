@@ -1,49 +1,6 @@
 <h2 class="heading">Projects</h2>
 <div class="projects-container">
   <div class="container-item">
-    <app-card
-      [src]="
-        (ts.isDarkMode$ | async)
-          ? 'assets/images/backgrounds/project-one-background-dark.png'
-          : 'assets/images/backgrounds/project-one-background-light.png'
-      "
-      [title]="'Project One'"
-      [tags]="['MEAN', 'ChartJS', 'Cloud Functions', 'Vercel', 'MongoDB Atlas']"
-      [githubLink]="'https://github.com/DevWedeloper/projectOneFrontEnd/'"
-      [websiteLink]="'https://project-one-front-end.vercel.app/'"
-    >
-      <ng-template #cardBodyTemplate>
-        <app-slider>
-          <ng-template #sliderTemplate>
-            <p>
-              This is a dashboard simulator that has advanced CRUD interaction,
-              I made a script to generate my own data to play around with.
-            </p>
-          </ng-template>
-          <ng-template #sliderTemplate>
-            <p>
-              It has features like authorization, accessibility limits depending
-              on user role, caching, and many more!
-            </p>
-          </ng-template>
-          <ng-template #sliderTemplate>
-            <p>
-              There are two roles, standard and admin. Standard users can only
-              do GET actions, while admin users can do CREATE, UPDATE, DELETE
-              actions.
-            </p>
-          </ng-template>
-          <ng-template #sliderTemplate>
-            <p class="accounts-heading">
-              To get started, use either of these accounts:
-            </p>
-            <div class="accounts-container">
-              <p>username & password: admin</p>
-              <p>username & password: standard</p>
-            </div>
-          </ng-template>
-        </app-slider>
-      </ng-template>
-    </app-card>
+    <app-project-one/>
   </div>
 </div>
