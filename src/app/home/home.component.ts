@@ -5,17 +5,18 @@ import {
   ElementRef,
   HostBinding,
   OnInit,
-  inject
+  inject,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { SectionService } from '../shared/data-access/section.service';
 import { TypeEffectService } from '../shared/data-access/type-effect.service';
 import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.directive';
+import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HighlightTextDirective],
+  imports: [CommonModule, HighlightTextDirective, HomeHeroImageComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
