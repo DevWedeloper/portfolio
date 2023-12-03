@@ -140,11 +140,17 @@ p {
 }
 
 .submit-modal-content {
+  position: relative;
   width: 95vw;
   max-width: 400px;
   padding: 2rem;
   text-align: center;
   font-size: var(--font-size-regular-desktop);
+}
+
+.submit-modal-content img {
+  width: 6rem;
+  margin-top: -50%;
 }
 
 .submit-modal-content h5 {
