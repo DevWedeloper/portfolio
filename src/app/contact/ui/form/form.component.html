@@ -1,4 +1,4 @@
-<ng-container *ngIf="contactForm.valueChanges | async"></ng-container>
+<ng-container *ngIf="contactForm.valueChanges | async"/>
 <form [formGroup]="contactForm" (ngSubmit)="submitForm.emit(contactForm)">
   <div class="form-item-container">
     <input type="text" formControlName="name" placeholder="Name" />
