@@ -40,32 +40,9 @@
 </div>
 
 <ng-template #sorryTemplate>
-  <div class="submit-modal-content">
-    <h5>Sorry.</h5>
-    <p>The message was not sent. Please try again next time</p>
-    <button
-      class="btn"
-      (click)="ms.close()"
-      style="-webkit-tap-highlight-color: transparent"
-    >
-      OK
-    </button>
-  </div>
+  <app-feedback-fail/>
 </ng-template>
 
 <ng-template #thankYouTemplate>
-  <div class="submit-modal-content">
-    <h5>Thank You!</h5>
-    <p>
-      The message was sent. Your feedback will help shape me to become a better
-      developer. Thanks!
-    </p>
-    <button
-      class="btn"
-      (click)="ms.close()"
-      style="-webkit-tap-highlight-color: transparent"
-    >
-      Cool!
-    </button>
-  </div>
+  <app-feedback-success/>
 </ng-template>

@@ -17,6 +17,8 @@ import { ModalComponent } from '../shared/ui/components/modal/modal.component';
 import { ModalService } from '../shared/ui/components/modal/modal.service';
 import { ContactService } from './data-access/contact.service';
 import { CopyTextComponent } from './ui/copy-text/copy-text.component';
+import { FeedbackFailComponent } from './ui/feedback-fail/feedback-fail.component';
+import { FeedbackSuccessComponent } from './ui/feedback-success/feedback-success.component';
 import { FormComponent } from './ui/form/form.component';
 
 @Component({
@@ -28,6 +30,8 @@ import { FormComponent } from './ui/form/form.component';
     ModalComponent,
     FormComponent,
     CopyTextComponent,
+    FeedbackSuccessComponent,
+    FeedbackFailComponent
   ],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],

@@ -41,27 +41,6 @@
   cursor: pointer;
 }
 
-.submit-modal-content {
-  width: 95vw;
-  max-width: 400px;
-  padding: 2rem;
-  text-align: center;
-  font-size: var(--font-size-regular-desktop);
-}
-
-.submit-modal-content h5 {
-  padding: 1rem;
-}
-
-.submit-modal-content p {
-  margin-bottom: 1rem;
-}
-
-.submit-modal-content button {
-  width: 100%;
-  padding: 1rem;
-}
-
 @media (max-width: 768px) {
   :host {
     flex-direction: column;
