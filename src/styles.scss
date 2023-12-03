@@ -123,6 +123,22 @@ p {
   font-size: var(--font-size-regular-desktop);
 }
 
+.btn {
+  position: relative;
+  text-decoration: none;
+  background: var(--main-color);
+  color: var(--text-color);
+  border-radius: 1rem;
+  font-size: var(--font-size-regular-desktop);
+  transition: transform 0.3s;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.btn:active {
+  transform: scale(0.9);
+}
+
 .submit-modal-content {
   width: 95vw;
   max-width: 400px;
