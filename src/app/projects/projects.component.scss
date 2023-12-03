@@ -1,4 +1,4 @@
-.projects {
+:host {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -12,10 +12,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.accounts-container p {
-  text-align: center;
 }
 
 .container-item {

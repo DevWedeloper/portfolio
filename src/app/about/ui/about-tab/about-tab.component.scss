@@ -1,0 +1,68 @@
+.tab-container {
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.tab-content {
+  list-style: none;
+  font-size: var(--font-size-regular-desktop);
+  animation: animateToLeft 0.5s ease;
+}
+
+@keyframes animateToLeft {
+  0% {
+    transform: translateX(2rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.skills-content {
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.skills-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.skills-content li span {
+  margin-right: 1rem;
+}
+
+.experience-content,
+.education-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-content > * {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .tab-titles {
+    justify-content: center;
+  }
+
+  .tab-tiles {
+    display: flex;
+    justify-content: center;
+  }
+
+  .skills-content {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-content li {
+    justify-content: center;
+  }
+}

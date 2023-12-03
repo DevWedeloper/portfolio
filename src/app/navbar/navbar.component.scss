@@ -75,6 +75,18 @@
   display: none;
 }
 
+.theme-icon {
+  width: 2rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+.icon-link {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
 @media (max-width: 991px) {
   .navbar {
     padding: 2rem 3%;

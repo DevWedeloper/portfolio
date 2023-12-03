@@ -1,16 +1,14 @@
-@import "src/app/app.component.scss";
-
-.contact {
+:host {
   display: flex;
   gap: 2rem;
   overflow-x: hidden;
 }
 
-.contact > *:nth-child(1) {
+:host > *:nth-child(1) {
   flex: 1 1 40%;
 }
 
-.contact > *:nth-child(2) {
+:host > *:nth-child(2) {
   flex: 1 1 60%;
 }
 
@@ -29,41 +27,8 @@
   width: 100%;
 }
 
-.copy-btn {
-  padding: 0.5rem;
-  margin: -0.5rem;
-  border-radius: 50%;
-  width: min-content;
-  height: min-content;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.submit-modal-content {
-  width: 95vw;
-  max-width: 400px;
-  padding: 2rem;
-  text-align: center;
-  font-size: var(--font-size-regular-desktop);
-}
-
-.submit-modal-content h5 {
-  padding: 1rem;
-}
-
-.submit-modal-content p {
-  margin-bottom: 1rem;
-}
-
-.submit-modal-content button {
-  width: 100%;
-  padding: 1rem;
-}
-
 @media (max-width: 768px) {
-  .contact {
+  :host {
     flex-direction: column;
     text-align: center;
   }

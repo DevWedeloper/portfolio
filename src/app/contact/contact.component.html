@@ -1,77 +1,48 @@
-<section #section class="contact" id="contact">
-  <div class="contact-information hidden from-left">
-    <h4>Contact Me</h4>
-    <div class="contact-information-item">
-      <img
-        class="icon icon-size-adjust"
-        src="assets/images/icons/email.svg"
-        alt="Email Icon"
-        [ngStyle]="{
-          filter:
-            (ts.isDarkMode$ | async)
-              ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)'
-        }"
-      />
-      <div class="contact-information-item-copy-area">
-        <p id="emailText">{{ email }}</p>
-        <app-copy-text
-          [text]=email
-        ></app-copy-text>
-      </div>
-    </div>
-    <div class="contact-information-item">
-      <img
-        class="icon icon-size-adjust"
-        src="assets/images/icons/phone.svg"
-        alt="Phone Icon"
-        [ngStyle]="{
-          filter:
-            (ts.isDarkMode$ | async)
-              ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)'
-        }"
-      />
-      <div class="contact-information-item-copy-area">
-        <p id="phoneText">{{ phoneNumber }}</p>
-        <app-copy-text
-          [text]=phoneNumber
-        ></app-copy-text>
-      </div>
+<div class="contact-information hidden from-left">
+  <h4>Contact Me</h4>
+  <div class="contact-information-item">
+    <img
+      class="icon icon-size-adjust"
+      src="assets/images/icons/email.svg"
+      alt="Email Icon"
+      [ngStyle]="{
+        filter:
+          (ts.isDarkMode$ | async)
+            ? 'invert(100%) grayscale(100%)'
+            : 'grayscale(100%)'
+      }"
+    />
+    <div class="contact-information-item-copy-area">
+      <p id="emailText">{{ email }}</p>
+      <app-copy-text [text]="email"></app-copy-text>
     </div>
   </div>
-  <div class="contact-form hidden from-right">
-    <app-form (submitForm)="cs.submitForm$.next($event)"></app-form>
+  <div class="contact-information-item">
+    <img
+      class="icon icon-size-adjust"
+      src="assets/images/icons/phone.svg"
+      alt="Phone Icon"
+      [ngStyle]="{
+        filter:
+          (ts.isDarkMode$ | async)
+            ? 'invert(100%) grayscale(100%)'
+            : 'grayscale(100%)'
+      }"
+    />
+    <div class="contact-information-item-copy-area">
+      <p id="phoneText">{{ phoneNumber }}</p>
+      <app-copy-text [text]="phoneNumber"></app-copy-text>
+    </div>
   </div>
-</section>
+</div>
+<div class="contact-form hidden from-right">
+  <app-form (submitForm)="cs.submitForm$.next($event)"/>
+</div>
 
 <ng-template #sorryTemplate>
-  <div class="submit-modal-content">
-    <h5>Sorry.</h5>
-    <p>The message was not sent. Please try again next time</p>
-    <button
-      class="btn"
-      (click)="ms.close()"
-      style="-webkit-tap-highlight-color: transparent"
-    >
-      OK
-    </button>
-  </div>
+  <app-feedback-fail/>
 </ng-template>
 
 <ng-template #thankYouTemplate>
-  <div class="submit-modal-content">
-    <h5>Thank You!</h5>
-    <p>
-      The message was sent. Your feedback will help shape me to become a better
-      developer. Thanks!
-    </p>
-    <button
-      class="btn"
-      (click)="ms.close()"
-      style="-webkit-tap-highlight-color: transparent"
-    >
-      Cool!
-    </button>
-  </div>
+  <app-feedback-success/>
 </ng-template>

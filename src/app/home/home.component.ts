@@ -3,19 +3,20 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostBinding,
   OnInit,
-  ViewChild,
   inject,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { SectionService } from '../shared/data-access/section.service';
 import { TypeEffectService } from '../shared/data-access/type-effect.service';
 import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.directive';
+import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HighlightTextDirective],
+  imports: [CommonModule, HighlightTextDirective, HomeHeroImageComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,11 +24,13 @@ import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.d
 export class HomeComponent implements OnInit {
   ss = inject(SectionService);
   tes = inject(TypeEffectService);
-  @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
+  elementRef = inject(ElementRef);
+  @HostBinding('attr.id') id = 'home';
+  @HostBinding('class.section') wrapperClass = true;
   typeEffect = new BehaviorSubject<string>('');
 
   ngOnInit(): void {
-    this.ss.registerSection(this.section);
+    this.ss.registerSection(this.elementRef);
     this.tes.addTypeEffect(
       {
         phrases: ['Software Engineer!', 'Full-stack Engineer!'],

@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostBinding,
   OnInit,
   TemplateRef,
   ViewChild,
@@ -16,6 +17,8 @@ import { ModalComponent } from '../shared/ui/components/modal/modal.component';
 import { ModalService } from '../shared/ui/components/modal/modal.service';
 import { ContactService } from './data-access/contact.service';
 import { CopyTextComponent } from './ui/copy-text/copy-text.component';
+import { FeedbackFailComponent } from './ui/feedback-fail/feedback-fail.component';
+import { FeedbackSuccessComponent } from './ui/feedback-success/feedback-success.component';
 import { FormComponent } from './ui/form/form.component';
 
 @Component({
@@ -27,6 +30,8 @@ import { FormComponent } from './ui/form/form.component';
     ModalComponent,
     FormComponent,
     CopyTextComponent,
+    FeedbackSuccessComponent,
+    FeedbackFailComponent
   ],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
@@ -38,9 +43,11 @@ export class ContactComponent implements OnInit {
   ts = inject(ThemeService);
   ms = inject(ModalService);
   cs = inject(ContactService);
-  @ViewChild('section', { static: true }) section!: ElementRef<HTMLElement>;
+  elementRef = inject(ElementRef);
   @ViewChild('thankYouTemplate') thankYouTemplate!: TemplateRef<HTMLElement>;
   @ViewChild('sorryTemplate') sorryTemplate!: TemplateRef<HTMLElement>;
+  @HostBinding('attr.id') id = 'contact';
+  @HostBinding('class.section') wrapperClass = true;
   email = 'vicnathangabrielle@gmail.com';
   phoneNumber = '+63 965 558 5778';
 
@@ -56,6 +63,6 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ss.registerSection(this.section);
+    this.ss.registerSection(this.elementRef);
   }
 }
