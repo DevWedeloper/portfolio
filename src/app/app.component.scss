@@ -114,21 +114,3 @@
     background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
   }
 }
-
-@media (max-width: 991px) {
-  .btn {
-    font-size: var(--font-size-regular-tablet);
-  }
-}
-
-@media (max-width: 768px) {
-  .btn {
-    font-size: var(--font-size-regular-mobile);
-  }
-}
-
-@media (max-width: 500px) {
-  .btn {
-    font-size: var(--font-size-regular-small-mobile);
-  }
-}

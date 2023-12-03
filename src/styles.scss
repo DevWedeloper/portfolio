@@ -195,7 +195,7 @@ p {
     font-size: var(--font-size-big-tablet);
   }
 
-  p {
+  p, .btn {
     font-size: var(--font-size-regular-tablet);
   }
 
@@ -217,7 +217,7 @@ p {
     font-size: var(--font-size-big-mobile);
   }
 
-  p {
+  p, .btn {
     font-size: var(--font-size-regular-mobile);
   }
 
@@ -239,7 +239,7 @@ p {
     font-size: var(--font-size-big-small-mobile);
   }
   
-  p {
+  p, .btn {
     font-size: var(--font-size-regular-small-mobile);
   }
 
