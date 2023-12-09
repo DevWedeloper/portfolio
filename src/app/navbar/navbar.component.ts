@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   resizeTimer!: ReturnType<typeof setTimeout>;
 
   isBodyScrollDisabled = false;
-  isMobile: boolean = window.innerWidth < 768;
+  isMobile = window.innerWidth < 768;
 
   ngOnInit(): void {
     this.sections = this.sectionService.getSections();
@@ -38,11 +38,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(): void {
-    this.isMobile = window.innerWidth < 768;
-  }
-
-  @HostListener('window:resize', ['$event'])
   onWindowResize(): void {
     const navbar = this.el.nativeElement.querySelector('.navbar');
     this.renderer.addClass(navbar, 'resize-animation-stopper');
@@ -51,6 +46,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.resizeTimer = setTimeout(() => {
       this.renderer.removeClass(navbar, 'resize-animation-stopper');
     }, 1);
+
+    this.isMobile = window.innerWidth < 768;
   }
 
   @HostListener('click', ['$event'])
