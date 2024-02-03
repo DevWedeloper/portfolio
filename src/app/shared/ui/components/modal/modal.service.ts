@@ -8,6 +8,7 @@ import {
   Renderer2,
   RendererFactory2,
   TemplateRef,
+  inject,
 } from '@angular/core';
 import { ModalComponent } from './modal.component';
 
@@ -15,16 +16,15 @@ import { ModalComponent } from './modal.component';
   providedIn: 'root',
 })
 export class ModalService<T> {
+  private componentFactoryResolver = inject(ComponentFactoryResolver);
+  private appRef = inject(ApplicationRef);
+  private injector = inject(Injector);
   private modalComponentRef?: ComponentRef<ModalComponent>;
   private renderer: Renderer2;
+  private rendererFactory = inject(RendererFactory2);
   isBodyScrollDisabled = false;
 
-  constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private appRef: ApplicationRef,
-    private injector: Injector,
-    private rendererFactory: RendererFactory2,
-  ) {
+  constructor() {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
