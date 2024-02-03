@@ -1,10 +1,12 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostBinding,
+  Inject,
   OnInit,
+  PLATFORM_ID,
   inject,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -29,17 +31,21 @@ export class HomeComponent implements OnInit {
   @HostBinding('class.section') wrapperClass = true;
   typeEffect = new BehaviorSubject<string>('');
 
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+  
   ngOnInit(): void {
     this.ss.registerSection(this.elementRef);
-    this.tes.addTypeEffect(
-      {
-        phrases: ['Software Engineer!', 'Full-stack Engineer!'],
-        typeSpeed: 55,
-        reverseSpeed: 40,
-        reverseDelay: 1000,
-        loop: true,
-      },
-      this.typeEffect,
-    );
+    if (isPlatformBrowser(this.platformId)) {
+      this.tes.addTypeEffect(
+        {
+          phrases: ['Software Engineer!', 'Full-stack Engineer!'],
+          typeSpeed: 55,
+          reverseSpeed: 40,
+          reverseDelay: 1000,
+          loop: true,
+        },
+        this.typeEffect,
+      );
+    }
   }
 }

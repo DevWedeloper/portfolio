@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   HostListener,
-  OnInit,
+  afterNextRender,
   inject,
 } from '@angular/core';
 import { AboutComponent } from './about/about.component';
@@ -30,15 +30,18 @@ import { ThemeService } from './shared/data-access/theme.service';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'portfolio';
-  isWideScreen: boolean = window.innerWidth >= 991;
+  isWideScreen: boolean = true;
   private ts = inject(ThemeService);
 
-  ngOnInit(): void {
-    this.addScrollAnimation();
-    this.addButtonEffect();
-    this.ts.checkPreferredTheme();
+  constructor() {
+    afterNextRender(() => {
+      this.addScrollAnimation();
+      this.addButtonEffect();
+      this.ts.checkPreferredTheme();
+      this.isWideScreen = window.innerWidth >= 991;
+    });
   }
 
   addScrollAnimation(): void {
