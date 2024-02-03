@@ -10,6 +10,7 @@ import {
   Renderer2,
   ViewChild,
   ViewChildren,
+  afterNextRender,
   inject,
 } from '@angular/core';
 import { SectionService } from '../shared/data-access/section.service';
@@ -39,7 +40,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   resizeTimer!: ReturnType<typeof setTimeout>;
 
   isBodyScrollDisabled = false;
-  isMobile = window.innerWidth < 768;
+  isMobile: boolean = false;
+
+  constructor() {
+    afterNextRender(() => {
+      this.isMobile = window.innerWidth < 768;
+    });
+  }
 
   ngOnInit(): void {
     this.sections = this.sectionService.getSections();
@@ -89,6 +96,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   highlightNavAnchors(): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
     const top = window.scrollY;
     const offset = 150;
 

@@ -1,4 +1,10 @@
-import { Injectable, Renderer2, RendererFactory2, inject } from '@angular/core';
+import {
+  Injectable,
+  Renderer2,
+  RendererFactory2,
+  afterNextRender,
+  inject,
+} from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -7,14 +13,17 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ThemeService {
   private renderer: Renderer2;
   private rendererFactory = inject(RendererFactory2);
-  private darkThemeMediaQuery = window.matchMedia(
-    '(prefers-color-scheme: dark)',
-  );
-  darkMode$ = new BehaviorSubject<boolean>(this.darkThemeMediaQuery.matches);
+  private darkThemeMediaQuery!: MediaQueryList;
+  darkMode$ = new BehaviorSubject<boolean>(true);
   isDarkMode$: Observable<boolean> = this.darkMode$.asObservable();
-  
+
   constructor() {
     this.renderer = this.rendererFactory.createRenderer(null, null);
+    afterNextRender(() => {
+      this.darkThemeMediaQuery = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      );
+    });
   }
 
   themeOnClick(): void {
