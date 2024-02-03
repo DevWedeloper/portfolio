@@ -1,33 +1,29 @@
-<ng-container *ngIf="contactForm.valueChanges | async"/>
+@if (contactForm.valueChanges | async) {}
 <form [formGroup]="contactForm" (ngSubmit)="submitForm.emit(contactForm)">
   <div class="form-item-container">
     <input type="text" formControlName="name" placeholder="Name" />
-    <div
-      class="error-tooltip"
-      *ngIf="
-        contactForm.get('name')?.invalid && contactForm.get('name')?.touched
-      "
-    >
-      <div *ngIf="contactForm.get('name')?.hasError('required')">
-        Name is required.
+    @if (contactForm.get("name")?.invalid && contactForm.get("name")?.touched) {
+      <div class="error-tooltip">
+        @if (contactForm.get("name")?.hasError("required")) {
+          <div>Name is required.</div>
+        }
       </div>
-    </div>
+    }
   </div>
   <div class="form-item-container">
     <input type="email" formControlName="email" placeholder="Email" />
-    <div
-      class="error-tooltip"
-      *ngIf="
-        contactForm.get('email')?.invalid && contactForm.get('email')?.touched
-      "
-    >
-      <div *ngIf="contactForm.get('email')?.hasError('required')">
-        Email is required.
+    @if (
+      contactForm.get("email")?.invalid && contactForm.get("email")?.touched
+    ) {
+      <div class="error-tooltip">
+        @if (contactForm.get("email")?.hasError("required")) {
+          <div>Email is required.</div>
+        }
+        @if (contactForm.get("email")?.hasError("email")) {
+          <div>Invalid email format.</div>
+        }
       </div>
-      <div *ngIf="contactForm.get('email')?.hasError('email')">
-        Invalid email format.
-      </div>
-    </div>
+    }
   </div>
   <div class="form-item-container">
     <input type="text" formControlName="subject" placeholder="Subject" />
@@ -38,17 +34,15 @@
       rows="8"
       placeholder="Message"
     ></textarea>
-    <div
-      class="error-tooltip"
-      *ngIf="
-        contactForm.get('message')?.invalid &&
-        contactForm.get('message')?.touched
-      "
-    >
-      <div *ngIf="contactForm.get('message')?.hasError('required')">
-        Message is required.
+    @if (
+      contactForm.get("message")?.invalid && contactForm.get("message")?.touched
+    ) {
+      <div class="error-tooltip">
+        @if (contactForm.get("message")?.hasError("required")) {
+          <div>Message is required.</div>
+        }
       </div>
-    </div>
+    }
   </div>
   <div class="form-item-container">
     <button

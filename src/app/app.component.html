@@ -3,4 +3,6 @@
 <app-about/>
 <app-projects/>
 <app-contact/>
-<app-scroll-indicator *ngIf="isWideScreen"/>
+@if (isWideScreen) {
+  <app-scroll-indicator />
+}

@@ -1,43 +1,45 @@
 <nav #navbar class="navbar">
   <h1>Nathan.</h1>
-  <div class="navbar-mobile" *ngIf="isMobile">
-    <a
-      class="icon-link"
-      (click)="themeOnClick()"
-      (keydown.Enter)="themeOnClick()"
-      tabindex="0"
-    >
-      <img
-        class="theme-icon theme-icon-menu"
-        src="{{
-          (ts.isDarkMode$ | async)
-            ? 'assets/images/icons/sun.svg'
-            : 'assets/images/icons/moon.svg'
-        }}"
-        [alt]="(ts.isDarkMode$ | async) ? 'Moon Icon' : 'Sun Icon'"
-    /></a>
-    <a
-      class="icon-link icon"
-      (click)="menuOnClick()"
-      (keydown.Enter)="menuOnClick()"
-      tabindex="0"
-      [ngStyle]="{
-        filter:
-          (ts.isDarkMode$ | async)
-            ? 'invert(100%) grayscale(100%)'
-            : 'grayscale(100%)'
-      }"
-    >
-      <img
-        id="menu-icon"
-        src="{{
-          isMenuOpen
-            ? 'assets/images/icons/close.svg'
-            : 'assets/images/icons/menu.svg'
-        }}"
-        [alt]="isMenuOpen ? 'Menu Icon' : 'Close Icon'"
-    /></a>
-  </div>
+  @if (isMobile) {
+    <div class="navbar-mobile">
+      <a
+        class="icon-link"
+        (click)="themeOnClick()"
+        (keydown.Enter)="themeOnClick()"
+        tabindex="0"
+      >
+        <img
+          class="theme-icon theme-icon-menu"
+          src="{{
+            (ts.isDarkMode$ | async)
+              ? 'assets/images/icons/sun.svg'
+              : 'assets/images/icons/moon.svg'
+          }}"
+          [alt]="(ts.isDarkMode$ | async) ? 'Moon Icon' : 'Sun Icon'"
+      /></a>
+      <a
+        class="icon-link icon"
+        (click)="menuOnClick()"
+        (keydown.Enter)="menuOnClick()"
+        tabindex="0"
+        [ngStyle]="{
+          filter:
+            (ts.isDarkMode$ | async)
+              ? 'invert(100%) grayscale(100%)'
+              : 'grayscale(100%)'
+        }"
+      >
+        <img
+          id="menu-icon"
+          src="{{
+            isMenuOpen
+              ? 'assets/images/icons/close.svg'
+              : 'assets/images/icons/menu.svg'
+          }}"
+          [alt]="isMenuOpen ? 'Menu Icon' : 'Close Icon'"
+      /></a>
+    </div>
+  }
   <ul [ngStyle]="{ transform: isMenuOpen ? 'translateX(0)' : '' }">
     <li><a #homeLink href="#home" (click)="closeMenu()">Home</a></li>
     <li><a #aboutLink href="#about" (click)="closeMenu()">About</a></li>
