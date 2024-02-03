@@ -65,13 +65,8 @@ export class ModalService<T> {
   close(): void {
     if (this.modalComponentRef) {
       // Remove the modal component from the body
-      this.isOpen$.next(false);
-      setTimeout(() => {
-        if (this.modalComponentRef) {
-          this.appRef.detachView(this.modalComponentRef.hostView);
-          this.modalComponentRef?.destroy();
-        }
-      }, 200);
+      this.appRef.detachView(this.modalComponentRef.hostView);
+      this.modalComponentRef?.destroy();
       this.isBodyScrollDisabled = false;
       this.toggleBodyScroll();
     }
