@@ -43,7 +43,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.sections = this.sectionService.getSections();
-    this.checkPreferredTheme();
   }
 
   ngAfterViewInit(): void {
@@ -84,18 +83,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  checkPreferredTheme(): void {
-    const preferredTheme = localStorage.getItem('preferredTheme');
-
-    if (preferredTheme === 'dark') {
-      this.ts.darkMode$.next(true);
-      this.renderer.addClass(document.body, 'dark-theme');
-    } else {
-      this.ts.darkMode$.next(false);
-      this.renderer.removeClass(document.body, 'dark-theme');
-    }
-  }
-
   @HostListener('window:scroll', ['$event'])
   onScroll(): void {
     this.highlightNavAnchors();
@@ -128,17 +115,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.renderer.removeClass(anchor.nativeElement, 'active');
       }
     });
-  }
-
-  themeOnClick(): void {
-    this.ts.darkMode$.next(!this.ts.darkMode$.value);
-    if (this.ts.darkMode$.value) {
-      this.renderer.addClass(document.body, 'dark-theme');
-      localStorage.setItem('preferredTheme', 'dark');
-    } else {
-      this.renderer.removeClass(document.body, 'dark-theme');
-      localStorage.setItem('preferredTheme', 'light');
-    }
   }
 
   menuOnClick(): void {
