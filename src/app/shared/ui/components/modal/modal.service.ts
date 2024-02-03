@@ -9,7 +9,6 @@ import {
   RendererFactory2,
   TemplateRef,
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { ModalComponent } from './modal.component';
 
 @Injectable({
@@ -18,7 +17,6 @@ import { ModalComponent } from './modal.component';
 export class ModalService<T> {
   private modalComponentRef?: ComponentRef<ModalComponent>;
   private renderer: Renderer2;
-  isOpen$ = new BehaviorSubject<boolean>(false);
   isBodyScrollDisabled = false;
 
   constructor(
@@ -50,7 +48,6 @@ export class ModalService<T> {
 
     this.modalComponentRef.instance.contentTemplate = contentTemplate;
 
-    this.isOpen$.next(true);
     this.isBodyScrollDisabled = true;
     this.toggleBodyScroll();
   }
