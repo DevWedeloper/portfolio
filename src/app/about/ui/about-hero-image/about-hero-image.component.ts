@@ -1,4 +1,11 @@
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  keyframes,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -21,23 +28,21 @@ import { ThemeService } from 'src/app/shared/data-access/theme.service';
             style({ filter: 'blur(0)', offset: 0 }),
             style({ filter: 'blur(2px)', offset: 0.5 }),
             style({ filter: 'blur(0)', offset: 1 }),
-          ])
+          ]),
         ),
       ]),
     ]),
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutHeroImageComponent {
   ts = inject(ThemeService);
   blurAnimationState = new BehaviorSubject<string>('');
 
   constructor() {
-    this.ts.isDarkMode$
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => {
-        this.triggerAnimation();
-      });
+    this.ts.isDarkMode$.pipe(takeUntilDestroyed()).subscribe(() => {
+      this.triggerAnimation();
+    });
   }
 
   triggerAnimation(): void {

@@ -8,7 +8,7 @@ import { ModalService } from 'src/app/shared/ui/components/modal/modal.service';
   imports: [CommonModule],
   templateUrl: './feedback-fail.component.html',
   styleUrls: ['./feedback-fail.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeedbackFailComponent {
   ms = inject(ModalService);

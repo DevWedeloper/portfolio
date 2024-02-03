@@ -11,8 +11,8 @@
   (click)="ms.close()"
   (keyup.Escape)="ms.close()"
 ></div>
-<div [@fadeInOut] *ngIf="ms.isOpen$.value" class="modal-container">
+<div [@fadeInOut] class="modal-container">
   <div class="modal-content">
-    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    <ng-container *ngTemplateOutlet="contentTemplate" />
   </div>
 </div>

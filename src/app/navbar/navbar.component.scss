@@ -1,4 +1,4 @@
-@import 'src/app/app.component.scss'; 
+@import "src/app/app.component.scss";
 
 .navbar {
   position: fixed;
@@ -66,7 +66,7 @@
 
 #menu-icon {
   width: 2rem;
-  pointer-events: none; 
+  pointer-events: none;
   user-select: none;
   display: none;
 }

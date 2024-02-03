@@ -36,13 +36,13 @@
   </div>
 </div>
 <div class="contact-form hidden from-right">
-  <app-form (submitForm)="cs.submitForm$.next($event)"/>
+  <app-form (submitForm)="cs.submitForm$.next($event)" />
 </div>
 
 <ng-template #sorryTemplate>
-  <app-feedback-fail/>
+  <app-feedback-fail />
 </ng-template>
 
 <ng-template #thankYouTemplate>
-  <app-feedback-success/>
+  <app-feedback-success />
 </ng-template>

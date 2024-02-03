@@ -10,7 +10,7 @@ import { SliderComponent } from '../../ui/slider/slider.component';
   imports: [CommonModule, CardComponent, SliderComponent],
   templateUrl: './project-one.component.html',
   styleUrls: ['./project-one.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectOneComponent {
   ts = inject(ThemeService);

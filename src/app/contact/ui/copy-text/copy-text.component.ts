@@ -1,5 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, HostListener, Input, ViewChild, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Input,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { ThemeService } from 'src/app/shared/data-access/theme.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 

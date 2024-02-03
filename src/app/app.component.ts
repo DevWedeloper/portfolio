@@ -1,11 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ScrollIndicatorComponent } from './scroll-indicator/scroll-indicator.component';
+import { ThemeService } from './shared/data-access/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -21,15 +28,17 @@ import { ScrollIndicatorComponent } from './scroll-indicator/scroll-indicator.co
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   title = 'portfolio';
   isWideScreen: boolean = window.innerWidth >= 991;
+  private ts = inject(ThemeService);
 
   ngOnInit(): void {
     this.addScrollAnimation();
     this.addButtonEffect();
+    this.ts.checkPreferredTheme();
   }
 
   addScrollAnimation(): void {
@@ -60,7 +69,7 @@ export class AppComponent implements OnInit {
 
   addButtonEffect(): void {
     const buttons = Array.from(
-      document.querySelectorAll('.btn-effect')
+      document.querySelectorAll('.btn-effect'),
     ) as HTMLElement[];
 
     buttons.forEach((button) => {

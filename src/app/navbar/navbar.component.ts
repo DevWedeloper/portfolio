@@ -1,28 +1,41 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChild, ViewChildren, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  QueryList,
+  Renderer2,
+  ViewChild,
+  ViewChildren,
+  inject,
+} from '@angular/core';
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
 
 @Component({
-    selector: 'app-navbar',
-    standalone: true,
-    imports: [CommonModule],
-    templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-navbar',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
   ts = inject(ThemeService);
   renderer = inject(Renderer2);
   sectionService = inject(SectionService);
   el = inject(ElementRef);
-  @ViewChildren('homeLink, aboutLink, contactLink, projectsLink') navAnchors!: QueryList<ElementRef>;
+  @ViewChildren('homeLink, aboutLink, contactLink, projectsLink')
+  navAnchors!: QueryList<ElementRef>;
   @ViewChild('homeLink', { static: true }) homeLink!: ElementRef<HTMLElement>;
-  @ViewChild('navbar', { static: true}) navbar!: ElementRef<HTMLElement>;
+  @ViewChild('navbar', { static: true }) navbar!: ElementRef<HTMLElement>;
 
   sections!: ElementRef[];
   isMenuOpen = false;
-  
+
   resizeTimer!: ReturnType<typeof setTimeout>;
 
   isBodyScrollDisabled = false;
@@ -30,7 +43,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.sections = this.sectionService.getSections();
-    this.checkPreferredTheme();
   }
 
   ngAfterViewInit(): void {
@@ -54,7 +66,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   onClick(event: Event) {
     const target = event.target as HTMLAnchorElement;
     const navbarElement = this.navbar.nativeElement;
-  
+
     if (target.tagName === 'A' && navbarElement.contains(target)) {
       event.preventDefault();
       const targetElement = target.getAttribute('href');
@@ -62,24 +74,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.scrollToElement(targetElement);
       }
     }
-  } 
-  
+  }
+
   scrollToElement(targetElement: string) {
     const element = document.querySelector(targetElement);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-
-  checkPreferredTheme(): void {
-    const preferredTheme = localStorage.getItem('preferredTheme');
-
-    if (preferredTheme === 'dark') {
-      this.ts.darkMode$.next(true);
-      this.renderer.addClass(document.body, 'dark-theme');
-    } else {
-      this.ts.darkMode$.next(false);
-      this.renderer.removeClass(document.body, 'dark-theme');
     }
   }
 
@@ -97,7 +97,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       const sectionTop = section.nativeElement.offsetTop;
       const sectionHeight = section.nativeElement.offsetHeight;
 
-      if (top >= sectionTop - offset && top < sectionTop + sectionHeight - offset) {
+      if (
+        top >= sectionTop - offset &&
+        top < sectionTop + sectionHeight - offset
+      ) {
         activeSectionId = section.nativeElement.getAttribute('id');
       }
     });
@@ -114,17 +117,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
-  themeOnClick(): void {
-    this.ts.darkMode$.next(!this.ts.darkMode$.value);
-    if (this.ts.darkMode$.value) {
-      this.renderer.addClass(document.body, 'dark-theme');
-      localStorage.setItem('preferredTheme', 'dark');
-    } else {
-      this.renderer.removeClass(document.body, 'dark-theme');
-      localStorage.setItem('preferredTheme', 'light');
-    }
-  }
-
   menuOnClick(): void {
     this.isMenuOpen = !this.isMenuOpen;
     this.toggleBodyScroll();
@@ -139,11 +131,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (this.isMenuOpen) {
       this.isBodyScrollDisabled = true;
       this.renderer.addClass(document.body, 'no-scroll');
-      
     } else {
       this.isBodyScrollDisabled = false;
       this.renderer.removeClass(document.body, 'no-scroll');
     }
   }
-  
 }

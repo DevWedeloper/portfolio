@@ -1,6 +1,8 @@
-<app-navbar/>
-<app-home/>
-<app-about/>
-<app-projects/>
-<app-contact/>
-<app-scroll-indicator *ngIf="isWideScreen"/>
+<app-navbar />
+<app-home />
+<app-about />
+<app-projects />
+<app-contact />
+@if (isWideScreen) {
+  <app-scroll-indicator />
+}

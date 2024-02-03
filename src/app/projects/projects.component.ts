@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostBinding,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { SectionService } from '../shared/data-access/section.service';
 import { ProjectOneComponent } from './features/project-one/project-one.component';
 
@@ -9,7 +16,7 @@ import { ProjectOneComponent } from './features/project-one/project-one.componen
   imports: [CommonModule, ProjectOneComponent],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsComponent implements OnInit {
   ss = inject(SectionService);

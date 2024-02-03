@@ -1,6 +1,8 @@
 <div class="progress-bar">
   <div class="container">
     <span class="line" [style.height.%]="progress | async"></span>
-    <div class="shapes" *ngFor="let shape of ss.sections; let i = index" [ngClass]="{ 'active': i === activeShapeIndex }"></div>
+    @for (shape of ss.sections; track i; let i = $index) {
+      <div class="shapes" [ngClass]="{ active: i === activeShapeIndex }"></div>
+    }
   </div>
 </div>

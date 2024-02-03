@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
         reverseDelay: 1000,
         loop: true,
       },
-      this.typeEffect
+      this.typeEffect,
     );
   }
 }

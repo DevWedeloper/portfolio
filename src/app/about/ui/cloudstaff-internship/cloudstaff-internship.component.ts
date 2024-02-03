@@ -10,7 +10,7 @@ import { TooltipDirective } from 'src/app/shared/ui/components/tooltip/tooltip.d
   imports: [CommonModule, TooltipDirective],
   templateUrl: './cloudstaff-internship.component.html',
   styleUrls: ['./cloudstaff-internship.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CloudstaffInternshipComponent {
   ts = inject(ThemeService);

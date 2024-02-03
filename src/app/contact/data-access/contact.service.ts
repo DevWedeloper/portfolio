@@ -9,7 +9,7 @@ import {
   of,
   switchMap,
   tap,
-  throwError
+  throwError,
 } from 'rxjs';
 
 @Injectable({
@@ -36,11 +36,13 @@ export class ContactService {
       return of({ form, formData });
     }),
     switchMap(({ formData, form }) =>
-      this.http.post(this.scriptURL, formData).pipe(finalize(() => form.reset()))
+      this.http
+        .post(this.scriptURL, formData)
+        .pipe(finalize(() => form.reset())),
     ),
     tap(() => this.submitLoading$.next(false)),
     catchError((error) => {
       return throwError(() => error);
-    })
+    }),
   );
 }

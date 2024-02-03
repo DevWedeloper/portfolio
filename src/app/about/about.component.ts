@@ -5,7 +5,7 @@ import {
   ElementRef,
   HostBinding,
   OnInit,
-  inject
+  inject,
 } from '@angular/core';
 import { SectionService } from '../shared/data-access/section.service';
 import { AboutHeroImageComponent } from './ui/about-hero-image/about-hero-image.component';
@@ -13,14 +13,10 @@ import { AboutTabComponent } from './ui/about-tab/about-tab.component';
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [
-    CommonModule,
-    AboutHeroImageComponent,
-    AboutTabComponent
-  ],
+  imports: [CommonModule, AboutHeroImageComponent, AboutTabComponent],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutComponent implements OnInit {
   sectionService = inject(SectionService);

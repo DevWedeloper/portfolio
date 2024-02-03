@@ -1,7 +1,7 @@
 import { ElementRef, Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SectionService {
   sections: ElementRef<HTMLElement>[] = [];
