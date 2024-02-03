@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  OnInit,
+} from '@angular/core';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
@@ -21,7 +26,7 @@ import { ScrollIndicatorComponent } from './scroll-indicator/scroll-indicator.co
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   title = 'portfolio';
@@ -60,7 +65,7 @@ export class AppComponent implements OnInit {
 
   addButtonEffect(): void {
     const buttons = Array.from(
-      document.querySelectorAll('.btn-effect')
+      document.querySelectorAll('.btn-effect'),
     ) as HTMLElement[];
 
     buttons.forEach((button) => {

@@ -17,7 +17,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
     HighlightTextDirective,
     TooltipDirective,
     ModalComponent,
-    CloudstaffInternshipComponent
+    CloudstaffInternshipComponent,
   ],
   templateUrl: './about-tab.component.html',
   styleUrls: ['./about-tab.component.scss'],

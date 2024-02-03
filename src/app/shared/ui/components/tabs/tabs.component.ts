@@ -49,7 +49,7 @@ export class TabsComponent implements AfterViewInit {
 
   private setInitialActiveTab(): void {
     const initialActiveTab = this.tabLinks.find((el) =>
-      el.nativeElement.classList.contains('active')
+      el.nativeElement.classList.contains('active'),
     );
     if (initialActiveTab) {
       this.activeTabElement = initialActiveTab.nativeElement;

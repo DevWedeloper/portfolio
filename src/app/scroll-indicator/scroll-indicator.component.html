@@ -2,7 +2,7 @@
   <div class="container">
     <span class="line" [style.height.%]="progress | async"></span>
     @for (shape of ss.sections; track i; let i = $index) {
-      <div class="shapes" [ngClass]="{ 'active': i === activeShapeIndex }"></div>
+      <div class="shapes" [ngClass]="{ active: i === activeShapeIndex }"></div>
     }
   </div>
 </div>

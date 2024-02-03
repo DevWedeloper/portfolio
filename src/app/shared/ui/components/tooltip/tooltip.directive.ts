@@ -8,7 +8,7 @@ import {
   HostListener,
   Inject,
   Injector,
-  Input
+  Input,
 } from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
 
@@ -31,7 +31,7 @@ export class TooltipDirective {
       this.componentFactoryResolver.resolveComponentFactory(TooltipComponent);
     this.tooltipComponent = tooltipComponentFactory.create(this.injector);
     this.document.body.appendChild(
-      this.tooltipComponent.location.nativeElement
+      this.tooltipComponent.location.nativeElement,
     );
     this.setTooltipComponentProperties();
     this.tooltipComponent.hostView.detectChanges();
@@ -64,6 +64,6 @@ export class TooltipDirective {
     private injector: Injector,
     private elementRef: ElementRef,
     private appRef: ApplicationRef,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
   ) {}
 }

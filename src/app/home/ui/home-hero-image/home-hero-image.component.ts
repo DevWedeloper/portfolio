@@ -7,8 +7,6 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './home-hero-image.component.html',
   styleUrls: ['./home-hero-image.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeHeroImageComponent {
-
-}
+export class HomeHeroImageComponent {}

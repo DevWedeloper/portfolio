@@ -31,7 +31,7 @@ import { FormComponent } from './ui/form/form.component';
     FormComponent,
     CopyTextComponent,
     FeedbackSuccessComponent,
-    FeedbackFailComponent
+    FeedbackFailComponent,
   ],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],

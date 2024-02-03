@@ -1,4 +1,14 @@
-import { ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injectable, Injector, Renderer2, RendererFactory2, TemplateRef } from '@angular/core';
+import {
+  ApplicationRef,
+  ComponentFactoryResolver,
+  ComponentRef,
+  EmbeddedViewRef,
+  Injectable,
+  Injector,
+  Renderer2,
+  RendererFactory2,
+  TemplateRef,
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ModalComponent } from './modal.component';
 
@@ -28,7 +38,8 @@ export class ModalService<T> {
     }
 
     // Create a component factory
-    const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+    const factory =
+      this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
 
     // Create a component reference
     this.modalComponentRef = factory.create(this.injector);
@@ -37,7 +48,8 @@ export class ModalService<T> {
     this.appRef.attachView(this.modalComponentRef.hostView);
 
     // Get the DOM element from the component
-    const domElem = (this.modalComponentRef.hostView as EmbeddedViewRef<T>).rootNodes[0] as HTMLElement;
+    const domElem = (this.modalComponentRef.hostView as EmbeddedViewRef<T>)
+      .rootNodes[0] as HTMLElement;
 
     // Append the DOM element to the body
     document.body.appendChild(domElem);
@@ -68,7 +80,6 @@ export class ModalService<T> {
   private toggleBodyScroll(): void {
     if (this.isBodyScrollDisabled) {
       this.renderer.addClass(document.body, 'no-scroll');
-      
     } else {
       this.renderer.removeClass(document.body, 'no-scroll');
     }

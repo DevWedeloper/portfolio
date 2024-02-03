@@ -1,6 +1,11 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+} from '@angular/core';
 
 @Component({
   selector: 'app-tooltip',
@@ -18,7 +23,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
       transition(':leave', [
         style({ opacity: '1', pointerEvents: 'none' }),
         animate('150ms', style({ opacity: '0', pointerEvents: 'none' })),
-      ])
+      ]),
     ]),
   ],
 })

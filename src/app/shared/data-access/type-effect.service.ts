@@ -21,7 +21,7 @@ export class TypeEffectService {
 
   addTypeEffect(
     { phrases, typeSpeed, reverseSpeed, reverseDelay, loop }: TypingEffect,
-    element: BehaviorSubject<string>
+    element: BehaviorSubject<string>,
   ): void {
     let letterIndex = 0;
     let phraseIndex = 0;

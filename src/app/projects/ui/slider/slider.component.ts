@@ -1,4 +1,10 @@
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
@@ -6,7 +12,7 @@ import {
   Component,
   ContentChildren,
   QueryList,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 
 @Component({
@@ -43,7 +49,7 @@ export class SliderComponent implements AfterViewInit {
   }
 
   goToNext(): void {
-    if (this.index < (this.sliderLength - 1)) {
+    if (this.index < this.sliderLength - 1) {
       this.index += 1;
     }
   }

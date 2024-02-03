@@ -4,7 +4,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  inject
+  inject,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BehaviorSubject, fromEvent } from 'rxjs';
@@ -32,23 +32,24 @@ export class ScrollIndicatorComponent implements OnInit {
           const scroll = window.scrollY || document.documentElement.scrollTop;
           const doc = Math.max(
             document.body.scrollHeight,
-            document.documentElement.scrollHeight
+            document.documentElement.scrollHeight,
           );
-          const win = window.innerHeight || document.documentElement.clientHeight;
-      
+          const win =
+            window.innerHeight || document.documentElement.clientHeight;
+
           this.sections.forEach((sec, index) => {
             const top = window.scrollY;
             const offset = sec.nativeElement.offsetTop - 150;
             const height = sec.nativeElement.offsetHeight;
-      
+
             this.progress.next((scroll / (doc - win)) * 100);
-      
+
             if (top >= offset && top < offset + height) {
               this.activeShapeIndex = index;
             }
           });
         }),
-        takeUntilDestroyed()
+        takeUntilDestroyed(),
       )
       .subscribe();
   }
