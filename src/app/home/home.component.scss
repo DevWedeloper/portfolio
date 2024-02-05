@@ -18,7 +18,7 @@
   font-size: calc(var(--font-size-big-desktop) - 0.5rem);
 }
 
-.home-content a {
+.home-content .resume {
   display: inline-block;
   padding: 1rem 2rem;
   font-weight: 600;
@@ -36,6 +36,23 @@
 
 .type-effect-text {
   display: inline-block;
+}
+
+.link-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.link-container a:hover {
+  scale: 1.1;
+  transition: scale 50ms ease-in-out;
+  cursor: pointer;
+}
+
+.icon-container svg {
+  width: 2rem;
+  fill: var(--text-color);
 }
 
 @keyframes typing {
