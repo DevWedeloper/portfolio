@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ThemeService } from 'src/app/shared/data-access/theme.service';
+import { ThemeService } from '../../../shared/data-access/theme.service';
 import { CardComponent } from '../../ui/card/card.component';
 import { SliderComponent } from '../../ui/slider/slider.component';
 

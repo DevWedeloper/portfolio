@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ModalService } from 'src/app/shared/ui/components/modal/modal.service';
+import { ModalService } from '../../../shared/ui/components/modal/modal.service';
 
 @Component({
   selector: 'app-feedback-success',

@@ -1,3 +1,4 @@
+import { Clipboard } from '@angular/cdk/clipboard';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -9,8 +10,7 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
-import { ThemeService } from 'src/app/shared/data-access/theme.service';
-import { Clipboard } from '@angular/cdk/clipboard';
+import { ThemeService } from '../../../shared/data-access/theme.service';
 
 @Component({
   selector: 'app-copy-text',

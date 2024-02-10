@@ -7,7 +7,7 @@ import {
   TemplateRef,
   inject,
 } from '@angular/core';
-import { ThemeService } from 'src/app/shared/data-access/theme.service';
+import { ThemeService } from '../../../shared/data-access/theme.service';
 
 @Component({
   selector: 'app-card',

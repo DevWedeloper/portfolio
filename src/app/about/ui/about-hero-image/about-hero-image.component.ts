@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BehaviorSubject } from 'rxjs';
-import { ThemeService } from 'src/app/shared/data-access/theme.service';
+import { ThemeService } from '../../../shared/data-access/theme.service';
 
 @Component({
   selector: 'app-about-hero-image',
