@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ThemeService } from 'src/app/shared/data-access/theme.service';
-import { ModalService } from 'src/app/shared/ui/components/modal/modal.service';
-import { TooltipDirective } from 'src/app/shared/ui/components/tooltip/tooltip.directive';
+import { ThemeService } from '../../../shared/data-access/theme.service';
+import { ModalService } from '../../../shared/ui/components/modal/modal.service';
+import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.directive';
 
 @Component({
   selector: 'app-cloudstaff-internship',

@@ -11,7 +11,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BehaviorSubject, fromEvent } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { SectionService } from 'src/app/shared/data-access/section.service';
+import { SectionService } from '../shared/data-access/section.service';
 
 @Component({
   standalone: true,
