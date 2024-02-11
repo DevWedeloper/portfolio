@@ -3,9 +3,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  Input,
   TemplateRef,
   inject,
+  input,
 } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 
@@ -18,14 +18,12 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
-  @Input({ required: true }) src!: string;
-  @Input({ required: true }) title!: string;
-  @Input({ required: true }) tags!: string[];
-  @Input({ required: true }) websiteLink!: string;
-  @Input({ required: true }) githubLink!: string;
-  @ContentChild('cardBodyTemplate') cardBody:
-    | TemplateRef<HTMLElement>
-    | undefined;
-
-  ts = inject(ThemeService);
+  protected ts = inject(ThemeService);
+  src = input.required<string>();
+  title = input.required<string>();
+  tags = input.required<string[]>();
+  websiteLink = input.required<string>();
+  githubLink = input.required<string>();
+  @ContentChild('cardBodyTemplate')
+  protected cardBody!: TemplateRef<HTMLElement>;
 }

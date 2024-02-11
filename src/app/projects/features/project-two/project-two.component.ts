@@ -5,13 +5,13 @@ import { CardComponent } from '../../ui/card/card.component';
 import { SliderComponent } from '../../ui/slider/slider.component';
 
 @Component({
-  selector: 'app-project-one',
+  selector: 'app-project-two',
   standalone: true,
   imports: [CommonModule, CardComponent, SliderComponent],
-  templateUrl: './project-one.component.html',
-  styleUrls: ['./project-one.component.scss'],
+  templateUrl: './project-two.component.html',
+  styleUrl: './project-two.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProjectOneComponent {
+export class ProjectTwoComponent {
   protected ts = inject(ThemeService);
 }

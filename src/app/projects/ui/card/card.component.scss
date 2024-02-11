@@ -1,14 +1,22 @@
-.card {
-  position: relative;
+$background-image-height: 125px;
+
+:host {
+  display: block;
   background-color: var(--secondary-color);
   border-radius: 0.5rem;
   padding: 1.5rem;
   overflow: hidden;
+  height: 100%;
+}
+
+:host:hover .card-content,
+:host:focus-within .card-content {
+  transform: translateY(0);
 }
 
 .image-container {
   width: 100%;
-  height: 125px;
+  height: $background-image-height;
   background-size: cover;
   background-position: center;
   filter: blur(2px);
@@ -17,20 +25,17 @@
 
 @media (hover) {
   .card-content {
-    transform: translateY(49%);
+    transform: translateY(95%);
     transition: transform 500ms ease;
   }
 }
 
 .card-content {
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.card:hover .card-content,
-.card:focus-within .card-content {
-  transform: translateY(0);
+  height: calc(100% - $background-image-height);
 }
 
 .card-header h2 {
