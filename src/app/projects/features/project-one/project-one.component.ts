@@ -13,5 +13,5 @@ import { SliderComponent } from '../../ui/slider/slider.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectOneComponent {
-  ts = inject(ThemeService);
+  protected ts = inject(ThemeService);
 }
