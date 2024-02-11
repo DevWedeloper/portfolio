@@ -1,4 +1,4 @@
-.card {
+:host {
   background-color: var(--secondary-color);
   border-radius: 0.5rem;
   padding: 1.5rem;
@@ -6,8 +6,8 @@
   height: 100%;
 }
 
-.card:hover .card-content,
-.card:focus-within .card-content {
+:host:hover .card-content,
+:host:focus-within .card-content {
   transform: translateY(0);
 }
 
