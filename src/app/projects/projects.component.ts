@@ -20,8 +20,8 @@ import { ProjectTwoComponent } from './features/project-two/project-two.componen
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsComponent implements OnInit {
-  ss = inject(SectionService);
-  elementRef = inject(ElementRef);
+  private ss = inject(SectionService);
+  private elementRef = inject(ElementRef);
   @HostBinding('attr.id') id = 'projects';
   @HostBinding('class.section') wrapperClass = true;
 
