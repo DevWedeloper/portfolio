@@ -20,14 +20,32 @@ html {
     0 0 0 4px var(--text-color);
 }
 
+$light-theme-colors: (
+  main-color: #fea1a1,
+  primary-color: #fff,
+  secondary-color: #f2f2f2,
+  text-color: #000000,
+  text-color-reverse: #ffffff,
+  hero-img: url("assets/images/backgrounds/me.webp"),
+  about-img: url("assets/images/backgrounds/about-day.webp"),
+);
+
+$dark-theme-colors: (
+  primary-color: #202124,
+  secondary-color: #171717,
+  text-color: #ffffff,
+  text-color-reverse: #000000,
+  about-img: url("assets/images/backgrounds/about-night.webp"),
+);
+
+@mixin apply-theme-colors($colors) {
+  @each $property, $value in $colors {
+    --#{$property}: #{$value};
+  }
+}
+
 :root {
-  --main-color: #fea1a1;
-  --primary-color: #fff;
-  --secondary-color: #f2f2f2;
-  --text-color: #000000;
-  --text-color-reverse: #ffffff;
-  --hero-img: url("assets/images/backgrounds/me.webp");
-  --about-img: url("assets/images/backgrounds/about-day.webp");
+  @include apply-theme-colors($light-theme-colors);
 
   --font-size-big-desktop: 3.2rem;
   --font-size-regular-desktop: 1.6rem;
@@ -56,12 +74,18 @@ html {
   --image-height-small-mobile: 27rem;
 }
 
+.light-theme {
+  @include apply-theme-colors($light-theme-colors);
+}
+
 .dark-theme {
-  --primary-color: #202124;
-  --secondary-color: #171717;
-  --text-color: #ffffff;
-  --text-color-reverse: #000000;
-  --about-img: url("assets/images/backgrounds/about-night.webp");
+  @include apply-theme-colors($dark-theme-colors);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include apply-theme-colors($dark-theme-colors);
+  }
 }
 
 .resize-animation-stopper * {
