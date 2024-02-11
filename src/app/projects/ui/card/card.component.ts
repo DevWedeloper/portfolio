@@ -27,5 +27,5 @@ export class CardComponent {
     | TemplateRef<HTMLElement>
     | undefined;
 
-  ts = inject(ThemeService);
+  protected ts = inject(ThemeService);
 }
