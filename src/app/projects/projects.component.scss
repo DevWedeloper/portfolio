@@ -18,3 +18,9 @@
 .container-item {
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .projects-container {
+    flex-direction: column;
+  }
+}
