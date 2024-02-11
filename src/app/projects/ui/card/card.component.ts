@@ -18,6 +18,7 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
+  protected ts = inject(ThemeService);
   src = input.required<string>();
   title = input.required<string>();
   tags = input.required<string[]>();
@@ -26,6 +27,4 @@ export class CardComponent {
   @ContentChild('cardBodyTemplate') cardBody:
     | TemplateRef<HTMLElement>
     | undefined;
-
-  protected ts = inject(ThemeService);
 }
