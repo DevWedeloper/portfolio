@@ -28,26 +28,25 @@ export class ThemeService {
 
   themeOnClick(): void {
     this.darkMode$.next(!this.darkMode$.value);
-    if (this.darkMode$.value) {
-      this.renderer.addClass(document.body, 'dark-theme');
-      localStorage.setItem('preferredTheme', 'dark');
-    } else {
-      this.renderer.removeClass(document.body, 'dark-theme');
-      localStorage.setItem('preferredTheme', 'light');
-    }
+    const preferredTheme = this.darkMode$.value ? 'dark' : 'light';
+
+    this.renderer.removeClass(document.body, 'dark-theme');
+    this.renderer.removeClass(document.body, 'light-theme');
+    this.renderer.addClass(document.body, `${preferredTheme}-theme`);
+
+    localStorage.setItem('preferredTheme', preferredTheme);
   }
 
   checkPreferredTheme(): void {
     const preferredTheme = localStorage.getItem('preferredTheme');
-    if (
+    const isDarkTheme =
       preferredTheme === 'dark' ||
-      (preferredTheme === null && this.darkThemeMediaQuery.matches)
-    ) {
-      this.darkMode$.next(true);
-      this.renderer.addClass(document.body, 'dark-theme');
-    } else {
-      this.darkMode$.next(false);
-      this.renderer.removeClass(document.body, 'dark-theme');
-    }
+      (preferredTheme === null && this.darkThemeMediaQuery.matches);
+
+    this.darkMode$.next(isDarkTheme);
+    this.renderer.addClass(
+      document.body,
+      isDarkTheme ? 'dark-theme' : 'light-theme',
+    );
   }
 }
