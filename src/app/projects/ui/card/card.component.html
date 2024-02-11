@@ -1,14 +1,14 @@
 <div class="card">
   <div
     class="image-container"
-    [style.background-image]="'url(' + src + ')'"
+    [style.background-image]="'url(' + src() + ')'"
   ></div>
   <div class="card-content">
     <div class="card-content">
       <div class="card-header">
-        <h2>{{ title }}</h2>
+        <h2>{{ title() }}</h2>
         <ul class="tag-list">
-          @for (tag of tags; track $index) {
+          @for (tag of tags(); track $index) {
             <li class="tag">{{ tag }}</li>
           }
         </ul>
@@ -17,7 +17,7 @@
         <ng-container *ngTemplateOutlet="cardBody!"></ng-container>
       </div>
       <div class="card-links">
-        <a [href]="websiteLink" target="_blank">
+        <a [href]="websiteLink()" target="_blank">
           <img
             class="icon-links"
             src="assets/images/icons/link.svg"
@@ -29,7 +29,7 @@
                   : 'grayscale(100%)'
             }"
         /></a>
-        <a [href]="githubLink" target="_blank">
+        <a [href]="githubLink()" target="_blank">
           <img
             class="icon-links"
             src="{{
