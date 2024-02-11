@@ -24,7 +24,6 @@ export class CardComponent {
   tags = input.required<string[]>();
   websiteLink = input.required<string>();
   githubLink = input.required<string>();
-  @ContentChild('cardBodyTemplate') cardBody:
-    | TemplateRef<HTMLElement>
-    | undefined;
+  @ContentChild('cardBodyTemplate')
+  protected cardBody!: TemplateRef<HTMLElement>;
 }
