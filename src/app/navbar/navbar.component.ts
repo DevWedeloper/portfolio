@@ -25,22 +25,24 @@ import { ThemeService } from '../shared/data-access/theme.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
-  ts = inject(ThemeService);
-  renderer = inject(Renderer2);
-  sectionService = inject(SectionService);
-  el = inject(ElementRef);
+  protected ts = inject(ThemeService);
+  private renderer = inject(Renderer2);
+  private sectionService = inject(SectionService);
+  private el = inject(ElementRef);
   @ViewChildren('homeLink, aboutLink, contactLink, projectsLink')
-  navAnchors!: QueryList<ElementRef>;
-  @ViewChild('homeLink', { static: true }) homeLink!: ElementRef<HTMLElement>;
-  @ViewChild('navbar', { static: true }) navbar!: ElementRef<HTMLElement>;
+  private navAnchors!: QueryList<ElementRef>;
+  @ViewChild('homeLink', { static: true })
+  protected homeLink!: ElementRef<HTMLElement>;
+  @ViewChild('navbar', { static: true })
+  protected navbar!: ElementRef<HTMLElement>;
 
-  sections!: ElementRef[];
-  isMenuOpen = false;
+  private sections!: ElementRef[];
+  protected isMenuOpen = false;
 
-  resizeTimer!: ReturnType<typeof setTimeout>;
+  private resizeTimer!: ReturnType<typeof setTimeout>;
 
   isBodyScrollDisabled = false;
-  isMobile = false;
+  protected isMobile = false;
 
   constructor() {
     afterNextRender(() => {

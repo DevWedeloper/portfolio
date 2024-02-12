@@ -19,10 +19,10 @@ import { AboutTabComponent } from './ui/about-tab/about-tab.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutComponent implements OnInit {
-  sectionService = inject(SectionService);
-  elementRef = inject(ElementRef);
-  @HostBinding('attr.id') id = 'about';
-  @HostBinding('class.section') wrapperClass = true;
+  private sectionService = inject(SectionService);
+  private elementRef = inject(ElementRef);
+  @HostBinding('attr.id') protected id = 'about';
+  @HostBinding('class.section') protected wrapperClass = true;
 
   ngOnInit(): void {
     this.sectionService.registerSection(this.elementRef);

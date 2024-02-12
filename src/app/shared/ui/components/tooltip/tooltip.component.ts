@@ -31,5 +31,5 @@ export class TooltipComponent {
   @Input() text = '';
   @HostBinding('style.left.px') @Input() left = 0;
   @HostBinding('style.top.px') @Input() top = 0;
-  @HostBinding('@fadeInOut') animate = true;
+  @HostBinding('@fadeInOut') protected animate = true;
 }

@@ -38,18 +38,20 @@ import { FormComponent } from './ui/form/form.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent implements OnInit {
-  fb = inject(FormBuilder);
-  ss = inject(SectionService);
-  ts = inject(ThemeService);
-  ms = inject(ModalService);
-  cs = inject(ContactService);
-  elementRef = inject(ElementRef);
-  @ViewChild('thankYouTemplate') thankYouTemplate!: TemplateRef<HTMLElement>;
-  @ViewChild('sorryTemplate') sorryTemplate!: TemplateRef<HTMLElement>;
-  @HostBinding('attr.id') id = 'contact';
-  @HostBinding('class.section') wrapperClass = true;
-  email = 'vicnathangabrielle@gmail.com';
-  phoneNumber = '+63 965 558 5778';
+  private fb = inject(FormBuilder);
+  private ss = inject(SectionService);
+  protected ts = inject(ThemeService);
+  private ms = inject(ModalService);
+  protected cs = inject(ContactService);
+  private elementRef = inject(ElementRef);
+  @ViewChild('thankYouTemplate')
+  protected thankYouTemplate!: TemplateRef<HTMLElement>;
+  @ViewChild('sorryTemplate')
+  protected sorryTemplate!: TemplateRef<HTMLElement>;
+  @HostBinding('attr.id') protected id = 'contact';
+  @HostBinding('class.section') protected wrapperClass = true;
+  protected email = 'vicnathangabrielle@gmail.com';
+  protected phoneNumber = '+63 965 558 5778';
 
   constructor() {
     this.cs.submitData$.pipe(takeUntilDestroyed()).subscribe({

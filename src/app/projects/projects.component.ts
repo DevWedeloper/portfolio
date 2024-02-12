@@ -22,8 +22,8 @@ import { ProjectTwoComponent } from './features/project-two/project-two.componen
 export class ProjectsComponent implements OnInit {
   private ss = inject(SectionService);
   private elementRef = inject(ElementRef);
-  @HostBinding('attr.id') id = 'projects';
-  @HostBinding('class.section') wrapperClass = true;
+  @HostBinding('attr.id') protected id = 'projects';
+  @HostBinding('class.section') protected wrapperClass = true;
 
   ngOnInit(): void {
     this.ss.registerSection(this.elementRef);

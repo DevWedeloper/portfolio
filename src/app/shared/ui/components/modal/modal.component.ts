@@ -47,12 +47,12 @@ import { ModalService } from './modal.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent implements AfterViewInit {
-  ms = inject(ModalService);
-  ts = inject(ThemeService);
-  renderer = inject(Renderer2);
+  protected ms = inject(ModalService);
+  protected ts = inject(ThemeService);
+  private renderer = inject(Renderer2);
   @Input() contentTemplate!: TemplateRef<HTMLElement>;
-  @HostBinding('@hostAnimation') animate = true;
-  @ViewChild('modalElement') modalElement!: ElementRef;
+  @HostBinding('@hostAnimation') protected animate = true;
+  @ViewChild('modalElement') protected modalElement!: ElementRef;
 
   ngAfterViewInit(): void {
     this.renderer.selectRootElement(this.modalElement.nativeElement).focus();
