@@ -29,7 +29,7 @@ export class AboutTabComponent {
   protected tabs: string[] = ['Skills', 'Experience', 'Education'];
   protected activatedTab = 'Skills';
 
-  tabChange(tabIndex: string) {
+  protected tabChange(tabIndex: string) {
     this.activatedTab = tabIndex;
   }
 }

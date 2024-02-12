@@ -86,7 +86,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  scrollToElement(targetElement: string) {
+  private scrollToElement(targetElement: string) {
     const element = document.querySelector(targetElement);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -97,7 +97,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.highlightNavAnchors();
   }
 
-  highlightNavAnchors(): void {
+  private highlightNavAnchors(): void {
     if (typeof window === 'undefined') {
       return;
     }
@@ -129,12 +129,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
-  menuOnClick(): void {
+  protected menuOnClick(): void {
     this.isMenuOpen = !this.isMenuOpen;
     this.toggleBodyScroll();
   }
 
-  closeMenu(): void {
+  protected closeMenu(): void {
     this.isMenuOpen = false;
     this.toggleBodyScroll();
   }

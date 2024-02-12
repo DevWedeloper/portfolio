@@ -45,7 +45,7 @@ export class AppComponent {
     });
   }
 
-  addScrollAnimation(): void {
+  private addScrollAnimation(): void {
     type Options = {
       threshold: number;
       rootMargin: string;
