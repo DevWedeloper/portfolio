@@ -12,11 +12,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  Input,
   Renderer2,
   TemplateRef,
   ViewChild,
   inject,
+  input,
 } from '@angular/core';
 import { ThemeService } from '../../../data-access/theme.service';
 import { ModalService } from './modal.service';
@@ -52,7 +52,7 @@ export class ModalComponent implements AfterViewInit {
   protected ms = inject(ModalService);
   protected ts = inject(ThemeService);
   private renderer = inject(Renderer2);
-  @Input() contentTemplate!: TemplateRef<HTMLElement>;
+  contentTemplate = input.required<TemplateRef<HTMLElement>>();
   @ViewChild('modalElement') protected modalElement!: ElementRef;
 
   ngAfterViewInit(): void {
