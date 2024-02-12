@@ -40,7 +40,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   resizeTimer!: ReturnType<typeof setTimeout>;
 
   isBodyScrollDisabled = false;
-  isMobile: boolean = false;
+  isMobile = false;
 
   constructor() {
     afterNextRender(() => {
