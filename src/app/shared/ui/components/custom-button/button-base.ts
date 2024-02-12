@@ -1,10 +1,13 @@
-import { Directive, ElementRef, HostListener, inject } from '@angular/core';
+import { Directive, ElementRef, inject } from '@angular/core';
 
-@Directive()
+@Directive({
+  host: {
+    '(click)': 'onClick($event)',
+  },
+})
 export class CustomButtonBase {
   private elementRef = inject(ElementRef);
 
-  @HostListener('click', ['$event'])
   onClick(event: MouseEvent) {
     event.preventDefault();
     this.elementRef.nativeElement.classList.add('animate');
