@@ -53,11 +53,11 @@ export class TooltipDirective {
     if (!this.tooltipComponent) {
       return;
     }
-    this.tooltipComponent.instance.text = this.tooltipText();
+    this.tooltipComponent.setInput('text', this.tooltipText());
     const { left, right, bottom } =
       this.elementRef.nativeElement.getBoundingClientRect();
-    this.tooltipComponent.instance.left = (right - left) / 2 + left;
-    this.tooltipComponent.instance.top = bottom;
+    this.tooltipComponent.setInput('left', (right - left) / 2 + left);
+    this.tooltipComponent.setInput('top', bottom);
   }
 
   constructor(
