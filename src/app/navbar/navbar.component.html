@@ -2,7 +2,7 @@
   <h1>Nathan.</h1>
   @if (isMobile) {
     <div class="navbar-mobile">
-      <a
+      <span
         class="icon-link"
         (click)="ts.themeOnClick()"
         (keydown.Enter)="ts.themeOnClick()"
@@ -16,8 +16,8 @@
               : 'assets/images/icons/moon.svg'
           }}"
           [alt]="(ts.isDarkMode$ | async) ? 'Moon Icon' : 'Sun Icon'"
-      /></a>
-      <a
+      /></span>
+      <span
         class="icon-link icon"
         (click)="menuOnClick()"
         (keydown.Enter)="menuOnClick()"
@@ -37,7 +37,7 @@
               : 'assets/images/icons/menu.svg'
           }}"
           [alt]="isMenuOpen ? 'Menu Icon' : 'Close Icon'"
-      /></a>
+      /></span>
     </div>
   }
   <ul [ngStyle]="{ transform: isMenuOpen ? 'translateX(0)' : '' }">
@@ -48,7 +48,7 @@
     </li>
     <li><a #contactLink href="#contact" (click)="closeMenu()">Contact</a></li>
     <li>
-      <a
+      <span
         class="icon-link"
         (click)="ts.themeOnClick()"
         (keydown.Enter)="ts.themeOnClick()"
@@ -64,7 +64,7 @@
           }}"
           [alt]="(ts.isDarkMode$ | async) ? 'Moon Icon' : 'Sun Icon'"
         />
-      </a>
+      </span>
     </li>
   </ul>
 </nav>
