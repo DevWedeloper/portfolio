@@ -10,7 +10,7 @@ import {
   inject,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
 import { ModalComponent } from '../shared/ui/components/modal/modal.component';
@@ -38,7 +38,6 @@ import { FormComponent } from './ui/form/form.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent implements OnInit {
-  private fb = inject(FormBuilder);
   private ss = inject(SectionService);
   protected ts = inject(ThemeService);
   private ms = inject(ModalService);

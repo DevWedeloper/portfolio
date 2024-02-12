@@ -41,7 +41,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   private resizeTimer!: ReturnType<typeof setTimeout>;
 
-  isBodyScrollDisabled = false;
   protected isMobile = false;
 
   constructor() {
@@ -141,10 +140,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   private toggleBodyScroll(): void {
     if (this.isMenuOpen) {
-      this.isBodyScrollDisabled = true;
       this.renderer.addClass(document.body, 'no-scroll');
     } else {
-      this.isBodyScrollDisabled = false;
       this.renderer.removeClass(document.body, 'no-scroll');
     }
   }
