@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  HostListener,
   afterNextRender,
   inject,
 } from '@angular/core';
@@ -29,22 +28,24 @@ import { ThemeService } from './shared/data-access/theme.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:resize)': 'onResize()',
+  },
 })
 export class AppComponent {
   title = 'portfolio';
-  isWideScreen: boolean = true;
+  protected isWideScreen = true;
   private ts = inject(ThemeService);
 
   constructor() {
     afterNextRender(() => {
       this.addScrollAnimation();
-      this.addButtonEffect();
       this.ts.checkPreferredTheme();
       this.isWideScreen = window.innerWidth >= 991;
     });
   }
 
-  addScrollAnimation(): void {
+  private addScrollAnimation(): void {
     type Options = {
       threshold: number;
       rootMargin: string;
@@ -70,24 +71,7 @@ export class AppComponent {
     elements.forEach((element) => appearOnScroll.observe(element));
   }
 
-  addButtonEffect(): void {
-    const buttons = Array.from(
-      document.querySelectorAll('.btn-effect'),
-    ) as HTMLElement[];
-
-    buttons.forEach((button) => {
-      button.addEventListener('click', (event) => {
-        event.preventDefault;
-        button.classList.add('animate');
-        setTimeout(() => {
-          button.classList.remove('animate');
-        }, 600);
-      });
-    });
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(): void {
+  protected onResize(): void {
     this.isWideScreen = window.innerWidth >= 991;
   }
 }

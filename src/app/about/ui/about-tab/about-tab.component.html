@@ -177,14 +177,16 @@
       </li>
       <li>
         <span>Internship at Cloudstaff</span>
-        <span class="superscript-container">
+        <span
+          class="superscript-container"
+          (click)="ms.open(cloudstaffInternship)"
+          (keydown.Enter)="ms.open(cloudstaffInternship)"
+          tabindex="0"
+        >
           <img
             class="icon icon-size-adjust superscript-icon"
             src="assets/images/icons/open-in-new.svg"
             alt="Open In New Icon"
-            (click)="ms.open(cloudstaffInternship)"
-            (keydown.Enter)="ms.open(cloudstaffInternship)"
-            tabindex="0"
             loading="lazy"
             [ngStyle]="{
               filter:

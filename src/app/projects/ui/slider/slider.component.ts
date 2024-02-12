@@ -37,10 +37,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SliderComponent implements AfterViewInit {
-  index = 0;
-  sliderLength = 0;
+  protected index = 0;
+  protected sliderLength = 0;
 
-  @ContentChildren('sliderTemplate') slider!: QueryList<
+  @ContentChildren('sliderTemplate') protected slider!: QueryList<
     TemplateRef<HTMLElement>
   >;
 

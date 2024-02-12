@@ -7,7 +7,7 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
   standalone: true,
   imports: [CommonModule],
   templateUrl: './feedback-success.component.html',
-  styleUrls: ['./feedback-success.component.scss'],
+  styleUrls: ['./feedback-success.component.scss', './../feedback.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeedbackSuccessComponent {

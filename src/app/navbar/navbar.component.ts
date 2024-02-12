@@ -4,7 +4,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostListener,
   OnInit,
   QueryList,
   Renderer2,
@@ -23,24 +22,30 @@ import { ThemeService } from '../shared/data-access/theme.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:resize)': 'onWindowResize()',
+    '(click)': 'onClick($event)',
+    '(window:scroll)': 'onScroll()',
+  },
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
-  ts = inject(ThemeService);
-  renderer = inject(Renderer2);
-  sectionService = inject(SectionService);
-  el = inject(ElementRef);
+  protected ts = inject(ThemeService);
+  private renderer = inject(Renderer2);
+  private sectionService = inject(SectionService);
+  private el = inject(ElementRef);
   @ViewChildren('homeLink, aboutLink, contactLink, projectsLink')
-  navAnchors!: QueryList<ElementRef>;
-  @ViewChild('homeLink', { static: true }) homeLink!: ElementRef<HTMLElement>;
-  @ViewChild('navbar', { static: true }) navbar!: ElementRef<HTMLElement>;
+  private navAnchors!: QueryList<ElementRef>;
+  @ViewChild('homeLink', { static: true })
+  protected homeLink!: ElementRef<HTMLElement>;
+  @ViewChild('navbar', { static: true })
+  protected navbar!: ElementRef<HTMLElement>;
 
-  sections!: ElementRef[];
-  isMenuOpen = false;
+  private sections!: ElementRef[];
+  protected isMenuOpen = false;
 
-  resizeTimer!: ReturnType<typeof setTimeout>;
+  private resizeTimer!: ReturnType<typeof setTimeout>;
 
-  isBodyScrollDisabled = false;
-  isMobile: boolean = false;
+  protected isMobile = false;
 
   constructor() {
     afterNextRender(() => {
@@ -56,8 +61,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.highlightNavAnchors();
   }
 
-  @HostListener('window:resize', ['$event'])
-  onWindowResize(): void {
+  protected onWindowResize(): void {
     const navbar = this.el.nativeElement.querySelector('.navbar');
     this.renderer.addClass(navbar, 'resize-animation-stopper');
 
@@ -69,8 +73,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.isMobile = window.innerWidth < 768;
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: Event) {
+  protected onClick(event: Event) {
     const target = event.target as HTMLAnchorElement;
     const navbarElement = this.navbar.nativeElement;
 
@@ -83,19 +86,18 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  scrollToElement(targetElement: string) {
+  private scrollToElement(targetElement: string) {
     const element = document.querySelector(targetElement);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll(): void {
+  protected onScroll(): void {
     this.highlightNavAnchors();
   }
 
-  highlightNavAnchors(): void {
+  private highlightNavAnchors(): void {
     if (typeof window === 'undefined') {
       return;
     }
@@ -127,22 +129,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
-  menuOnClick(): void {
+  protected menuOnClick(): void {
     this.isMenuOpen = !this.isMenuOpen;
     this.toggleBodyScroll();
   }
 
-  closeMenu(): void {
+  protected closeMenu(): void {
     this.isMenuOpen = false;
     this.toggleBodyScroll();
   }
 
   private toggleBodyScroll(): void {
     if (this.isMenuOpen) {
-      this.isBodyScrollDisabled = true;
       this.renderer.addClass(document.body, 'no-scroll');
     } else {
-      this.isBodyScrollDisabled = false;
       this.renderer.removeClass(document.body, 'no-scroll');
     }
   }

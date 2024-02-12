@@ -4,11 +4,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostBinding,
-  HostListener,
-  Input,
   ViewChild,
   inject,
+  input,
 } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 
@@ -19,22 +17,25 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   templateUrl: './copy-text.component.html',
   styleUrls: ['./copy-text.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[tabindex]': '0',
+    '(click)': 'onEvent()',
+    '(keydown.Enter)': 'onEvent()',
+  },
 })
 export class CopyTextComponent {
-  ts = inject(ThemeService);
-  elementRef = inject(ElementRef);
-  clipboard = inject(Clipboard);
-  @Input({ required: true }) text!: string;
-  @ViewChild('copyImage') copyImage!: ElementRef;
-  @HostBinding('tabindex') tabIndex = 0;
-  @HostListener('click')
-  @HostListener('keydown.Enter', ['$event'])
-  onEvent(): void {
-    this.clipboard.copy(this.text);
+  protected ts = inject(ThemeService);
+  private elementRef = inject(ElementRef);
+  private clipboard = inject(Clipboard);
+  text = input.required<string>();
+  @ViewChild('copyImage') private copyImage!: ElementRef;
+
+  protected onEvent(): void {
+    this.clipboard.copy(this.text());
     this.animateButton();
   }
 
-  animateButton(): void {
+  private animateButton(): void {
     this.copyImage.nativeElement.src = 'assets/images/icons/check.svg';
     this.elementRef.nativeElement.style.backgroundColor = 'var(--main-color)';
     setTimeout(() => {

@@ -3,14 +3,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostBinding,
   OnInit,
   TemplateRef,
   ViewChild,
-  inject,
+  inject
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
 import { ModalComponent } from '../shared/ui/components/modal/modal.component';
@@ -36,20 +35,23 @@ import { FormComponent } from './ui/form/form.component';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.id]': '\'contact\'',
+    '[class.section]': 'true'
+  },
 })
 export class ContactComponent implements OnInit {
-  fb = inject(FormBuilder);
-  ss = inject(SectionService);
-  ts = inject(ThemeService);
-  ms = inject(ModalService);
-  cs = inject(ContactService);
-  elementRef = inject(ElementRef);
-  @ViewChild('thankYouTemplate') thankYouTemplate!: TemplateRef<HTMLElement>;
-  @ViewChild('sorryTemplate') sorryTemplate!: TemplateRef<HTMLElement>;
-  @HostBinding('attr.id') id = 'contact';
-  @HostBinding('class.section') wrapperClass = true;
-  email = 'vicnathangabrielle@gmail.com';
-  phoneNumber = '+63 965 558 5778';
+  private ss = inject(SectionService);
+  protected ts = inject(ThemeService);
+  private ms = inject(ModalService);
+  protected cs = inject(ContactService);
+  private elementRef = inject(ElementRef);
+  @ViewChild('thankYouTemplate')
+  protected thankYouTemplate!: TemplateRef<HTMLElement>;
+  @ViewChild('sorryTemplate')
+  protected sorryTemplate!: TemplateRef<HTMLElement>;
+  protected email = 'vicnathangabrielle@gmail.com';
+  protected phoneNumber = '+63 965 558 5778';
 
   constructor() {
     this.cs.submitData$.pipe(takeUntilDestroyed()).subscribe({

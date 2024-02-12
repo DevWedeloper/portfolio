@@ -13,6 +13,6 @@ import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CloudstaffInternshipComponent {
-  ts = inject(ThemeService);
-  ms = inject(ModalService);
+  protected ts = inject(ThemeService);
+  protected ms = inject(ModalService);
 }

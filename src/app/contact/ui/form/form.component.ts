@@ -13,21 +13,22 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CustomButtonComponent } from '../../../shared/ui/components/custom-button/button';
 import { ContactService } from '../../data-access/contact.service';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, CustomButtonComponent],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent implements OnInit {
-  fb = inject(FormBuilder);
-  cs = inject(ContactService);
+  private fb = inject(FormBuilder);
+  protected cs = inject(ContactService);
   @Output() submitForm = new EventEmitter<FormGroup>();
-  contactForm!: FormGroup;
+  protected contactForm!: FormGroup;
 
   ngOnInit(): void {
     this.contactForm = this.fb.group({

@@ -24,12 +24,12 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutTabComponent {
-  ts = inject(ThemeService);
-  ms = inject(ModalService);
-  tabs: string[] = ['Skills', 'Experience', 'Education'];
-  activatedTab = 'Skills';
+  protected ts = inject(ThemeService);
+  protected ms = inject(ModalService);
+  protected tabs: string[] = ['Skills', 'Experience', 'Education'];
+  protected activatedTab = 'Skills';
 
-  tabChange(tabIndex: string) {
+  protected tabChange(tabIndex: string) {
     this.activatedTab = tabIndex;
   }
 }

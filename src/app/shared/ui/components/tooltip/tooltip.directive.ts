@@ -5,24 +5,26 @@ import {
   ComponentRef,
   Directive,
   ElementRef,
-  HostListener,
   Inject,
   Injector,
-  Input,
+  input,
 } from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
 
 @Directive({
   selector: '[appTooltip]',
   standalone: true,
+  host: {
+    '(mouseenter)': 'onMouseEnter()',
+    '(mouseleave)': 'onMouseLeave()',
+  },
 })
 export class TooltipDirective {
-  @Input() tooltipText = '';
+  tooltipText = input.required<string>();
 
   private tooltipComponent?: ComponentRef<TooltipComponent>;
 
-  @HostListener('mouseenter')
-  onMouseEnter(): void {
+  protected onMouseEnter(): void {
     if (this.tooltipComponent) {
       return;
     }
@@ -37,8 +39,7 @@ export class TooltipDirective {
     this.tooltipComponent.hostView.detectChanges();
   }
 
-  @HostListener('mouseleave')
-  onMouseLeave(): void {
+  protected onMouseLeave(): void {
     if (!this.tooltipComponent) {
       return;
     }
@@ -52,7 +53,7 @@ export class TooltipDirective {
     if (!this.tooltipComponent) {
       return;
     }
-    this.tooltipComponent.instance.text = this.tooltipText;
+    this.tooltipComponent.instance.text = this.tooltipText();
     const { left, right, bottom } =
       this.elementRef.nativeElement.getBoundingClientRect();
     this.tooltipComponent.instance.left = (right - left) / 2 + left;

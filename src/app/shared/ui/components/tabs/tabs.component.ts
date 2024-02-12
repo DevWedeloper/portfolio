@@ -5,12 +5,11 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
-  Input,
   Output,
   QueryList,
   ViewChild,
   ViewChildren,
+  input,
 } from '@angular/core';
 
 @Component({
@@ -20,23 +19,27 @@ import {
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:resize)': 'onWindowResize()',
+  },
 })
 export class TabsComponent implements AfterViewInit {
-  @ViewChild('line', { static: true }) line!: ElementRef<HTMLElement>;
-  @ViewChildren('tabLinks') tabLinks!: QueryList<ElementRef<HTMLElement>>;
+  @ViewChild('line', { static: true }) protected line!: ElementRef<HTMLElement>;
+  @ViewChildren('tabLinks') protected tabLinks!: QueryList<
+    ElementRef<HTMLElement>
+  >;
 
-  @Input() tabsList: string[] = [];
+  tabsList = input.required<string[]>();
   @Output() tabChange = new EventEmitter<string>();
-  activatedTab = 'Skills';
-  activeTabElement: HTMLElement | undefined;
+  protected activatedTab = 'Skills';
+  private activeTabElement: HTMLElement | undefined;
 
   ngAfterViewInit(): void {
     this.setInitialActiveTab();
     this.updateLinePosition();
   }
 
-  @HostListener('window:resize')
-  onWindowResize(): void {
+  protected onWindowResize(): void {
     this.updateLinePosition();
   }
 

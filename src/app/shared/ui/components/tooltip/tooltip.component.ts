@@ -1,11 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tooltip',
@@ -26,10 +21,15 @@ import {
       ]),
     ]),
   ],
+  host: {
+    '[@fadeInOut]': 'true',
+    '[style.left.px]': 'left',
+    '[style.top.px]': 'top',
+  },
 })
 export class TooltipComponent {
   @Input() text = '';
-  @HostBinding('style.left.px') @Input() left = 0;
-  @HostBinding('style.top.px') @Input() top = 0;
-  @HostBinding('@fadeInOut') animate = true;
+  @Input() left = 0;
+  @Input() top = 0;
+  protected animate = true;
 }

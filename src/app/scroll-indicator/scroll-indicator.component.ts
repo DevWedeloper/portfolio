@@ -23,10 +23,10 @@ import { SectionService } from '../shared/data-access/section.service';
 })
 export class ScrollIndicatorComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
-  ss = inject(SectionService);
-  sections!: ElementRef[];
-  progress = new BehaviorSubject<number>(0);
-  activeShapeIndex: number | null = null;
+  protected ss = inject(SectionService);
+  private sections!: ElementRef[];
+  protected progress = new BehaviorSubject<number>(0);
+  protected activeShapeIndex: number | null = null;
 
   constructor() {
     afterNextRender(() => {
