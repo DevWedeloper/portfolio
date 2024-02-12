@@ -6,11 +6,11 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
-  Input,
   Output,
   QueryList,
   ViewChild,
   ViewChildren,
+  input,
 } from '@angular/core';
 
 @Component({
@@ -23,9 +23,11 @@ import {
 })
 export class TabsComponent implements AfterViewInit {
   @ViewChild('line', { static: true }) protected line!: ElementRef<HTMLElement>;
-  @ViewChildren('tabLinks') protected tabLinks!: QueryList<ElementRef<HTMLElement>>;
+  @ViewChildren('tabLinks') protected tabLinks!: QueryList<
+    ElementRef<HTMLElement>
+  >;
 
-  @Input() tabsList: string[] = [];
+  tabsList = input.required<string[]>();
   @Output() tabChange = new EventEmitter<string>();
   protected activatedTab = 'Skills';
   private activeTabElement: HTMLElement | undefined;

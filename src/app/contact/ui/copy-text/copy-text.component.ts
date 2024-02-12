@@ -6,9 +6,9 @@ import {
   ElementRef,
   HostBinding,
   HostListener,
-  Input,
   ViewChild,
   inject,
+  input
 } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 
@@ -24,13 +24,13 @@ export class CopyTextComponent {
   ts = inject(ThemeService);
   elementRef = inject(ElementRef);
   clipboard = inject(Clipboard);
-  @Input({ required: true }) text!: string;
+  text = input.required<string>();
   @ViewChild('copyImage') copyImage!: ElementRef;
   @HostBinding('tabindex') tabIndex = 0;
   @HostListener('click')
   @HostListener('keydown.Enter', ['$event'])
   onEvent(): void {
-    this.clipboard.copy(this.text);
+    this.clipboard.copy(this.text());
     this.animateButton();
   }
 

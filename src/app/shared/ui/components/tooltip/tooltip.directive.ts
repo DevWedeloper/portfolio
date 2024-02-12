@@ -8,7 +8,7 @@ import {
   HostListener,
   Inject,
   Injector,
-  Input,
+  input,
 } from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
 
@@ -17,7 +17,7 @@ import { TooltipComponent } from './tooltip.component';
   standalone: true,
 })
 export class TooltipDirective {
-  @Input() tooltipText = '';
+  tooltipText = input.required<string>();
 
   private tooltipComponent?: ComponentRef<TooltipComponent>;
 
@@ -52,7 +52,7 @@ export class TooltipDirective {
     if (!this.tooltipComponent) {
       return;
     }
-    this.tooltipComponent.instance.text = this.tooltipText;
+    this.tooltipComponent.instance.text = this.tooltipText();
     const { left, right, bottom } =
       this.elementRef.nativeElement.getBoundingClientRect();
     this.tooltipComponent.instance.left = (right - left) / 2 + left;
