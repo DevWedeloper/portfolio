@@ -13,12 +13,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CustomButtonComponent } from '../../../shared/ui/components/custom-button/button';
 import { ContactService } from '../../data-access/contact.service';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, CustomButtonComponent],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

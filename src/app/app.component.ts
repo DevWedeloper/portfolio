@@ -38,7 +38,6 @@ export class AppComponent {
   constructor() {
     afterNextRender(() => {
       this.addScrollAnimation();
-      this.addButtonEffect();
       this.ts.checkPreferredTheme();
       this.isWideScreen = window.innerWidth >= 991;
     });
@@ -68,22 +67,6 @@ export class AppComponent {
 
     const elements = document.querySelectorAll('.hidden');
     elements.forEach((element) => appearOnScroll.observe(element));
-  }
-
-  addButtonEffect(): void {
-    const buttons = Array.from(
-      document.querySelectorAll('.btn-effect'),
-    ) as HTMLElement[];
-
-    buttons.forEach((button) => {
-      button.addEventListener('click', (event) => {
-        event.preventDefault;
-        button.classList.add('animate');
-        setTimeout(() => {
-          button.classList.remove('animate');
-        }, 600);
-      });
-    });
   }
 
   @HostListener('window:resize', ['$event'])
