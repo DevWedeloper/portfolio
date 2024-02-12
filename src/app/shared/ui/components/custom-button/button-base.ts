@@ -8,7 +8,7 @@ import { Directive, ElementRef, inject } from '@angular/core';
 export class CustomButtonBase {
   private elementRef = inject(ElementRef);
 
-  onClick(event: MouseEvent) {
+  protected onClick(event: MouseEvent) {
     event.preventDefault();
     this.elementRef.nativeElement.classList.add('animate');
     setTimeout(() => {

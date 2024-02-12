@@ -36,8 +36,8 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutHeroImageComponent {
-  ts = inject(ThemeService);
-  blurAnimationState = new BehaviorSubject<string>('');
+  protected ts = inject(ThemeService);
+  protected blurAnimationState = new BehaviorSubject<string>('');
 
   constructor() {
     this.ts.isDarkMode$.pipe(takeUntilDestroyed()).subscribe(() => {

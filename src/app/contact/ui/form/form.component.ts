@@ -25,10 +25,10 @@ import { ContactService } from '../../data-access/contact.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent implements OnInit {
-  fb = inject(FormBuilder);
-  cs = inject(ContactService);
+  private fb = inject(FormBuilder);
+  protected cs = inject(ContactService);
   @Output() submitForm = new EventEmitter<FormGroup>();
-  contactForm!: FormGroup;
+  protected contactForm!: FormGroup;
 
   ngOnInit(): void {
     this.contactForm = this.fb.group({
