@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostBinding,
   Inject,
   OnInit,
   PLATFORM_ID,
@@ -28,13 +27,15 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.id]': '\'home\'',
+    '[class.section]': 'true',
+  },
 })
 export class HomeComponent implements OnInit {
   private ss = inject(SectionService);
   private tes = inject(TypeEffectService);
   private elementRef = inject(ElementRef);
-  @HostBinding('attr.id') protected id = 'home';
-  @HostBinding('class.section') protected wrapperClass = true;
   protected typeEffect = new BehaviorSubject<string>('');
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}

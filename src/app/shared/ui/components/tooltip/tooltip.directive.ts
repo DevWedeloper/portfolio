@@ -5,7 +5,6 @@ import {
   ComponentRef,
   Directive,
   ElementRef,
-  HostListener,
   Inject,
   Injector,
   input,
@@ -15,14 +14,17 @@ import { TooltipComponent } from './tooltip.component';
 @Directive({
   selector: '[appTooltip]',
   standalone: true,
+  host: {
+    '(mouseenter)': 'onMouseEnter()',
+    '(mouseleave)': 'onMouseLeave()',
+  },
 })
 export class TooltipDirective {
   tooltipText = input.required<string>();
 
   private tooltipComponent?: ComponentRef<TooltipComponent>;
 
-  @HostListener('mouseenter')
-  onMouseEnter(): void {
+  protected onMouseEnter(): void {
     if (this.tooltipComponent) {
       return;
     }
@@ -37,8 +39,7 @@ export class TooltipDirective {
     this.tooltipComponent.hostView.detectChanges();
   }
 
-  @HostListener('mouseleave')
-  onMouseLeave(): void {
+  protected onMouseLeave(): void {
     if (!this.tooltipComponent) {
       return;
     }

@@ -4,11 +4,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostBinding,
-  HostListener,
   ViewChild,
   inject,
-  input
+  input,
 } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 
@@ -19,6 +17,11 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   templateUrl: './copy-text.component.html',
   styleUrls: ['./copy-text.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[tabindex]': '0',
+    '(click)': 'onEvent()',
+    '(keydown.Enter)': 'onEvent()',
+  },
 })
 export class CopyTextComponent {
   protected ts = inject(ThemeService);
@@ -26,9 +29,7 @@ export class CopyTextComponent {
   private clipboard = inject(Clipboard);
   text = input.required<string>();
   @ViewChild('copyImage') private copyImage!: ElementRef;
-  @HostBinding('tabindex') protected tabIndex = 0;
-  @HostListener('click')
-  @HostListener('keydown.Enter', ['$event'])
+
   protected onEvent(): void {
     this.clipboard.copy(this.text());
     this.animateButton();

@@ -4,7 +4,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostListener,
   OnInit,
   QueryList,
   Renderer2,
@@ -23,6 +22,11 @@ import { ThemeService } from '../shared/data-access/theme.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:resize)': 'onWindowResize()',
+    '(click)': 'onClick($event)',
+    '(window:scroll)': 'onScroll()',
+  },
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
   protected ts = inject(ThemeService);
@@ -57,8 +61,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.highlightNavAnchors();
   }
 
-  @HostListener('window:resize', ['$event'])
-  onWindowResize(): void {
+  protected onWindowResize(): void {
     const navbar = this.el.nativeElement.querySelector('.navbar');
     this.renderer.addClass(navbar, 'resize-animation-stopper');
 
@@ -70,8 +73,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.isMobile = window.innerWidth < 768;
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: Event) {
+  protected onClick(event: Event) {
     const target = event.target as HTMLAnchorElement;
     const navbarElement = this.navbar.nativeElement;
 
@@ -91,8 +93,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll(): void {
+  protected onScroll(): void {
     this.highlightNavAnchors();
   }
 

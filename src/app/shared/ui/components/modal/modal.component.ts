@@ -12,8 +12,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostBinding,
-  HostListener,
   Input,
   Renderer2,
   TemplateRef,
@@ -45,20 +43,23 @@ import { ModalService } from './modal.service';
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[@hostAnimation]': 'true',
+    '(document:keydown.escape)': 'onEscapeKeydown()',
+  },
 })
 export class ModalComponent implements AfterViewInit {
   protected ms = inject(ModalService);
   protected ts = inject(ThemeService);
   private renderer = inject(Renderer2);
   @Input() contentTemplate!: TemplateRef<HTMLElement>;
-  @HostBinding('@hostAnimation') protected animate = true;
   @ViewChild('modalElement') protected modalElement!: ElementRef;
 
   ngAfterViewInit(): void {
     this.renderer.selectRootElement(this.modalElement.nativeElement).focus();
   }
 
-  @HostListener('document:keydown.escape', ['$event']) onEscapeKeydown() {
+  protected onEscapeKeydown() {
     this.ms.close();
   }
 }

@@ -5,7 +5,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
   Output,
   QueryList,
   ViewChild,
@@ -20,6 +19,9 @@ import {
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:resize)': 'onWindowResize()',
+  },
 })
 export class TabsComponent implements AfterViewInit {
   @ViewChild('line', { static: true }) protected line!: ElementRef<HTMLElement>;
@@ -37,8 +39,7 @@ export class TabsComponent implements AfterViewInit {
     this.updateLinePosition();
   }
 
-  @HostListener('window:resize')
-  onWindowResize(): void {
+  protected onWindowResize(): void {
     this.updateLinePosition();
   }
 

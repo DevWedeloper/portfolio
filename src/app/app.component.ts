@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  HostListener,
   afterNextRender,
   inject,
 } from '@angular/core';
@@ -29,6 +28,9 @@ import { ThemeService } from './shared/data-access/theme.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:resize)': 'onResize()',
+  },
 })
 export class AppComponent {
   title = 'portfolio';
@@ -69,8 +71,7 @@ export class AppComponent {
     elements.forEach((element) => appearOnScroll.observe(element));
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(): void {
+  protected onResize(): void {
     this.isWideScreen = window.innerWidth >= 991;
   }
 }

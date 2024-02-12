@@ -3,11 +3,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostBinding,
   OnInit,
   TemplateRef,
   ViewChild,
-  inject,
+  inject
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -36,6 +35,10 @@ import { FormComponent } from './ui/form/form.component';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.id]': '\'contact\'',
+    '[class.section]': 'true'
+  },
 })
 export class ContactComponent implements OnInit {
   private ss = inject(SectionService);
@@ -47,8 +50,6 @@ export class ContactComponent implements OnInit {
   protected thankYouTemplate!: TemplateRef<HTMLElement>;
   @ViewChild('sorryTemplate')
   protected sorryTemplate!: TemplateRef<HTMLElement>;
-  @HostBinding('attr.id') protected id = 'contact';
-  @HostBinding('class.section') protected wrapperClass = true;
   protected email = 'vicnathangabrielle@gmail.com';
   protected phoneNumber = '+63 965 558 5778';
 
