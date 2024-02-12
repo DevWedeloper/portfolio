@@ -172,33 +172,6 @@ p {
   transform: scale(0.9);
 }
 
-.submit-modal-content {
-  position: relative;
-  width: 95vw;
-  max-width: 400px;
-  padding: 2rem;
-  text-align: center;
-  font-size: var(--font-size-regular-desktop);
-}
-
-.submit-modal-content img {
-  width: 6rem;
-  margin-top: -50%;
-}
-
-.submit-modal-content h5 {
-  padding: 1rem;
-}
-
-.submit-modal-content p {
-  margin-bottom: 1rem;
-}
-
-.submit-modal-content button {
-  width: 100%;
-  padding: 1rem;
-}
-
 .from-left {
   transform: translateX(-50%);
 }
