@@ -15,9 +15,7 @@ html {
 }
 
 *:focus-visible {
-  box-shadow:
-    0 0 0 3px var(--primary-color),
-    0 0 0 4px var(--text-color);
+  outline: 2px solid var(--text-color);
 }
 
 $light-theme-colors: (
