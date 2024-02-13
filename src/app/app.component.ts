@@ -34,7 +34,7 @@ import { ThemeService } from './shared/data-access/theme.service';
 })
 export class AppComponent {
   title = 'portfolio';
-  protected isWideScreen = true;
+  protected isWideScreen!: boolean;
   private ts = inject(ThemeService);
 
   constructor() {
