@@ -25,11 +25,9 @@
     <div class="slide-container">
       <div [@slideAnimation]="index">
         @for (slide of slider(); track i; let i = $index) {
-          <ng-container>
-            @if (i === index) {
-              <ng-container [ngTemplateOutlet]="slide"></ng-container>
-            }
-          </ng-container>
+          @if (i === index) {
+            <ng-container [ngTemplateOutlet]="slide"></ng-container>
+          }
         }
       </div>
     </div>
