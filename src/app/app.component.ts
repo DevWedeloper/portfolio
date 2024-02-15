@@ -58,7 +58,6 @@ export class AppComponent {
 
     const appearOnScroll = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        console.log(entry.target);
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
           appearOnScroll.unobserve(entry.target);
