@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
   TemplateRef,
+  contentChild,
   inject,
   input,
 } from '@angular/core';
@@ -24,6 +24,6 @@ export class CardComponent {
   tags = input.required<string[]>();
   websiteLink = input.required<string>();
   githubLink = input.required<string>();
-  @ContentChild('cardBodyTemplate')
-  protected cardBody!: TemplateRef<HTMLElement>;
+  protected cardBody =
+    contentChild.required<TemplateRef<HTMLElement>>('cardBodyTemplate');
 }
