@@ -1,4 +1,4 @@
-.home-img {
+:host {
   width: var(--image-width-desktop);
   height: var(--image-height-desktop);
   border: 0.5rem solid var(--main-color);
@@ -21,7 +21,7 @@
 }
 
 @media (max-width: 500px) {
-  .home-img {
+  :host {
     width: var(--image-width-small-mobile);
     height: var(--image-height-small-mobile);
   }

@@ -8,5 +8,10 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home-hero-image.component.html',
   styleUrls: ['./home-hero-image.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.home-img]': 'true',
+    '[class.hidden]': 'true',
+    '[class.from-right]': 'true',
+  },
 })
 export class HomeHeroImageComponent {}
