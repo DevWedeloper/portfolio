@@ -5,12 +5,12 @@ import {
   Component,
   ElementRef,
   OnInit,
-  QueryList,
   Renderer2,
   ViewChild,
-  ViewChildren,
   afterNextRender,
   inject,
+  viewChild,
+  viewChildren,
 } from '@angular/core';
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
@@ -33,12 +33,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   private renderer = inject(Renderer2);
   private sectionService = inject(SectionService);
   private el = inject(ElementRef);
-  @ViewChildren('homeLink, aboutLink, contactLink, projectsLink')
-  private navAnchors!: QueryList<ElementRef>;
+  private navAnchors = viewChildren<ElementRef>(
+    'homeLink, aboutLink, contactLink, projectsLink',
+  );
   @ViewChild('homeLink', { static: true })
   protected homeLink!: ElementRef<HTMLElement>;
-  @ViewChild('navbar', { static: true })
-  protected navbar!: ElementRef<HTMLElement>;
+  private navbar = viewChild.required<ElementRef<HTMLElement>>('navbar');
 
   private sections!: ElementRef[];
   protected isMenuOpen = false;
@@ -75,7 +75,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   protected onClick(event: Event) {
     const target = event.target as HTMLAnchorElement;
-    const navbarElement = this.navbar.nativeElement;
+    const navbarElement = this.navbar().nativeElement;
 
     if (target.tagName === 'A' && navbarElement.contains(target)) {
       event.preventDefault();
@@ -117,7 +117,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       }
     });
 
-    this.navAnchors.forEach((anchor) => {
+    this.navAnchors().forEach((anchor) => {
       const href = anchor.nativeElement.getAttribute('href');
       const id = href ? href.substr(1) : '';
 
