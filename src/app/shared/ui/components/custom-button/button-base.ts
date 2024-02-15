@@ -1,4 +1,10 @@
-import { Directive, ElementRef, inject } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  booleanAttribute,
+  inject,
+  input,
+} from '@angular/core';
 
 @Directive({
   host: {
@@ -7,12 +13,17 @@ import { Directive, ElementRef, inject } from '@angular/core';
 })
 export class CustomButtonBase {
   private elementRef = inject(ElementRef);
+  disableEffect = input<unknown>({
+    transform: booleanAttribute,
+  });
 
   protected onClick(event: MouseEvent) {
-    event.preventDefault();
-    this.elementRef.nativeElement.classList.add('animate');
-    setTimeout(() => {
-      this.elementRef.nativeElement.classList.remove('animate');
-    }, 600);
+    if (this.disableEffect()) {
+      event.preventDefault();
+      this.elementRef.nativeElement.classList.add('animate');
+      setTimeout(() => {
+        this.elementRef.nativeElement.classList.remove('animate');
+      }, 600);
+    }
   }
 }
