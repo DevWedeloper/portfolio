@@ -28,9 +28,9 @@ export class TabsComponent implements AfterViewInit {
   private line = viewChild.required<ElementRef<HTMLElement>>('line');
   private tabLinks = viewChildren<ElementRef<HTMLElement>>('tabLinks');
   private activeTabElement: HTMLElement | undefined;
-  tabs = contentChildren(TabDirective);
-  activatedTab = computed(() => this.tabs()[0].title());
-  activeTabId = signal<string | null>(null);
+  protected tabs = contentChildren(TabDirective);
+  protected activatedTab = computed(() => this.tabs()[0].title());
+  private activeTabId = signal<string | null>(null);
 
   selectedTabTpl = computed(() => {
     const tabs = this.tabs();
