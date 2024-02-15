@@ -11,5 +11,5 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeedbackFailComponent {
-  ms = inject(ModalService);
+  protected ms = inject(ModalService);
 }
