@@ -1,4 +1,4 @@
-.about-img {
+:host {
   width: var(--image-width-desktop);
   height: var(--image-height-desktop);
   border-radius: 1rem;
@@ -8,7 +8,7 @@
 }
 
 @media (max-width: 500px) {
-  .about-img {
+  :host {
     width: var(--image-width-small-mobile);
     height: var(--image-height-small-mobile);
   }

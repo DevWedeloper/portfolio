@@ -1,9 +1,0 @@
-<div
-  class="about-img hidden from-left"
-  [style.background-image]="
-    (ts.isDarkMode$ | async)
-      ? 'url(assets/images/backgrounds/about-night.webp)'
-      : 'url(assets/images/backgrounds/about-day.webp)'
-  "
-  [@blurAnimation]="blurAnimationState | async"
-></div>
