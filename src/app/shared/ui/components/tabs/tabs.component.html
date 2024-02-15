@@ -3,7 +3,7 @@
     <li
       #tabLinks
       class="tab-links"
-      [ngClass]="activatedTab === tab ? 'active' : ''"
+      [ngClass]="activatedTab() === tab ? 'active' : ''"
       (click)="setTab($event, tab)"
       (keydown.Enter)="setTab($event, tab)"
       tabindex="0"

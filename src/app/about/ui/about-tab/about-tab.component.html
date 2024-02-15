@@ -1,4 +1,8 @@
-<app-tabs [tabsList]="tabs" (tabChange)="tabChange($event)"></app-tabs>
+<app-tabs
+  [tabsList]="tabs"
+  [activatedTab]="tabs[0]"
+  (tabChange)="tabChange($event)"
+></app-tabs>
 <div
   [ngStyle]="{ display: activatedTab === 'Skills' ? 'block' : 'none' }"
   appHighlightText

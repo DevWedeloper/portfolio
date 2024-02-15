@@ -8,7 +8,7 @@ import {
   Output,
   input,
   viewChild,
-  viewChildren
+  viewChildren,
 } from '@angular/core';
 
 @Component({
@@ -27,7 +27,7 @@ export class TabsComponent implements AfterViewInit {
   private tabLinks = viewChildren<ElementRef<HTMLElement>>('tabLinks');
   tabsList = input.required<string[]>();
   @Output() tabChange = new EventEmitter<string>();
-  protected activatedTab = 'Skills';
+  activatedTab = input.required<string>();
   private activeTabElement: HTMLElement | undefined;
 
   ngAfterViewInit(): void {
@@ -40,8 +40,7 @@ export class TabsComponent implements AfterViewInit {
   }
 
   setTab(event: Event, tab: string): void {
-    this.activatedTab = tab;
-    this.tabChange.emit(this.activatedTab);
+    this.tabChange.emit(tab);
     this.activeTabElement = event.currentTarget as HTMLElement;
     this.updateLinePosition();
   }
