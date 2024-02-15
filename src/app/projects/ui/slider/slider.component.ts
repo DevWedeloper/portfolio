@@ -7,11 +7,10 @@ import {
 } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   TemplateRef,
-  contentChildren,
+  contentChildren
 } from '@angular/core';
 
 @Component({
@@ -35,17 +34,13 @@ import {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SliderComponent implements AfterViewInit {
+export class SliderComponent {
   protected index = 0;
-  protected sliderLength = 0;
-  protected slider = contentChildren<TemplateRef<HTMLElement>>('sliderTemplate');
-
-  ngAfterViewInit(): void {
-    this.sliderLength = this.slider().length;
-  }
+  protected slider =
+    contentChildren<TemplateRef<HTMLElement>>('sliderTemplate');
 
   goToNext(): void {
-    if (this.index < this.sliderLength - 1) {
+    if (this.index < this.slider().length - 1) {
       this.index += 1;
     }
   }
