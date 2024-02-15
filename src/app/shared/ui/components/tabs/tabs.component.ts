@@ -6,6 +6,7 @@ import {
   ElementRef,
   EventEmitter,
   Output,
+  effect,
   input,
   viewChild,
   viewChildren,
@@ -30,8 +31,19 @@ export class TabsComponent implements AfterViewInit {
   activatedTab = input.required<string>();
   private activeTabElement: HTMLElement | undefined;
 
+  constructor() {
+    effect(() => {
+      const initialActiveTab = this.tabLinks().find((el) =>
+        el.nativeElement.classList.contains('active'),
+      );
+      if (initialActiveTab) {
+        this.activeTabElement = initialActiveTab.nativeElement;
+        this.updateLinePosition();
+      }
+    });
+  }
+
   ngAfterViewInit(): void {
-    this.setInitialActiveTab();
     this.updateLinePosition();
   }
 
@@ -43,16 +55,6 @@ export class TabsComponent implements AfterViewInit {
     this.tabChange.emit(tab);
     this.activeTabElement = event.currentTarget as HTMLElement;
     this.updateLinePosition();
-  }
-
-  private setInitialActiveTab(): void {
-    const initialActiveTab = this.tabLinks().find((el) =>
-      el.nativeElement.classList.contains('active'),
-    );
-    if (initialActiveTab) {
-      this.activeTabElement = initialActiveTab.nativeElement;
-      this.updateLinePosition();
-    }
   }
 
   private updateLinePosition(): void {
