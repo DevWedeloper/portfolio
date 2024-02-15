@@ -5,8 +5,8 @@ import {
   ElementRef,
   OnInit,
   TemplateRef,
-  ViewChild,
-  inject
+  inject,
+  viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -37,7 +37,7 @@ import { FormComponent } from './ui/form/form.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[attr.id]': '\'contact\'',
-    '[class.section]': 'true'
+    '[class.section]': 'true',
   },
 })
 export class ContactComponent implements OnInit {
@@ -46,20 +46,20 @@ export class ContactComponent implements OnInit {
   private ms = inject(ModalService);
   protected cs = inject(ContactService);
   private elementRef = inject(ElementRef);
-  @ViewChild('thankYouTemplate')
-  protected thankYouTemplate!: TemplateRef<HTMLElement>;
-  @ViewChild('sorryTemplate')
-  protected sorryTemplate!: TemplateRef<HTMLElement>;
+  private thankYouTemplate =
+    viewChild.required<TemplateRef<HTMLElement>>('thankYouTemplate');
+  private sorryTemplate =
+    viewChild.required<TemplateRef<HTMLElement>>('sorryTemplate');
   protected email = 'vicnathangabrielle@gmail.com';
   protected phoneNumber = '+63 965 558 5778';
 
   constructor() {
     this.cs.submitData$.pipe(takeUntilDestroyed()).subscribe({
       next: () => {
-        this.ms.open(this.thankYouTemplate);
+        this.ms.open(this.thankYouTemplate());
       },
       error: () => {
-        this.ms.open(this.sorryTemplate);
+        this.ms.open(this.sorryTemplate());
       },
     });
   }
