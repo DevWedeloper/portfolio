@@ -1,11 +1,10 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  Inject,
   OnInit,
-  PLATFORM_ID,
+  afterNextRender,
   inject,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -38,11 +37,9 @@ export class HomeComponent implements OnInit {
   private elementRef = inject(ElementRef);
   protected typeEffect = new BehaviorSubject<string>('');
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
-
   ngOnInit(): void {
     this.ss.registerSection(this.elementRef);
-    if (isPlatformBrowser(this.platformId)) {
+    afterNextRender(() => {
       this.tes.addTypeEffect(
         {
           phrases: ['Software Engineer!', 'Full-stack Engineer!'],
@@ -53,6 +50,6 @@ export class HomeComponent implements OnInit {
         },
         this.typeEffect,
       );
-    }
+    });
   }
 }
