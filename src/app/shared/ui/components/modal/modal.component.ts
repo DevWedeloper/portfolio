@@ -8,15 +8,15 @@ import {
 } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   Renderer2,
   TemplateRef,
-  ViewChild,
+  effect,
   inject,
   input,
+  viewChild,
 } from '@angular/core';
 import { ThemeService } from '../../../data-access/theme.service';
 import { ModalService } from './modal.service';
@@ -48,15 +48,19 @@ import { ModalService } from './modal.service';
     '(document:keydown.escape)': 'onEscapeKeydown()',
   },
 })
-export class ModalComponent implements AfterViewInit {
+export class ModalComponent {
   protected ms = inject(ModalService);
   protected ts = inject(ThemeService);
   private renderer = inject(Renderer2);
   contentTemplate = input.required<TemplateRef<HTMLElement>>();
-  @ViewChild('modalElement') protected modalElement!: ElementRef;
+  private modalElement = viewChild.required<ElementRef>('modalElement');
 
-  ngAfterViewInit(): void {
-    this.renderer.selectRootElement(this.modalElement.nativeElement).focus();
+  constructor() {
+    effect(() => {
+      this.renderer
+        .selectRootElement(this.modalElement().nativeElement)
+        .focus();
+    });
   }
 
   protected onEscapeKeydown() {

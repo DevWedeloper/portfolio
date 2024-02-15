@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 import { ModalComponent } from '../../../shared/ui/components/modal/modal.component';
 import { ModalService } from '../../../shared/ui/components/modal/modal.service';
+import { TabDirective } from '../../../shared/ui/components/tabs/tab.directive';
 import { TabsComponent } from '../../../shared/ui/components/tabs/tabs.component';
 import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.directive';
 import { HighlightTextDirective } from '../../../shared/ui/directives/highlight-text.directive';
@@ -14,6 +15,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
   imports: [
     CommonModule,
     TabsComponent,
+    TabDirective,
     HighlightTextDirective,
     TooltipDirective,
     ModalComponent,
@@ -26,10 +28,5 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
 export class AboutTabComponent {
   protected ts = inject(ThemeService);
   protected ms = inject(ModalService);
-  protected tabs: string[] = ['Skills', 'Experience', 'Education'];
-  protected activatedTab = 'Skills';
-
-  protected tabChange(tabIndex: string) {
-    this.activatedTab = tabIndex;
-  }
+  protected tabs = ['Skills', 'Experience', 'Education'];
 }

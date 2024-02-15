@@ -1,4 +1,20 @@
 :host {
+  position: relative;
+  text-decoration: none;
+  background: var(--main-color);
+  color: var(--text-color);
+  border-radius: 1rem;
+  font-size: var(--font-size-regular-desktop);
+  transition: transform 0.3s;
+  cursor: pointer;
+  z-index: 1;
+}
+
+:host:active {
+  transform: scale(0.9);
+}
+
+:host {
   -webkit-tap-highlight-color: transparent;
 }
 

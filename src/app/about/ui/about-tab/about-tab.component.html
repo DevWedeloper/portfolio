@@ -1,9 +1,5 @@
-<div class="tab-container">
-  <app-tabs [tabsList]="tabs" (tabChange)="tabChange($event)"></app-tabs>
-  <div
-    [ngStyle]="{ display: activatedTab === 'Skills' ? 'block' : 'none' }"
-    appHighlightText
-  >
+<app-tabs>
+  <div *appTab="tabs[0]" appHighlightText>
     <ul class="skills-content tab-content">
       <li class="skills-item">Front-End:</li>
       <li class="skills-item">
@@ -166,11 +162,7 @@
       </li>
     </ul>
   </div>
-  <div
-    [ngStyle]="{
-      display: activatedTab === 'Experience' ? 'block' : 'none'
-    }"
-  >
+  <div *appTab="tabs[1]">
     <ul class="experience-content tab-content">
       <li>
         <span appHighlightText>2023 Feb - 2023 May</span>
@@ -199,7 +191,7 @@
       </li>
     </ul>
   </div>
-  <div [ngStyle]="{ display: activatedTab === 'Education' ? 'block' : 'none' }">
+  <div *appTab="tabs[2]">
     <ul class="education-content tab-content">
       <li><span appHighlightText>2019 - 2023</span></li>
       <li>
@@ -210,7 +202,7 @@
       </li>
     </ul>
   </div>
-</div>
+</app-tabs>
 
 <ng-template #cloudstaffInternship>
   <app-cloudstaff-internship />

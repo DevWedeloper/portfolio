@@ -7,9 +7,13 @@ import {
   trigger,
 } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { BehaviorSubject } from 'rxjs';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 
 @Component({
@@ -34,10 +38,19 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.about-img]': 'true',
+    '[class.hidden]': 'true',
+    '[class.from-left]': 'true',
+    '[style.background-image]':
+      'getBackgroundImage() ? \'url(assets/images/backgrounds/about-night.webp)\' :  \'url(assets/images/backgrounds/about-day.webp)\'',
+    '[@blurAnimation]': 'blurAnimationState()',
+  },
 })
 export class AboutHeroImageComponent {
-  protected ts = inject(ThemeService);
-  protected blurAnimationState = new BehaviorSubject<string>('');
+  private ts = inject(ThemeService);
+  private blurAnimationState = signal<string>('');
+  protected getBackgroundImage = toSignal(this.ts.isDarkMode$);
 
   constructor() {
     this.ts.isDarkMode$.pipe(takeUntilDestroyed()).subscribe(() => {
@@ -46,9 +59,9 @@ export class AboutHeroImageComponent {
   }
 
   triggerAnimation(): void {
-    this.blurAnimationState.next('animated');
+    this.blurAnimationState.update(() => 'animated');
     setTimeout(() => {
-      this.blurAnimationState.next('');
+      this.blurAnimationState.update(() => '');
     }, 700);
   }
 }
