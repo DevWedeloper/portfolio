@@ -31,5 +31,4 @@ export class TooltipComponent {
   text = input.required<string>();
   left = input.required<number>();
   top = input.required<number>();
-  protected animate = true;
 }
