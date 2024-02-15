@@ -6,10 +6,9 @@ import {
   ElementRef,
   EventEmitter,
   Output,
-  QueryList,
-  ViewChild,
-  ViewChildren,
   input,
+  viewChild,
+  viewChildren
 } from '@angular/core';
 
 @Component({
@@ -24,11 +23,8 @@ import {
   },
 })
 export class TabsComponent implements AfterViewInit {
-  @ViewChild('line', { static: true }) protected line!: ElementRef<HTMLElement>;
-  @ViewChildren('tabLinks') protected tabLinks!: QueryList<
-    ElementRef<HTMLElement>
-  >;
-
+  line = viewChild.required<ElementRef<HTMLElement>>('line');
+  tabLinks = viewChildren<ElementRef<HTMLElement>>('tabLinks');
   tabsList = input.required<string[]>();
   @Output() tabChange = new EventEmitter<string>();
   protected activatedTab = 'Skills';
@@ -51,7 +47,7 @@ export class TabsComponent implements AfterViewInit {
   }
 
   private setInitialActiveTab(): void {
-    const initialActiveTab = this.tabLinks.find((el) =>
+    const initialActiveTab = this.tabLinks().find((el) =>
       el.nativeElement.classList.contains('active'),
     );
     if (initialActiveTab) {
@@ -62,11 +58,11 @@ export class TabsComponent implements AfterViewInit {
 
   private updateLinePosition(): void {
     if (this.activeTabElement) {
-      this.line.nativeElement.style.width =
+      this.line().nativeElement.style.width =
         this.activeTabElement.offsetWidth + 'px';
-      this.line.nativeElement.style.left =
+      this.line().nativeElement.style.left =
         this.activeTabElement.offsetLeft + 'px';
-      this.line.nativeElement.style.top =
+      this.line().nativeElement.style.top =
         this.activeTabElement.offsetHeight + 'px';
     }
   }
