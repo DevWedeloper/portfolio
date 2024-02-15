@@ -32,7 +32,7 @@ export class TabsComponent implements AfterViewInit {
   protected activatedTab = computed(() => this.tabs()[0].title());
   private activeTabId = signal<string | null>(null);
 
-  selectedTabTpl = computed(() => {
+  protected selectedTabTpl = computed(() => {
     const tabs = this.tabs();
     if (!tabs.length) return null;
 
