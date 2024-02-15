@@ -1,18 +1,17 @@
 import {
-  trigger,
+  animate,
   state,
   style,
   transition,
-  animate,
+  trigger,
 } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
-  QueryList,
   TemplateRef,
+  contentChildren,
 } from '@angular/core';
 
 @Component({
@@ -39,13 +38,10 @@ import {
 export class SliderComponent implements AfterViewInit {
   protected index = 0;
   protected sliderLength = 0;
-
-  @ContentChildren('sliderTemplate') protected slider!: QueryList<
-    TemplateRef<HTMLElement>
-  >;
+  slider = contentChildren<TemplateRef<HTMLElement>>('sliderTemplate');
 
   ngAfterViewInit(): void {
-    this.sliderLength = this.slider.length;
+    this.sliderLength = this.slider().length;
   }
 
   goToNext(): void {
