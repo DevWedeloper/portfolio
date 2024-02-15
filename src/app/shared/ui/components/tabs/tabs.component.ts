@@ -23,8 +23,8 @@ import {
   },
 })
 export class TabsComponent implements AfterViewInit {
-  line = viewChild.required<ElementRef<HTMLElement>>('line');
-  tabLinks = viewChildren<ElementRef<HTMLElement>>('tabLinks');
+  private line = viewChild.required<ElementRef<HTMLElement>>('line');
+  private tabLinks = viewChildren<ElementRef<HTMLElement>>('tabLinks');
   tabsList = input.required<string[]>();
   @Output() tabChange = new EventEmitter<string>();
   protected activatedTab = 'Skills';
