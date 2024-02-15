@@ -28,5 +28,5 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
 export class AboutTabComponent {
   protected ts = inject(ThemeService);
   protected ms = inject(ModalService);
-  protected tabs: string[] = ['Skills', 'Experience', 'Education'];
+  protected tabs = ['Skills', 'Experience', 'Education'];
 }
