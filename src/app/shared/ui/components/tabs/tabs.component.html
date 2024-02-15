@@ -13,4 +13,6 @@
   }
   <li #line class="tab-line"></li>
 </ul>
-<ng-container [ngTemplateOutlet]="selectedTabTpl()" />
+@defer {
+  <ng-container [ngTemplateOutlet]="selectedTabTpl()" />
+}
