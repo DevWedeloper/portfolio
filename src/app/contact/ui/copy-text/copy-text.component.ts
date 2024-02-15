@@ -4,9 +4,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  ViewChild,
   inject,
   input,
+  viewChild,
 } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 
@@ -28,7 +28,7 @@ export class CopyTextComponent {
   private elementRef = inject(ElementRef);
   private clipboard = inject(Clipboard);
   text = input.required<string>();
-  @ViewChild('copyImage') private copyImage!: ElementRef;
+  private copyImage = viewChild.required<ElementRef>('copyImage');
 
   protected onEvent(): void {
     this.clipboard.copy(this.text());
@@ -36,10 +36,10 @@ export class CopyTextComponent {
   }
 
   private animateButton(): void {
-    this.copyImage.nativeElement.src = 'assets/images/icons/check.svg';
+    this.copyImage().nativeElement.src = 'assets/images/icons/check.svg';
     this.elementRef.nativeElement.style.backgroundColor = 'var(--main-color)';
     setTimeout(() => {
-      this.copyImage.nativeElement.src = 'assets/images/icons/copy.svg';
+      this.copyImage().nativeElement.src = 'assets/images/icons/copy.svg';
       this.elementRef.nativeElement.style.backgroundColor = '';
     }, 2000);
   }
