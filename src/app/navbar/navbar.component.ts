@@ -6,11 +6,10 @@ import {
   ElementRef,
   OnInit,
   Renderer2,
-  ViewChild,
   afterNextRender,
   inject,
   viewChild,
-  viewChildren,
+  viewChildren
 } from '@angular/core';
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
@@ -36,8 +35,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   private navAnchors = viewChildren<ElementRef>(
     'homeLink, aboutLink, contactLink, projectsLink',
   );
-  @ViewChild('homeLink', { static: true })
-  protected homeLink!: ElementRef<HTMLElement>;
   private navbar = viewChild.required<ElementRef<HTMLElement>>('navbar');
 
   private sections!: ElementRef[];
