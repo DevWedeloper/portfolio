@@ -1,15 +1,18 @@
 <ul class="tabs">
-  @for (tab of tabsList(); track $index) {
+  @for (tab of tabs(); track $index) {
     <li
       #tabLinks
       class="tab-links"
-      [ngClass]="activatedTab() === tab ? 'active' : ''"
-      (click)="setTab($event, tab)"
-      (keydown.Enter)="setTab($event, tab)"
+      [ngClass]="activatedTab() === tab.title() ? 'active' : ''"
+      (click)="setTab($event, tab.title())"
+      (keydown.Enter)="setTab($event, tab.title())"
       tabindex="0"
     >
-      <p>{{ tab }}</p>
+      <p>{{ tab.title() }}</p>
     </li>
   }
   <li #line class="tab-line"></li>
 </ul>
+@defer {
+  <ng-container [ngTemplateOutlet]="selectedTabTpl()" />
+}

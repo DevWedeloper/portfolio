@@ -4,13 +4,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  EventEmitter,
-  Output,
+  computed,
+  contentChildren,
   effect,
-  input,
+  signal,
   viewChild,
-  viewChildren,
+  viewChildren
 } from '@angular/core';
+import { TabDirective } from './tab.directive';
 
 @Component({
   selector: 'app-tabs',
@@ -26,10 +27,21 @@ import {
 export class TabsComponent implements AfterViewInit {
   private line = viewChild.required<ElementRef<HTMLElement>>('line');
   private tabLinks = viewChildren<ElementRef<HTMLElement>>('tabLinks');
-  tabsList = input.required<string[]>();
-  @Output() tabChange = new EventEmitter<string>();
-  activatedTab = input.required<string>();
   private activeTabElement: HTMLElement | undefined;
+  tabs = contentChildren(TabDirective);
+  activatedTab = computed(() => this.tabs()[0].title());
+  activeTabId = signal<string | null>(null);
+
+  selectedTabTpl = computed(() => {
+    const tabs = this.tabs();
+    if (!tabs.length) return null;
+
+    const selected = this.activeTabId();
+
+    if (!selected) return tabs[0].template;
+
+    return tabs.find((tab) => tab.title() === selected)!.template;
+  });
 
   constructor() {
     effect(() => {
@@ -52,7 +64,7 @@ export class TabsComponent implements AfterViewInit {
   }
 
   setTab(event: Event, tab: string): void {
-    this.tabChange.emit(tab);
+    this.activeTabId.update(() => tab);
     this.activeTabElement = event.currentTarget as HTMLElement;
     this.updateLinePosition();
   }
