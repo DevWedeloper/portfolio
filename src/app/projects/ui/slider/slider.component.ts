@@ -38,7 +38,7 @@ import {
 export class SliderComponent implements AfterViewInit {
   protected index = 0;
   protected sliderLength = 0;
-  slider = contentChildren<TemplateRef<HTMLElement>>('sliderTemplate');
+  protected slider = contentChildren<TemplateRef<HTMLElement>>('sliderTemplate');
 
   ngAfterViewInit(): void {
     this.sliderLength = this.slider().length;
