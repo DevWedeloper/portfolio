@@ -44,10 +44,6 @@
   flex-direction: column;
 }
 
-.experience-content > * {
-  display: flex;
-}
-
 @media (max-width: 768px) {
   .tab-titles {
     justify-content: center;
