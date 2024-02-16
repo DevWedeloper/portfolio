@@ -1,11 +1,14 @@
 :host {
+  position: relative;
   width: var(--image-width-desktop);
   height: var(--image-height-desktop);
   border: 0.5rem solid var(--main-color);
   animation: animate 5s ease-in-out infinite;
-  background-image: var(--hero-img);
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+}
+
+img {
+  object-fit: cover;
 }
 
 @keyframes animate {

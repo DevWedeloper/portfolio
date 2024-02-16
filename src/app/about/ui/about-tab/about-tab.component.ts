@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 import { ModalComponent } from '../../../shared/ui/components/modal/modal.component';
@@ -14,6 +14,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
   standalone: true,
   imports: [
     CommonModule,
+    NgOptimizedImage,
     TabsComponent,
     TabDirective,
     HighlightTextDirective,

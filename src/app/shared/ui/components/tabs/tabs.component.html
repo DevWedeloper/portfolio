@@ -3,16 +3,20 @@
     <li
       #tabLinks
       class="tab-links"
-      [ngClass]="activatedTab() === tab.title() ? 'active' : ''"
-      (click)="setTab($event, tab.title())"
-      (keydown.Enter)="setTab($event, tab.title())"
+      [ngClass]="activeTabId() === tab.title() ? 'active' : ''"
+      (click)="setTab(tab.title(), tabLinks)"
+      (keydown.Enter)="setTab(tab.title(), tabLinks)"
       tabindex="0"
     >
       <p>{{ tab.title() }}</p>
     </li>
   }
-  <li #line class="tab-line"></li>
+  <li
+    #line
+    class="tab-line"
+    [style.width]="linePosition().width"
+    [style.left]="linePosition().left"
+    [style.top]="linePosition().top"
+  ></li>
 </ul>
-@defer {
-  <ng-container [ngTemplateOutlet]="selectedTabTpl()" />
-}
+<ng-container [ngTemplateOutlet]="selectedTabTpl()" />

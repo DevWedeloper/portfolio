@@ -44,10 +44,6 @@
   flex-direction: column;
 }
 
-.experience-content > * {
-  display: flex;
-}
-
 @media (max-width: 768px) {
   .tab-titles {
     justify-content: center;
@@ -65,4 +61,10 @@
   .skills-content li {
     justify-content: center;
   }
+}
+
+span {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
 }

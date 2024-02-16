@@ -1,10 +1,13 @@
 :host {
+  position: relative;
   width: var(--image-width-desktop);
   height: var(--image-height-desktop);
   border-radius: 1rem;
-  background-size: cover;
-  background-position: center;
-  object-fit: fill;
+  overflow: hidden;
+}
+
+img {
+  object-fit: cover;
 }
 
 @media (max-width: 500px) {

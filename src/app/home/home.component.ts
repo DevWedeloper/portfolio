@@ -37,8 +37,7 @@ export class HomeComponent implements OnInit {
   private elementRef = inject(ElementRef);
   protected typeEffect = new BehaviorSubject<string>('');
 
-  ngOnInit(): void {
-    this.ss.registerSection(this.elementRef);
+  constructor() {
     afterNextRender(() => {
       this.tes.addTypeEffect(
         {
@@ -51,5 +50,9 @@ export class HomeComponent implements OnInit {
         this.typeEffect,
       );
     });
+  }
+
+  ngOnInit(): void {
+    this.ss.registerSection(this.elementRef);
   }
 }

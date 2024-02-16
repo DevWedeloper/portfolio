@@ -6,7 +6,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +19,7 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
 @Component({
   selector: 'app-about-hero-image',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
   templateUrl: './about-hero-image.component.html',
   styleUrls: ['./about-hero-image.component.scss'],
   animations: [
@@ -42,8 +42,6 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
     '[class.about-img]': 'true',
     '[class.hidden]': 'true',
     '[class.from-left]': 'true',
-    '[style.background-image]':
-      'getBackgroundImage() ? \'url(assets/images/backgrounds/about-night.webp)\' :  \'url(assets/images/backgrounds/about-day.webp)\'',
     '[@blurAnimation]': 'blurAnimationState()',
   },
 })
