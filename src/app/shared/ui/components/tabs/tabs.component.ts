@@ -60,7 +60,7 @@ export class TabsComponent implements AfterViewInit {
   }
 
   protected setTab(event: Event, tab: string, el: HTMLElement): void {
-    this.activeTabId.update(() => tab);
+    this.activeTabId.set(tab);
     this.activeTabElement.set(el);
   }
 
