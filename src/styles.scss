@@ -24,8 +24,6 @@ $light-theme-colors: (
   secondary-color: #f2f2f2,
   text-color: #000000,
   text-color-reverse: #ffffff,
-  hero-img: url("assets/images/backgrounds/me.webp"),
-  about-img: url("assets/images/backgrounds/about-day.webp"),
 );
 
 $dark-theme-colors: (
@@ -33,7 +31,6 @@ $dark-theme-colors: (
   secondary-color: #171717,
   text-color: #ffffff,
   text-color-reverse: #000000,
-  about-img: url("assets/images/backgrounds/about-night.webp"),
 );
 
 @mixin apply-theme-colors($colors) {
