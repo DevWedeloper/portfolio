@@ -63,7 +63,7 @@ export class TabsComponent implements AfterViewInit {
     this.updateLinePosition();
   }
 
-  setTab(event: Event, tab: string): void {
+  protected setTab(event: Event, tab: string): void {
     this.activeTabId.update(() => tab);
     this.activeTabElement = event.currentTarget as HTMLElement;
     this.updateLinePosition();
