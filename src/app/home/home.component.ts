@@ -6,8 +6,8 @@ import {
   OnInit,
   afterNextRender,
   inject,
+  viewChild
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { SectionService } from '../shared/data-access/section.service';
 import { TypeEffectService } from '../shared/data-access/type-effect.service';
 import { CustomAnchorComponent } from '../shared/ui/components/custom-button/button';
@@ -35,7 +35,8 @@ export class HomeComponent implements OnInit {
   private ss = inject(SectionService);
   private tes = inject(TypeEffectService);
   private elementRef = inject(ElementRef);
-  protected typeEffect = new BehaviorSubject<string>('');
+  private typeEffectTarget =
+    viewChild.required<ElementRef<HTMLElement>>('typeEffectTarget');
 
   constructor() {
     afterNextRender(() => {
@@ -47,7 +48,7 @@ export class HomeComponent implements OnInit {
           reverseDelay: 1000,
           loop: true,
         },
-        this.typeEffect,
+        this.typeEffectTarget(),
       );
     });
   }
