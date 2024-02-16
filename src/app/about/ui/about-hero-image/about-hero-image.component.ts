@@ -10,6 +10,8 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
+  afterNextRender,
   inject,
   signal,
 } from '@angular/core';
@@ -47,12 +49,17 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
 })
 export class AboutHeroImageComponent {
   private ts = inject(ThemeService);
+  private destroyRef = inject(DestroyRef);
   private blurAnimationState = signal<string>('');
   protected getBackgroundImage = toSignal(this.ts.isDarkMode$);
 
   constructor() {
-    this.ts.isDarkMode$.pipe(takeUntilDestroyed()).subscribe(() => {
-      this.triggerAnimation();
+    afterNextRender(() => {
+      this.ts.isDarkMode$
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(() => {
+          this.triggerAnimation();
+        });
     });
   }
 
