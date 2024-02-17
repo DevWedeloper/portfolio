@@ -27,28 +27,28 @@ export class TabsComponent {
   private tabLinks = viewChildren<ElementRef<HTMLElement>>('tabLinks');
   protected tabs = contentChildren(TabDirective);
   protected activatedTab = computed(() => this.tabs()[0].title());
-  protected activeTabId = signal<{ tab: string; index: number } | null>(null);
+  protected activeTabIndex = signal<number | null>(null);
 
   protected activeTabElement = computed(() => {
     const tabLinks = this.tabLinks();
     if (!tabLinks.length) return null;
 
-    const selected = this.activeTabId();
+    const selected = this.activeTabIndex();
 
     if (!selected) return tabLinks[0];
 
-    return tabLinks[selected.index];
+    return tabLinks[selected];
   });
 
   protected selectedTabTpl = computed(() => {
     const tabs = this.tabs();
     if (!tabs.length) return null;
 
-    const selected = this.activeTabId();
+    const selected = this.activeTabIndex();
 
     if (!selected) return tabs[0].template;
 
-    return tabs.find((tab) => tab.title() === selected.tab)!.template;
+    return tabs[selected].template;
   });
 
   protected linePosition = computed(() => {
@@ -58,10 +58,6 @@ export class TabsComponent {
     const top = activeTab?.nativeElement.offsetHeight + 'px';
     return { width, left, top };
   });
-
-  protected setTab(tab: string, index: number): void {
-    this.activeTabId.set({ tab, index });
-  }
   
   protected onWindowResize(): void {
     this.updateLinePosition();
