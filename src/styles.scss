@@ -20,6 +20,10 @@ html {
   outline: 2px solid var(--text-color);
 }
 
+p {
+  text-wrap: pretty;
+}
+
 $light-theme-colors: (
   main-color: darken(#fea1a1, 15%),
   primary-color: #fff,
