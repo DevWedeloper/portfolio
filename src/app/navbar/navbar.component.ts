@@ -31,7 +31,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   protected ts = inject(ThemeService);
   private renderer = inject(Renderer2);
   private sectionService = inject(SectionService);
-  private el = inject(ElementRef);
   private navbar = viewChild.required<ElementRef<HTMLElement>>('navbar');
   protected activeTabIndex = signal<number | null>(null);
   protected links = ['home', 'about', 'projects', 'contact'];
