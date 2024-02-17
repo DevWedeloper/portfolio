@@ -73,7 +73,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   protected onWindowResize(): void {
-    const navbar = this.el.nativeElement.querySelector('.navbar');
+    const navbar = this.navbar().nativeElement;
     this.renderer.addClass(navbar, 'resize-animation-stopper');
 
     clearTimeout(this.resizeTimer);
