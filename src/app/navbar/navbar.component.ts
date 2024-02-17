@@ -57,18 +57,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.highlightNavAnchors();
   }
 
-  protected onWindowResize(): void {
-    const navbar = this.el.nativeElement.querySelector('.navbar');
-    this.renderer.addClass(navbar, 'resize-animation-stopper');
-
-    clearTimeout(this.resizeTimer);
-    this.resizeTimer = setTimeout(() => {
-      this.renderer.removeClass(navbar, 'resize-animation-stopper');
-    }, 1);
-
-    this.isMobile = window.innerWidth < 768;
-  }
-
   protected onClick(event: Event) {
     event.preventDefault();
     const targetElement = (event.target as HTMLAnchorElement).getAttribute('href');
@@ -82,6 +70,18 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  protected onWindowResize(): void {
+    const navbar = this.el.nativeElement.querySelector('.navbar');
+    this.renderer.addClass(navbar, 'resize-animation-stopper');
+
+    clearTimeout(this.resizeTimer);
+    this.resizeTimer = setTimeout(() => {
+      this.renderer.removeClass(navbar, 'resize-animation-stopper');
+    }, 1);
+
+    this.isMobile = window.innerWidth < 768;
   }
 
   protected onScroll(): void {
