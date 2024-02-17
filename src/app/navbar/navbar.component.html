@@ -43,7 +43,12 @@
   <ul [ngStyle]="{ transform: isMenuOpen ? 'translateX(0)' : '' }">
     @for (link of links; track $index) {
       <li>
-        <a #navLinks [href]="'#' + link" (click)="closeMenu()">
+        <a
+          #navLinks
+          [href]="'#' + link"
+          (click)="closeMenu()"
+          [ngClass]="activeTabIndex() === $index ? 'active' : ''"
+        >
           {{ link | upperFirst }}
         </a>
       </li>

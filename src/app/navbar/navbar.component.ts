@@ -8,8 +8,8 @@ import {
   Renderer2,
   afterNextRender,
   inject,
-  viewChild,
-  viewChildren,
+  signal,
+  viewChild
 } from '@angular/core';
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
@@ -33,8 +33,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   private renderer = inject(Renderer2);
   private sectionService = inject(SectionService);
   private el = inject(ElementRef);
-  private navAnchors = viewChildren<ElementRef>('navLinks');
   private navbar = viewChild.required<ElementRef<HTMLElement>>('navbar');
+  protected activeTabIndex = signal<number | null>(null);
   protected links = ['home', 'about', 'projects', 'contact'];
 
   private sections!: ElementRef[];
@@ -95,14 +95,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   private highlightNavAnchors(): void {
-    if (typeof window === 'undefined') {
-      return;
-    }
     const top = window.scrollY;
     const offset = 150;
 
-    let activeSectionId: string | null = null;
-    this.sections.forEach((section) => {
+    this.sections.forEach((section, index) => {
       const sectionTop = section.nativeElement.offsetTop;
       const sectionHeight = section.nativeElement.offsetHeight;
 
@@ -110,18 +106,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         top >= sectionTop - offset &&
         top < sectionTop + sectionHeight - offset
       ) {
-        activeSectionId = section.nativeElement.getAttribute('id');
-      }
-    });
-
-    this.navAnchors().forEach((anchor) => {
-      const href = anchor.nativeElement.getAttribute('href');
-      const id = href ? href.substr(1) : '';
-
-      if (id === activeSectionId) {
-        this.renderer.addClass(anchor.nativeElement, 'active');
-      } else {
-        this.renderer.removeClass(anchor.nativeElement, 'active');
+        this.activeTabIndex.set(index);
       }
     });
   }
