@@ -1,14 +1,12 @@
 import { DOCUMENT } from '@angular/common';
 import {
-  ApplicationRef,
-  ComponentFactoryResolver,
   ComponentRef,
   Directive,
   ElementRef,
   Inject,
-  Injector,
+  ViewContainerRef,
   inject,
-  input,
+  input
 } from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
 
@@ -21,10 +19,8 @@ import { TooltipComponent } from './tooltip.component';
   },
 })
 export class TooltipDirective {
-  private componentFactoryResolver = inject(ComponentFactoryResolver);
-  private injector = inject(Injector);
   private elementRef = inject(ElementRef);
-  private appRef = inject(ApplicationRef);
+  private viewContainerRef = inject(ViewContainerRef);
   tooltipText = input.required<string>();
 
   private tooltipComponent?: ComponentRef<TooltipComponent>;
@@ -36,9 +32,7 @@ export class TooltipDirective {
       return;
     }
 
-    const tooltipComponentFactory =
-      this.componentFactoryResolver.resolveComponentFactory(TooltipComponent);
-    this.tooltipComponent = tooltipComponentFactory.create(this.injector);
+    this.tooltipComponent = this.viewContainerRef.createComponent(TooltipComponent);
     this.document.body.appendChild(
       this.tooltipComponent.location.nativeElement,
     );
@@ -51,7 +45,6 @@ export class TooltipDirective {
       return;
     }
 
-    this.appRef.detachView(this.tooltipComponent.hostView);
     this.tooltipComponent.destroy();
     this.tooltipComponent = undefined;
   }
