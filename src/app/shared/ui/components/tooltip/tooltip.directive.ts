@@ -1,9 +1,7 @@
-import { DOCUMENT } from '@angular/common';
 import {
   ComponentRef,
   Directive,
   ElementRef,
-  Inject,
   ViewContainerRef,
   inject,
   input
@@ -25,15 +23,13 @@ export class TooltipDirective {
 
   private tooltipComponent?: ComponentRef<TooltipComponent>;
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
-
   protected onMouseEnter(): void {
     if (this.tooltipComponent) {
       return;
     }
 
     this.tooltipComponent = this.viewContainerRef.createComponent(TooltipComponent);
-    this.document.body.appendChild(
+    document.body.appendChild(
       this.tooltipComponent.location.nativeElement,
     );
     this.setTooltipComponentProperties();
