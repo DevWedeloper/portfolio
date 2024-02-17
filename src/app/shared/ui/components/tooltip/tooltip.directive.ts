@@ -7,6 +7,7 @@ import {
   ElementRef,
   Inject,
   Injector,
+  inject,
   input,
 } from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
@@ -20,9 +21,15 @@ import { TooltipComponent } from './tooltip.component';
   },
 })
 export class TooltipDirective {
+  private componentFactoryResolver = inject(ComponentFactoryResolver);
+  private injector = inject(Injector);
+  private elementRef = inject(ElementRef);
+  private appRef = inject(ApplicationRef);
   tooltipText = input.required<string>();
 
   private tooltipComponent?: ComponentRef<TooltipComponent>;
+
+  constructor(@Inject(DOCUMENT) private document: Document) {}
 
   protected onMouseEnter(): void {
     if (this.tooltipComponent) {
@@ -59,12 +66,4 @@ export class TooltipDirective {
     this.tooltipComponent.setInput('left', (right - left) / 2 + left);
     this.tooltipComponent.setInput('top', bottom);
   }
-
-  constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private injector: Injector,
-    private elementRef: ElementRef,
-    private appRef: ApplicationRef,
-    @Inject(DOCUMENT) private document: Document,
-  ) {}
 }
