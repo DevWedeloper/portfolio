@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
@@ -23,13 +22,23 @@ import { TabDirective } from './tab.directive';
     '(window:resize)': 'onWindowResize()',
   },
 })
-export class TabsComponent implements AfterViewInit {
+export class TabsComponent {
   private line = viewChild.required<ElementRef<HTMLElement>>('line');
   private tabLinks = viewChildren<ElementRef<HTMLElement>>('tabLinks');
   protected tabs = contentChildren(TabDirective);
   protected activatedTab = computed(() => this.tabs()[0].title());
-  protected activeTabId = signal<string | null>(null);
-  private activeTabElement = signal<HTMLElement | null>(null);
+  protected activeTabId = signal<{ tab: string; index: number } | null>(null);
+
+  protected activeTabElement = computed(() => {
+    const tabLinks = this.tabLinks();
+    if (!tabLinks.length) return null;
+
+    const selected = this.activeTabId();
+
+    if (!selected) return tabLinks[0];
+
+    return tabLinks[selected.index];
+  });
 
   protected selectedTabTpl = computed(() => {
     const tabs = this.tabs();
@@ -39,38 +48,33 @@ export class TabsComponent implements AfterViewInit {
 
     if (!selected) return tabs[0].template;
 
-    return tabs.find((tab) => tab.title() === selected)!.template;
+    return tabs.find((tab) => tab.title() === selected.tab)!.template;
   });
 
   protected linePosition = computed(() => {
     const activeTab = this.activeTabElement();
-    const width = activeTab?.offsetWidth + 'px';
-    const left = activeTab?.offsetLeft + 'px';
-    const top = activeTab?.offsetHeight + 'px';
+    const width = activeTab?.nativeElement.offsetWidth + 'px';
+    const left = activeTab?.nativeElement.offsetLeft + 'px';
+    const top = activeTab?.nativeElement.offsetHeight + 'px';
     return { width, left, top };
   });
-
-  ngAfterViewInit(): void {
-    this.activeTabElement.set(this.tabLinks()[0].nativeElement);
-  }
 
   protected onWindowResize(): void {
     this.updateLinePosition();
   }
 
-  protected setTab(tab: string, el: HTMLElement): void {
-    this.activeTabId.set(tab);
-    this.activeTabElement.set(el);
+  protected setTab(tab: string, index: number): void {
+    this.activeTabId.set({ tab, index });
   }
 
   private updateLinePosition(): void {
     if (this.activeTabElement()) {
       this.line().nativeElement.style.width =
-        this.activeTabElement()?.offsetWidth + 'px';
+        this.activeTabElement()?.nativeElement.offsetWidth + 'px';
       this.line().nativeElement.style.left =
-        this.activeTabElement()?.offsetLeft + 'px';
+        this.activeTabElement()?.nativeElement.offsetLeft + 'px';
       this.line().nativeElement.style.top =
-        this.activeTabElement()?.offsetHeight + 'px';
+        this.activeTabElement()?.nativeElement.offsetHeight + 'px';
     }
   }
 }
