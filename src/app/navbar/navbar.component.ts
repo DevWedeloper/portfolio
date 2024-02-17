@@ -88,6 +88,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   private highlightNavAnchors(): void {
+    if (typeof window === 'undefined')  return;
+
     const top = window.scrollY;
     const offset = 150;
 
