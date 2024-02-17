@@ -19,7 +19,7 @@ interface TypingEffect {
 })
 export class TypeEffectService {
   private renderer: Renderer2;
-  rendererFactory = inject(RendererFactory2);
+  private rendererFactory = inject(RendererFactory2);
   constructor() {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }

@@ -34,8 +34,9 @@
   position: relative;
 }
 
-.skills-content li span {
-  margin-right: 1rem;
+.icon-container {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .experience-content,

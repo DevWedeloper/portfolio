@@ -93,20 +93,20 @@ $dark-theme-colors: (
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 10px !important;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--primary-color);
+  background: var(--primary-color) !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 100vh;
+  background: #888 !important;
+  border-radius: 100vh !important;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #555 !important;
 }
 
 body {
