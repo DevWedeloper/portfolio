@@ -26,7 +26,6 @@ export class TabsComponent {
   private line = viewChild.required<ElementRef<HTMLElement>>('line');
   private tabLinks = viewChildren<ElementRef<HTMLElement>>('tabLinks');
   protected tabs = contentChildren(TabDirective);
-  protected activatedTab = computed(() => this.tabs()[0].title());
   protected activeTabIndex = signal<number | null>(null);
 
   protected activeTabElement = computed(() => {
