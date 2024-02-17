@@ -59,12 +59,12 @@ export class TabsComponent {
     return { width, left, top };
   });
 
-  protected onWindowResize(): void {
-    this.updateLinePosition();
-  }
-
   protected setTab(tab: string, index: number): void {
     this.activeTabId.set({ tab, index });
+  }
+  
+  protected onWindowResize(): void {
+    this.updateLinePosition();
   }
 
   private updateLinePosition(): void {
