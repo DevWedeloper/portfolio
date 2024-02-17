@@ -20,7 +20,6 @@ export class TooltipDirective {
   private elementRef = inject(ElementRef);
   private viewContainerRef = inject(ViewContainerRef);
   tooltipText = input.required<string>();
-
   private tooltipComponent?: ComponentRef<TooltipComponent>;
 
   protected onMouseEnter(): void {
