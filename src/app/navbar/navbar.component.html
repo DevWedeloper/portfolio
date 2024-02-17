@@ -46,7 +46,7 @@
         <a
           #navLinks
           [href]="'#' + link"
-          (click)="closeMenu()"
+          (click)="closeMenu(); onClick($event)"
           [ngClass]="activeTabIndex() === $index ? 'active' : ''"
         >
           {{ link | upperFirst }}

@@ -24,7 +24,6 @@ import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(window:resize)': 'onWindowResize()',
-    '(click)': 'onClick($event)',
     '(window:scroll)': 'onScroll()',
   },
 })
@@ -71,15 +70,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   protected onClick(event: Event) {
-    const target = event.target as HTMLAnchorElement;
-    const navbarElement = this.navbar().nativeElement;
-
-    if (target.tagName === 'A' && navbarElement.contains(target)) {
-      event.preventDefault();
-      const targetElement = target.getAttribute('href');
-      if (targetElement) {
-        this.scrollToElement(targetElement);
-      }
+    event.preventDefault();
+    const targetElement = (event.target as HTMLAnchorElement).getAttribute('href');
+    if (targetElement) {
+      this.scrollToElement(targetElement);
     }
   }
 
