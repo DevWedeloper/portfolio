@@ -3,9 +3,9 @@
     <li
       #tabLinks
       class="tab-links"
-      [ngClass]="activeTabId()?.tab === tab.title() ? 'active' : ''"
-      (click)="setTab(tab.title(), $index)"
-      (keydown.Enter)="setTab(tab.title(), $index)"
+      [ngClass]="activeTabIndex() === $index ? 'active' : ''"
+      (click)="activeTabIndex.set($index)"
+      (keydown.Enter)="activeTabIndex.set($index)"
       tabindex="0"
     >
       <p>{{ tab.title() }}</p>

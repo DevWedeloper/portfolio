@@ -8,22 +8,22 @@ import {
   Renderer2,
   afterNextRender,
   inject,
-  viewChild,
-  viewChildren
+  signal,
+  viewChild
 } from '@angular/core';
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
+import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, UpperFirstPipe],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(window:resize)': 'onWindowResize()',
-    '(click)': 'onClick($event)',
     '(window:scroll)': 'onScroll()',
   },
 })
@@ -31,11 +31,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   protected ts = inject(ThemeService);
   private renderer = inject(Renderer2);
   private sectionService = inject(SectionService);
-  private el = inject(ElementRef);
-  private navAnchors = viewChildren<ElementRef>(
-    'homeLink, aboutLink, contactLink, projectsLink',
-  );
   private navbar = viewChild.required<ElementRef<HTMLElement>>('navbar');
+  protected activeTabIndex = signal<number | null>(null);
+  protected links = ['home', 'about', 'projects', 'contact'];
 
   private sections!: ElementRef[];
   protected isMenuOpen = false;
@@ -58,28 +56,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.highlightNavAnchors();
   }
 
-  protected onWindowResize(): void {
-    const navbar = this.el.nativeElement.querySelector('.navbar');
-    this.renderer.addClass(navbar, 'resize-animation-stopper');
-
-    clearTimeout(this.resizeTimer);
-    this.resizeTimer = setTimeout(() => {
-      this.renderer.removeClass(navbar, 'resize-animation-stopper');
-    }, 1);
-
-    this.isMobile = window.innerWidth < 768;
-  }
-
   protected onClick(event: Event) {
-    const target = event.target as HTMLAnchorElement;
-    const navbarElement = this.navbar().nativeElement;
-
-    if (target.tagName === 'A' && navbarElement.contains(target)) {
-      event.preventDefault();
-      const targetElement = target.getAttribute('href');
-      if (targetElement) {
-        this.scrollToElement(targetElement);
-      }
+    event.preventDefault();
+    const targetElement = (event.target as HTMLAnchorElement).getAttribute('href');
+    if (targetElement) {
+      this.scrollToElement(targetElement);
     }
   }
 
@@ -90,19 +71,27 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
+  protected onWindowResize(): void {
+    const navbar = this.navbar().nativeElement;
+    this.renderer.addClass(navbar, 'resize-animation-stopper');
+
+    clearTimeout(this.resizeTimer);
+    this.resizeTimer = setTimeout(() => {
+      this.renderer.removeClass(navbar, 'resize-animation-stopper');
+    }, 1);
+
+    this.isMobile = window.innerWidth < 768;
+  }
+
   protected onScroll(): void {
     this.highlightNavAnchors();
   }
 
   private highlightNavAnchors(): void {
-    if (typeof window === 'undefined') {
-      return;
-    }
     const top = window.scrollY;
     const offset = 150;
 
-    let activeSectionId: string | null = null;
-    this.sections.forEach((section) => {
+    this.sections.forEach((section, index) => {
       const sectionTop = section.nativeElement.offsetTop;
       const sectionHeight = section.nativeElement.offsetHeight;
 
@@ -110,18 +99,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         top >= sectionTop - offset &&
         top < sectionTop + sectionHeight - offset
       ) {
-        activeSectionId = section.nativeElement.getAttribute('id');
-      }
-    });
-
-    this.navAnchors().forEach((anchor) => {
-      const href = anchor.nativeElement.getAttribute('href');
-      const id = href ? href.substr(1) : '';
-
-      if (id === activeSectionId) {
-        this.renderer.addClass(anchor.nativeElement, 'active');
-      } else {
-        this.renderer.removeClass(anchor.nativeElement, 'active');
+        this.activeTabIndex.set(index);
       }
     });
   }

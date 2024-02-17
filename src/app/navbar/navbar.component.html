@@ -41,12 +41,18 @@
     </div>
   }
   <ul [ngStyle]="{ transform: isMenuOpen ? 'translateX(0)' : '' }">
-    <li><a #homeLink href="#home" (click)="closeMenu()">Home</a></li>
-    <li><a #aboutLink href="#about" (click)="closeMenu()">About</a></li>
-    <li>
-      <a #projectsLink href="#projects" (click)="closeMenu()">Projects</a>
-    </li>
-    <li><a #contactLink href="#contact" (click)="closeMenu()">Contact</a></li>
+    @for (link of links; track $index) {
+      <li>
+        <a
+          #navLinks
+          [href]="'#' + link"
+          (click)="closeMenu(); onClick($event)"
+          [ngClass]="activeTabIndex() === $index ? 'active' : ''"
+        >
+          {{ link | upperFirst }}
+        </a>
+      </li>
+    }
     <li>
       <span
         class="icon-link"
