@@ -1,7 +1,13 @@
 @if (contactForm.valueChanges | async) {}
 <form [formGroup]="contactForm" (ngSubmit)="submitForm.emit(contactForm)">
   <div class="form-item-container">
-    <input id="name" type="text" formControlName="name" placeholder="Name" autocomplete="name" />
+    <input
+      id="name"
+      type="text"
+      formControlName="name"
+      placeholder="Name"
+      autocomplete="name"
+    />
     @if (contactForm.get("name")?.invalid && contactForm.get("name")?.touched) {
       <div class="error-tooltip">
         @if (contactForm.get("name")?.hasError("required")) {
@@ -11,7 +17,13 @@
     }
   </div>
   <div class="form-item-container">
-    <input id="email" type="email" formControlName="email" placeholder="Email" autocomplete="email" />
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      placeholder="Email"
+      autocomplete="email"
+    />
     @if (
       contactForm.get("email")?.invalid && contactForm.get("email")?.touched
     ) {
@@ -26,7 +38,12 @@
     }
   </div>
   <div class="form-item-container">
-    <input id="subject" type="text" formControlName="subject" placeholder="Subject" />
+    <input
+      id="subject"
+      type="text"
+      formControlName="subject"
+      placeholder="Subject"
+    />
   </div>
   <div class="form-item-container">
     <textarea
