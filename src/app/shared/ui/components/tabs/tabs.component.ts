@@ -52,7 +52,6 @@ export class TabsComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.activeTabElement.set(this.tabLinks()[0].nativeElement);
-    this.updateLinePosition();
   }
 
   protected onWindowResize(): void {
