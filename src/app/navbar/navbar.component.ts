@@ -9,15 +9,16 @@ import {
   afterNextRender,
   inject,
   viewChild,
-  viewChildren
+  viewChildren,
 } from '@angular/core';
 import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
+import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, UpperFirstPipe],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,10 +33,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   private renderer = inject(Renderer2);
   private sectionService = inject(SectionService);
   private el = inject(ElementRef);
-  private navAnchors = viewChildren<ElementRef>(
-    'homeLink, aboutLink, contactLink, projectsLink',
-  );
+  private navAnchors = viewChildren<ElementRef>('navLinks');
   private navbar = viewChild.required<ElementRef<HTMLElement>>('navbar');
+  protected links = ['home', 'about', 'projects', 'contact'];
 
   private sections!: ElementRef[];
   protected isMenuOpen = false;
