@@ -1,13 +1,10 @@
-import { DOCUMENT } from '@angular/common';
 import {
-  ApplicationRef,
-  ComponentFactoryResolver,
   ComponentRef,
   Directive,
   ElementRef,
-  Inject,
-  Injector,
-  input,
+  ViewContainerRef,
+  inject,
+  input
 } from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
 
@@ -20,8 +17,9 @@ import { TooltipComponent } from './tooltip.component';
   },
 })
 export class TooltipDirective {
+  private elementRef = inject(ElementRef);
+  private viewContainerRef = inject(ViewContainerRef);
   tooltipText = input.required<string>();
-
   private tooltipComponent?: ComponentRef<TooltipComponent>;
 
   protected onMouseEnter(): void {
@@ -29,10 +27,8 @@ export class TooltipDirective {
       return;
     }
 
-    const tooltipComponentFactory =
-      this.componentFactoryResolver.resolveComponentFactory(TooltipComponent);
-    this.tooltipComponent = tooltipComponentFactory.create(this.injector);
-    this.document.body.appendChild(
+    this.tooltipComponent = this.viewContainerRef.createComponent(TooltipComponent);
+    document.body.appendChild(
       this.tooltipComponent.location.nativeElement,
     );
     this.setTooltipComponentProperties();
@@ -44,7 +40,6 @@ export class TooltipDirective {
       return;
     }
 
-    this.appRef.detachView(this.tooltipComponent.hostView);
     this.tooltipComponent.destroy();
     this.tooltipComponent = undefined;
   }
@@ -59,12 +54,4 @@ export class TooltipDirective {
     this.tooltipComponent.setInput('left', (right - left) / 2 + left);
     this.tooltipComponent.setInput('top', bottom);
   }
-
-  constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private injector: Injector,
-    private elementRef: ElementRef,
-    private appRef: ApplicationRef,
-    @Inject(DOCUMENT) private document: Document,
-  ) {}
 }
