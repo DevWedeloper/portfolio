@@ -26,7 +26,6 @@
     <link rel="icon" type="image/x-icon" href="assets/heart.ico" />
   </head>
   <body>
-    <app-root></app-root>
     <script>
       var preferredTheme = localStorage.getItem("preferredTheme");
       var isSystemThemeDark = matchMedia("(prefers-color-scheme: dark)").matches;
@@ -37,5 +36,6 @@
         document.body.classList.add(isDarkTheme ? "dark-theme" : "light-theme");
       }
     </script>
+    <app-root></app-root>
   </body>
 </html>
