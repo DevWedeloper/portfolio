@@ -3,15 +3,15 @@
   <head>
     <script>
       var preferredTheme = localStorage.getItem("preferredTheme");
-      var isSystemThemeDark =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var isSystemThemeDark = matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
       const isDarkTheme =
         preferredTheme === "dark" ||
         (preferredTheme === null && isSystemThemeDark);
-      this.document.documentElement.className = '';
+      document.documentElement.className = "";
       if (isDarkTheme) {
-        this.document.documentElement.classList.add(
+        document.documentElement.classList.add(
           isDarkTheme ? "dark-theme" : "light-theme",
         );
       }
