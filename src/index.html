@@ -3,12 +3,17 @@
   <head>
     <script>
       var preferredTheme = localStorage.getItem("preferredTheme");
-      var isSystemThemeDark = matchMedia("(prefers-color-scheme: dark)").matches;
+      var isSystemThemeDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
       const isDarkTheme =
         preferredTheme === "dark" ||
         (preferredTheme === null && isSystemThemeDark);
+      this.document.documentElement.className = '';
       if (isDarkTheme) {
-        this.document.documentElement.classList.add(isDarkTheme ? "dark-theme" : "light-theme");
+        this.document.documentElement.classList.add(
+          isDarkTheme ? "dark-theme" : "light-theme",
+        );
       }
     </script>
     <meta charset="utf-8" />
