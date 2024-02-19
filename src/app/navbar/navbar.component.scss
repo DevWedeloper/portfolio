@@ -69,14 +69,12 @@
   display: none;
 }
 
-.theme-icon-menu {
-  display: none;
-}
-
 .theme-icon {
   width: 2rem;
-  pointer-events: none;
-  user-select: none;
+  height: 2rem;
+  background-image: var(--theme-icon);
+  background-size: contain;
+  background-position: center;
 }
 
 .icon-link {

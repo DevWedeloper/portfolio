@@ -42,11 +42,6 @@ export class ThemeService {
     const isDarkTheme =
       preferredTheme === 'dark' ||
       (preferredTheme === null && this.darkThemeMediaQuery.matches);
-
     this.darkMode$.next(isDarkTheme);
-    this.renderer.addClass(
-      document.body,
-      isDarkTheme ? 'dark-theme' : 'light-theme',
-    );
   }
 }
