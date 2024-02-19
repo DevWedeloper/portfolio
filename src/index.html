@@ -8,7 +8,7 @@
         preferredTheme === "dark" ||
         (preferredTheme === null && isSystemThemeDark);
       if (isDarkTheme) {
-        document.body.classList.add(isDarkTheme ? "dark-theme" : "light-theme");
+        document.documentElement.classList.add(isDarkTheme ? "dark-theme" : "light-theme");
       }
     </script>
     <meta charset="utf-8" />
