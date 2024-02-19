@@ -27,5 +27,15 @@
   </head>
   <body>
     <app-root></app-root>
+    <script>
+      var preferredTheme = localStorage.getItem("preferredTheme");
+      var isSystemThemeDark = matchMedia("(prefers-color-scheme: dark)").matches;
+      const isDarkTheme =
+        preferredTheme === "dark" ||
+        (preferredTheme === null && isSystemThemeDark);
+      if (isDarkTheme) {
+        document.body.classList.add(isDarkTheme ? "dark-theme" : "light-theme");
+      }
+    </script>
   </body>
 </html>

@@ -3,20 +3,12 @@
   @if (isMobile) {
     <div class="navbar-mobile">
       <span
-        class="icon-link"
+        class="icon-link theme-icon"
         (click)="ts.themeOnClick()"
         (keydown.Enter)="ts.themeOnClick()"
         tabindex="0"
       >
-        <img
-          class="theme-icon theme-icon-menu"
-          src="{{
-            (ts.isDarkMode$ | async)
-              ? 'assets/images/icons/sun.svg'
-              : 'assets/images/icons/moon.svg'
-          }}"
-          [alt]="(ts.isDarkMode$ | async) ? 'Moon Icon' : 'Sun Icon'"
-      /></span>
+      </span>
       <span
         class="icon-link icon"
         (click)="menuOnClick()"
@@ -55,21 +47,11 @@
     }
     <li>
       <span
-        class="icon-link"
+        class="icon-link theme-icon"
         (click)="ts.themeOnClick()"
         (keydown.Enter)="ts.themeOnClick()"
         tabindex="0"
       >
-        <img
-          class="theme-icon"
-          id="theme-icon"
-          src="{{
-            (ts.isDarkMode$ | async)
-              ? 'assets/images/icons/sun.svg'
-              : 'assets/images/icons/moon.svg'
-          }}"
-          [alt]="(ts.isDarkMode$ | async) ? 'Moon Icon' : 'Sun Icon'"
-        />
       </span>
     </li>
   </ul>

@@ -20,16 +20,13 @@ html {
   outline: 2px solid var(--text-color);
 }
 
-p {
-  text-wrap: pretty;
-}
-
 $light-theme-colors: (
   main-color: darken(#fea1a1, 15%),
   primary-color: #fff,
   secondary-color: #f2f2f2,
   text-color: #000000,
   text-color-reverse: #ffffff,
+  theme-icon: url('assets/images/icons/moon.svg'),
 );
 
 $dark-theme-colors: (
@@ -37,6 +34,7 @@ $dark-theme-colors: (
   secondary-color: #171717,
   text-color: #ffffff,
   text-color-reverse: #000000,
+  theme-icon: url('assets/images/icons/sun.svg'),
 );
 
 @mixin apply-theme-colors($colors) {
@@ -81,12 +79,6 @@ $dark-theme-colors: (
 
 .dark-theme {
   @include apply-theme-colors($dark-theme-colors);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    @include apply-theme-colors($dark-theme-colors);
-  }
 }
 
 .resize-animation-stopper * {
@@ -157,6 +149,7 @@ h6 {
 
 p {
   font-size: var(--font-size-regular-desktop);
+  text-wrap: pretty;
 }
 
 .from-left {
