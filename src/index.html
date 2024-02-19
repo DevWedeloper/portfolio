@@ -10,11 +10,9 @@
         preferredTheme === "dark" ||
         (preferredTheme === null && isSystemThemeDark);
       document.documentElement.className = "";
-      if (isDarkTheme) {
-        document.documentElement.classList.add(
-          isDarkTheme ? "dark-theme" : "light-theme",
-        );
-      }
+      document.documentElement.classList.add(
+        isDarkTheme ? "dark-theme" : "light-theme",
+      );
     </script>
     <meta charset="utf-8" />
     <title>Hi, welcome to my portfolio!</title>
