@@ -1,6 +1,16 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      var preferredTheme = localStorage.getItem("preferredTheme");
+      var isSystemThemeDark = matchMedia("(prefers-color-scheme: dark)").matches;
+      const isDarkTheme =
+        preferredTheme === "dark" ||
+        (preferredTheme === null && isSystemThemeDark);
+      if (isDarkTheme) {
+        document.body.classList.add(isDarkTheme ? "dark-theme" : "light-theme");
+      }
+    </script>
     <meta charset="utf-8" />
     <title>Hi, welcome to my portfolio!</title>
     <meta
@@ -26,16 +36,6 @@
     <link rel="icon" type="image/x-icon" href="assets/heart.ico" />
   </head>
   <body>
-    <script>
-      var preferredTheme = localStorage.getItem("preferredTheme");
-      var isSystemThemeDark = matchMedia("(prefers-color-scheme: dark)").matches;
-      const isDarkTheme =
-        preferredTheme === "dark" ||
-        (preferredTheme === null && isSystemThemeDark);
-      if (isDarkTheme) {
-        document.body.classList.add(isDarkTheme ? "dark-theme" : "light-theme");
-      }
-    </script>
     <app-root></app-root>
   </body>
 </html>
