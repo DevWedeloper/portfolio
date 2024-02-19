@@ -20,10 +20,6 @@ html {
   outline: 2px solid var(--text-color);
 }
 
-p {
-  text-wrap: pretty;
-}
-
 $light-theme-colors: (
   main-color: darken(#fea1a1, 15%),
   primary-color: #fff,
@@ -153,6 +149,7 @@ h6 {
 
 p {
   font-size: var(--font-size-regular-desktop);
+  text-wrap: pretty;
 }
 
 .from-left {
