@@ -13,7 +13,7 @@ import {
 })
 export class CustomButtonBase {
   private elementRef = inject(ElementRef);
-  disableEffect = input<unknown>({
+  disableEffect = input(false, {
     transform: booleanAttribute,
   });
 
