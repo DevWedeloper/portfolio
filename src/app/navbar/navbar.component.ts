@@ -40,11 +40,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   private resizeTimer!: ReturnType<typeof setTimeout>;
 
-  protected isMobile!: boolean;
+  protected isMobile = signal<boolean>(false);
 
   constructor() {
     afterNextRender(() => {
-      this.isMobile = window.innerWidth < 768;
+      this.isMobile.set(window.innerWidth < 768);
     });
   }
 
@@ -80,7 +80,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.renderer.removeClass(navbar, 'resize-animation-stopper');
     }, 1);
 
-    this.isMobile = window.innerWidth < 768;
+    this.isMobile.set(window.innerWidth < 768);
   }
 
   protected onScroll(): void {
