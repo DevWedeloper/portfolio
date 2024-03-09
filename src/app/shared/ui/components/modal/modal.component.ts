@@ -63,7 +63,7 @@ export class ModalComponent {
     });
   }
 
-  protected onEscapeKeydown() {
+  protected onEscapeKeydown(): void {
     this.ms.close();
   }
 }
