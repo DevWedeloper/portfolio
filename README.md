@@ -27,7 +27,7 @@ A game statistic simulator with a dashboard and complex CRUD, also comes with Au
 
 ### Auth: Identity Provider
 
-An identity provider I made that uses refresh/access token system
+An identity provider I made that uses refresh/access token system.
 
   - Tech-Stack: Node.js, Express.js, MongoDB, Cloud Functions, JWT, OAuth 2.0, Brevo (Sendinblue)
   - [GitHub Repository](https://github.com/DevWedeloper/auth)
