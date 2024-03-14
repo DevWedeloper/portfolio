@@ -2,10 +2,9 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   OnInit,
-  Output,
   inject,
+  output,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -27,7 +26,7 @@ import { ContactService } from '../../data-access/contact.service';
 export class FormComponent implements OnInit {
   private fb = inject(FormBuilder);
   protected cs = inject(ContactService);
-  @Output() submitForm = new EventEmitter<FormGroup>();
+  submitForm = output<FormGroup>();
   protected contactForm!: FormGroup;
 
   ngOnInit(): void {
