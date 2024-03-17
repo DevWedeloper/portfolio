@@ -40,6 +40,14 @@ An infinite scroll of images using the Pexels API.
 - [Project Link](https://project-two-infinite-scroll.vercel.app/)
 - [GitHub Repository](https://github.com/DevWedeloper/projectTwo)
 
+### Next.js + Supabase Auth
+
+Authentication/Authorization using Supabase with Next.js.
+
+- Tech-Stack: Next.js, Supabase, Tailwind CSS, Shadcn UI
+- [Project Link](https://nextjs-supabase-auth-devwedeloper.vercel.app/)
+- [GitHub Repository](https://github.com/DevWedeloper/nextjs-supabase-auth)
+
 Feel free to explore more projects on my [GitHub Profile](https://github.com/DevWedeloper).
 
 ## Contact Me
