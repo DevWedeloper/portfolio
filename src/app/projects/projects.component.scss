@@ -1,7 +1,7 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0.5rem;
 }
 
 .heading {
@@ -9,18 +9,17 @@
 }
 
 .projects-container {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-.container-item {
-  width: 100%;
-}
-
 @media (max-width: 768px) {
+  :host {
+    grid-template-columns: 1fr;
+  }
+
   .projects-container {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 }
