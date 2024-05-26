@@ -6,9 +6,10 @@ import {
   computed,
   contentChildren,
   signal,
-  viewChild,
   viewChildren,
 } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { Observable, map, merge } from 'rxjs';
 import { TabDirective } from './tab.directive';
 
 @Component({
@@ -18,12 +19,8 @@ import { TabDirective } from './tab.directive';
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '(window:resize)': 'onWindowResize()',
-  },
 })
 export class TabsComponent {
-  private line = viewChild.required<ElementRef<HTMLElement>>('line');
   private tabLinks = viewChildren<ElementRef<HTMLElement>>('tabLinks');
   protected tabs = contentChildren(TabDirective);
   protected activeTabIndex = signal<number | null>(null);
@@ -50,26 +47,36 @@ export class TabsComponent {
     return tabs[selected].template;
   });
 
-  protected linePosition = computed(() => {
-    const activeTab = this.activeTabElement();
-    const width = activeTab?.nativeElement.offsetWidth + 'px';
-    const left = activeTab?.nativeElement.offsetLeft + 'px';
-    const top = activeTab?.nativeElement.offsetHeight + 'px';
-    return { width, left, top };
-  });
-  
-  protected onWindowResize(): void {
-    this.updateLinePosition();
-  }
+  private resize$ = new Observable<{
+    width: string;
+    left: string;
+    top: string;
+  }>((subscriber) => {
+    if (typeof ResizeObserver === 'undefined') return;
 
-  private updateLinePosition(): void {
-    if (this.activeTabElement()) {
-      this.line().nativeElement.style.width =
-        this.activeTabElement()?.nativeElement.offsetWidth + 'px';
-      this.line().nativeElement.style.left =
-        this.activeTabElement()?.nativeElement.offsetLeft + 'px';
-      this.line().nativeElement.style.top =
-        this.activeTabElement()?.nativeElement.offsetHeight + 'px';
-    }
-  }
+    const observer = new ResizeObserver(() => {
+      const width = this.activeTabElement()?.nativeElement.offsetWidth + 'px';
+      const left = this.activeTabElement()?.nativeElement.offsetLeft + 'px';
+      const top = this.activeTabElement()?.nativeElement.offsetHeight + 'px';
+      subscriber.next({ width, left, top });
+    });
+
+    observer.observe(document.body);
+
+    subscriber.add(() => observer.disconnect());
+  });
+
+  protected linePosition = toSignal(
+    merge(
+      toObservable(this.activeTabElement).pipe(
+        map((tab) => {
+          const width = tab?.nativeElement.offsetWidth + 'px';
+          const left = tab?.nativeElement.offsetLeft + 'px';
+          const top = tab?.nativeElement.offsetHeight + 'px';
+          return { width, left, top };
+        }),
+      ),
+      this.resize$,
+    ),
+  );
 }
