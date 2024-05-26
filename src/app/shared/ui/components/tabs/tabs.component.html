@@ -12,11 +12,10 @@
     </li>
   }
   <li
-    #line
     class="tab-line"
-    [style.width]="linePosition().width"
-    [style.left]="linePosition().left"
-    [style.top]="linePosition().top"
+    [style.width]="linePosition()?.width"
+    [style.left]="linePosition()?.left"
+    [style.top]="linePosition()?.top"
   ></li>
 </ul>
 <ng-container [ngTemplateOutlet]="selectedTabTpl()" />
