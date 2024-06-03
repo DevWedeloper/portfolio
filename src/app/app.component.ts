@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ScrollIndicatorComponent } from './scroll-indicator/scroll-indicator.component';
 import { ThemeService } from './shared/data-access/theme.service';
+import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.component';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ import { ThemeService } from './shared/data-access/theme.service';
     ProjectsComponent,
     ContactComponent,
     ScrollIndicatorComponent,
+    PageNavComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
