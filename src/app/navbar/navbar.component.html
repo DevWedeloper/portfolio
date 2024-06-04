@@ -37,8 +37,8 @@
       <li>
         <a
           #navLinks
-          [href]="'#' + section.id"
-          (click)="closeMenu(); onClick($event)"
+          [routerLink]="[]"
+          [fragment]="section.id"
           [ngClass]="section.isActive ? 'active' : ''"
         >
           {{ section.id | upperFirst }}

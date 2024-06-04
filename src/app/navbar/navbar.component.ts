@@ -7,6 +7,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ThemeService } from '../shared/data-access/theme.service';
 import { sections } from '../shared/ui/components/page-nav/page-nav.component';
 import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
@@ -14,7 +15,7 @@ import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, UpperFirstPipe],
+  imports: [CommonModule, RouterLink, UpperFirstPipe],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,23 +37,6 @@ export class NavbarComponent {
     afterNextRender(() => {
       this.isMobile.set(window.innerWidth < 768);
     });
-  }
-
-  protected onClick(event: Event) {
-    event.preventDefault();
-    const targetElement = (event.target as HTMLAnchorElement).getAttribute(
-      'href',
-    );
-    if (targetElement) {
-      this.scrollToElement(targetElement);
-    }
-  }
-
-  private scrollToElement(targetElement: string) {
-    const element = document.querySelector(targetElement);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
   }
 
   protected onWindowResize(): void {
