@@ -1,8 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
 import { NextjsSupabaseAuthComponent } from './features/nextjs-supabase-auth/nextjs-supabase-auth.component';
 import { ProjectOneComponent } from './features/project-one/project-one.component';
@@ -22,7 +19,7 @@ import { ProjectTwoComponent } from './features/project-two/project-two.componen
   styleUrls: ['./projects.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[attr.id]': '\'projects\'',
+    '[attr.id]': "'projects'",
     '[class.section]': 'true',
     '[attr.appMainSection]': 'true',
   },

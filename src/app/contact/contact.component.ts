@@ -35,7 +35,7 @@ import { FormComponent } from './ui/form/form.component';
   styleUrls: ['./contact.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[attr.id]': '\'contact\'',
+    '[attr.id]': "'contact'",
     '[class.section]': 'true',
     '[attr.appMainSection]': 'true',
   },

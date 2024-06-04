@@ -8,9 +8,9 @@
       placeholder="Name"
       autocomplete="name"
     />
-    @if (contactForm.get("name")?.invalid && contactForm.get("name")?.touched) {
+    @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
       <div class="error-tooltip">
-        @if (contactForm.get("name")?.hasError("required")) {
+        @if (contactForm.get('name')?.hasError('required')) {
           <div>Name is required.</div>
         }
       </div>
@@ -25,13 +25,13 @@
       autocomplete="email"
     />
     @if (
-      contactForm.get("email")?.invalid && contactForm.get("email")?.touched
+      contactForm.get('email')?.invalid && contactForm.get('email')?.touched
     ) {
       <div class="error-tooltip">
-        @if (contactForm.get("email")?.hasError("required")) {
+        @if (contactForm.get('email')?.hasError('required')) {
           <div>Email is required.</div>
         }
-        @if (contactForm.get("email")?.hasError("email")) {
+        @if (contactForm.get('email')?.hasError('email')) {
           <div>Invalid email format.</div>
         }
       </div>
@@ -53,10 +53,10 @@
       placeholder="Message"
     ></textarea>
     @if (
-      contactForm.get("message")?.invalid && contactForm.get("message")?.touched
+      contactForm.get('message')?.invalid && contactForm.get('message')?.touched
     ) {
       <div class="error-tooltip">
-        @if (contactForm.get("message")?.hasError("required")) {
+        @if (contactForm.get('message')?.hasError('required')) {
           <div>Message is required.</div>
         }
       </div>

@@ -7,8 +7,7 @@
         (click)="ts.themeOnClick()"
         (keydown.Enter)="ts.themeOnClick()"
         tabindex="0"
-      >
-      </span>
+      ></span>
       <span
         class="icon-link icon"
         (click)="menuOnClick()"
@@ -29,7 +28,8 @@
               : 'assets/images/icons/menu.svg'
           }}"
           [alt]="isMenuOpen ? 'Menu Icon' : 'Close Icon'"
-      /></span>
+        />
+      </span>
     </div>
   }
   <ul [ngStyle]="{ transform: isMenuOpen ? 'translateX(0)' : '' }">
@@ -51,8 +51,7 @@
         (click)="ts.themeOnClick()"
         (keydown.Enter)="ts.themeOnClick()"
         tabindex="0"
-      >
-      </span>
+      ></span>
     </li>
   </ul>
 </nav>

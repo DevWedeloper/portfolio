@@ -5,7 +5,7 @@ import {
   ElementRef,
   afterNextRender,
   inject,
-  viewChild
+  viewChild,
 } from '@angular/core';
 import { TypeEffectService } from '../shared/data-access/type-effect.service';
 import { CustomAnchorComponent } from '../shared/ui/components/custom-button/button';
@@ -27,7 +27,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[attr.id]': '\'home\'',
+    '[attr.id]': "'home'",
     '[class.section]': 'true',
     '[attr.appMainSection]': 'true',
   },

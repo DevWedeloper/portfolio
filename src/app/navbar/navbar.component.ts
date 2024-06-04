@@ -7,7 +7,7 @@ import {
   afterNextRender,
   inject,
   signal,
-  viewChild
+  viewChild,
 } from '@angular/core';
 import { ThemeService } from '../shared/data-access/theme.service';
 import { sections } from '../shared/ui/components/page-nav/page-nav.component';

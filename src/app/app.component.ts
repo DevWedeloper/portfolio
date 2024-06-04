@@ -25,7 +25,7 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
     ProjectsComponent,
     ContactComponent,
     ScrollIndicatorComponent,
-    PageNavComponent
+    PageNavComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
