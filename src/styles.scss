@@ -85,11 +85,6 @@ $dark-theme-colors: (
   @include apply-theme-colors($dark-theme-colors);
 }
 
-.resize-animation-stopper * {
-  animation: none !important;
-  transition: none !important;
-}
-
 .no-scroll {
   overflow: hidden;
 }

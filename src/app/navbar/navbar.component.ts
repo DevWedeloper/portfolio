@@ -2,12 +2,10 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   Renderer2,
   afterNextRender,
   inject,
   signal,
-  viewChild,
 } from '@angular/core';
 import { ThemeService } from '../shared/data-access/theme.service';
 import { sections } from '../shared/ui/components/page-nav/page-nav.component';
@@ -27,13 +25,10 @@ import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
 export class NavbarComponent {
   protected ts = inject(ThemeService);
   private renderer = inject(Renderer2);
-  private navbar = viewChild.required<ElementRef<HTMLElement>>('navbar');
   protected activeTabIndex = signal<number | null>(null);
   protected sections = sections;
 
   protected isMenuOpen = false;
-
-  private resizeTimer!: ReturnType<typeof setTimeout>;
 
   protected isMobile = signal<boolean>(false);
 
@@ -61,14 +56,6 @@ export class NavbarComponent {
   }
 
   protected onWindowResize(): void {
-    const navbar = this.navbar().nativeElement;
-    this.renderer.addClass(navbar, 'resize-animation-stopper');
-
-    clearTimeout(this.resizeTimer);
-    this.resizeTimer = setTimeout(() => {
-      this.renderer.removeClass(navbar, 'resize-animation-stopper');
-    }, 1);
-
     this.isMobile.set(window.innerWidth < 768);
   }
 
