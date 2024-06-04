@@ -6,8 +6,34 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   selector: 'app-tooltip',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './tooltip.component.html',
-  styleUrls: ['./tooltip.component.scss'],
+  template: `
+    {{ text() }}
+  `,
+  styles: [
+    `
+      :host {
+        position: fixed;
+        z-index: 3;
+        background-color: var(--text-color);
+        border-radius: 0.5rem;
+        color: var(--text-color-reverse);
+        padding: 0.5rem;
+        font-size: var(--font-size-tooltip-desktop);
+        margin-top: 5px;
+        transform: translateX(-50%);
+      }
+
+      :host::before {
+        content: '';
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid var(--text-color);
+        position: absolute;
+        left: calc(50% - 5px);
+        top: -4px;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('fadeInOut', [
