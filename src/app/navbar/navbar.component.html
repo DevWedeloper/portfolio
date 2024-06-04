@@ -17,7 +17,7 @@
           filter:
             (ts.isDarkMode$ | async)
               ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)'
+              : 'grayscale(100%)',
         }"
       >
         <img
@@ -39,7 +39,7 @@
           #navLinks
           [routerLink]="[]"
           [fragment]="section.id"
-          [ngClass]="section.isActive ? 'active' : ''"
+          [ngClass]="{ active: section.isActive }"
         >
           {{ section.id | upperFirst }}
         </a>
