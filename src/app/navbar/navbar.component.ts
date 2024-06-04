@@ -26,7 +26,6 @@ import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
 export class NavbarComponent {
   protected ts = inject(ThemeService);
   private renderer = inject(Renderer2);
-  protected activeTabIndex = signal<number | null>(null);
   protected sections = sections;
 
   protected isMenuOpen = false;
