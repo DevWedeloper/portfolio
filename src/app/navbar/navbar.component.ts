@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgClass, NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +15,7 @@ import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterLink, UpperFirstPipe],
+  imports: [NgClass, NgStyle, AsyncPipe, RouterLink, UpperFirstPipe],
   template: `
     <nav class="navbar">
       <h1>Nathan.</h1>
