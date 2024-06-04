@@ -27,8 +27,19 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
     ScrollIndicatorComponent,
     PageNavComponent,
   ],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  template: `
+    <section>
+      <app-navbar />
+      <app-home />
+      <app-about />
+      <app-projects />
+      <app-contact />
+    </section>
+    <app-page-nav />
+    @if (isWideScreen) {
+      <app-scroll-indicator />
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(window:resize)': 'onResize()',
