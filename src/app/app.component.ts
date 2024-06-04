@@ -27,6 +27,9 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
     ScrollIndicatorComponent,
     PageNavComponent,
   ],
+  host: {
+    '(window:resize)': 'onResize()',
+  },
   template: `
     <section>
       <app-navbar />
@@ -41,9 +44,6 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '(window:resize)': 'onResize()',
-  },
 })
 export class AppComponent {
   title = 'portfolio';
