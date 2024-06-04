@@ -16,6 +16,9 @@ import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
   selector: 'app-navbar',
   standalone: true,
   imports: [NgClass, NgStyle, AsyncPipe, RouterLink, UpperFirstPipe],
+  host: {
+    '(window:resize)': 'onWindowResize()',
+  },
   template: `
     <nav class="navbar">
       <h1>Nathan.</h1>
@@ -244,9 +247,6 @@ import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '(window:resize)': 'onWindowResize()',
-  },
 })
 export class NavbarComponent {
   protected ts = inject(ThemeService);
