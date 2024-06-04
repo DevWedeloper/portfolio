@@ -1,18 +1,16 @@
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  OnInit,
   Renderer2,
   afterNextRender,
   inject,
   signal,
   viewChild
 } from '@angular/core';
-import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
+import { sections } from '../shared/ui/components/page-nav/page-nav.component';
 import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
 
 @Component({
@@ -24,18 +22,15 @@ import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(window:resize)': 'onWindowResize()',
-    '(window:scroll)': 'onScroll()',
   },
 })
-export class NavbarComponent implements OnInit, AfterViewInit {
+export class NavbarComponent {
   protected ts = inject(ThemeService);
   private renderer = inject(Renderer2);
-  private sectionService = inject(SectionService);
   private navbar = viewChild.required<ElementRef<HTMLElement>>('navbar');
   protected activeTabIndex = signal<number | null>(null);
-  protected links = ['home', 'about', 'projects', 'contact'];
+  protected sections = sections;
 
-  private sections!: ElementRef[];
   protected isMenuOpen = false;
 
   private resizeTimer!: ReturnType<typeof setTimeout>;
@@ -48,17 +43,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngOnInit(): void {
-    this.sections = this.sectionService.getSections();
-  }
-
-  ngAfterViewInit(): void {
-    this.highlightNavAnchors();
-  }
-
   protected onClick(event: Event) {
     event.preventDefault();
-    const targetElement = (event.target as HTMLAnchorElement).getAttribute('href');
+    const targetElement = (event.target as HTMLAnchorElement).getAttribute(
+      'href',
+    );
     if (targetElement) {
       this.scrollToElement(targetElement);
     }
@@ -81,29 +70,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }, 1);
 
     this.isMobile.set(window.innerWidth < 768);
-  }
-
-  protected onScroll(): void {
-    this.highlightNavAnchors();
-  }
-
-  private highlightNavAnchors(): void {
-    if (typeof window === 'undefined')  return;
-
-    const top = window.scrollY;
-    const offset = 150;
-
-    this.sections.forEach((section, index) => {
-      const sectionTop = section.nativeElement.offsetTop;
-      const sectionHeight = section.nativeElement.offsetHeight;
-
-      if (
-        top >= sectionTop - offset &&
-        top < sectionTop + sectionHeight - offset
-      ) {
-        this.activeTabIndex.set(index);
-      }
-    });
   }
 
   protected menuOnClick(): void {

@@ -33,15 +33,15 @@
     </div>
   }
   <ul [ngStyle]="{ transform: isMenuOpen ? 'translateX(0)' : '' }">
-    @for (link of links; track $index) {
+    @for (section of sections(); track $index) {
       <li>
         <a
           #navLinks
-          [href]="'#' + link"
+          [href]="'#' + section.id"
           (click)="closeMenu(); onClick($event)"
-          [ngClass]="activeTabIndex() === $index ? 'active' : ''"
+          [ngClass]="section.isActive ? 'active' : ''"
         >
-          {{ link | upperFirst }}
+          {{ section.id | upperFirst }}
         </a>
       </li>
     }

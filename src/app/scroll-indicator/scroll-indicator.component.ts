@@ -1,70 +1,35 @@
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  ElementRef,
-  OnInit,
-  afterNextRender,
-  inject,
-} from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { BehaviorSubject, fromEvent } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { SectionService } from '../shared/data-access/section.service';
+import { NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Observable, fromEvent } from 'rxjs';
+import { sections } from '../shared/ui/components/page-nav/page-nav.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgClass],
   selector: 'app-scroll-indicator',
   templateUrl: './scroll-indicator.component.html',
   styleUrls: ['./scroll-indicator.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ScrollIndicatorComponent implements OnInit {
-  private destroyRef = inject(DestroyRef);
-  protected ss = inject(SectionService);
-  private sections!: ElementRef[];
-  protected progress = new BehaviorSubject<number>(0);
-  protected activeShapeIndex: number | null = null;
+export class ScrollIndicatorComponent {
+  protected sections = sections;
+  protected progress = toSignal(
+    new Observable<number>((subscriber) => {
+      if (typeof window === 'undefined') return;
 
-  constructor() {
-    afterNextRender(() => {
-      fromEvent(window, 'scroll')
-        .pipe(
-          tap(() => {
-            const scroll = window.scrollY || document.documentElement.scrollTop;
-            const doc = Math.max(
-              document.body.scrollHeight,
-              document.documentElement.scrollHeight,
-            );
-            const win =
-              window.innerHeight || document.documentElement.clientHeight;
+      const observer = fromEvent(window, 'scroll').subscribe(() => {
+        const scroll = window.scrollY || document.documentElement.scrollTop;
+        const doc = Math.max(
+          document.body.scrollHeight,
+          document.documentElement.scrollHeight,
+        );
+        const win = window.innerHeight || document.documentElement.clientHeight;
+        const progress = (scroll / (doc - win)) * 100;
+        subscriber.next(progress);
+      });
 
-            this.sections.forEach((sec, index) => {
-              const top = window.scrollY;
-              const offset = sec.nativeElement.offsetTop - 150;
-              const height = sec.nativeElement.offsetHeight;
-
-              this.progress.next((scroll / (doc - win)) * 100);
-
-              if (top >= offset && top < offset + height) {
-                this.activeShapeIndex = index;
-              }
-            });
-          }),
-          takeUntilDestroyed(this.destroyRef),
-        )
-        .subscribe();
-      const scrollPosition =
-        window.pageYOffset || document.documentElement.scrollTop;
-      if (scrollPosition === 0) {
-        this.activeShapeIndex = 0;
-      }
-    });
-  }
-
-  ngOnInit(): void {
-    this.sections = this.ss.getSections();
-  }
+      return () => observer.unsubscribe();
+    }),
+  );
 }

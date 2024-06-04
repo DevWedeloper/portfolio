@@ -2,30 +2,27 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  OnInit,
-  inject
 } from '@angular/core';
-import { SectionService } from '../shared/data-access/section.service';
+import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
 import { AboutHeroImageComponent } from './ui/about-hero-image/about-hero-image.component';
 import { AboutTabComponent } from './ui/about-tab/about-tab.component';
+
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, AboutHeroImageComponent, AboutTabComponent],
+  imports: [
+    CommonModule,
+    AboutHeroImageComponent,
+    AboutTabComponent,
+    MainSectionDirective,
+  ],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[attr.id]': '\'about\'',
-    '[class.section]': 'true'
-  }
+    '[class.section]': 'true',
+    '[attr.appMainSection]': 'true',
+  },
 })
-export class AboutComponent implements OnInit {
-  private sectionService = inject(SectionService);
-  private elementRef = inject(ElementRef);
-
-  ngOnInit(): void {
-    this.sectionService.registerSection(this.elementRef);
-  }
-}
+export class AboutComponent {}

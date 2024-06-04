@@ -2,16 +2,14 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  OnInit,
   TemplateRef,
   inject,
   viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SectionService } from '../shared/data-access/section.service';
 import { ThemeService } from '../shared/data-access/theme.service';
+import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
 import { ModalComponent } from '../shared/ui/components/modal/modal.component';
 import { ModalService } from '../shared/ui/components/modal/modal.service';
 import { ContactService } from './data-access/contact.service';
@@ -31,6 +29,7 @@ import { FormComponent } from './ui/form/form.component';
     CopyTextComponent,
     FeedbackSuccessComponent,
     FeedbackFailComponent,
+    MainSectionDirective,
   ],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
@@ -38,14 +37,13 @@ import { FormComponent } from './ui/form/form.component';
   host: {
     '[attr.id]': '\'contact\'',
     '[class.section]': 'true',
+    '[attr.appMainSection]': 'true',
   },
 })
-export class ContactComponent implements OnInit {
-  private ss = inject(SectionService);
+export class ContactComponent {
   protected ts = inject(ThemeService);
   private ms = inject(ModalService);
   protected cs = inject(ContactService);
-  private elementRef = inject(ElementRef);
   private thankYouTemplate =
     viewChild.required<TemplateRef<HTMLElement>>('thankYouTemplate');
   private sorryTemplate =
@@ -62,9 +60,5 @@ export class ContactComponent implements OnInit {
         this.ms.open(this.sorryTemplate());
       },
     });
-  }
-
-  ngOnInit(): void {
-    this.ss.registerSection(this.elementRef);
   }
 }

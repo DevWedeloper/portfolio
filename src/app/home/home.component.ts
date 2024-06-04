@@ -3,14 +3,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  OnInit,
   afterNextRender,
   inject,
   viewChild
 } from '@angular/core';
-import { SectionService } from '../shared/data-access/section.service';
 import { TypeEffectService } from '../shared/data-access/type-effect.service';
 import { CustomAnchorComponent } from '../shared/ui/components/custom-button/button';
+import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
 import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.directive';
 import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.component';
 
@@ -22,6 +21,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
     HighlightTextDirective,
     HomeHeroImageComponent,
     CustomAnchorComponent,
+    MainSectionDirective,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
@@ -29,12 +29,11 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
   host: {
     '[attr.id]': '\'home\'',
     '[class.section]': 'true',
+    '[attr.appMainSection]': 'true',
   },
 })
-export class HomeComponent implements OnInit {
-  private ss = inject(SectionService);
+export class HomeComponent {
   private tes = inject(TypeEffectService);
-  private elementRef = inject(ElementRef);
   private typeEffectTarget =
     viewChild.required<ElementRef<HTMLElement>>('typeEffectTarget');
 
@@ -51,9 +50,5 @@ export class HomeComponent implements OnInit {
         this.typeEffectTarget(),
       );
     });
-  }
-
-  ngOnInit(): void {
-    this.ss.registerSection(this.elementRef);
   }
 }
