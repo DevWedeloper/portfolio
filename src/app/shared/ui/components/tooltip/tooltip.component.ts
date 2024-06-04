@@ -6,6 +6,11 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   selector: 'app-tooltip',
   standalone: true,
   imports: [CommonModule],
+  host: {
+    '[@fadeInOut]': 'true',
+    '[style.left.px]': 'left()',
+    '[style.top.px]': 'top()',
+  },
   template: `
     {{ text() }}
   `,
@@ -47,11 +52,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
       ]),
     ]),
   ],
-  host: {
-    '[@fadeInOut]': 'true',
-    '[style.left.px]': 'left()',
-    '[style.top.px]': 'top()',
-  },
 })
 export class TooltipComponent {
   text = input.required<string>();
