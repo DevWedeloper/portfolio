@@ -34,11 +34,6 @@ import { FormComponent } from './ui/form/form.component';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[attr.id]': "'contact'",
-    '[class.section]': 'true',
-    '[attr.appMainSection]': 'true',
-  },
 })
 export class ContactComponent {
   protected ts = inject(ThemeService);

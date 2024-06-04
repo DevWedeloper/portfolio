@@ -1,4 +1,4 @@
-:host {
+section {
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -6,11 +6,11 @@
   overflow-x: hidden;
 }
 
-:host > *:nth-child(1) {
+section > *:nth-child(1) {
   flex: 1 1 70%;
 }
 
-:host > *:nth-child(2) {
+section > *:nth-child(2) {
   flex: 1 1 30%;
 }
 
@@ -74,12 +74,12 @@
 }
 
 @media (max-width: 768px) {
-  :host {
+  section {
     flex-direction: column-reverse;
   }
 
-  :host > *:nth-child(1),
-  :host > *:nth-child(2) {
+  section > *:nth-child(1),
+  section > *:nth-child(2) {
     flex: none;
   }
 

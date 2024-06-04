@@ -18,10 +18,5 @@ import { ProjectTwoComponent } from './features/project-two/project-two.componen
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[attr.id]': "'projects'",
-    '[class.section]': 'true',
-    '[attr.appMainSection]': 'true',
-  },
 })
 export class ProjectsComponent {}

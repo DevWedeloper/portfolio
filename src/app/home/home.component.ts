@@ -26,11 +26,6 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[attr.id]': "'home'",
-    '[class.section]': 'true',
-    '[attr.appMainSection]': 'true',
-  },
 })
 export class HomeComponent {
   private tes = inject(TypeEffectService);

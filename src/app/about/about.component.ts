@@ -16,10 +16,5 @@ import { AboutTabComponent } from './ui/about-tab/about-tab.component';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[attr.id]': "'about'",
-    '[class.section]': 'true',
-    '[attr.appMainSection]': 'true',
-  },
 })
 export class AboutComponent {}
