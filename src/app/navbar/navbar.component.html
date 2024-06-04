@@ -1,4 +1,4 @@
-<nav #navbar class="navbar">
+<nav class="navbar">
   <h1>Nathan.</h1>
   @if (isMobile()) {
     <div class="navbar-mobile">
@@ -36,7 +36,6 @@
     @for (section of sections(); track $index) {
       <li>
         <a
-          #navLinks
           [routerLink]="[]"
           [fragment]="section.id"
           [ngClass]="{ active: section.isActive }"
