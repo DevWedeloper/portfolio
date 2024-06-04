@@ -69,7 +69,7 @@ export class AppComponent {
       });
     }, appearOptions);
 
-    const elements = document.querySelectorAll('.hidden');
+    const elements = document.querySelectorAll('.hiddenAnimate');
     elements.forEach((element) => appearOnScroll.observe(element));
   }
 
