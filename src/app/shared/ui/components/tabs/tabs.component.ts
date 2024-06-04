@@ -16,8 +16,73 @@ import { TabDirective } from './tab.directive';
   selector: 'app-tabs',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.scss'],
+  template: `
+    <ul class="tabs">
+      @for (tab of tabs(); track $index) {
+        <li
+          #tabLinks
+          class="tab-links"
+          [ngClass]="activeTabIndex() === $index ? 'active' : ''"
+          (click)="activeTabIndex.set($index)"
+          (keydown.Enter)="activeTabIndex.set($index)"
+          tabindex="0"
+        >
+          <p>{{ tab.title() }}</p>
+        </li>
+      }
+      <li
+        class="tab-line"
+        [style.width]="linePosition()?.width"
+        [style.left]="linePosition()?.left"
+        [style.top]="linePosition()?.top"
+      ></li>
+    </ul>
+    <ng-container [ngTemplateOutlet]="selectedTabTpl()" />
+  `,
+  styles: [
+    `
+      .tabs {
+        position: relative;
+        display: flex;
+        list-style: none;
+        padding: 0.5rem;
+      }
+
+      .tab-links {
+        font-size: var(--font-size-regular-desktop);
+        padding: 0.5rem;
+        cursor: pointer;
+      }
+
+      .tab-line {
+        position: absolute;
+        height: 5px;
+        background-color: var(--main-color);
+        border-radius: 1rem;
+        transition: all 0.3s ease-in-out;
+      }
+
+      @media (max-width: 991px) {
+        .tab-links {
+          font-size: var(--font-size-regular-tablet);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .tabs {
+          justify-content: center;
+        }
+        .tab-links {
+          font-size: var(--font-size-regular-mobile);
+        }
+      }
+      @media (max-width: 500px) {
+        .tab-links {
+          font-size: var(--font-size-regular-small-mobile);
+        }
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent {
