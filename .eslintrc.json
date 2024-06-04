@@ -1,21 +1,19 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
+  "parser": "@typescript-eslint/parser",
   "overrides": [
     {
       "files": ["*.ts"],
       "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "@angular-eslint/no-host-metadata-property": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {
             "type": "attribute",
-            "prefix": "app",
             "style": "camelCase"
           }
         ],
@@ -23,12 +21,17 @@
           "error",
           {
             "type": "element",
-            "prefix": "app",
             "style": "kebab-case"
           }
         ],
-        "@angular-eslint/no-host-metadata-property": "off",
-        "quotes": ["error", "single"],
+        "quotes": [
+          "error",
+          "single",
+          {
+            "avoidEscape": true,
+            "allowTemplateLiterals": true
+          }
+        ],
         "semi": ["error", "always"]
       }
     },

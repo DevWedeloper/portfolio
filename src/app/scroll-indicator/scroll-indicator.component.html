@@ -1,6 +1,0 @@
-<div class="container">
-  <span class="line" [style.height.%]="progress()"></span>
-  @for (shape of sections(); track i; let i = $index) {
-    <div class="shapes" [ngClass]="{ active: shape.isActive}"></div>
-  }
-</div>

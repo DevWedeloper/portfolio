@@ -17,6 +17,7 @@ Here are some notable projects I've worked on:
 A game statistic simulator with a dashboard and complex CRUD, also comes with Authentication/Authorization.
 
 - **Front-End:**
+
   - Tech-Stack: Angular, NgRx, RxJS, ChartJS, Vercel
   - [Project Link](https://project-one-front-end.vercel.app/)
   - [GitHub Repository](https://github.com/DevWedeloper/projectOneFrontEnd)
@@ -29,8 +30,8 @@ A game statistic simulator with a dashboard and complex CRUD, also comes with Au
 
 An identity provider I made that uses refresh/access token system.
 
-  - Tech-Stack: Node.js, Express.js, MongoDB, Cloud Functions, JWT, OAuth 2.0, Brevo (Sendinblue)
-  - [GitHub Repository](https://github.com/DevWedeloper/auth)
+- Tech-Stack: Node.js, Express.js, MongoDB, Cloud Functions, JWT, OAuth 2.0, Brevo (Sendinblue)
+- [GitHub Repository](https://github.com/DevWedeloper/auth)
 
 ### Project Two: Infinite Scroll of Images
 

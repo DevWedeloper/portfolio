@@ -42,7 +42,7 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.about-img]': 'true',
-    '[class.hidden]': 'true',
+    '[class.hiddenAnimate]': 'true',
     '[class.from-left]': 'true',
     '[@blurAnimation]': 'blurAnimationState()',
   },

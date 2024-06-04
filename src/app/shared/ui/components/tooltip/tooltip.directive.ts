@@ -4,7 +4,7 @@ import {
   ElementRef,
   ViewContainerRef,
   inject,
-  input
+  input,
 } from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
 
@@ -27,10 +27,9 @@ export class TooltipDirective {
       return;
     }
 
-    this.tooltipComponent = this.viewContainerRef.createComponent(TooltipComponent);
-    document.body.appendChild(
-      this.tooltipComponent.location.nativeElement,
-    );
+    this.tooltipComponent =
+      this.viewContainerRef.createComponent(TooltipComponent);
+    document.body.appendChild(this.tooltipComponent.location.nativeElement);
     this.setTooltipComponentProperties();
     this.tooltipComponent.hostView.detectChanges();
   }

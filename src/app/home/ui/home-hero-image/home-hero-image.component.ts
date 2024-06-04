@@ -10,7 +10,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.home-img]': 'true',
-    '[class.hidden]': 'true',
+    '[class.hiddenAnimate]': 'true',
     '[class.from-right]': 'true',
   },
 })

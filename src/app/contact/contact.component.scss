@@ -1,14 +1,14 @@
-:host {
+section {
   display: flex;
   gap: 2rem;
   overflow-x: hidden;
 }
 
-:host > *:nth-child(1) {
+section > *:nth-child(1) {
   flex: 1 1 40%;
 }
 
-:host > *:nth-child(2) {
+section > *:nth-child(2) {
   flex: 1 1 60%;
 }
 
@@ -28,7 +28,7 @@
 }
 
 @media (max-width: 768px) {
-  :host {
+  section {
     flex-direction: column;
     text-align: center;
   }

@@ -10,7 +10,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   TemplateRef,
-  contentChildren
+  contentChildren,
 } from '@angular/core';
 
 @Component({

@@ -25,14 +25,25 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
     ProjectsComponent,
     ContactComponent,
     ScrollIndicatorComponent,
-    PageNavComponent
+    PageNavComponent,
   ],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(window:resize)': 'onResize()',
   },
+  template: `
+    <section>
+      <app-navbar />
+      <app-home />
+      <app-about />
+      <app-projects />
+      <app-contact />
+    </section>
+    <app-page-nav />
+    @if (isWideScreen) {
+      <app-scroll-indicator />
+    }
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   title = 'portfolio';
@@ -69,7 +80,7 @@ export class AppComponent {
       });
     }, appearOptions);
 
-    const elements = document.querySelectorAll('.hidden');
+    const elements = document.querySelectorAll('.hiddenAnimate');
     elements.forEach((element) => appearOnScroll.observe(element));
   }
 

@@ -1,4 +1,4 @@
-:host {
+section {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 0.5rem;
@@ -15,7 +15,7 @@
 }
 
 @media (max-width: 768px) {
-  :host {
+  section {
     grid-template-columns: 1fr;
   }
 
