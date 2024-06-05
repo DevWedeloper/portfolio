@@ -43,14 +43,14 @@ export class ModalService<T> {
       environmentInjector,
     });
 
+    this.modalComponentRef.setInput('contentTemplate', contentTemplate);
+
     this.appRef.attachView(this.modalComponentRef.hostView);
 
     const domElem = (this.modalComponentRef.hostView as EmbeddedViewRef<T>)
       .rootNodes[0] as HTMLElement;
 
     document.body.appendChild(domElem);
-
-    this.modalComponentRef.setInput('contentTemplate', contentTemplate);
 
     this.isBodyScrollDisabled.set(true);
   }
