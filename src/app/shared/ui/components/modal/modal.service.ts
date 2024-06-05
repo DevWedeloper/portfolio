@@ -15,7 +15,7 @@ import { ModalComponent } from './modal.component';
 @Injectable({
   providedIn: 'root',
 })
-export class ModalService<T> {
+export class ModalService {
   private appRef = inject(ApplicationRef);
   private modalComponentRef?: ComponentRef<ModalComponent>;
   private rendererFactory = inject(RendererFactory2);
@@ -47,8 +47,9 @@ export class ModalService<T> {
 
     this.appRef.attachView(this.modalComponentRef.hostView);
 
-    const domElem = (this.modalComponentRef.hostView as EmbeddedViewRef<T>)
-      .rootNodes[0] as HTMLElement;
+    const domElem = (
+      this.modalComponentRef.hostView as EmbeddedViewRef<unknown>
+    ).rootNodes[0] as HTMLElement;
 
     document.body.appendChild(domElem);
 
