@@ -1,4 +1,4 @@
-import { AsyncPipe, NgStyle } from '@angular/common';
+import { AsyncPipe, NgStyle, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +12,7 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [NgStyle, AsyncPipe],
+  imports: [NgStyle, AsyncPipe, NgTemplateOutlet],
   template: `
     <div
       class="image-container"
