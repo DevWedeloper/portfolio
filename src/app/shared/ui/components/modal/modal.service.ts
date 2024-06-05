@@ -1,7 +1,6 @@
 import {
   ApplicationRef,
   ComponentRef,
-  EmbeddedViewRef,
   Injectable,
   RendererFactory2,
   TemplateRef,
@@ -48,11 +47,7 @@ export class ModalService {
 
     this.appRef.attachView(this.modalComponentRef.hostView);
 
-    const domElem = (
-      this.modalComponentRef.hostView as EmbeddedViewRef<unknown>
-    ).rootNodes[0] as HTMLElement;
-
-    document.body.appendChild(domElem);
+    document.body.appendChild(this.modalComponentRef.location.nativeElement);
 
     this.isBodyScrollDisabled.set(true);
   }
