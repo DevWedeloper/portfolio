@@ -24,6 +24,7 @@ export class ModalService {
 
   constructor() {
     effect(() => {
+      if (typeof document === 'undefined') return;
       if (this.isBodyScrollDisabled()) {
         this.renderer.addClass(document.body, 'no-scroll');
       } else {
