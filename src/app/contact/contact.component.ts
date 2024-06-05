@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,7 +22,8 @@ import { FormComponent } from './ui/form/form.component';
   selector: 'app-contact',
   standalone: true,
   imports: [
-    CommonModule,
+    NgStyle,
+    AsyncPipe,
     ReactiveFormsModule,
     ModalComponent,
     FormComponent,
