@@ -17,8 +17,79 @@ import {
   selector: 'app-slider',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.scss'],
+  template: `
+    <div class="slider">
+      <div class="arrows">
+        @if (index !== 0) {
+          <div
+            class="left-arrow"
+            (click)="goToPrevious()"
+            (keydown.Enter)="goToPrevious()"
+            tabindex="0"
+          >
+            ❰
+          </div>
+        }
+        @if (index !== slider().length - 1) {
+          <div
+            class="right-arrow"
+            (click)="goToNext()"
+            (keydown.Enter)="goToNext()"
+            tabindex="0"
+          >
+            ❱
+          </div>
+        }
+      </div>
+      <div class="slide-container">
+        <div [@slideAnimation]="index">
+          @for (slide of slider(); track i; let i = $index) {
+            @if (i === index) {
+              <ng-container [ngTemplateOutlet]="slide"></ng-container>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  `,
+  styles: [
+    `
+      .slider {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        height: 100%;
+      }
+
+      .left-arrow,
+      .right-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        font-size: 45px;
+        color: var(--text-color);
+        z-index: 1;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .right-arrow {
+        right: 0;
+      }
+
+      .left-arrow {
+        left: 0;
+      }
+
+      .slide-container {
+        overflow: hidden;
+        width: 85%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    `,
+  ],
   animations: [
     trigger('slideAnimation', [
       state('void', style({ transform: 'translateX(0)' })),
