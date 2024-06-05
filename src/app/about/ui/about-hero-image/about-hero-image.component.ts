@@ -22,6 +22,12 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   selector: 'app-about-hero-image',
   standalone: true,
   imports: [CommonModule, NgOptimizedImage],
+  host: {
+    '[class.about-img]': 'true',
+    '[class.hiddenAnimate]': 'true',
+    '[class.from-left]': 'true',
+    '[@blurAnimation]': 'blurAnimationState()',
+  },
   template: `
     <img
       [ngSrc]="
@@ -71,12 +77,6 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.about-img]': 'true',
-    '[class.hiddenAnimate]': 'true',
-    '[class.from-left]': 'true',
-    '[@blurAnimation]': 'blurAnimationState()',
-  },
 })
 export class AboutHeroImageComponent {
   private ts = inject(ThemeService);
