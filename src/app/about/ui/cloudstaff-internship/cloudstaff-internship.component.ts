@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 import { ModalService } from '../../../shared/ui/components/modal/modal.service';
@@ -7,7 +7,7 @@ import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.
 @Component({
   selector: 'app-cloudstaff-internship',
   standalone: true,
-  imports: [CommonModule, TooltipDirective],
+  imports: [NgStyle, AsyncPipe, TooltipDirective],
   template: `
     <div class="header">
       <h3>Project Name: SuiteView</h3>
