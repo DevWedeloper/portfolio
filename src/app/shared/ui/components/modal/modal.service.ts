@@ -6,7 +6,9 @@ import {
   RendererFactory2,
   TemplateRef,
   createComponent,
+  effect,
   inject,
+  signal,
 } from '@angular/core';
 import { ModalComponent } from './modal.component';
 
@@ -18,7 +20,17 @@ export class ModalService<T> {
   private modalComponentRef?: ComponentRef<ModalComponent>;
   private rendererFactory = inject(RendererFactory2);
   private renderer = this.rendererFactory.createRenderer(null, null);
-  isBodyScrollDisabled = false;
+  private isBodyScrollDisabled = signal(false);
+
+  constructor() {
+    effect(() => {
+      if (this.isBodyScrollDisabled()) {
+        this.renderer.addClass(document.body, 'no-scroll');
+      } else {
+        this.renderer.removeClass(document.body, 'no-scroll');
+      }
+    });
+  }
 
   open(contentTemplate: TemplateRef<unknown>): void {
     if (this.modalComponentRef) {
@@ -40,24 +52,14 @@ export class ModalService<T> {
 
     this.modalComponentRef.setInput('contentTemplate', contentTemplate);
 
-    this.isBodyScrollDisabled = true;
-    this.toggleBodyScroll();
+    this.isBodyScrollDisabled.set(true);
   }
 
   close(): void {
     if (this.modalComponentRef) {
       this.appRef.detachView(this.modalComponentRef.hostView);
       this.modalComponentRef?.destroy();
-      this.isBodyScrollDisabled = false;
-      this.toggleBodyScroll();
-    }
-  }
-
-  private toggleBodyScroll(): void {
-    if (this.isBodyScrollDisabled) {
-      this.renderer.addClass(document.body, 'no-scroll');
-    } else {
-      this.renderer.removeClass(document.body, 'no-scroll');
+      this.isBodyScrollDisabled.set(false);
     }
   }
 }
