@@ -1,71 +1,62 @@
 import {
   ApplicationRef,
-  ComponentFactoryResolver,
   ComponentRef,
-  EmbeddedViewRef,
   Injectable,
-  Injector,
-  Renderer2,
   RendererFactory2,
   TemplateRef,
+  createComponent,
+  effect,
   inject,
+  signal,
 } from '@angular/core';
 import { ModalComponent } from './modal.component';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ModalService<T> {
-  private componentFactoryResolver = inject(ComponentFactoryResolver);
+export class ModalService {
   private appRef = inject(ApplicationRef);
-  private injector = inject(Injector);
   private modalComponentRef?: ComponentRef<ModalComponent>;
-  private renderer: Renderer2;
   private rendererFactory = inject(RendererFactory2);
-  isBodyScrollDisabled = false;
+  private renderer = this.rendererFactory.createRenderer(null, null);
+  private isBodyScrollDisabled = signal(false);
 
   constructor() {
-    this.renderer = this.rendererFactory.createRenderer(null, null);
+    effect(() => {
+      if (typeof document === 'undefined') return;
+      if (this.isBodyScrollDisabled()) {
+        this.renderer.addClass(document.body, 'no-scroll');
+      } else {
+        this.renderer.removeClass(document.body, 'no-scroll');
+      }
+    });
   }
 
-  open(contentTemplate: TemplateRef<HTMLElement>): void {
+  open(contentTemplate: TemplateRef<unknown>): void {
     if (this.modalComponentRef) {
       this.appRef.detachView(this.modalComponentRef.hostView);
       this.modalComponentRef?.destroy();
     }
 
-    const factory =
-      this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-
-    this.modalComponentRef = factory.create(this.injector);
-
-    this.appRef.attachView(this.modalComponentRef.hostView);
-
-    const domElem = (this.modalComponentRef.hostView as EmbeddedViewRef<T>)
-      .rootNodes[0] as HTMLElement;
-
-    document.body.appendChild(domElem);
+    const environmentInjector = this.appRef.injector;
+    this.modalComponentRef = createComponent(ModalComponent, {
+      environmentInjector,
+    });
 
     this.modalComponentRef.setInput('contentTemplate', contentTemplate);
 
-    this.isBodyScrollDisabled = true;
-    this.toggleBodyScroll();
+    this.appRef.attachView(this.modalComponentRef.hostView);
+
+    document.body.appendChild(this.modalComponentRef.location.nativeElement);
+
+    this.isBodyScrollDisabled.set(true);
   }
 
   close(): void {
     if (this.modalComponentRef) {
       this.appRef.detachView(this.modalComponentRef.hostView);
       this.modalComponentRef?.destroy();
-      this.isBodyScrollDisabled = false;
-      this.toggleBodyScroll();
-    }
-  }
-
-  private toggleBodyScroll(): void {
-    if (this.isBodyScrollDisabled) {
-      this.renderer.addClass(document.body, 'no-scroll');
-    } else {
-      this.renderer.removeClass(document.body, 'no-scroll');
+      this.isBodyScrollDisabled.set(false);
     }
   }
 }

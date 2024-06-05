@@ -6,7 +6,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,9 +21,46 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
 @Component({
   selector: 'app-about-hero-image',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
-  templateUrl: './about-hero-image.component.html',
-  styleUrls: ['./about-hero-image.component.scss'],
+  imports: [NgOptimizedImage],
+  host: {
+    '[class.about-img]': 'true',
+    '[class.hiddenAnimate]': 'true',
+    '[class.from-left]': 'true',
+    '[@blurAnimation]': 'blurAnimationState()',
+  },
+  template: `
+    <img
+      [ngSrc]="
+        getBackgroundImage()
+          ? 'assets/images/backgrounds/about-night.webp'
+          : 'assets/images/backgrounds/about-day.webp'
+      "
+      fill
+      alt="About Image"
+    />
+  `,
+  styles: [
+    `
+      :host {
+        position: relative;
+        width: var(--image-width-desktop);
+        height: var(--image-height-desktop);
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+
+      img {
+        object-fit: cover;
+      }
+
+      @media (max-width: 500px) {
+        :host {
+          width: var(--image-width-small-mobile);
+          height: var(--image-height-small-mobile);
+        }
+      }
+    `,
+  ],
   animations: [
     trigger('blurAnimation', [
       state('animated', style({ filter: 'blur(0)' })),
@@ -40,12 +77,6 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.about-img]': 'true',
-    '[class.hiddenAnimate]': 'true',
-    '[class.from-left]': 'true',
-    '[@blurAnimation]': 'blurAnimationState()',
-  },
 })
 export class AboutHeroImageComponent {
   private ts = inject(ThemeService);
