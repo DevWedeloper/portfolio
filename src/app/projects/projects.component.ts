@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
 import { NextjsSupabaseAuthComponent } from './features/nextjs-supabase-auth/nextjs-supabase-auth.component';
@@ -9,7 +8,6 @@ import { ProjectTwoComponent } from './features/project-two/project-two.componen
   selector: 'app-projects',
   standalone: true,
   imports: [
-    CommonModule,
     ProjectOneComponent,
     ProjectTwoComponent,
     NextjsSupabaseAuthComponent,
