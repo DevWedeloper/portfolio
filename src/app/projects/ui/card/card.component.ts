@@ -2,12 +2,12 @@ import { AsyncPipe, NgStyle, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  TemplateRef,
   contentChild,
   inject,
   input,
 } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
+import { CardDirective } from './card.directive';
 
 @Component({
   selector: 'app-card',
@@ -28,7 +28,7 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
         </ul>
       </div>
       <div class="card-body">
-        <ng-container *ngTemplateOutlet="cardBody()" />
+        <ng-container [ngTemplateOutlet]="cardBody().template" />
       </div>
       <div class="card-links">
         <a [href]="websiteLink()" target="_blank">
@@ -144,6 +144,5 @@ export class CardComponent {
   tags = input.required<string[]>();
   websiteLink = input.required<string>();
   githubLink = input.required<string>();
-  protected cardBody =
-    contentChild.required<TemplateRef<HTMLElement>>('cardBodyTemplate');
+  protected cardBody = contentChild.required(CardDirective);
 }

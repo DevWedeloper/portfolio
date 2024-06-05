@@ -2,12 +2,13 @@ import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 import { CardComponent } from '../../ui/card/card.component';
+import { CardDirective } from '../../ui/card/card.directive';
 import { SliderComponent } from '../../ui/slider/slider.component';
 
 @Component({
   selector: 'app-nextjs-supabase-auth',
   standalone: true,
-  imports: [AsyncPipe, CardComponent, SliderComponent],
+  imports: [AsyncPipe, CardComponent, CardDirective, SliderComponent],
   template: `
     <app-card
       [src]="
@@ -20,13 +21,11 @@ import { SliderComponent } from '../../ui/slider/slider.component';
       [githubLink]="'https://github.com/DevWedeloper/nextjs-supabase-auth'"
       [websiteLink]="'https://nextjs-supabase-auth-devwedeloper.vercel.app/'"
     >
-      <ng-template #cardBodyTemplate>
-        <app-slider>
-          <ng-template #sliderTemplate>
-            <p>Authentication/Authorization using Supabase with Next.js.</p>
-          </ng-template>
-        </app-slider>
-      </ng-template>
+      <app-slider *appCard>
+        <ng-template #sliderTemplate>
+          <p>Authentication/Authorization using Supabase with Next.js.</p>
+        </ng-template>
+      </app-slider>
     </app-card>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
