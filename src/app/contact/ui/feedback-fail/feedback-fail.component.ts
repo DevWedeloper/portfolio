@@ -7,8 +7,22 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
   selector: 'app-feedback-fail',
   standalone: true,
   imports: [CommonModule, CustomButtonComponent],
-  templateUrl: './feedback-fail.component.html',
-  styleUrls: ['./feedback-fail.component.scss', './../feedback.scss'],
+  template: `
+    <div class="submit-modal-content">
+      <img src="assets/images/icons/pensive-face.svg" alt="Heart Eyes Emoji" />
+      <h5>Sorry.</h5>
+      <p>The message was not sent. Please try again next time</p>
+      <button
+        custom-button
+        disableEffect
+        (click)="ms.close()"
+        style="-webkit-tap-highlight-color: transparent"
+      >
+        OK
+      </button>
+    </div>
+  `,
+  styleUrls: ['./../feedback.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeedbackFailComponent {
