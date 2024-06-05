@@ -22,8 +22,39 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   selector: 'app-about-hero-image',
   standalone: true,
   imports: [CommonModule, NgOptimizedImage],
-  templateUrl: './about-hero-image.component.html',
-  styleUrls: ['./about-hero-image.component.scss'],
+  template: `
+    <img
+      [ngSrc]="
+        getBackgroundImage()
+          ? 'assets/images/backgrounds/about-night.webp'
+          : 'assets/images/backgrounds/about-day.webp'
+      "
+      fill
+      alt="About Image"
+    />
+  `,
+  styles: [
+    `
+      :host {
+        position: relative;
+        width: var(--image-width-desktop);
+        height: var(--image-height-desktop);
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+
+      img {
+        object-fit: cover;
+      }
+
+      @media (max-width: 500px) {
+        :host {
+          width: var(--image-width-small-mobile);
+          height: var(--image-height-small-mobile);
+        }
+      }
+    `,
+  ],
   animations: [
     trigger('blurAnimation', [
       state('animated', style({ filter: 'blur(0)' })),
