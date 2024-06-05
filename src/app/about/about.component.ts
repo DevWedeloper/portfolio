@@ -13,8 +13,54 @@ import { AboutTabComponent } from './ui/about-tab/about-tab.component';
     AboutTabComponent,
     MainSectionDirective,
   ],
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss'],
+  template: `
+    <section appMainSection id="about">
+      <app-about-hero-image />
+      <div class="hiddenAnimate from-right">
+        <h3>About Me</h3>
+        <p>
+          I enjoy creating softwares, I code most of my time. My main stack is
+          MEAN, with experience in clean architecture, reactive programming,
+          state management, serverless functions, REST APIs, and many more.
+        </p>
+        <app-about-tab />
+      </div>
+    </section>
+  `,
+  styles: [
+    `
+      section {
+        display: flex;
+        gap: 2rem;
+        overflow-x: hidden;
+      }
+
+      section > *:nth-child(1) {
+        flex: 1 1 30%;
+      }
+
+      section > *:nth-child(2) {
+        flex: 1 1 70%;
+      }
+
+      section p {
+        padding-top: 0.5rem;
+      }
+
+      @media (max-width: 768px) {
+        section {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        section > *:nth-child(1),
+        section > *:nth-child(2) {
+          flex: none;
+        }
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutComponent {}
