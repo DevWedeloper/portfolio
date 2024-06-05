@@ -8,8 +8,27 @@ import { SliderComponent } from '../../ui/slider/slider.component';
   selector: 'app-project-two',
   standalone: true,
   imports: [CommonModule, CardComponent, SliderComponent],
-  templateUrl: './project-two.component.html',
-  styleUrl: './project-two.component.scss',
+  template: `
+    <app-card
+      [src]="
+        (ts.isDarkMode$ | async)
+          ? 'assets/images/backgrounds/project-two-dark.webp'
+          : 'assets/images/backgrounds/project-two-light.webp'
+      "
+      [title]="'Project Two'"
+      [tags]="['Angular', 'NgRx', 'Pexels API', 'Angular Material', 'Vercel']"
+      [githubLink]="'https://github.com/DevWedeloper/projectTwo/'"
+      [websiteLink]="'https://project-two-infinite-scroll.vercel.app/'"
+    >
+      <ng-template #cardBodyTemplate>
+        <app-slider>
+          <ng-template #sliderTemplate>
+            <p>An infinite scroll that uses Pexels API.</p>
+          </ng-template>
+        </app-slider>
+      </ng-template>
+    </app-card>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectTwoComponent {
