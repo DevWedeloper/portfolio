@@ -5,7 +5,6 @@ import {
   EmbeddedViewRef,
   Injectable,
   Injector,
-  Renderer2,
   RendererFactory2,
   TemplateRef,
   inject,
@@ -20,13 +19,9 @@ export class ModalService<T> {
   private appRef = inject(ApplicationRef);
   private injector = inject(Injector);
   private modalComponentRef?: ComponentRef<ModalComponent>;
-  private renderer: Renderer2;
   private rendererFactory = inject(RendererFactory2);
+  private renderer = this.rendererFactory.createRenderer(null, null);
   isBodyScrollDisabled = false;
-
-  constructor() {
-    this.renderer = this.rendererFactory.createRenderer(null, null);
-  }
 
   open(contentTemplate: TemplateRef<HTMLElement>): void {
     if (this.modalComponentRef) {
