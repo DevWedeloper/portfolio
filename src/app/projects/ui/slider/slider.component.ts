@@ -5,7 +5,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { CommonModule } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +16,7 @@ import {
 @Component({
   selector: 'app-slider',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgTemplateOutlet],
   template: `
     <div class="slider">
       <div class="arrows">
