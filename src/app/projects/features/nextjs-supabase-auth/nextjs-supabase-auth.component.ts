@@ -8,8 +8,27 @@ import { SliderComponent } from '../../ui/slider/slider.component';
   selector: 'app-nextjs-supabase-auth',
   standalone: true,
   imports: [CommonModule, CardComponent, SliderComponent],
-  templateUrl: './nextjs-supabase-auth.component.html',
-  styleUrl: './nextjs-supabase-auth.component.scss',
+  template: `
+    <app-card
+      [src]="
+        (ts.isDarkMode$ | async)
+          ? 'assets/images/backgrounds/nextjs-supabase-auth-dark.webp'
+          : 'assets/images/backgrounds/nextjs-supabase-auth-light.webp'
+      "
+      [title]="'Next.js + Supabase Auth'"
+      [tags]="['Next.js', 'Supabase', 'Tailwind CSS', 'Shadcn UI', 'Vercel']"
+      [githubLink]="'https://github.com/DevWedeloper/nextjs-supabase-auth'"
+      [websiteLink]="'https://nextjs-supabase-auth-devwedeloper.vercel.app/'"
+    >
+      <ng-template #cardBodyTemplate>
+        <app-slider>
+          <ng-template #sliderTemplate>
+            <p>Authentication/Authorization using Supabase with Next.js.</p>
+          </ng-template>
+        </app-slider>
+      </ng-template>
+    </app-card>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NextjsSupabaseAuthComponent {
