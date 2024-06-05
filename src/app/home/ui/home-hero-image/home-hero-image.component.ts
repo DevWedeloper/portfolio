@@ -5,6 +5,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-home-hero-image',
   standalone: true,
   imports: [NgOptimizedImage],
+  host: {
+    '[class.home-img]': 'true',
+    '[class.hiddenAnimate]': 'true',
+    '[class.from-right]': 'true',
+  },
   template: `
     <img
       ngSrc="assets/images/backgrounds/me.webp"
@@ -49,10 +54,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.home-img]': 'true',
-    '[class.hiddenAnimate]': 'true',
-    '[class.from-right]': 'true',
-  },
 })
 export class HomeHeroImageComponent {}
