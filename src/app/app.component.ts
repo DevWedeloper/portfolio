@@ -31,13 +31,13 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
     '(window:resize)': 'onResize()',
   },
   template: `
-    <section>
+    <main>
       <app-navbar />
       <app-home />
       <app-about />
       <app-projects />
       <app-contact />
-    </section>
+    </main>
     <app-page-nav />
     @if (isWideScreen) {
       <app-scroll-indicator />
