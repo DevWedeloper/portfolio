@@ -6,7 +6,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,7 +21,7 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
 @Component({
   selector: 'app-about-hero-image',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [NgOptimizedImage],
   host: {
     '[class.about-img]': 'true',
     '[class.hiddenAnimate]': 'true',
