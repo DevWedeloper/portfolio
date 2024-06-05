@@ -59,26 +59,20 @@ export class AppComponent {
   }
 
   private addScrollAnimation(): void {
-    type Options = {
-      threshold: number;
-      rootMargin: string;
-    };
-
-    const appearOptions: Options = {
-      threshold: 0,
-      rootMargin: '0px 0px -150px 0px',
-    };
-
-    const appearOnScroll = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          appearOnScroll.unobserve(entry.target);
-        } else {
-          return;
-        }
-      });
-    }, appearOptions);
+    const appearOnScroll = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            appearOnScroll.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0,
+        rootMargin: '0px 0px -150px 0px',
+      },
+    );
 
     const elements = document.querySelectorAll('.hiddenAnimate');
     elements.forEach((element) => appearOnScroll.observe(element));
