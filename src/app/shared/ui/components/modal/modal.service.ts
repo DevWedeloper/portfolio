@@ -23,7 +23,7 @@ export class ModalService<T> {
   private renderer = this.rendererFactory.createRenderer(null, null);
   isBodyScrollDisabled = false;
 
-  open(contentTemplate: TemplateRef<HTMLElement>): void {
+  open(contentTemplate: TemplateRef<unknown>): void {
     if (this.modalComponentRef) {
       this.appRef.detachView(this.modalComponentRef.hostView);
       this.modalComponentRef?.destroy();
