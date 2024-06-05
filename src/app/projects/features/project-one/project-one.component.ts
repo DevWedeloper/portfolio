@@ -93,10 +93,8 @@ import { SliderComponent } from '../../ui/slider/slider.component';
           </p>
         </ng-container>
         <ng-container *appSlide>
-          <p class="accounts-heading">
-            To get started, use either of these accounts:
-          </p>
-          <div class="accounts-container">
+          <p>To get started, use either of these accounts:</p>
+          <div class="text-center">
             <p>username & password: admin</p>
             <p>username & password: standard</p>
           </div>
@@ -104,13 +102,6 @@ import { SliderComponent } from '../../ui/slider/slider.component';
       </app-slider>
     </app-card>
   `,
-  styles: [
-    `
-      .accounts-container p {
-        text-align: center;
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectOneComponent {
