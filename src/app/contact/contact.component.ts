@@ -31,8 +31,97 @@ import { FormComponent } from './ui/form/form.component';
     FeedbackFailComponent,
     MainSectionDirective,
   ],
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss'],
+  template: `
+    <section appMainSection id="contact">
+      <div class="contact-information hiddenAnimate from-left">
+        <h3>Contact Me</h3>
+        <div class="contact-information-item">
+          <img
+            class="icon icon-size-adjust"
+            src="assets/images/icons/email.svg"
+            alt="Email Icon"
+            [ngStyle]="{
+              filter:
+                (ts.isDarkMode$ | async)
+                  ? 'invert(100%) grayscale(100%)'
+                  : 'grayscale(100%)',
+            }"
+          />
+          <div class="contact-information-item-copy-area">
+            <p id="emailText">{{ email }}</p>
+            <app-copy-text [text]="email"></app-copy-text>
+          </div>
+        </div>
+        <div class="contact-information-item">
+          <img
+            class="icon icon-size-adjust"
+            src="assets/images/icons/phone.svg"
+            alt="Phone Icon"
+            [ngStyle]="{
+              filter:
+                (ts.isDarkMode$ | async)
+                  ? 'invert(100%) grayscale(100%)'
+                  : 'grayscale(100%)',
+            }"
+          />
+          <div class="contact-information-item-copy-area">
+            <p id="phoneText">{{ phoneNumber }}</p>
+            <app-copy-text [text]="phoneNumber"></app-copy-text>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form hiddenAnimate from-right">
+        <app-form (submitForm)="cs.submitForm$.next($event)" />
+      </div>
+    </section>
+
+    <ng-template #sorryTemplate>
+      <app-feedback-fail />
+    </ng-template>
+
+    <ng-template #thankYouTemplate>
+      <app-feedback-success />
+    </ng-template>
+  `,
+  styles: [
+    `
+      section {
+        display: flex;
+        gap: 2rem;
+        overflow-x: hidden;
+      }
+
+      section > *:nth-child(1) {
+        flex: 1 1 40%;
+      }
+
+      section > *:nth-child(2) {
+        flex: 1 1 60%;
+      }
+
+      .contact-information-item {
+        display: flex;
+        margin-top: 1.5rem;
+      }
+
+      .contact-information-item > img {
+        margin-right: 1rem;
+      }
+
+      .contact-information-item-copy-area {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      @media (max-width: 768px) {
+        section {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
