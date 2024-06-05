@@ -1,12 +1,11 @@
 import {
   ApplicationRef,
-  ComponentFactoryResolver,
   ComponentRef,
   EmbeddedViewRef,
   Injectable,
-  Injector,
   RendererFactory2,
   TemplateRef,
+  createComponent,
   inject,
 } from '@angular/core';
 import { ModalComponent } from './modal.component';
@@ -15,9 +14,7 @@ import { ModalComponent } from './modal.component';
   providedIn: 'root',
 })
 export class ModalService<T> {
-  private componentFactoryResolver = inject(ComponentFactoryResolver);
   private appRef = inject(ApplicationRef);
-  private injector = inject(Injector);
   private modalComponentRef?: ComponentRef<ModalComponent>;
   private rendererFactory = inject(RendererFactory2);
   private renderer = this.rendererFactory.createRenderer(null, null);
@@ -29,10 +26,10 @@ export class ModalService<T> {
       this.modalComponentRef?.destroy();
     }
 
-    const factory =
-      this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-
-    this.modalComponentRef = factory.create(this.injector);
+    const environmentInjector = this.appRef.injector;
+    this.modalComponentRef = createComponent(ModalComponent, {
+      environmentInjector,
+    });
 
     this.appRef.attachView(this.modalComponentRef.hostView);
 
