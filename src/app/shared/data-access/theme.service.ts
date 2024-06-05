@@ -11,14 +11,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ThemeService {
-  private renderer: Renderer2;
   private rendererFactory = inject(RendererFactory2);
+  private renderer = this.rendererFactory.createRenderer(null, null);
   private darkThemeMediaQuery!: MediaQueryList;
   darkMode$ = new BehaviorSubject<boolean>(true);
   isDarkMode$: Observable<boolean> = this.darkMode$.asObservable();
 
   constructor() {
-    this.renderer = this.rendererFactory.createRenderer(null, null);
     afterNextRender(() => {
       this.darkThemeMediaQuery = matchMedia('(prefers-color-scheme: dark)');
     });
