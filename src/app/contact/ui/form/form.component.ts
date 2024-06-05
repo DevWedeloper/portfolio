@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +18,7 @@ import { ContactService } from '../../data-access/contact.service';
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, CustomButtonComponent],
+  imports: [AsyncPipe, ReactiveFormsModule, CustomButtonComponent],
   template: `
     @if (contactForm.valueChanges | async) {}
     <form [formGroup]="contactForm" (ngSubmit)="submitForm.emit(contactForm)">
