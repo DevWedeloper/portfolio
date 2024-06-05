@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CustomButtonComponent } from '../../../shared/ui/components/custom-button/button';
 import { ModalService } from '../../../shared/ui/components/modal/modal.service';
@@ -6,7 +5,7 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
 @Component({
   selector: 'app-feedback-fail',
   standalone: true,
-  imports: [CommonModule, CustomButtonComponent],
+  imports: [CustomButtonComponent],
   template: `
     <div class="submit-modal-content">
       <img src="assets/images/icons/pensive-face.svg" alt="Heart Eyes Emoji" />
