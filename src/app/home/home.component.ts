@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +16,6 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
   selector: 'app-home',
   standalone: true,
   imports: [
-    CommonModule,
     HighlightTextDirective,
     HomeHeroImageComponent,
     CustomButtonComponent,
