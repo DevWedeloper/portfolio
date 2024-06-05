@@ -8,7 +8,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { TypeEffectService } from '../shared/data-access/type-effect.service';
-import { CustomAnchorComponent } from '../shared/ui/components/custom-button/button';
+import { CustomButtonComponent } from '../shared/ui/components/custom-button/button';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
 import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.directive';
 import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.component';
@@ -20,7 +20,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
     CommonModule,
     HighlightTextDirective,
     HomeHeroImageComponent,
-    CustomAnchorComponent,
+    CustomButtonComponent,
     MainSectionDirective,
   ],
   templateUrl: './home.component.html',
