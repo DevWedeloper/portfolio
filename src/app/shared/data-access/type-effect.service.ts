@@ -1,9 +1,6 @@
 import {
   ElementRef,
-  Injectable,
-  Renderer2,
-  RendererFactory2,
-  inject,
+  Injectable
 } from '@angular/core';
 
 interface TypingEffect {
@@ -18,12 +15,6 @@ interface TypingEffect {
   providedIn: 'root',
 })
 export class TypeEffectService {
-  private renderer: Renderer2;
-  private rendererFactory = inject(RendererFactory2);
-  constructor() {
-    this.renderer = this.rendererFactory.createRenderer(null, null);
-  }
-
   addTypeEffect(
     { phrases, typeSpeed, reverseSpeed, reverseDelay, loop }: TypingEffect,
     element: ElementRef<HTMLElement>,
