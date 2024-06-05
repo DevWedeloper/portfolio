@@ -14,14 +14,14 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   selector: 'app-copy-text',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './copy-text.component.html',
-  styleUrls: ['./copy-text.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[tabindex]': '0',
     '(click)': 'onEvent()',
     '(keydown.Enter)': 'onEvent()',
   },
+  templateUrl: './copy-text.component.html',
+  styleUrls: ['./copy-text.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CopyTextComponent {
   protected ts = inject(ThemeService);
