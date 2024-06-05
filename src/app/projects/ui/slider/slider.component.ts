@@ -12,6 +12,7 @@ import {
   TemplateRef,
   contentChildren,
 } from '@angular/core';
+import { SlideDirective } from './slide.directive';
 
 @Component({
   selector: 'app-slider',
@@ -45,7 +46,7 @@ import {
         <div [@slideAnimation]="index">
           @for (slide of slider(); track i; let i = $index) {
             @if (i === index) {
-              <ng-container [ngTemplateOutlet]="slide"></ng-container>
+              <ng-container [ngTemplateOutlet]="slide.template"></ng-container>
             }
           }
         </div>
@@ -108,7 +109,7 @@ import {
 export class SliderComponent {
   protected index = 0;
   protected slider =
-    contentChildren<TemplateRef<HTMLElement>>('sliderTemplate');
+    contentChildren(SlideDirective);
 
   goToNext(): void {
     if (this.index < this.slider().length - 1) {

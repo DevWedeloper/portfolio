@@ -3,12 +3,19 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 import { CardComponent } from '../../ui/card/card.component';
 import { CardDirective } from '../../ui/card/card.directive';
+import { SlideDirective } from '../../ui/slider/slide.directive';
 import { SliderComponent } from '../../ui/slider/slider.component';
 
 @Component({
   selector: 'app-project-one',
   standalone: true,
-  imports: [AsyncPipe, CardComponent, CardDirective, SliderComponent],
+  imports: [
+    AsyncPipe,
+    CardComponent,
+    CardDirective,
+    SliderComponent,
+    SlideDirective,
+  ],
   template: `
     <app-card
       [src]="
@@ -30,13 +37,11 @@ import { SliderComponent } from '../../ui/slider/slider.component';
       [websiteLink]="'https://project-one-front-end.vercel.app/'"
     >
       <app-slider *appCard>
-        <ng-template #sliderTemplate>
-          <p>
-            A game statistic simulator with dashboard and complex CRUD, also
-            comes with Authentication/Authorization.
-          </p>
-        </ng-template>
-        <ng-template #sliderTemplate>
+        <p *appSlide>
+          A game statistic simulator with dashboard and complex CRUD, also comes
+          with Authentication/Authorization.
+        </p>
+        <ng-container *appSlide>
           <strong><p>Front-End</p></strong>
           <ul>
             <li>
@@ -54,8 +59,8 @@ import { SliderComponent } from '../../ui/slider/slider.component';
               </p>
             </li>
           </ul>
-        </ng-template>
-        <ng-template #sliderTemplate>
+        </ng-container>
+        <ng-container *appSlide>
           <strong><p>Back-End</p></strong>
           <ul>
             <li>
@@ -64,8 +69,8 @@ import { SliderComponent } from '../../ui/slider/slider.component';
             <li><p>Utilized dependency injection for testability</p></li>
             <li><p>Implemented caching for optimized compute time</p></li>
           </ul>
-        </ng-template>
-        <ng-template #sliderTemplate>
+        </ng-container>
+        <ng-container *appSlide>
           <strong><p>Auth</p></strong>
           <ul>
             <li><p>Refresh token rotation</p></li>
@@ -79,15 +84,15 @@ import { SliderComponent } from '../../ui/slider/slider.component';
             </li>
             <li><p>Login with a google account</p></li>
           </ul>
-        </ng-template>
-        <ng-template #sliderTemplate>
+        </ng-container>
+        <ng-container *appSlide>
           <p>
             There are two roles, standard and admin. Standard users can only do
             GET actions, while admin users can do CREATE, UPDATE, DELETE
             actions.
           </p>
-        </ng-template>
-        <ng-template #sliderTemplate>
+        </ng-container>
+        <ng-container *appSlide>
           <p class="accounts-heading">
             To get started, use either of these accounts:
           </p>
@@ -95,7 +100,7 @@ import { SliderComponent } from '../../ui/slider/slider.component';
             <p>username & password: admin</p>
             <p>username & password: standard</p>
           </div>
-        </ng-template>
+        </ng-container>
       </app-slider>
     </app-card>
   `,
