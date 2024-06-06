@@ -47,7 +47,7 @@ const arrow =
       <div class="flex w-[85%] items-center justify-center overflow-hidden">
         <div [@slideAnimation]="index">
           @for (slide of slider(); track $index) {
-            @if (i === $index) {
+            @if ($index === index) {
               <ng-container [ngTemplateOutlet]="slide.template" />
             }
           }
