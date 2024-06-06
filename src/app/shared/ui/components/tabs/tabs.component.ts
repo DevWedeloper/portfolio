@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +15,7 @@ import { TabDirective } from './tab.directive';
 @Component({
   selector: 'app-tabs',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgClass, NgTemplateOutlet],
   template: `
     <ul class="tabs">
       @for (tab of tabs(); track $index) {
