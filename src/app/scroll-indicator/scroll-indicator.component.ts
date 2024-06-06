@@ -50,7 +50,7 @@ export class ScrollIndicatorComponent {
         subscriber.next(progress);
       });
 
-      return () => observer.unsubscribe();
+      subscriber.add(() => observer.unsubscribe());
     }),
   );
 
