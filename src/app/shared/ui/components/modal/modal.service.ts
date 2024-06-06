@@ -17,8 +17,7 @@ import { ModalComponent } from './modal.component';
 export class ModalService {
   private appRef = inject(ApplicationRef);
   private modalComponentRef?: ComponentRef<ModalComponent>;
-  private rendererFactory = inject(RendererFactory2);
-  private renderer = this.rendererFactory.createRenderer(null, null);
+  private renderer = inject(RendererFactory2).createRenderer(null, null);
   private isBodyScrollDisabled = signal(false);
 
   constructor() {
