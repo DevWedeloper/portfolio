@@ -75,7 +75,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
         <a
           custom-button
           href="assets/pdfs/resume.pdf"
-          class="resume btn"
+          class="resume text-big"
           download
         >
           Download Résumé

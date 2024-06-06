@@ -90,7 +90,7 @@ import { ContactService } from '../../data-access/contact.service';
       <div class="form-item-container">
         <button
           custom-button
-          class="btn"
+          class="text-big"
           type="submit"
           [disabled]="contactForm.invalid || (cs.submitLoading$ | async)"
         >
