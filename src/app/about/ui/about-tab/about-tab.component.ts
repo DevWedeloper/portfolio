@@ -211,7 +211,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
           <li>
             <span>Internship at Cloudstaff</span>
             <span
-              class="superscript-container"
+              class="relative -top-2 inline-block"
               (click)="ms.open(cloudstaffInternship)"
               (keydown.Enter)="ms.open(cloudstaffInternship)"
               tabindex="0"
