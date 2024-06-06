@@ -127,7 +127,7 @@ import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
 
       .navbar li a {
         text-decoration: none;
-        font-size: var(--font-size-regular-desktop);
+        font-size: var(--font-size-regular);
         color: var(--text-color);
         padding: 0.5rem;
         margin: -0.5rem;
@@ -167,9 +167,6 @@ import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
       @media (max-width: 991px) {
         .navbar {
           padding: 2rem 3%;
-        }
-        .navbar li a {
-          font-size: var(--font-size-regular-tablet);
         }
       }
 
@@ -232,16 +229,6 @@ import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
 
         .navbar li:last-child {
           display: none;
-        }
-
-        .navbar li a {
-          font-size: var(--font-size-regular-mobile);
-        }
-      }
-
-      @media (max-width: 500px) {
-        .navbar li a {
-          font-size: var(--font-size-regular-small-mobile);
         }
       }
     `,

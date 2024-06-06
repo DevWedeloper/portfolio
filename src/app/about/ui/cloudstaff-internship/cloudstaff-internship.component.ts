@@ -109,7 +109,7 @@ import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.
         grid-template-columns: min-content 1fr;
         padding-top: 2rem;
         gap: 0.5rem;
-        font-size: var(--font-size-regular-desktop);
+        font-size: var(--font-size-regular);
         list-style: none;
       }
 

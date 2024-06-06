@@ -177,7 +177,7 @@ import { ContactService } from '../../data-access/contact.service';
         color: #fff;
         padding: 0.5rem 1rem;
         border-radius: 0.5rem;
-        font-size: var(--font-size-tooltip-desktop);
+        font-size: var(--font-size-tooltip);
         z-index: 1;
         align-items: flex-start;
         user-select: none;

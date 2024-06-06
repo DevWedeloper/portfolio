@@ -24,7 +24,7 @@ import {
         background: var(--main-color);
         color: var(--text-color);
         border-radius: 1rem;
-        font-size: var(--font-size-regular-desktop);
+        font-size: var(--font-size-regular);
         transition: transform 0.3s;
         cursor: pointer;
         z-index: 1;

@@ -49,7 +49,7 @@ import { TabDirective } from './tab.directive';
       }
 
       .tab-links {
-        font-size: var(--font-size-regular-desktop);
+        font-size: var(--font-size-regular);
         padding: 0.5rem;
         cursor: pointer;
       }
@@ -62,23 +62,9 @@ import { TabDirective } from './tab.directive';
         transition: all 0.3s ease-in-out;
       }
 
-      @media (max-width: 991px) {
-        .tab-links {
-          font-size: var(--font-size-regular-tablet);
-        }
-      }
-
       @media (max-width: 768px) {
         .tabs {
           justify-content: center;
-        }
-        .tab-links {
-          font-size: var(--font-size-regular-mobile);
-        }
-      }
-      @media (max-width: 500px) {
-        .tab-links {
-          font-size: var(--font-size-regular-small-mobile);
         }
       }
     `,

@@ -22,8 +22,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     `
       :host {
         position: relative;
-        width: var(--image-width-desktop);
-        height: var(--image-height-desktop);
+        width: var(--image-width);
+        height: var(--image-height);
         border: 0.5rem solid var(--main-color);
         animation: animate 5s ease-in-out infinite;
         overflow: hidden;
@@ -42,13 +42,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         }
         100% {
           border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
-        }
-      }
-
-      @media (max-width: 500px) {
-        :host {
-          width: var(--image-width-small-mobile);
-          height: var(--image-height-small-mobile);
         }
       }
     `,

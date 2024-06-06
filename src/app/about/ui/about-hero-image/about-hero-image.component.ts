@@ -43,8 +43,8 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
     `
       :host {
         position: relative;
-        width: var(--image-width-desktop);
-        height: var(--image-height-desktop);
+        width: var(--image-width);
+        height: var(--image-height);
         border-radius: 1rem;
         overflow: hidden;
       }
@@ -55,8 +55,8 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
 
       @media (max-width: 500px) {
         :host {
-          width: var(--image-width-small-mobile);
-          height: var(--image-height-small-mobile);
+          width: var(--image-width);
+          height: var(--image-height);
         }
       }
     `,

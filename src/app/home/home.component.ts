@@ -103,7 +103,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
       }
 
       .home-content .type-effect-text {
-        font-size: calc(var(--font-size-big-desktop) - 0.5rem);
+        font-size: calc(var(--font-size-big) - 0.5rem);
       }
 
       .home-content .resume {
@@ -155,12 +155,6 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
         }
       }
 
-      @media (max-width: 991px) {
-        .home-content .type-effect-text {
-          font-size: calc(var(--font-size-big-tablet) - 0.5rem);
-        }
-      }
-
       @media (max-width: 768px) {
         section {
           flex-direction: column-reverse;
@@ -176,16 +170,6 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
           justify-content: center;
           flex-direction: column;
           align-items: center;
-        }
-
-        .home-content .type-effect-text {
-          font-size: calc(var(--font-size-big-mobile) - 0.5rem);
-        }
-      }
-
-      @media (max-width: 500px) {
-        .home-content .type-effect-text {
-          font-size: calc(var(--font-size-big-small-mobile) - 0.55rem);
         }
       }
     `,

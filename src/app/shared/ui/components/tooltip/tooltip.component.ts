@@ -23,7 +23,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
         border-radius: 0.5rem;
         color: var(--text-color-reverse);
         padding: 0.5rem;
-        font-size: var(--font-size-tooltip-desktop);
+        font-size: var(--font-size-tooltip);
         margin-top: 5px;
         transform: translateX(-50%);
       }

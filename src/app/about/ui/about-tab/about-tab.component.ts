@@ -257,7 +257,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
 
       .tab-content {
         list-style: none;
-        font-size: var(--font-size-regular-desktop);
+        font-size: var(--font-size-regular);
         animation: animateToLeft 0.5s ease;
       }
 
