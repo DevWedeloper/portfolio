@@ -17,11 +17,11 @@ import { TabDirective } from './tab.directive';
   standalone: true,
   imports: [NgClass, NgTemplateOutlet],
   template: `
-    <ul class="tabs">
+    <ul class="relative flex list-none p-2 max-md:justify-center">
       @for (tab of tabs(); track $index) {
         <li
           #tabLinks
-          class="tab-links"
+          class="pointer p-2 text-regular"
           [ngClass]="{ active: activeTabIndex() === $index }"
           (click)="activeTabIndex.set($index)"
           (keydown.Enter)="activeTabIndex.set($index)"
@@ -31,7 +31,7 @@ import { TabDirective } from './tab.directive';
         </li>
       }
       <li
-        class="tab-line"
+        class="absolute h-1 rounded-2xl bg-main-color transition-all duration-300 ease-in-out"
         [style.width]="linePosition()?.width"
         [style.left]="linePosition()?.left"
         [style.top]="linePosition()?.top"
@@ -39,36 +39,6 @@ import { TabDirective } from './tab.directive';
     </ul>
     <ng-container [ngTemplateOutlet]="selectedTabTpl()" />
   `,
-  styles: [
-    `
-      .tabs {
-        position: relative;
-        display: flex;
-        list-style: none;
-        padding: 0.5rem;
-      }
-
-      .tab-links {
-        font-size: var(--font-size-regular);
-        padding: 0.5rem;
-        cursor: pointer;
-      }
-
-      .tab-line {
-        position: absolute;
-        height: 5px;
-        background-color: var(--main-color);
-        border-radius: 1rem;
-        transition: all 0.3s ease-in-out;
-      }
-
-      @media (max-width: 768px) {
-        .tabs {
-          justify-content: center;
-        }
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent {
