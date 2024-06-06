@@ -2,63 +2,35 @@ import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Observable, fromEvent } from 'rxjs';
+import { twMerge } from 'tailwind-merge';
 import { sections } from '../shared/ui/components/page-nav/page-nav.component';
+
+const shapeClass =
+  'relative z-10 block h-2 w-2 rotate-45 bg-transparent outline outline-1 outline-text-color';
+
+const activeShapeClass = twMerge(
+  shapeClass,
+  'h-5 w-5 outline outline-1 outline-main-color',
+);
 
 @Component({
   standalone: true,
   imports: [NgClass],
   selector: 'app-scroll-indicator',
+  host: { class: 'fixed right-4 top-1/2 -translate-y-1/2' },
   template: `
-    <div class="container">
-      <span class="line" [style.height.%]="progress()"></span>
+    <div
+      class="relative flex h-[300px] w-[60px] flex-col items-center justify-between"
+    >
+      <span
+        class="absolute w-[1px] bg-text-color"
+        [style.height.%]="progress()"
+      ></span>
       @for (shape of sections(); track i; let i = $index) {
-        <div class="shapes" [ngClass]="{ active: shape.isActive }"></div>
+        <div class="{{ shape.isActive ? activeShapeClass : shapeClass }}"></div>
       }
     </div>
   `,
-  styles: [
-    `
-      :host {
-        position: fixed;
-        top: 50%;
-        right: 15px;
-        transform: translateY(-50%);
-      }
-
-      :host .container {
-        height: 300px;
-        width: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-flow: column;
-        position: relative;
-      }
-
-      :host .shapes {
-        display: block;
-        height: 10px;
-        width: 10px;
-        outline: 1px solid var(--text-color);
-        background: transparent;
-        transform: rotate(45deg);
-        position: relative;
-        z-index: 1;
-      }
-
-      :host .shapes.active {
-        outline: 1px solid var(--main-color);
-        height: 20px;
-        width: 20px;
-      }
-
-      .line {
-        position: absolute;
-        width: 1px;
-        background: var(--text-color);
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScrollIndicatorComponent {
@@ -81,4 +53,7 @@ export class ScrollIndicatorComponent {
       return () => observer.unsubscribe();
     }),
   );
+
+  protected activeShapeClass = activeShapeClass;
+  protected shapeClass = shapeClass;
 }
