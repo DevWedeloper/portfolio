@@ -77,11 +77,45 @@ $dark-theme-colors: (
   --image-height-small-mobile: 27rem;
 }
 
-.light-theme {
-  @include apply-theme-colors($light-theme-colors);
+:root {
+  --font-size-big: 3.2rem;
+  --font-size-regular: 1.6rem;
+  --font-size-tooltip: 1rem;
+  --icon-size-adjust: 2rem;
+  --image-width: 21rem;
+  --image-height: 34rem;
 }
 
-.dark-theme {
+@media (max-width: 991px) {
+  :root {
+    --font-size-big: 2.7rem;
+    --font-size-regular: 1.4rem;
+    --font-size-tooltip: 0.9rem;
+    --icon-size-adjust: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-big: 2.2rem;
+    --font-size-regular: 1.2rem;
+    --font-size-tooltip: 0.8rem;
+    --icon-size-adjust: 1.6rem;
+  }
+}
+
+@media (max-width: 500px) {
+  :root {
+    --font-size-big: 2rem;
+    --font-size-regular: 1rem;
+    --font-size-tooltip: 0.7rem;
+    --icon-size-adjust: 1.4rem;
+    --image-width: 17rem;
+    --image-height: 27rem;
+  }
+}
+
+.dark {
   @include apply-theme-colors($dark-theme-colors);
 }
 
