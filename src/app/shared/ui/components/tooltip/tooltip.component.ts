@@ -1,11 +1,9 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-tooltip',
   standalone: true,
-  imports: [CommonModule],
   host: {
     class: `
       fixed z-10 mt-[5px] -translate-x-1/2 rounded-lg bg-text-color p-2 text-tooltip text-text-color-reverse 
