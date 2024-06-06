@@ -7,6 +7,12 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   host: {
+    class: `
+      fixed z-10 mt-[5px] -translate-x-1/2 rounded-lg bg-text-color p-2 text-tooltip text-text-color-reverse 
+      before:absolute before:-top-1 before:left-[calc(50%-5px)] before:border-b-[5px] before:border-l-[5px] 
+      before:border-r-[5px] before:border-b-text-color before:border-l-transparent before:border-r-transparent 
+      before:[border-bottom-style:solid] before:[border-left-style:solid] before:[border-right-style:solid]
+    `,
     '[@fadeInOut]': 'true',
     '[style.left.px]': 'left()',
     '[style.top.px]': 'top()',
@@ -14,31 +20,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   template: `
     {{ text() }}
   `,
-  styles: [
-    `
-      :host {
-        position: fixed;
-        z-index: 3;
-        background-color: var(--text-color);
-        border-radius: 0.5rem;
-        color: var(--text-color-reverse);
-        padding: 0.5rem;
-        font-size: var(--font-size-tooltip);
-        margin-top: 5px;
-        transform: translateX(-50%);
-      }
-
-      :host::before {
-        content: '';
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-bottom: 5px solid var(--text-color);
-        position: absolute;
-        left: calc(50% - 5px);
-        top: -4px;
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('fadeInOut', [
