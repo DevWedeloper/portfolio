@@ -38,7 +38,7 @@ import { FormComponent } from './ui/form/form.component';
         <h3>Contact Me</h3>
         <div class="contact-information-item">
           <img
-            class="icon w-icon-adjust"
+            class="w-icon-adjust select-none"
             src="assets/images/icons/email.svg"
             alt="Email Icon"
             [ngStyle]="{
@@ -55,7 +55,7 @@ import { FormComponent } from './ui/form/form.component';
         </div>
         <div class="contact-information-item">
           <img
-            class="icon w-icon-adjust"
+            class="w-icon-adjust select-none"
             src="assets/images/icons/phone.svg"
             alt="Phone Icon"
             [ngStyle]="{

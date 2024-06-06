@@ -28,7 +28,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
           <li class="skills-item icon-container">
             <span appTooltip tooltipText="HTML">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/html.svg"
                 alt="HTML Logo"
                 loading="lazy"
@@ -36,7 +36,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             </span>
             <span appTooltip tooltipText="CSS">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/css.svg"
                 alt="CSS Logo"
                 loading="lazy"
@@ -44,7 +44,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             </span>
             <span appTooltip tooltipText="JavaScript">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/javascript.svg"
                 alt="JavaScript Logo"
                 loading="lazy"
@@ -52,7 +52,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             </span>
             <span appTooltip tooltipText="Angular">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/angular.svg"
                 alt="Angular Logo"
                 loading="lazy"
@@ -61,7 +61,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             <span appTooltip tooltipText="RxJS">
               <img
                 fill
-                class="icon"
+                class="w-8 select-none"
                 ngSrc="assets/images/icons/rxjs.svg"
                 alt="RxJS logo"
                 loading="lazy"
@@ -70,7 +70,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             <span appTooltip tooltipText="NgRx">
               <img
                 fill
-                class="icon"
+                class="w-8 select-none"
                 ngSrc="assets/images/icons/ngrx.svg"
                 alt="NgRx Logo"
                 loading="lazy"
@@ -78,7 +78,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             </span>
             <span appTooltip tooltipText="TypeScript">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/typescript.svg"
                 alt="TypeScript Logo"
                 loading="lazy"
@@ -86,7 +86,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             </span>
             <span appTooltip tooltipText="SASS">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/sass.svg"
                 alt="SASS Logo"
                 loading="lazy"
@@ -97,7 +97,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
           <li class="skills-item icon-container">
             <span appTooltip tooltipText="MongoDB">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/mongodb.svg"
                 alt="MongoDB Logo"
                 loading="lazy"
@@ -105,7 +105,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             </span>
             <span appTooltip tooltipText="Express.js">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/express-js.svg"
                 alt="Express.js Logo"
                 loading="lazy"
@@ -119,7 +119,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             </span>
             <span appTooltip tooltipText="Node.js">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/node-js.svg"
                 alt="Node.js Logo"
                 loading="lazy"
@@ -127,7 +127,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             </span>
             <span appTooltip tooltipText="TypeScript">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/typescript.svg"
                 alt="TypeScript Logo"
                 loading="lazy"
@@ -138,7 +138,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
           <li class="skills-item icon-container">
             <span appTooltip tooltipText="Git">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/git.svg"
                 alt="Git logo"
                 loading="lazy"
@@ -146,7 +146,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             </span>
             <span appTooltip tooltipText="GitHub">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="{{
                   (ts.isDarkMode$ | async)
                     ? 'assets/images/icons/github-light.svg'
@@ -160,7 +160,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
           <li class="skills-item icon-container">
             <span appTooltip tooltipText="AWS">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="{{
                   (ts.isDarkMode$ | async)
                     ? 'assets/images/icons/aws-light.svg'
@@ -172,7 +172,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             </span>
             <span appTooltip tooltipText="Rest API">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/rest-api.svg"
                 alt="Rest API logo"
                 loading="lazy"
@@ -186,7 +186,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             </span>
             <span appTooltip tooltipText="Google Cloud Functions">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/google-cloud-functions.svg"
                 alt="Google Cloud Functions logo"
                 loading="lazy"
@@ -194,7 +194,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
             </span>
             <span appTooltip tooltipText="OAuth 2.0">
               <img
-                class="icon"
+                class="w-8 select-none"
                 src="assets/images/icons/oauth.svg"
                 alt="OAuth 2.0 logo"
                 loading="lazy"
@@ -217,7 +217,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
               tabindex="0"
             >
               <img
-                class="icon w-icon-adjust cursor-pointer"
+                class="w-icon-adjust cursor-pointer select-none"
                 src="assets/images/icons/open-in-new.svg"
                 alt="Open In New Icon"
                 loading="lazy"

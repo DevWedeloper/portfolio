@@ -31,7 +31,7 @@ import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
             tabindex="0"
           ></span>
           <span
-            class="icon-link icon"
+            class="icon-link w-8 select-none"
             (click)="menuOnClick()"
             (keydown.Enter)="menuOnClick()"
             tabindex="0"

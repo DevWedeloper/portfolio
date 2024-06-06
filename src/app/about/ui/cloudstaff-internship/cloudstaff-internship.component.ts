@@ -13,7 +13,7 @@ import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.
       <h3>Project Name: SuiteView</h3>
       <span>
         <img
-          class="icon w-icon-adjust"
+          class="w-icon-adjust select-none"
           style="-webkit-tap-highlight-color: transparent"
           src="assets/images/icons/close.svg"
           alt="Close Logo"
@@ -34,7 +34,7 @@ import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.
       <li class="flex">
         <span appTooltip tooltipText="Angular">
           <img
-            class="icon"
+            class="w-8 select-none"
             src="assets/images/icons/angular.svg"
             alt="Angular Logo"
             loading="lazy"
@@ -42,7 +42,7 @@ import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.
         </span>
         <span appTooltip tooltipText="Laravel">
           <img
-            class="icon"
+            class="w-8 select-none"
             src="assets/images/icons/laravel.svg"
             alt="Laravel Logo"
             loading="lazy"
@@ -50,7 +50,7 @@ import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.
         </span>
         <span appTooltip tooltipText="Lumen">
           <img
-            class="icon"
+            class="w-8 select-none"
             src="assets/images/icons/lumen.svg"
             alt="Lumen Logo"
             loading="lazy"
@@ -58,7 +58,7 @@ import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.
         </span>
         <span appTooltip tooltipText="AWS S3 Bucket">
           <img
-            class="icon"
+            class="w-8 select-none"
             src="assets/images/icons/aws-s3-bucket.svg"
             alt="AWS S3 Bucket Logo"
             loading="lazy"
