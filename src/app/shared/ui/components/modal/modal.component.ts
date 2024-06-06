@@ -6,7 +6,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgStyle, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +24,7 @@ import { ModalService } from './modal.service';
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [AsyncPipe, NgStyle, NgTemplateOutlet],
   host: {
     '[@hostAnimation]': 'true',
     '(document:keydown.escape)': 'onEscapeKeydown()',
@@ -45,7 +45,7 @@ import { ModalService } from './modal.service';
     ></div>
     <div [@fadeInOut] class="modal-container">
       <div class="modal-content">
-        <ng-container *ngTemplateOutlet="contentTemplate()" />
+        <ng-container [ngTemplateOutlet]="contentTemplate()" />
       </div>
     </div>
   `,
