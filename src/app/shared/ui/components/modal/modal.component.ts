@@ -6,7 +6,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { AsyncPipe, NgStyle, NgTemplateOutlet } from '@angular/common';
+import { AsyncPipe, NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +24,7 @@ import { ModalService } from './modal.service';
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [AsyncPipe, NgStyle, NgTemplateOutlet],
+  imports: [AsyncPipe, NgClass, NgTemplateOutlet],
   host: {
     '[@hostAnimation]': 'true',
     '(document:keydown.escape)': 'onEscapeKeydown()',
@@ -32,57 +32,27 @@ import { ModalService } from './modal.service';
   template: `
     <div
       #modalElement
-      class="modal-backdrop"
+      class="fixed inset-0 z-10 h-full w-full overflow-auto backdrop-blur-sm"
       tabindex="0"
-      [ngStyle]="{
-        'background-color':
-          (ts.isDarkMode$ | async)
-            ? 'rgba(255, 255, 255, 0.2)'
-            : 'rgba(0, 0, 0, 0.4)',
-      }"
+      [ngClass]="
+        (ts.isDarkMode$ | async)
+          ? 'bg-white bg-opacity-20'
+          : 'bg-black bg-opacity-40'
+      "
       (click)="ms.close()"
       (keyup.Escape)="ms.close()"
     ></div>
-    <div [@fadeInOut] class="modal-container">
-      <div class="modal-content">
+    <div
+      [@fadeInOut]
+      class="pointer-events-none fixed inset-0 z-10 flex h-full w-full items-center justify-center"
+    >
+      <div
+        class="pointer-events-auto inset-0 rounded-lg bg-primary-color text-text-color"
+      >
         <ng-container [ngTemplateOutlet]="contentTemplate()" />
       </div>
     </div>
   `,
-  styles: [
-    `
-      .modal-backdrop {
-        position: fixed;
-        z-index: 3;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        backdrop-filter: blur(5px);
-      }
-
-      .modal-container {
-        position: fixed;
-        z-index: 3;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        pointer-events: none;
-      }
-
-      .modal-content {
-        inset: 0;
-        background-color: var(--primary-color);
-        color: var(--text-color);
-        border-radius: 0.5rem;
-        pointer-events: auto;
-      }
-    `,
-  ],
   animations: [
     trigger('hostAnimation', [
       transition(':leave', [query('@fadeInOut', animateChild())]),
