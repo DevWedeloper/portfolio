@@ -1,3 +1,5 @@
+const { fontFamily } = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -26,6 +28,9 @@ module.exports = {
         'icon-adjust': 'var(--icon-size-adjust)',
         'image-width': 'var(--image-width)',
         'image-height': 'var(--image-height)',
+      },
+      fontFamily: {
+        sans: ['Roboto', ...fontFamily.sans],
       },
     },
   },
