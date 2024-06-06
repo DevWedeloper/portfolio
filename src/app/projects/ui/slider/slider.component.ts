@@ -24,24 +24,24 @@ const arrow =
     <div class="relative flex h-full justify-center">
       <div>
         @if (index !== 0) {
-          <div
+          <span
             class="${arrow} left-0"
             (click)="goToPrevious()"
             (keydown.Enter)="goToPrevious()"
             tabindex="0"
           >
             ❰
-          </div>
+          </span>
         }
         @if (index !== slider().length - 1) {
-          <div
+          <span
             class="${arrow} right-0"
             (click)="goToNext()"
             (keydown.Enter)="goToNext()"
             tabindex="0"
           >
             ❱
-          </div>
+          </span>
         }
       </div>
       <div class="flex w-[85%] items-center justify-center overflow-hidden">
