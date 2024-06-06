@@ -22,7 +22,7 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   template: `
     <img
       #copyImage
-      class="icon icon-size-adjust"
+      class="icon w-icon-adjust"
       src="assets/images/icons/copy.svg"
       alt="Copy Icon"
       [ngStyle]="{

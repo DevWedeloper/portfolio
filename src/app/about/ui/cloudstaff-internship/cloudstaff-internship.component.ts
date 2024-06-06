@@ -13,7 +13,7 @@ import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.
       <h3>Project Name: SuiteView</h3>
       <span>
         <img
-          class="icon icon-size-adjust"
+          class="icon w-icon-adjust"
           style="-webkit-tap-highlight-color: transparent"
           src="assets/images/icons/close.svg"
           alt="Close Logo"
