@@ -6,7 +6,6 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
 import { TabDirective } from '../../../shared/ui/components/tabs/tab.directive';
 import { TabsComponent } from '../../../shared/ui/components/tabs/tabs.component';
 import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.directive';
-import { HighlightTextDirective } from '../../../shared/ui/directives/highlight-text.directive';
 import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudstaff-internship.component';
 
 @Component({
@@ -17,14 +16,13 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
     NgOptimizedImage,
     TabsComponent,
     TabDirective,
-    HighlightTextDirective,
     TooltipDirective,
     ModalComponent,
     CloudstaffInternshipComponent,
   ],
   template: `
     <app-tabs>
-      <div *appTab="tabs[0]" appHighlightText>
+      <div *appTab="tabs[0]" class="text-main-color">
         <ul class="skills-content tab-content">
           <li class="skills-item">Front-End:</li>
           <li class="skills-item icon-container">
@@ -208,7 +206,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
       <div *appTab="tabs[1]">
         <ul class="experience-content tab-content">
           <li>
-            <span appHighlightText>2023 Feb - 2023 May</span>
+            <span class="text-main-color">2023 Feb - 2023 May</span>
           </li>
           <li>
             <span>Internship at Cloudstaff</span>
@@ -236,7 +234,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
       </div>
       <div *appTab="tabs[2]">
         <ul class="education-content tab-content">
-          <li><span appHighlightText>2019 - 2023</span></li>
+          <li><span class="text-main-color">2019 - 2023</span></li>
           <li>
             <span>
               Bachelor of Science in Computer Science at Holy Angel University

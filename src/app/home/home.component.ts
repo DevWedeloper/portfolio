@@ -9,14 +9,12 @@ import {
 import { TypeEffectService } from '../shared/data-access/type-effect.service';
 import { CustomButtonComponent } from '../shared/ui/components/custom-button/button';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
-import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.directive';
 import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    HighlightTextDirective,
     HomeHeroImageComponent,
     CustomButtonComponent,
     MainSectionDirective,
@@ -27,7 +25,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
         <h2>Hi, I'm Nathan</h2>
         <h2 class="type-effect-text">
           And I'm a
-          <span appHighlightText>
+          <span class="text-main-color">
             <h2 class="type-effect-text" id="type-effect" #typeEffectTarget>
               Software Engineer!
             </h2>
