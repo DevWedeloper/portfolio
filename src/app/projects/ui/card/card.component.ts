@@ -101,7 +101,7 @@ import { CardDirective } from './card.directive';
       }
 
       .card-header h2 {
-        font-size: var(--font-size-regular-desktop);
+        font-size: var(--font-size-regular);
         margin-bottom: 0.5rem;
       }
 

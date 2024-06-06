@@ -17,17 +17,16 @@ import { ModalComponent } from './modal.component';
 export class ModalService {
   private appRef = inject(ApplicationRef);
   private modalComponentRef?: ComponentRef<ModalComponent>;
-  private rendererFactory = inject(RendererFactory2);
-  private renderer = this.rendererFactory.createRenderer(null, null);
+  private renderer = inject(RendererFactory2).createRenderer(null, null);
   private isBodyScrollDisabled = signal(false);
 
   constructor() {
     effect(() => {
       if (typeof document === 'undefined') return;
       if (this.isBodyScrollDisabled()) {
-        this.renderer.addClass(document.body, 'no-scroll');
+        this.renderer.addClass(document.body, 'overflow-hidden');
       } else {
-        this.renderer.removeClass(document.body, 'no-scroll');
+        this.renderer.removeClass(document.body, 'overflow-hidden');
       }
     });
   }

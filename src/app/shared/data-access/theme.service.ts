@@ -1,6 +1,5 @@
 import {
   Injectable,
-  Renderer2,
   RendererFactory2,
   afterNextRender,
   inject,
@@ -26,10 +25,10 @@ export class ThemeService {
   themeOnClick(): void {
     this.darkMode$.next(!this.darkMode$.value);
     const preferredTheme = this.darkMode$.value ? 'dark' : 'light';
+    const isDarkTheme = this.darkMode$.value;
 
-    this.renderer.removeClass(document.documentElement, 'dark-theme');
-    this.renderer.removeClass(document.documentElement, 'light-theme');
-    this.renderer.addClass(document.documentElement, `${preferredTheme}-theme`);
+    if (isDarkTheme) this.renderer.addClass(document.documentElement, 'dark');
+    else this.renderer.removeClass(document.documentElement, 'dark');
 
     localStorage.setItem('preferredTheme', preferredTheme);
   }

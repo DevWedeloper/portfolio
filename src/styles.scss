@@ -5,10 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
-
 *,
 *::before,
 *::after {
@@ -16,7 +12,6 @@ html {
   padding: 0;
   border: none;
   outline: none;
-  font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
 }
 
@@ -24,69 +19,56 @@ html {
   outline: 2px solid var(--text-color);
 }
 
-$light-theme-colors: (
-  main-color: darken(#fea1a1, 15%),
-  primary-color: #fff,
-  secondary-color: #f2f2f2,
-  text-color: #000000,
-  text-color-reverse: #ffffff,
-  theme-icon: url('assets/images/icons/moon.svg'),
-);
+:root {
+  --main-color: hsl(0, 100%, 65%);
+  --primary-color: hsl(0, 0%, 100%);
+  --secondary-color: hsl(0, 0%, 95%);
+  --text-color: hsl(0, 0%, 0%);
+  --text-color-reverse: hsl(0, 0%, 100%);
+  --theme-icon: url('assets/images/icons/moon.svg');
+  --font-size-big: 3.2rem;
+  --font-size-regular: 1.6rem;
+  --font-size-tooltip: 1rem;
+  --icon-size-adjust: 2rem;
+  --image-width: 21rem;
+  --image-height: 34rem;
+}
 
-$dark-theme-colors: (
-  primary-color: #202124,
-  secondary-color: #171717,
-  text-color: #ffffff,
-  text-color-reverse: #000000,
-  theme-icon: url('assets/images/icons/sun.svg'),
-);
-
-@mixin apply-theme-colors($colors) {
-  @each $property, $value in $colors {
-    --#{$property}: #{$value};
+@media (max-width: 991px) {
+  :root {
+    --font-size-big: 2.7rem;
+    --font-size-regular: 1.4rem;
+    --font-size-tooltip: 0.9rem;
+    --icon-size-adjust: 1.8rem;
   }
 }
 
-:root {
-  @include apply-theme-colors($light-theme-colors);
-
-  --font-size-big-desktop: 3.2rem;
-  --font-size-regular-desktop: 1.6rem;
-  --font-size-tooltip-desktop: 1rem;
-  --icon-size-adjust-desktop: 2rem;
-
-  --font-size-big-tablet: 2.7rem;
-  --font-size-regular-tablet: 1.4rem;
-  --font-size-tooltip-tablet: 0.9rem;
-  --icon-size-adjust-tablet: 1.8rem;
-
-  --font-size-big-mobile: 2.2rem;
-  --font-size-regular-mobile: 1.2rem;
-  --font-size-tooltip-mobile: 0.8rem;
-  --icon-size-adjust-mobile: 1.6rem;
-
-  --font-size-big-small-mobile: 2rem;
-  --font-size-regular-small-mobile: 1rem;
-  --font-size-tooltip-small-mobile: 0.7rem;
-  --icon-size-adjust-small-mobile: 1.4rem;
-
-  --image-width-desktop: 21rem;
-  --image-height-desktop: 34rem;
-
-  --image-width-small-mobile: 17rem;
-  --image-height-small-mobile: 27rem;
+@media (max-width: 768px) {
+  :root {
+    --font-size-big: 2.2rem;
+    --font-size-regular: 1.2rem;
+    --font-size-tooltip: 0.8rem;
+    --icon-size-adjust: 1.6rem;
+  }
 }
 
-.light-theme {
-  @include apply-theme-colors($light-theme-colors);
+@media (max-width: 500px) {
+  :root {
+    --font-size-big: 2rem;
+    --font-size-regular: 1rem;
+    --font-size-tooltip: 0.7rem;
+    --icon-size-adjust: 1.4rem;
+    --image-width: 17rem;
+    --image-height: 27rem;
+  }
 }
 
-.dark-theme {
-  @include apply-theme-colors($dark-theme-colors);
-}
-
-.no-scroll {
-  overflow: hidden;
+.dark {
+  --primary-color: hsl(210, 5%, 14%);
+  --secondary-color: hsl(0, 0%, 9%);
+  --text-color: hsl(0, 0%, 100%);
+  --text-color-reverse: hsl(0, 0%, 0%);
+  --theme-icon: url('assets/images/icons/sun.svg');
 }
 
 body::-webkit-scrollbar {
@@ -106,48 +88,18 @@ body::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 
-body {
-  background-color: var(--primary-color);
-}
-
-.highlight-text {
-  color: var(--main-color);
-}
-
-.section {
-  min-height: 100vh;
-  padding: 10rem 9%;
-  color: var(--text-color);
-}
-
-.icon {
-  width: 2rem;
-  user-select: none;
-}
-
-.superscript-container {
-  display: inline-block;
-  position: relative;
-  top: -0.5rem;
-}
-
-.superscript-icon {
-  width: 1.5rem;
-  cursor: pointer;
-}
-
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-size: var(--font-size-big-desktop);
+  font-size: var(--font-size-big);
   font-weight: 700;
 }
 
 p {
-  font-size: var(--font-size-regular-desktop);
+  font-size: var(--font-size-regular);
   text-wrap: pretty;
 }
 
@@ -180,85 +132,5 @@ p {
   .from-left,
   .from-right {
     transition: none;
-  }
-}
-
-@media (max-width: 991px) {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: var(--font-size-big-tablet);
-  }
-
-  p,
-  .btn {
-    font-size: var(--font-size-regular-tablet);
-  }
-
-  .icon-size-adjust {
-    width: var(--icon-size-adjust-tablet);
-  }
-
-  .superscript-icon {
-    width: calc(var(--icon-size-adjust-tablet) - 0.3rem);
-  }
-
-  .section {
-    padding: 10rem 3%;
-  }
-}
-
-@media (max-width: 768px) {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: var(--font-size-big-mobile);
-  }
-
-  p,
-  .btn {
-    font-size: var(--font-size-regular-mobile);
-  }
-
-  .icon-size-adjust {
-    width: var(--icon-size-adjust-mobile);
-  }
-
-  .superscript-icon {
-    width: calc(var(--icon-size-adjust-mobile) - 0.3rem);
-  }
-
-  .section {
-    padding: 5rem 9%;
-  }
-}
-
-@media (max-width: 500px) {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: var(--font-size-big-small-mobile);
-  }
-
-  p,
-  .btn {
-    font-size: var(--font-size-regular-small-mobile);
-  }
-
-  .icon-size-adjust {
-    width: var(--icon-size-adjust-small-mobile);
-  }
-
-  .superscript-icon {
-    width: calc(var(--icon-size-adjust-small-mobile) - 0.3rem);
   }
 }

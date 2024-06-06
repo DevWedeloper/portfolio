@@ -13,38 +13,41 @@ import {
 } from '@angular/core';
 import { SlideDirective } from './slide.directive';
 
+const arrow =
+  'user-select-none absolute top-1/2 -translate-y-1/2 cursor-pointer text-5xl text-text-color';
+
 @Component({
   selector: 'app-slider',
   standalone: true,
   imports: [NgTemplateOutlet],
   template: `
-    <div class="slider">
-      <div class="arrows">
+    <div class="relative flex h-full justify-center">
+      <div>
         @if (index !== 0) {
-          <div
-            class="left-arrow"
+          <span
+            class="${arrow} left-0"
             (click)="goToPrevious()"
             (keydown.Enter)="goToPrevious()"
             tabindex="0"
           >
             ❰
-          </div>
+          </span>
         }
         @if (index !== slider().length - 1) {
-          <div
-            class="right-arrow"
+          <span
+            class="${arrow} right-0"
             (click)="goToNext()"
             (keydown.Enter)="goToNext()"
             tabindex="0"
           >
             ❱
-          </div>
+          </span>
         }
       </div>
-      <div class="slide-container">
+      <div class="flex w-[85%] items-center justify-center overflow-hidden">
         <div [@slideAnimation]="index">
-          @for (slide of slider(); track i; let i = $index) {
-            @if (i === index) {
+          @for (slide of slider(); track $index) {
+            @if ($index === index) {
               <ng-container [ngTemplateOutlet]="slide.template" />
             }
           }
@@ -52,44 +55,6 @@ import { SlideDirective } from './slide.directive';
       </div>
     </div>
   `,
-  styles: [
-    `
-      .slider {
-        display: flex;
-        justify-content: center;
-        position: relative;
-        height: 100%;
-      }
-
-      .left-arrow,
-      .right-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translate(0, -50%);
-        font-size: 45px;
-        color: var(--text-color);
-        z-index: 1;
-        cursor: pointer;
-        user-select: none;
-      }
-
-      .right-arrow {
-        right: 0;
-      }
-
-      .left-arrow {
-        left: 0;
-      }
-
-      .slide-container {
-        overflow: hidden;
-        width: 85%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    `,
-  ],
   animations: [
     trigger('slideAnimation', [
       state('void', style({ transform: 'translateX(0)' })),

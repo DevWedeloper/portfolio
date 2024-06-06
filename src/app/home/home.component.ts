@@ -9,14 +9,12 @@ import {
 import { TypeEffectService } from '../shared/data-access/type-effect.service';
 import { CustomButtonComponent } from '../shared/ui/components/custom-button/button';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
-import { HighlightTextDirective } from '../shared/ui/directives/highlight-text.directive';
 import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    HighlightTextDirective,
     HomeHeroImageComponent,
     CustomButtonComponent,
     MainSectionDirective,
@@ -27,7 +25,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
         <h2>Hi, I'm Nathan</h2>
         <h2 class="type-effect-text">
           And I'm a
-          <span appHighlightText>
+          <span class="text-main-color">
             <h2 class="type-effect-text" id="type-effect" #typeEffectTarget>
               Software Engineer!
             </h2>
@@ -77,7 +75,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
         <a
           custom-button
           href="assets/pdfs/resume.pdf"
-          class="resume btn"
+          class="resume text-big"
           download
         >
           Download Résumé
@@ -105,7 +103,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
       }
 
       .home-content .type-effect-text {
-        font-size: calc(var(--font-size-big-desktop) - 0.5rem);
+        font-size: calc(var(--font-size-big) - 0.5rem);
       }
 
       .home-content .resume {
@@ -157,12 +155,6 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
         }
       }
 
-      @media (max-width: 991px) {
-        .home-content .type-effect-text {
-          font-size: calc(var(--font-size-big-tablet) - 0.5rem);
-        }
-      }
-
       @media (max-width: 768px) {
         section {
           flex-direction: column-reverse;
@@ -178,16 +170,6 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
           justify-content: center;
           flex-direction: column;
           align-items: center;
-        }
-
-        .home-content .type-effect-text {
-          font-size: calc(var(--font-size-big-mobile) - 0.5rem);
-        }
-      }
-
-      @media (max-width: 500px) {
-        .home-content .type-effect-text {
-          font-size: calc(var(--font-size-big-small-mobile) - 0.55rem);
         }
       }
     `,
