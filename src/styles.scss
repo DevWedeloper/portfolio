@@ -143,8 +143,12 @@ body {
 }
 
 .superscript-icon {
-  width: 1.5rem;
+  width: var(--icon-size-adjust);
   cursor: pointer;
+}
+
+.icon-size-adjust {
+  width: var(--icon-size-adjust);
 }
 
 h1,
@@ -153,12 +157,13 @@ h3,
 h4,
 h5,
 h6 {
-  font-size: var(--font-size-big-desktop);
+  font-size: var(--font-size-big);
   font-weight: 700;
 }
 
-p {
-  font-size: var(--font-size-regular-desktop);
+p,
+.btn {
+  font-size: var(--font-size-regular);
   text-wrap: pretty;
 }
 
@@ -195,81 +200,13 @@ p {
 }
 
 @media (max-width: 991px) {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: var(--font-size-big-tablet);
-  }
-
-  p,
-  .btn {
-    font-size: var(--font-size-regular-tablet);
-  }
-
-  .icon-size-adjust {
-    width: var(--icon-size-adjust-tablet);
-  }
-
-  .superscript-icon {
-    width: calc(var(--icon-size-adjust-tablet) - 0.3rem);
-  }
-
   .section {
     padding: 10rem 3%;
   }
 }
 
 @media (max-width: 768px) {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: var(--font-size-big-mobile);
-  }
-
-  p,
-  .btn {
-    font-size: var(--font-size-regular-mobile);
-  }
-
-  .icon-size-adjust {
-    width: var(--icon-size-adjust-mobile);
-  }
-
-  .superscript-icon {
-    width: calc(var(--icon-size-adjust-mobile) - 0.3rem);
-  }
-
   .section {
     padding: 5rem 9%;
-  }
-}
-
-@media (max-width: 500px) {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: var(--font-size-big-small-mobile);
-  }
-
-  p,
-  .btn {
-    font-size: var(--font-size-regular-small-mobile);
-  }
-
-  .icon-size-adjust {
-    width: var(--icon-size-adjust-small-mobile);
-  }
-
-  .superscript-icon {
-    width: calc(var(--icon-size-adjust-small-mobile) - 0.3rem);
   }
 }
