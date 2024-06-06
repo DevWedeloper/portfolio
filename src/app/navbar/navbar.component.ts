@@ -266,9 +266,9 @@ export class NavbarComponent {
 
   private toggleBodyScroll(): void {
     if (this.isMenuOpen) {
-      this.renderer.addClass(document.body, 'no-scroll');
+      this.renderer.addClass(document.body, 'overflow-hidden');
     } else {
-      this.renderer.removeClass(document.body, 'no-scroll');
+      this.renderer.removeClass(document.body, 'overflow-hidden');
     }
   }
 }

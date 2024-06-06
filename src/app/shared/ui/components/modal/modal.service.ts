@@ -25,9 +25,9 @@ export class ModalService {
     effect(() => {
       if (typeof document === 'undefined') return;
       if (this.isBodyScrollDisabled()) {
-        this.renderer.addClass(document.body, 'no-scroll');
+        this.renderer.addClass(document.body, 'overflow-hidden');
       } else {
-        this.renderer.removeClass(document.body, 'no-scroll');
+        this.renderer.removeClass(document.body, 'overflow-hidden');
       }
     });
   }
