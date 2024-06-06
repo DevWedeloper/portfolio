@@ -217,7 +217,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
               tabindex="0"
             >
               <img
-                class="icon icon-size-adjust superscript-icon"
+                class="icon icon-size-adjust w-icon-adjust cursor-pointer"
                 src="assets/images/icons/open-in-new.svg"
                 alt="Open In New Icon"
                 loading="lazy"
