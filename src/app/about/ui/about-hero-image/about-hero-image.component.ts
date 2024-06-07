@@ -7,15 +7,9 @@ import {
   trigger,
 } from '@angular/animations';
 import { NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  afterNextRender,
-  inject,
-  signal,
-} from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { concat, delay, of, switchMap } from 'rxjs';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 
 @Component({
@@ -29,7 +23,7 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   template: `
     <img
       [ngSrc]="
-        getBackgroundImage()
+        isDarkMode()
           ? 'assets/images/backgrounds/about-night.webp'
           : 'assets/images/backgrounds/about-day.webp'
       "
@@ -57,24 +51,10 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
 })
 export class AboutHeroImageComponent {
   private ts = inject(ThemeService);
-  private destroyRef = inject(DestroyRef);
-  private blurAnimationState = signal<string>('');
-  protected getBackgroundImage = toSignal(this.ts.isDarkMode$);
-
-  constructor() {
-    afterNextRender(() => {
-      this.ts.isDarkMode$
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe(() => {
-          this.triggerAnimation();
-        });
-    });
-  }
-
-  private triggerAnimation(): void {
-    this.blurAnimationState.update(() => 'animated');
-    setTimeout(() => {
-      this.blurAnimationState.update(() => '');
-    }, 700);
-  }
+  protected isDarkMode = toSignal(this.ts.isDarkMode$);
+  protected blurAnimationState = toSignal(
+    this.ts.isDarkMode$.pipe(
+      switchMap(() => concat(of('animated'), of('').pipe(delay(700)))),
+    ),
+  );
 }
