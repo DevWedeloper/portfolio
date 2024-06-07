@@ -2,7 +2,6 @@ import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
   inject,
   output,
 } from '@angular/core';
@@ -125,19 +124,15 @@ import { ContactService } from '../../data-access/contact.service';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormComponent implements OnInit {
+export class FormComponent {
   private fb = inject(FormBuilder);
   protected cs = inject(ContactService);
   submitForm = output<FormGroup>();
-  protected contactForm!: FormGroup;
-
-  ngOnInit(): void {
-    this.contactForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      subject: [''],
-      message: ['', Validators.required],
-      date: [new Date().toISOString()],
-    });
-  }
+  protected contactForm = this.fb.group({
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    subject: ['', [Validators.required]],
+    message: ['', Validators.required],
+    date: [new Date().toISOString()],
+  });
 }
