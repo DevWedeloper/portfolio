@@ -7,6 +7,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { TypeEffectService } from '../shared/data-access/type-effect.service';
+import { BlinkEffectDirective } from '../shared/ui/components/blink-effect.directive';
 import { CustomButtonComponent } from '../shared/ui/components/custom-button/button';
 import { InitialAnimationDirective } from '../shared/ui/components/initial-animation.directive';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
@@ -20,6 +21,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
     CustomButtonComponent,
     MainSectionDirective,
     InitialAnimationDirective,
+    BlinkEffectDirective,
   ],
   template: `
     <section appMainSection id="home">
@@ -28,7 +30,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
         <h2 class="type-effect-text">
           And I'm a
           <span class="text-main-color">
-            <h2 class="type-effect-text" id="type-effect" #typeEffectTarget>
+            <h2 class="type-effect-text" #typeEffectTarget appBlinkEffect>
               Software Engineer!
             </h2>
           </span>
@@ -115,15 +117,6 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
         margin-top: 1rem;
       }
 
-      #type-effect {
-        display: inline;
-        animation:
-          typing 2s steps(22),
-          blink 0.5s step-end infinite alternate;
-        overflow: hidden;
-        border-right: 3px solid var(--text-color);
-      }
-
       .type-effect-text {
         display: inline-block;
       }
@@ -143,18 +136,6 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
       .icon-container svg {
         width: 2rem;
         fill: var(--text-color);
-      }
-
-      @keyframes typing {
-        from {
-          width: 0;
-        }
-      }
-
-      @keyframes blink {
-        50% {
-          border-color: transparent;
-        }
       }
 
       @media (max-width: 768px) {
