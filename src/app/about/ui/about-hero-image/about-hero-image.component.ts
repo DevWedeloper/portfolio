@@ -24,6 +24,7 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   imports: [NgOptimizedImage],
   host: {
     '[@blurAnimation]': 'blurAnimationState()',
+    class: 'relative h-image-height w-image-width overflow-hidden rounded-2xl',
   },
   template: `
     <img
@@ -34,30 +35,9 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
       "
       fill
       alt="About Image"
+      class="object-cover"
     />
   `,
-  styles: [
-    `
-      :host {
-        position: relative;
-        width: var(--image-width);
-        height: var(--image-height);
-        border-radius: 1rem;
-        overflow: hidden;
-      }
-
-      img {
-        object-fit: cover;
-      }
-
-      @media (max-width: 500px) {
-        :host {
-          width: var(--image-width);
-          height: var(--image-height);
-        }
-      }
-    `,
-  ],
   animations: [
     trigger('blurAnimation', [
       state('animated', style({ filter: 'blur(0)' })),
