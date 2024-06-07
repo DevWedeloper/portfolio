@@ -102,35 +102,3 @@ p {
   font-size: var(--font-size-regular);
   text-wrap: pretty;
 }
-
-.from-left {
-  transform: translateX(-50%);
-}
-
-.from-right {
-  transform: translateX(50%);
-}
-
-.from-left,
-.from-right {
-  filter: blur(5px);
-  opacity: 0;
-  transition:
-    transform 0.5s ease-in-out,
-    filter 0.5s ease-in-out,
-    opacity 0.5s ease-in-out;
-}
-
-.from-left.show,
-.from-right.show {
-  transform: translateX(0);
-  opacity: 1;
-  filter: blur(0);
-}
-
-@media (prefers-reduced-motion) {
-  .from-left,
-  .from-right {
-    transition: none;
-  }
-}

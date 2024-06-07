@@ -9,6 +9,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ThemeService } from '../shared/data-access/theme.service';
+import { InitialAnimationDirective } from '../shared/ui/components/initial-animation.directive';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
 import { ModalComponent } from '../shared/ui/components/modal/modal.component';
 import { ModalService } from '../shared/ui/components/modal/modal.service';
@@ -31,10 +32,11 @@ import { FormComponent } from './ui/form/form.component';
     FeedbackSuccessComponent,
     FeedbackFailComponent,
     MainSectionDirective,
+    InitialAnimationDirective,
   ],
   template: `
     <section appMainSection id="contact">
-      <div class="contact-information hiddenAnimate from-left">
+      <div appInitialAnimation direction="left" class="contact-information">
         <h3>Contact Me</h3>
         <div class="contact-information-item">
           <img
@@ -71,7 +73,7 @@ import { FormComponent } from './ui/form/form.component';
           </div>
         </div>
       </div>
-      <div class="contact-form hiddenAnimate from-right">
+      <div appInitialAnimation direction="right" class="contact-form">
         <app-form (submitForm)="cs.submitForm$.next($event)" />
       </div>
     </section>

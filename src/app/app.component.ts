@@ -63,7 +63,30 @@ export class AppComponent {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('show');
+            const direction = entry.target.getAttribute('direction');
+
+            entry.target.classList.remove(
+              'opacity-0',
+              'blur-sm',
+              '-translate-y-1/2',
+              'translate-y-1/2',
+              '-translate-x-1/2',
+              'translate-x-1/2',
+            );
+
+            if (direction === 'top' || direction === 'bottom') {
+              entry.target.classList.add(
+                'translate-x-0',
+                'opacity-100',
+                'filter-none',
+              );
+            } else if (direction === 'left' || direction === 'right') {
+              entry.target.classList.add(
+                'translate-y-0',
+                'opacity-100',
+                'filter-none',
+              );
+            }
             appearOnScroll.unobserve(entry.target);
           }
         });
@@ -74,7 +97,7 @@ export class AppComponent {
       },
     );
 
-    const elements = document.querySelectorAll('.hiddenAnimate');
+    const elements = document.querySelectorAll('[appInitialAnimation]');
     elements.forEach((element) => appearOnScroll.observe(element));
   }
 

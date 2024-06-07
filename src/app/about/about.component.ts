@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { InitialAnimationDirective } from '../shared/ui/components/initial-animation.directive';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
 import { AboutHeroImageComponent } from './ui/about-hero-image/about-hero-image.component';
 import { AboutTabComponent } from './ui/about-tab/about-tab.component';
@@ -12,11 +13,12 @@ import { AboutTabComponent } from './ui/about-tab/about-tab.component';
     AboutHeroImageComponent,
     AboutTabComponent,
     MainSectionDirective,
+    InitialAnimationDirective,
   ],
   template: `
     <section appMainSection id="about">
-      <app-about-hero-image />
-      <div class="hiddenAnimate from-right">
+      <app-about-hero-image appInitialAnimation direction="left" />
+      <div appInitialAnimation direction="right">
         <h3>About Me</h3>
         <p>
           I enjoy creating softwares, I code most of my time. My main stack is

@@ -7,8 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   imports: [NgOptimizedImage],
   host: {
     '[class.home-img]': 'true',
-    '[class.hiddenAnimate]': 'true',
-    '[class.from-right]': 'true',
   },
   template: `
     <img

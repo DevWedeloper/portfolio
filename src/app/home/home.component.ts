@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { TypeEffectService } from '../shared/data-access/type-effect.service';
 import { CustomButtonComponent } from '../shared/ui/components/custom-button/button';
+import { InitialAnimationDirective } from '../shared/ui/components/initial-animation.directive';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
 import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.component';
 
@@ -18,10 +19,11 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
     HomeHeroImageComponent,
     CustomButtonComponent,
     MainSectionDirective,
+    InitialAnimationDirective,
   ],
   template: `
     <section appMainSection id="home">
-      <div class="home-content hiddenAnimate from-left">
+      <div appInitialAnimation direction="left" class="home-content">
         <h2>Hi, I'm Nathan</h2>
         <h2 class="type-effect-text">
           And I'm a
@@ -81,7 +83,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
           Download Résumé
         </a>
       </div>
-      <app-home-hero-image />
+      <app-home-hero-image appInitialAnimation direction="right" />
     </section>
   `,
   styles: [
