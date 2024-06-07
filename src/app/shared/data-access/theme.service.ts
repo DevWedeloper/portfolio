@@ -19,6 +19,7 @@ export class ThemeService {
   constructor() {
     afterNextRender(() => {
       this.darkThemeMediaQuery = matchMedia('(prefers-color-scheme: dark)');
+      this.checkPreferredTheme();
     });
   }
 

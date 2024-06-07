@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   afterNextRender,
-  inject,
 } from '@angular/core';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
@@ -11,7 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ScrollIndicatorComponent } from './scroll-indicator/scroll-indicator.component';
-import { ThemeService } from './shared/data-access/theme.service';
 import { initialClassToRemove } from './shared/ui/components/initial-animation.directive';
 import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.component';
 
@@ -49,12 +47,10 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
 export class AppComponent {
   title = 'portfolio';
   protected isWideScreen!: boolean;
-  private ts = inject(ThemeService);
 
   constructor() {
     afterNextRender(() => {
       this.addScrollAnimation();
-      this.ts.checkPreferredTheme();
       this.isWideScreen = window.innerWidth >= 991;
     });
   }
