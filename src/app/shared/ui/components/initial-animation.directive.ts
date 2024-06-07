@@ -23,7 +23,7 @@ export class InitialAnimationDirective {
   protected computedClass = computed(() => {
     const directionClasses = this.getDirectionClasses(this.direction());
     return twMerge(
-      `${initialClass} transition duration-500 ease-in-out motion-reduce:transition-none`,
+      `${initialClass} transition-[transform,filter,opacity] duration-500 ease-in-out motion-reduce:transition-none`,
       directionClasses,
       this.userClass(),
     );
