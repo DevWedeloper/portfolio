@@ -29,7 +29,7 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
         filter:
           (ts.isDarkMode$ | async)
             ? 'invert(100%) grayscale(100%)'
-            : 'grayscale(100%)',
+            : 'grayscale(100%)'
       }"
     />
   `,

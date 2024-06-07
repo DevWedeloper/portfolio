@@ -31,7 +31,7 @@ import { SliderComponent } from '../../ui/slider/slider.component';
         'Vercel',
         'MongoDB Atlas',
         'NgRx',
-        'OAuth 2.0',
+        'OAuth 2.0'
       ]"
       [githubLink]="'https://github.com/DevWedeloper/projectOneFrontEnd/'"
       [websiteLink]="'https://project-one-front-end.vercel.app/'"

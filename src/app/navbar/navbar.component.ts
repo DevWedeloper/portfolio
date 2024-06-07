@@ -39,7 +39,7 @@ import { UpperFirstPipe } from '../shared/ui/pipes/upper-first.pipe';
               filter:
                 (ts.isDarkMode$ | async)
                   ? 'invert(100%) grayscale(100%)'
-                  : 'grayscale(100%)',
+                  : 'grayscale(100%)'
             }"
           >
             <img

@@ -47,7 +47,7 @@ import { FormComponent } from './ui/form/form.component';
               filter:
                 (ts.isDarkMode$ | async)
                   ? 'invert(100%) grayscale(100%)'
-                  : 'grayscale(100%)',
+                  : 'grayscale(100%)'
             }"
           />
           <div class="contact-information-item-copy-area">
@@ -64,7 +64,7 @@ import { FormComponent } from './ui/form/form.component';
               filter:
                 (ts.isDarkMode$ | async)
                   ? 'invert(100%) grayscale(100%)'
-                  : 'grayscale(100%)',
+                  : 'grayscale(100%)'
             }"
           />
           <div class="contact-information-item-copy-area">

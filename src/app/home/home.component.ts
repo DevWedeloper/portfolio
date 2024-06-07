@@ -5,11 +5,11 @@ import {
   effect,
   viewChild,
 } from '@angular/core';
-import { addTypeEffect } from '../shared/ui/components/type-effect';
 import { BlinkEffectDirective } from '../shared/ui/components/blink-effect.directive';
 import { CustomButtonComponent } from '../shared/ui/components/custom-button/button';
 import { InitialAnimationDirective } from '../shared/ui/components/initial-animation.directive';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
+import { addTypeEffect } from '../shared/ui/components/type-effect';
 import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.component';
 
 @Component({

@@ -113,7 +113,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
                   filter:
                     (ts.isDarkMode$ | async)
                       ? 'invert(100%) grayscale(100%)'
-                      : 'grayscale(100%)',
+                      : 'grayscale(100%)'
                 }"
               />
             </span>
@@ -180,7 +180,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
                   filter:
                     (ts.isDarkMode$ | async)
                       ? 'invert(100%) grayscale(100%)'
-                      : 'grayscale(100%)',
+                      : 'grayscale(100%)'
                 }"
               />
             </span>
@@ -225,7 +225,7 @@ import { CloudstaffInternshipComponent } from '../cloudstaff-internship/cloudsta
                   filter:
                     (ts.isDarkMode$ | async)
                       ? 'invert(100%) grayscale(100%)'
-                      : 'grayscale(100%)',
+                      : 'grayscale(100%)'
                 }"
               />
             </span>
