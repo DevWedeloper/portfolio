@@ -2,13 +2,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  afterNextRender,
-  inject,
+  effect,
   viewChild,
 } from '@angular/core';
-import { TypeEffectService } from '../shared/data-access/type-effect.service';
+import { BlinkEffectDirective } from '../shared/ui/components/blink-effect.directive';
 import { CustomButtonComponent } from '../shared/ui/components/custom-button/button';
+import { InitialAnimationDirective } from '../shared/ui/components/initial-animation.directive';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
+import { addTypeEffect } from '../shared/ui/components/type-effect';
 import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.component';
 
 @Component({
@@ -18,15 +19,17 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
     HomeHeroImageComponent,
     CustomButtonComponent,
     MainSectionDirective,
+    InitialAnimationDirective,
+    BlinkEffectDirective,
   ],
   template: `
     <section appMainSection id="home">
-      <div class="home-content hiddenAnimate from-left">
+      <div appInitialAnimation direction="left" class="home-content">
         <h2>Hi, I'm Nathan</h2>
         <h2 class="type-effect-text">
           And I'm a
           <span class="text-main-color">
-            <h2 class="type-effect-text" id="type-effect" #typeEffectTarget>
+            <h2 class="type-effect-text" #typeEffectTarget appBlinkEffect>
               Software Engineer!
             </h2>
           </span>
@@ -81,7 +84,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
           Download Résumé
         </a>
       </div>
-      <app-home-hero-image />
+      <app-home-hero-image appInitialAnimation direction="right" />
     </section>
   `,
   styles: [
@@ -113,15 +116,6 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
         margin-top: 1rem;
       }
 
-      #type-effect {
-        display: inline;
-        animation:
-          typing 2s steps(22),
-          blink 0.5s step-end infinite alternate;
-        overflow: hidden;
-        border-right: 3px solid var(--text-color);
-      }
-
       .type-effect-text {
         display: inline-block;
       }
@@ -141,18 +135,6 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
       .icon-container svg {
         width: 2rem;
         fill: var(--text-color);
-      }
-
-      @keyframes typing {
-        from {
-          width: 0;
-        }
-      }
-
-      @keyframes blink {
-        50% {
-          border-color: transparent;
-        }
       }
 
       @media (max-width: 768px) {
@@ -177,13 +159,12 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  private tes = inject(TypeEffectService);
   private typeEffectTarget =
     viewChild.required<ElementRef<HTMLElement>>('typeEffectTarget');
 
   constructor() {
-    afterNextRender(() => {
-      this.tes.addTypeEffect(
+    effect(() => {
+      addTypeEffect(
         {
           phrases: ['Software Engineer!', 'Full-stack Engineer!'],
           typeSpeed: 55,

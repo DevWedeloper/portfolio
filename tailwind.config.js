@@ -2,15 +2,13 @@ const { fontFamily } = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{html,ts}",
-  ],
+  content: ['./src/**/*.{html,ts}'],
   theme: {
     extend: {
       screens: {
-        'max-lg': {'max': '991px'},
-        'max-md': {'max': '768px'},
-        'max-sm': {'max': '500px'},
+        'max-lg': { max: '991px' },
+        'max-md': { max: '768px' },
+        'max-sm': { max: '500px' },
       },
       colors: {
         'main-color': 'var(--main-color)',
@@ -20,9 +18,9 @@ module.exports = {
         'text-color-reverse': 'var(--text-color-reverse)',
       },
       fontSize: {
-        'big': 'var(--font-size-big)',
-        'regular': 'var(--font-size-regular)',
-        'tooltip': 'var(--font-size-tooltip)',
+        big: 'var(--font-size-big)',
+        regular: 'var(--font-size-regular)',
+        tooltip: 'var(--font-size-tooltip)',
       },
       spacing: {
         'icon-adjust': 'var(--icon-size-adjust)',
@@ -32,7 +30,15 @@ module.exports = {
       fontFamily: {
         sans: ['Roboto', ...fontFamily.sans],
       },
+      keyframes: {
+        blink: {
+          '50%': { borderColor: 'transparent' },
+        },
+      },
+      animation: {
+        blink: 'blink 0.5s step-end infinite alternate',
+      },
     },
   },
   plugins: [],
-}
+};

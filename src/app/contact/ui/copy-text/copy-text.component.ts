@@ -22,14 +22,14 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   template: `
     <img
       #copyImage
-      class="w-icon-adjust select-none"
+      class="w-icon-adjust max-w-none select-none"
       src="assets/images/icons/copy.svg"
       alt="Copy Icon"
       [ngStyle]="{
         filter:
           (ts.isDarkMode$ | async)
             ? 'invert(100%) grayscale(100%)'
-            : 'grayscale(100%)',
+            : 'grayscale(100%)'
       }"
     />
   `,

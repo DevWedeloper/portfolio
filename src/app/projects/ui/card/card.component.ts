@@ -40,7 +40,7 @@ import { CardDirective } from './card.directive';
               filter:
                 (ts.isDarkMode$ | async)
                   ? 'invert(100%) grayscale(100%)'
-                  : 'grayscale(100%)',
+                  : 'grayscale(100%)'
             }"
           />
         </a>

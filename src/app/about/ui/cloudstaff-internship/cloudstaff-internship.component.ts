@@ -24,7 +24,7 @@ import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.
             filter:
               (ts.isDarkMode$ | async)
                 ? 'invert(100%) grayscale(100%)'
-                : 'grayscale(100%)',
+                : 'grayscale(100%)'
           }"
         />
       </span>

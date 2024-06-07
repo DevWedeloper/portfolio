@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   afterNextRender,
-  inject,
 } from '@angular/core';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
@@ -11,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ScrollIndicatorComponent } from './scroll-indicator/scroll-indicator.component';
-import { ThemeService } from './shared/data-access/theme.service';
+import { initialClassToRemove } from './shared/ui/components/initial-animation.directive';
 import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.component';
 
 @Component({
@@ -48,12 +47,10 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
 export class AppComponent {
   title = 'portfolio';
   protected isWideScreen!: boolean;
-  private ts = inject(ThemeService);
 
   constructor() {
     afterNextRender(() => {
       this.addScrollAnimation();
-      this.ts.checkPreferredTheme();
       this.isWideScreen = window.innerWidth >= 991;
     });
   }
@@ -63,7 +60,23 @@ export class AppComponent {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('show');
+            const direction = entry.target.getAttribute('direction');
+
+            entry.target.classList.remove(...initialClassToRemove.split(' '));
+
+            if (direction === 'top' || direction === 'bottom') {
+              entry.target.classList.add(
+                'translate-x-0',
+                'opacity-100',
+                'filter-none',
+              );
+            } else if (direction === 'left' || direction === 'right') {
+              entry.target.classList.add(
+                'translate-y-0',
+                'opacity-100',
+                'filter-none',
+              );
+            }
             appearOnScroll.unobserve(entry.target);
           }
         });
@@ -74,7 +87,7 @@ export class AppComponent {
       },
     );
 
-    const elements = document.querySelectorAll('.hiddenAnimate');
+    const elements = document.querySelectorAll('[appInitialAnimation]');
     elements.forEach((element) => appearOnScroll.observe(element));
   }
 
