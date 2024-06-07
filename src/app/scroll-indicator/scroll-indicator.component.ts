@@ -26,7 +26,7 @@ const activeShapeClass = twMerge(
         class="absolute w-[1px] bg-text-color"
         [style.height.%]="progress()"
       ></span>
-      @for (shape of sections(); track i; let i = $index) {
+      @for (shape of sections(); track $index) {
         <div [ngClass]="shape.isActive ? activeShapeClass : shapeClass"></div>
       }
     </div>
