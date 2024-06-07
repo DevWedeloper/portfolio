@@ -71,7 +71,7 @@ export class AboutHeroImageComponent {
     });
   }
 
-  triggerAnimation(): void {
+  private triggerAnimation(): void {
     this.blurAnimationState.update(() => 'animated');
     setTimeout(() => {
       this.blurAnimationState.update(() => '');
