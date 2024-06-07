@@ -34,9 +34,21 @@ module.exports = {
         blink: {
           '50%': { borderColor: 'transparent' },
         },
+        blob: {
+          '0%': {
+            borderRadius: '70% 30% 30% 70% / 60% 40% 60% 40%',
+          },
+          '50%': {
+            borderRadius: '42% 61% 36% 66% / 65% 70% 28% 38%',
+          },
+          '100%': {
+            borderRadius: '70% 30% 30% 70% / 60% 40% 60% 40%',
+          },
+        },
       },
       animation: {
         blink: 'blink 0.5s step-end infinite alternate',
+        blob: 'blob 5s ease-in-out infinite',
       },
     },
   },
