@@ -12,6 +12,9 @@ import { MainSectionDirective } from '../shared/ui/components/main-section.direc
 import { addTypeEffect } from '../shared/ui/components/type-effect';
 import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.component';
 
+const link =
+  'w-8 fill-text-color transition-transform duration-75 ease-in-out hover:scale-110';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -23,13 +26,25 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
     BlinkEffectDirective,
   ],
   template: `
-    <section appMainSection id="home">
-      <div appInitialAnimation direction="left" class="home-content">
+    <section
+      appMainSection
+      id="home"
+      class="flex items-center justify-center gap-4 overflow-x-hidden max-md:flex-col-reverse"
+    >
+      <div
+        appInitialAnimation
+        direction="left"
+        class="basis-8/12 max-md:flex max-md:flex-none max-md:flex-col max-md:items-center max-md:justify-center"
+      >
         <h2>Hi, I'm Nathan</h2>
-        <h2 class="type-effect-text">
+        <h2 class="inline-block text-[calc(var(--font-size-big)-0.6rem)]">
           And I'm a
           <span class="text-main-color">
-            <h2 class="type-effect-text" #typeEffectTarget appBlinkEffect>
+            <h2
+              class="inline-block text-[calc(var(--font-size-big)-0.6rem)]"
+              #typeEffectTarget
+              appBlinkEffect
+            >
               Software Engineer!
             </h2>
           </span>
@@ -38,11 +53,11 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
           A MEAN stack developer fueled by my passion for coding. Let's turn
           ideas into reality together!
         </p>
-        <div class="link-container">
+        <div class="mt-2 flex gap-2">
           <a
             href="https://www.linkedin.com/in/nathan-dungca-94975525a/"
             target="_blank"
-            class="icon-container"
+            class="${link}"
           >
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <title>LinkedIn Icon</title>
@@ -65,7 +80,7 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
           <a
             href="https://github.com/DevWedeloper"
             target="_blank"
-            class="icon-container"
+            class="${link}"
           >
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <title>GitHub Icon</title>
@@ -78,84 +93,19 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
         <a
           custom-button
           href="assets/pdfs/resume.pdf"
-          class="resume text-big"
+          class="mt-4 inline-block px-8 py-4 text-big font-bold"
           download
         >
           Download Résumé
         </a>
       </div>
-      <app-home-hero-image appInitialAnimation direction="right" />
+      <app-home-hero-image
+        appInitialAnimation
+        direction="right"
+        class="basis-4/12 max-md:flex-none"
+      />
     </section>
   `,
-  styles: [
-    `
-      section {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        align-items: center;
-        overflow-x: hidden;
-      }
-
-      section > *:nth-child(1) {
-        flex: 1 1 70%;
-      }
-
-      section > *:nth-child(2) {
-        flex: 1 1 30%;
-      }
-
-      .home-content .type-effect-text {
-        font-size: calc(var(--font-size-big) - 0.5rem);
-      }
-
-      .home-content .resume {
-        display: inline-block;
-        padding: 1rem 2rem;
-        font-weight: 600;
-        margin-top: 1rem;
-      }
-
-      .type-effect-text {
-        display: inline-block;
-      }
-
-      .link-container {
-        display: flex;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
-      }
-
-      .link-container a:hover {
-        scale: 1.1;
-        transition: scale 50ms ease-in-out;
-        cursor: pointer;
-      }
-
-      .icon-container svg {
-        width: 2rem;
-        fill: var(--text-color);
-      }
-
-      @media (max-width: 768px) {
-        section {
-          flex-direction: column-reverse;
-        }
-
-        section > *:nth-child(1),
-        section > *:nth-child(2) {
-          flex: none;
-        }
-
-        .home-content {
-          display: flex;
-          justify-content: center;
-          flex-direction: column;
-          align-items: center;
-        }
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
