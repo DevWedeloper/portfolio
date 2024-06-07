@@ -1,7 +1,4 @@
-import {
-  ElementRef,
-  Injectable
-} from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 
 interface TypingEffect {
   phrases: string[];
@@ -19,51 +16,25 @@ export class TypeEffectService {
     { phrases, typeSpeed, reverseSpeed, reverseDelay, loop }: TypingEffect,
     element: ElementRef<HTMLElement>,
   ): void {
-    let letterIndex = 0;
-    let phraseIndex = 0;
-    let reverse = false;
-
     const updateText = (text: string) =>
       (element.nativeElement.textContent = text);
+    const delay = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms));
 
-    const typeWriter = () => {
-      const currentText = phrases[phraseIndex];
-
-      if (reverse) {
-        updateText(currentText.substring(0, letterIndex));
-        letterIndex--;
-        if (letterIndex === -1) {
-          reverse = false;
-          letterIndex = 0;
-          moveToNextText();
+    const typeWriter = async () => {
+      for (let phrase of phrases) {
+        for (let [index, _] of phrase.split('').entries()) {
+          updateText(phrase.substring(0, index + 1));
+          await delay(typeSpeed);
         }
-      } else if (letterIndex < currentText.length) {
-        updateText(currentText.substring(0, letterIndex + 1));
-        letterIndex++;
-        if (letterIndex === currentText.length) {
-          if (phraseIndex === phrases.length - 1 && !loop) {
-            return;
-          }
-          setTimeout(() => {
-            reverse = true;
-            typeWriter();
-          }, reverseDelay);
-          return;
+        await delay(reverseDelay);
+        for (let [index, _] of phrase.split('').entries()) {
+          updateText(phrase.substring(0, phrase.length - index));
+          await delay(reverseSpeed);
         }
       }
-      setTimeout(typeWriter, reverse ? reverseSpeed : typeSpeed);
+      if (loop) typeWriter();
     };
-
-    function moveToNextText(): void {
-      phraseIndex++;
-      if (phraseIndex === phrases.length) {
-        if (loop) {
-          phraseIndex = 0;
-        } else {
-          return;
-        }
-      }
-    }
 
     typeWriter();
   }
