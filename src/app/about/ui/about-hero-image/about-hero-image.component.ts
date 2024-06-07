@@ -23,7 +23,6 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   standalone: true,
   imports: [NgOptimizedImage],
   host: {
-    '[class.about-img]': 'true',
     '[@blurAnimation]': 'blurAnimationState()',
   },
   template: `
