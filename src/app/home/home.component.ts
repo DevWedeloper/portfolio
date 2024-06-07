@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  afterNextRender,
+  effect,
   inject,
   viewChild,
 } from '@angular/core';
@@ -165,7 +165,7 @@ export class HomeComponent {
     viewChild.required<ElementRef<HTMLElement>>('typeEffectTarget');
 
   constructor() {
-    afterNextRender(() => {
+    effect(() => {
       this.tes.addTypeEffect(
         {
           phrases: ['Software Engineer!', 'Full-stack Engineer!'],
