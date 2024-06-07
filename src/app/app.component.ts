@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ScrollIndicatorComponent } from './scroll-indicator/scroll-indicator.component';
 import { ThemeService } from './shared/data-access/theme.service';
+import { initialClassToRemove } from './shared/ui/components/initial-animation.directive';
 import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.component';
 
 @Component({
@@ -65,14 +66,7 @@ export class AppComponent {
           if (entry.isIntersecting) {
             const direction = entry.target.getAttribute('direction');
 
-            entry.target.classList.remove(
-              'opacity-0',
-              'blur-sm',
-              '-translate-y-1/2',
-              'translate-y-1/2',
-              '-translate-x-1/2',
-              'translate-x-1/2',
-            );
+            entry.target.classList.remove(...initialClassToRemove.split(' '));
 
             if (direction === 'top' || direction === 'bottom') {
               entry.target.classList.add(

@@ -1,6 +1,14 @@
 import { Directive, computed, input } from '@angular/core';
 import { twMerge } from 'tailwind-merge';
 
+const initialClass = 'opacity-0 blur-sm';
+const initialTopClass = '-translate-y-1/2';
+const initialBottomClass = 'translate-y-1/2';
+const initialLeftClass = '-translate-x-1/2';
+const initialRightClass = 'translate-x-1/2';
+
+export const initialClassToRemove = `${initialClass} ${initialTopClass} ${initialBottomClass} ${initialLeftClass} ${initialRightClass}`;
+
 @Directive({
   selector: '[appInitialAnimation]',
   standalone: true,
@@ -15,7 +23,7 @@ export class InitialAnimationDirective {
   protected computedClass = computed(() => {
     const directionClasses = this.getDirectionClasses(this.direction());
     return twMerge(
-      'opacity-0 blur-sm transition duration-500 ease-in-out motion-reduce:transition-none',
+      `${initialClass} transition duration-500 ease-in-out motion-reduce:transition-none`,
       directionClasses,
       this.userClass(),
     );
@@ -26,13 +34,13 @@ export class InitialAnimationDirective {
   ): string {
     switch (direction) {
       case 'top':
-        return '-translate-y-1/2 transform';
+        return `${initialTopClass}`;
       case 'bottom':
-        return 'translate-y-1/2 transform';
+        return `${initialBottomClass}`;
       case 'left':
-        return '-translate-x-1/2 transform';
+        return `${initialLeftClass}`;
       case 'right':
-        return 'translate-x-1/2 transform';
+        return `${initialRightClass}`;
       default:
         return '';
     }
