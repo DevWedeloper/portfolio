@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { InitialAnimationDirective } from '../shared/ui/components/initial-animation.directive';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
@@ -9,7 +8,6 @@ import { AboutTabComponent } from './ui/about-tab/about-tab.component';
   selector: 'app-about',
   standalone: true,
   imports: [
-    CommonModule,
     AboutHeroImageComponent,
     AboutTabComponent,
     MainSectionDirective,
