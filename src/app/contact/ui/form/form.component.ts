@@ -22,7 +22,7 @@ import { ContactService } from '../../data-access/contact.service';
   template: `
     @if (contactForm.valueChanges | async) {}
     <form [formGroup]="contactForm" (ngSubmit)="submitForm.emit(contactForm)">
-      <div class="form-item-container">
+      <div class="mb-2">
         <input
           id="name"
           type="text"
@@ -31,16 +31,14 @@ import { ContactService } from '../../data-access/contact.service';
           autocomplete="name"
         />
         @if (
-          contactForm.get('name')?.invalid && contactForm.get('name')?.touched
+          contactForm.get('name')?.invalid &&
+          contactForm.get('name')?.touched &&
+          contactForm.get('name')?.hasError('required')
         ) {
-          <div class="error-tooltip">
-            @if (contactForm.get('name')?.hasError('required')) {
-              <div>Name is required.</div>
-            }
-          </div>
+          <div class="text-red-500">Name is required.</div>
         }
       </div>
-      <div class="form-item-container">
+      <div class="mb-2">
         <input
           id="email"
           type="email"
@@ -51,17 +49,15 @@ import { ContactService } from '../../data-access/contact.service';
         @if (
           contactForm.get('email')?.invalid && contactForm.get('email')?.touched
         ) {
-          <div class="error-tooltip">
-            @if (contactForm.get('email')?.hasError('required')) {
-              <div>Email is required.</div>
-            }
-            @if (contactForm.get('email')?.hasError('email')) {
-              <div>Invalid email format.</div>
-            }
-          </div>
+          @if (contactForm.get('email')?.hasError('required')) {
+            <div class="text-red-500">Email is required.</div>
+          }
+          @if (contactForm.get('email')?.hasError('email')) {
+            <div class="text-red-500">Invalid email format.</div>
+          }
         }
       </div>
-      <div class="form-item-container">
+      <div class="mb-2">
         <input
           id="subject"
           type="text"
@@ -69,7 +65,7 @@ import { ContactService } from '../../data-access/contact.service';
           placeholder="Subject"
         />
       </div>
-      <div class="form-item-container">
+      <div class="mb-2">
         <textarea
           id="message"
           formControlName="message"
@@ -78,19 +74,16 @@ import { ContactService } from '../../data-access/contact.service';
         ></textarea>
         @if (
           contactForm.get('message')?.invalid &&
-          contactForm.get('message')?.touched
+          contactForm.get('message')?.touched &&
+          contactForm.get('message')?.hasError('required')
         ) {
-          <div class="error-tooltip">
-            @if (contactForm.get('message')?.hasError('required')) {
-              <div>Message is required.</div>
-            }
-          </div>
+          <div class="text-red-500">Message is required.</div>
         }
       </div>
-      <div class="form-item-container">
+      <div class="mb-2">
         <button
           custom-button
-          class="text-big"
+          class="w-full p-2"
           type="submit"
           [disabled]="contactForm.invalid || (cs.submitLoading$ | async)"
         >
@@ -101,12 +94,6 @@ import { ContactService } from '../../data-access/contact.service';
   `,
   styles: [
     `
-      form {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
-
       form input,
       form textarea {
         width: 100%;
@@ -129,68 +116,10 @@ import { ContactService } from '../../data-access/contact.service';
         background: var(--secondary-color);
       }
 
-      form button {
-        grid-column: span 1;
-        width: 50%;
-        padding: 1rem;
-        font-size: 1.2rem;
-      }
-
       form button:disabled {
         transform: none;
         background-color: var(--secondary-color);
         cursor: not-allowed;
-      }
-
-      .form-item-container {
-        position: relative;
-      }
-
-      .form-item-container:nth-child(1) {
-        grid-column: span 1;
-      }
-
-      .form-item-container:nth-child(2) {
-        grid-column: span 1;
-      }
-
-      .form-item-container:nth-child(3) {
-        grid-column: span 2;
-      }
-
-      .form-item-container:nth-child(4) {
-        grid-column: span 2;
-      }
-
-      .form-item-container:nth-child(5) {
-        grid-column: span 2;
-      }
-
-      .error-tooltip {
-        position: absolute;
-        bottom: calc(100% + 0.5rem);
-        right: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        background-color: rgba(255, 0, 0, 0.8);
-        color: #fff;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        font-size: var(--font-size-tooltip);
-        z-index: 1;
-        align-items: flex-start;
-        user-select: none;
-      }
-
-      @media (max-width: 991px) {
-        .form-item-container:nth-child(1) {
-          grid-column: span 2;
-        }
-
-        .form-item-container:nth-child(2) {
-          grid-column: span 2;
-        }
       }
     `,
   ],
