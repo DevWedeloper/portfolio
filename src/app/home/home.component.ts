@@ -3,10 +3,9 @@ import {
   Component,
   ElementRef,
   effect,
-  inject,
   viewChild,
 } from '@angular/core';
-import { TypeEffectService } from '../shared/data-access/type-effect.service';
+import { addTypeEffect } from '../shared/ui/components/type-effect';
 import { BlinkEffectDirective } from '../shared/ui/components/blink-effect.directive';
 import { CustomButtonComponent } from '../shared/ui/components/custom-button/button';
 import { InitialAnimationDirective } from '../shared/ui/components/initial-animation.directive';
@@ -160,13 +159,12 @@ import { HomeHeroImageComponent } from './ui/home-hero-image/home-hero-image.com
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  private tes = inject(TypeEffectService);
   private typeEffectTarget =
     viewChild.required<ElementRef<HTMLElement>>('typeEffectTarget');
 
   constructor() {
     effect(() => {
-      this.tes.addTypeEffect(
+      addTypeEffect(
         {
           phrases: ['Software Engineer!', 'Full-stack Engineer!'],
           typeSpeed: 55,
