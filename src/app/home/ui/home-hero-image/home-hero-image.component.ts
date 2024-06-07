@@ -6,7 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   standalone: true,
   imports: [NgOptimizedImage],
   host: {
-    '[class.home-img]': 'true',
     class:
       'animate-blob relative h-image-height w-image-width overflow-hidden border-8 border-solid border-main-color',
   },
