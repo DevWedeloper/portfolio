@@ -45,10 +45,21 @@ module.exports = {
             borderRadius: '70% 30% 30% 70% / 60% 40% 60% 40%',
           },
         },
+        fadeInLeft: {
+          '0%': {
+            transform: 'translateX(2rem)',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'translateX(0)',
+            opacity: '1',
+          },
+        },
       },
       animation: {
         blink: 'blink 0.5s step-end infinite alternate',
         blob: 'blob 5s ease-in-out infinite',
+        fadeInLeft: 'fadeInLeft 0.5s ease',
       },
     },
   },

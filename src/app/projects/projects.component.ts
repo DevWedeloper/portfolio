@@ -14,50 +14,15 @@ import { ProjectTwoComponent } from './features/project-two/project-two.componen
     MainSectionDirective,
   ],
   template: `
-    <section appMainSection id="projects">
-      <h2 class="heading">Projects</h2>
-      <div class="projects-container">
-        <div class="container-item">
-          <app-project-one />
-        </div>
-        <div class="container-item">
-          <app-project-two />
-        </div>
-        <div class="container-item">
-          <app-nextjs-supabase-auth />
-        </div>
+    <section appMainSection id="projects" class="flex flex-col gap-2">
+      <h2 class="text-center">Projects</h2>
+      <div class="grid grid-cols-[1fr,1fr] gap-4 max-md:grid-cols-[1fr]">
+        <app-project-one />
+        <app-project-two />
+        <app-nextjs-supabase-auth />
       </div>
     </section>
   `,
-  styles: [
-    `
-      section {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-gap: 0.5rem;
-      }
-
-      .heading {
-        text-align: center;
-      }
-
-      .projects-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
-
-      @media (max-width: 768px) {
-        section {
-          grid-template-columns: 1fr;
-        }
-
-        .projects-container {
-          grid-template-columns: 1fr;
-        }
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsComponent {}
