@@ -69,6 +69,13 @@ const input =
           placeholder="Subject"
           class="${input}"
         />
+        @if (
+          contactForm.get('subject')?.invalid &&
+          contactForm.get('subject')?.touched &&
+          contactForm.get('subject')?.hasError('required')
+        ) {
+          <div class="text-red-500">Subject is required.</div>
+        }
       </div>
       <div class="mb-2">
         <textarea
