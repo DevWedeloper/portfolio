@@ -1,13 +1,13 @@
 import { AsyncPipe, NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
+import { IconWrapperComponent } from '../../../shared/ui/components/icon-wrapper/icon-wrapper.component';
 import { ModalService } from '../../../shared/ui/components/modal/modal.service';
-import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.directive';
 
 @Component({
   selector: 'app-cloudstaff-internship',
   standalone: true,
-  imports: [NgStyle, AsyncPipe, TooltipDirective],
+  imports: [NgStyle, AsyncPipe, IconWrapperComponent],
   host: {
     class: 'inline-block h-[80vh] w-[80vw] overflow-auto p-8',
   },
@@ -39,38 +39,30 @@ import { TooltipDirective } from '../../../shared/ui/components/tooltip/tooltip.
     >
       <li>Tech-Stack:</li>
       <li class="flex">
-        <span appTooltip tooltipText="Angular" class="mr-4">
-          <img
-            class="w-8 select-none"
-            src="assets/images/icons/angular.svg"
-            alt="Angular Logo"
-            loading="lazy"
-          />
-        </span>
-        <span appTooltip tooltipText="Laravel" class="mr-4">
-          <img
-            class="w-8 select-none"
-            src="assets/images/icons/laravel.svg"
-            alt="Laravel Logo"
-            loading="lazy"
-          />
-        </span>
-        <span appTooltip tooltipText="Lumen" class="mr-4">
-          <img
-            class="w-8 select-none"
-            src="assets/images/icons/lumen.svg"
-            alt="Lumen Logo"
-            loading="lazy"
-          />
-        </span>
-        <span appTooltip tooltipText="AWS S3 Bucket" class="mr-4">
-          <img
-            class="w-8 select-none"
-            src="assets/images/icons/aws-s3-bucket.svg"
-            alt="AWS S3 Bucket Logo"
-            loading="lazy"
-          />
-        </span>
+        <app-icon-wrapper
+          class="mr-4"
+          src="assets/images/icons/angular.svg"
+          alt="Angular Logo"
+          tooltipText="Angular"
+        />
+        <app-icon-wrapper
+          class="mr-4"
+          src="assets/images/icons/laravel.svg"
+          alt="Laravel Logo"
+          tooltipText="Laravel"
+        />
+        <app-icon-wrapper
+          class="mr-4"
+          src="assets/images/icons/lumen.svg"
+          alt="Lumen Logo"
+          tooltipText="Lumen"
+        />
+        <app-icon-wrapper
+          class="mr-4"
+          src="assets/images/icons/aws-s3-bucket.svg"
+          alt="AWS S3 Bucket Logo"
+          tooltipText="AWS S3 Bucket"
+        />
       </li>
       <li>Description:</li>
       <li>
