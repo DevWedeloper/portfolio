@@ -96,7 +96,7 @@ const input =
       <div class="mb-2">
         <button
           custom-button
-          class="w-full p-2 disabled:pointer-events-none disabled:transform-none disabled:cursor-not-allowed"
+          class="w-full p-2 disabled:pointer-events-none disabled:transform-none disabled:cursor-not-allowed disabled:bg-secondary-color"
           type="submit"
           [disabled]="contactForm.invalid || (cs.submitLoading$ | async)"
         >
