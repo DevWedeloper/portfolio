@@ -2,25 +2,33 @@ import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   inject,
   output,
+  viewChild,
 } from '@angular/core';
 import {
   FormBuilder,
-  FormGroup,
+  FormGroupDirective,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { CustomButtonComponent } from '../../../shared/ui/components/custom-button/button';
 import { ContactService } from '../../data-access/contact.service';
+import { Message } from '../../types/message.type';
+
+const input =
+  'w-full rounded-lg bg-secondary-color p-4 text-text-color placeholder:text-text-color';
 
 @Component({
   selector: 'app-form',
   standalone: true,
   imports: [AsyncPipe, ReactiveFormsModule, CustomButtonComponent],
   template: `
-    @if (contactForm.valueChanges | async) {}
-    <form [formGroup]="contactForm" (ngSubmit)="submitForm.emit(contactForm)">
+    <form
+      [formGroup]="contactForm"
+      (ngSubmit)="submitForm.emit(contactForm.getRawValue())"
+    >
       <div class="mb-2">
         <input
           id="name"
@@ -28,6 +36,7 @@ import { ContactService } from '../../data-access/contact.service';
           formControlName="name"
           placeholder="Name"
           autocomplete="name"
+          class="${input}"
         />
         @if (
           contactForm.get('name')?.invalid &&
@@ -44,6 +53,7 @@ import { ContactService } from '../../data-access/contact.service';
           formControlName="email"
           placeholder="Email"
           autocomplete="email"
+          class="${input}"
         />
         @if (
           contactForm.get('email')?.invalid && contactForm.get('email')?.touched
@@ -62,7 +72,15 @@ import { ContactService } from '../../data-access/contact.service';
           type="text"
           formControlName="subject"
           placeholder="Subject"
+          class="${input}"
         />
+        @if (
+          contactForm.get('subject')?.invalid &&
+          contactForm.get('subject')?.touched &&
+          contactForm.get('subject')?.hasError('required')
+        ) {
+          <div class="text-red-500">Subject is required.</div>
+        }
       </div>
       <div class="mb-2">
         <textarea
@@ -70,6 +88,8 @@ import { ContactService } from '../../data-access/contact.service';
           formControlName="message"
           rows="8"
           placeholder="Message"
+          class="resize-none"
+          class="${input}"
         ></textarea>
         @if (
           contactForm.get('message')?.invalid &&
@@ -79,60 +99,33 @@ import { ContactService } from '../../data-access/contact.service';
           <div class="text-red-500">Message is required.</div>
         }
       </div>
-      <div class="mb-2">
-        <button
-          custom-button
-          class="w-full p-2"
-          type="submit"
-          [disabled]="contactForm.invalid || (cs.submitLoading$ | async)"
-        >
-          Submit
-        </button>
-      </div>
+      <button
+        custom-button
+        class="w-full p-2 disabled:pointer-events-none disabled:transform-none disabled:cursor-not-allowed disabled:bg-secondary-color"
+        [disabled]="contactForm.invalid || (cs.submitLoading$ | async)"
+      >
+        Submit
+      </button>
     </form>
   `,
-  styles: [
-    `
-      form input,
-      form textarea {
-        width: 100%;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-      }
-
-      form input::placeholder,
-      form textarea::placeholder {
-        color: var(--text-color);
-      }
-
-      form textarea {
-        resize: none;
-      }
-
-      form textarea::-webkit-scrollbar-track {
-        background: var(--secondary-color);
-      }
-
-      form button:disabled {
-        transform: none;
-        background-color: var(--secondary-color);
-        cursor: not-allowed;
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent {
+  private formDir = viewChild.required(FormGroupDirective);
   private fb = inject(FormBuilder);
   protected cs = inject(ContactService);
-  submitForm = output<FormGroup>();
-  protected contactForm = this.fb.group({
+  submitForm = output<Message>();
+  protected contactForm = this.fb.nonNullable.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     subject: ['', [Validators.required]],
     message: ['', Validators.required],
     date: [new Date().toISOString()],
   });
+
+  constructor() {
+    effect(() => {
+      if (this.cs.submitData() === true) this.formDir().resetForm();
+    });
+  }
 }

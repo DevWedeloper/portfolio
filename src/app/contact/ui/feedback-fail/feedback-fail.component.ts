@@ -1,17 +1,31 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CustomButtonComponent } from '../../../shared/ui/components/custom-button/button';
 import { ModalService } from '../../../shared/ui/components/modal/modal.service';
+import {
+  feedback,
+  feedbackButton,
+  feedbackHeading,
+  feedbackIcon,
+  feedbackText,
+} from '../feedback';
 
 @Component({
   selector: 'app-feedback-fail',
   standalone: true,
   imports: [CustomButtonComponent],
   template: `
-    <div class="submit-modal-content">
-      <img src="assets/images/icons/pensive-face.svg" alt="Heart Eyes Emoji" />
-      <h5>Sorry.</h5>
-      <p>The message was not sent. Please try again next time</p>
+    <div class="${feedback}">
+      <img
+        class="${feedbackIcon}"
+        src="assets/images/icons/pensive-face.svg"
+        alt="Heart Eyes Emoji"
+      />
+      <h5 class="${feedbackHeading}">Sorry.</h5>
+      <p class="${feedbackText}">
+        The message was not sent. Please try again next time
+      </p>
       <button
+        class="${feedbackButton}"
         custom-button
         disableEffect
         (click)="ms.close()"
@@ -21,7 +35,6 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
       </button>
     </div>
   `,
-  styleUrls: ['./../feedback.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeedbackFailComponent {

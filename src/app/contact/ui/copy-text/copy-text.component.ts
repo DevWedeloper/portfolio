@@ -18,6 +18,7 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
     '[tabindex]': '0',
     '(click)': 'onEvent()',
     '(keydown.Enter)': 'onEvent()',
+    class: 'cursor-pointer rounded-full p-2',
   },
   template: `
     <img
@@ -29,25 +30,10 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
         filter:
           (ts.isDarkMode$ | async)
             ? 'invert(100%) grayscale(100%)'
-            : 'grayscale(100%)'
+            : 'grayscale(100%)',
       }"
     />
   `,
-  styles: [
-    `
-      :host {
-        padding: 0.5rem;
-        margin: -0.5rem;
-        border-radius: 50%;
-        width: min-content;
-        height: min-content;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CopyTextComponent {

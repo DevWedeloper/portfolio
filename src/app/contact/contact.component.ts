@@ -3,10 +3,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   TemplateRef,
+  effect,
   inject,
   viewChild,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ThemeService } from '../shared/data-access/theme.service';
 import { InitialAnimationDirective } from '../shared/ui/components/initial-animation.directive';
@@ -35,45 +35,49 @@ import { FormComponent } from './ui/form/form.component';
     InitialAnimationDirective,
   ],
   template: `
-    <section appMainSection id="contact">
-      <div appInitialAnimation direction="left" class="contact-information">
+    <section
+      appMainSection
+      id="contact"
+      class="flex gap-8 overflow-x-hidden max-md:flex-col max-md:text-center"
+    >
+      <div appInitialAnimation direction="left" class="basis-5/12">
         <h3>Contact Me</h3>
-        <div class="contact-information-item">
+        <div class="mt-6 flex">
           <img
-            class="w-icon-adjust select-none"
+            class="mr-4 w-icon-adjust select-none"
             src="assets/images/icons/email.svg"
             alt="Email Icon"
             [ngStyle]="{
               filter:
                 (ts.isDarkMode$ | async)
                   ? 'invert(100%) grayscale(100%)'
-                  : 'grayscale(100%)'
+                  : 'grayscale(100%)',
             }"
           />
-          <div class="contact-information-item-copy-area">
+          <div class="flex w-full justify-between">
             <p id="emailText">{{ email }}</p>
             <app-copy-text [text]="email"></app-copy-text>
           </div>
         </div>
-        <div class="contact-information-item">
+        <div class="mt-6 flex">
           <img
-            class="w-icon-adjust select-none"
+            class="mr-4 w-icon-adjust select-none"
             src="assets/images/icons/phone.svg"
             alt="Phone Icon"
             [ngStyle]="{
               filter:
                 (ts.isDarkMode$ | async)
                   ? 'invert(100%) grayscale(100%)'
-                  : 'grayscale(100%)'
+                  : 'grayscale(100%)',
             }"
           />
-          <div class="contact-information-item-copy-area">
+          <div class="flex w-full justify-between">
             <p id="phoneText">{{ phoneNumber }}</p>
             <app-copy-text [text]="phoneNumber"></app-copy-text>
           </div>
         </div>
       </div>
-      <div appInitialAnimation direction="right" class="contact-form">
+      <div appInitialAnimation direction="right" class="basis-7/12">
         <app-form (submitForm)="cs.submitForm$.next($event)" />
       </div>
     </section>
@@ -86,45 +90,6 @@ import { FormComponent } from './ui/form/form.component';
       <app-feedback-success />
     </ng-template>
   `,
-  styles: [
-    `
-      section {
-        display: flex;
-        gap: 2rem;
-        overflow-x: hidden;
-      }
-
-      section > *:nth-child(1) {
-        flex: 1 1 40%;
-      }
-
-      section > *:nth-child(2) {
-        flex: 1 1 60%;
-      }
-
-      .contact-information-item {
-        display: flex;
-        margin-top: 1.5rem;
-      }
-
-      .contact-information-item > img {
-        margin-right: 1rem;
-      }
-
-      .contact-information-item-copy-area {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-      }
-
-      @media (max-width: 768px) {
-        section {
-          flex-direction: column;
-          text-align: center;
-        }
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
@@ -139,13 +104,10 @@ export class ContactComponent {
   protected phoneNumber = '+63 965 558 5778';
 
   constructor() {
-    this.cs.submitData$.pipe(takeUntilDestroyed()).subscribe({
-      next: () => {
-        this.ms.open(this.thankYouTemplate());
-      },
-      error: () => {
+    effect(() => {
+      if (this.cs.submitData() === true) this.ms.open(this.thankYouTemplate());
+      else if (this.cs.submitData() === false)
         this.ms.open(this.sorryTemplate());
-      },
     });
   }
 }

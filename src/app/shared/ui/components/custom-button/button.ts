@@ -213,9 +213,8 @@ export class CustomButtonComponent {
     transform: booleanAttribute,
   });
 
-  protected onClick(event: MouseEvent) {
+  protected onClick() {
     if (!this.disableEffect()) {
-      event.preventDefault();
       this.elementRef.nativeElement.classList.add('animate');
       setTimeout(() => {
         this.elementRef.nativeElement.classList.remove('animate');
