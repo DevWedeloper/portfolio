@@ -14,6 +14,9 @@ import {
 import { CustomButtonComponent } from '../../../shared/ui/components/custom-button/button';
 import { ContactService } from '../../data-access/contact.service';
 
+const input =
+  'w-full rounded-lg bg-secondary-color p-4 text-text-color placeholder:text-text-color';
+
 @Component({
   selector: 'app-form',
   standalone: true,
@@ -28,6 +31,7 @@ import { ContactService } from '../../data-access/contact.service';
           formControlName="name"
           placeholder="Name"
           autocomplete="name"
+          class="${input}"
         />
         @if (
           contactForm.get('name')?.invalid &&
@@ -44,6 +48,7 @@ import { ContactService } from '../../data-access/contact.service';
           formControlName="email"
           placeholder="Email"
           autocomplete="email"
+          class="${input}"
         />
         @if (
           contactForm.get('email')?.invalid && contactForm.get('email')?.touched
@@ -62,6 +67,7 @@ import { ContactService } from '../../data-access/contact.service';
           type="text"
           formControlName="subject"
           placeholder="Subject"
+          class="${input}"
         />
       </div>
       <div class="mb-2">
@@ -70,6 +76,8 @@ import { ContactService } from '../../data-access/contact.service';
           formControlName="message"
           rows="8"
           placeholder="Message"
+          class="resize-none"
+          class="${input}"
         ></textarea>
         @if (
           contactForm.get('message')?.invalid &&
@@ -82,7 +90,7 @@ import { ContactService } from '../../data-access/contact.service';
       <div class="mb-2">
         <button
           custom-button
-          class="w-full p-2"
+          class="w-full p-2 disabled:pointer-events-none disabled:transform-none disabled:cursor-not-allowed"
           type="submit"
           [disabled]="contactForm.invalid || (cs.submitLoading$ | async)"
         >
@@ -91,37 +99,6 @@ import { ContactService } from '../../data-access/contact.service';
       </div>
     </form>
   `,
-  styles: [
-    `
-      form input,
-      form textarea {
-        width: 100%;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-      }
-
-      form input::placeholder,
-      form textarea::placeholder {
-        color: var(--text-color);
-      }
-
-      form textarea {
-        resize: none;
-      }
-
-      form textarea::-webkit-scrollbar-track {
-        background: var(--secondary-color);
-      }
-
-      form button:disabled {
-        transform: none;
-        background-color: var(--secondary-color);
-        cursor: not-allowed;
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent {
