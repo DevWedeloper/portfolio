@@ -9,6 +9,7 @@ module.exports = {
         'max-lg': { max: '991px' },
         'max-md': { max: '768px' },
         'max-sm': { max: '500px' },
+        'supports-hover': { raw: '(hover: hover)' },
       },
       colors: {
         'main-color': 'var(--main-color)',
