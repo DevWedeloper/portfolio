@@ -2,17 +2,20 @@ import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   inject,
   output,
+  viewChild,
 } from '@angular/core';
 import {
   FormBuilder,
-  FormGroup,
+  FormGroupDirective,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { CustomButtonComponent } from '../../../shared/ui/components/custom-button/button';
 import { ContactService } from '../../data-access/contact.service';
+import { Message } from '../../types/message.type';
 
 const input =
   'w-full rounded-lg bg-secondary-color p-4 text-text-color placeholder:text-text-color';
@@ -22,7 +25,10 @@ const input =
   standalone: true,
   imports: [AsyncPipe, ReactiveFormsModule, CustomButtonComponent],
   template: `
-    <form [formGroup]="contactForm" (ngSubmit)="submitForm.emit(contactForm)">
+    <form
+      [formGroup]="contactForm"
+      (ngSubmit)="submitForm.emit(contactForm.getRawValue())"
+    >
       <div class="mb-2">
         <input
           id="name"
@@ -93,26 +99,33 @@ const input =
           <div class="text-red-500">Message is required.</div>
         }
       </div>
-        <button
-          custom-button
-          class="w-full p-2 disabled:pointer-events-none disabled:transform-none disabled:cursor-not-allowed disabled:bg-secondary-color"
-          [disabled]="contactForm.invalid || (cs.submitLoading$ | async)"
-        >
-          Submit
-        </button>
+      <button
+        custom-button
+        class="w-full p-2 disabled:pointer-events-none disabled:transform-none disabled:cursor-not-allowed disabled:bg-secondary-color"
+        [disabled]="contactForm.invalid || (cs.submitLoading$ | async)"
+      >
+        Submit
+      </button>
     </form>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent {
+  private formDir = viewChild.required(FormGroupDirective);
   private fb = inject(FormBuilder);
   protected cs = inject(ContactService);
-  submitForm = output<FormGroup>();
-  protected contactForm = this.fb.group({
+  submitForm = output<Message>();
+  protected contactForm = this.fb.nonNullable.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     subject: ['', [Validators.required]],
     message: ['', Validators.required],
     date: [new Date().toISOString()],
   });
+
+  constructor() {
+    effect(() => {
+      if (this.cs.submitData() === true) this.formDir().resetForm();
+    });
+  }
 }

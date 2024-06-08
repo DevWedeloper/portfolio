@@ -3,10 +3,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   TemplateRef,
+  effect,
   inject,
   viewChild,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ThemeService } from '../shared/data-access/theme.service';
 import { InitialAnimationDirective } from '../shared/ui/components/initial-animation.directive';
@@ -104,13 +104,10 @@ export class ContactComponent {
   protected phoneNumber = '+63 965 558 5778';
 
   constructor() {
-    this.cs.submitData$.pipe(takeUntilDestroyed()).subscribe({
-      next: () => {
-        this.ms.open(this.thankYouTemplate());
-      },
-      error: () => {
+    effect(() => {
+      if (this.cs.submitData() === true) this.ms.open(this.thankYouTemplate());
+      else if (this.cs.submitData() === false)
         this.ms.open(this.sorryTemplate());
-      },
     });
   }
 }
