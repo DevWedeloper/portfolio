@@ -22,7 +22,6 @@ const input =
   standalone: true,
   imports: [AsyncPipe, ReactiveFormsModule, CustomButtonComponent],
   template: `
-    @if (contactForm.valueChanges | async) {}
     <form [formGroup]="contactForm" (ngSubmit)="submitForm.emit(contactForm)">
       <div class="mb-2">
         <input
