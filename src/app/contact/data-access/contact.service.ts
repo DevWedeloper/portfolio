@@ -19,7 +19,7 @@ export class ContactService {
   http = inject(HttpClient);
   fb = inject(FormBuilder);
   private readonly scriptURL =
-    'https://script.google.com/macros/s/AKfycbxtL659ZWZxJohU69yfUJCJ3Eb4Raa6vkNDK0Vgxej4NxIp5mzq-UFe32581yUwZ5QF/exec';
+    'https://script.google.com/macros/s/AKfycbwGoIUZjbwmS16Ju1_I-HmTa3dbZ5cuOtuQjJRH44mAU4jM0u9D49oX3xEkSgjIhWzw/exec';
   // private readonly scriptURL = 'WRONGSCRIPTFORTESTONLY';
   submitForm$ = new Subject<FormGroup>();
   submitLoading$ = new BehaviorSubject<boolean>(false);

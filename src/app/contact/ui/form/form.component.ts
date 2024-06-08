@@ -93,16 +93,13 @@ const input =
           <div class="text-red-500">Message is required.</div>
         }
       </div>
-      <div class="mb-2">
         <button
           custom-button
           class="w-full p-2 disabled:pointer-events-none disabled:transform-none disabled:cursor-not-allowed disabled:bg-secondary-color"
-          type="submit"
           [disabled]="contactForm.invalid || (cs.submitLoading$ | async)"
         >
           Submit
         </button>
-      </div>
     </form>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
