@@ -74,13 +74,13 @@ export class SliderComponent {
   protected index = 0;
   protected slider = contentChildren(SlideDirective);
 
-  goToNext(): void {
+  protected goToNext(): void {
     if (this.index < this.slider().length - 1) {
       this.index += 1;
     }
   }
 
-  goToPrevious(): void {
+  protected goToPrevious(): void {
     if (this.index > 0) {
       this.index -= 1;
     }
