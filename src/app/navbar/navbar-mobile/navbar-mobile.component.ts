@@ -52,6 +52,7 @@ import { NavbarThemeComponent } from '../navbar-theme/navbar-theme.component';
             [routerLink]="[]"
             [fragment]="section.id"
             [ngClass]="{ 'text-main-color': section.isActive }"
+            (click)="isMenuOpen.set(false)"
           >
             {{ section.id | upperFirst }}
           </a>
