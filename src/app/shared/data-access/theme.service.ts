@@ -10,8 +10,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ThemeService {
-  private rendererFactory = inject(RendererFactory2);
-  private renderer = this.rendererFactory.createRenderer(null, null);
+  private renderer = inject(RendererFactory2).createRenderer(null, null);
   private darkThemeMediaQuery!: MediaQueryList;
   darkMode$ = new BehaviorSubject<boolean>(true);
   isDarkMode$: Observable<boolean> = this.darkMode$.asObservable();
