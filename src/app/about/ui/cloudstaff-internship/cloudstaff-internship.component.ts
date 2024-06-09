@@ -9,7 +9,7 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
   standalone: true,
   imports: [NgStyle, IconWrapperComponent],
   host: {
-    class: 'inline-block h-[80vh] w-[80vw] overflow-auto p-8',
+    class: 'scrollbar-hide inline-block h-[80vh] w-[80vw] overflow-auto p-8',
   },
   template: `
     <div
@@ -28,7 +28,7 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
           [ngStyle]="{
             filter: isDarkMode()
               ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)'
+              : 'grayscale(100%)',
           }"
         />
       </span>
