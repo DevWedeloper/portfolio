@@ -1,4 +1,4 @@
-import { AsyncPipe, NgStyle, NgTemplateOutlet } from '@angular/common';
+import { NgStyle, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +12,7 @@ import { CardDirective } from './card.directive';
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [NgStyle, AsyncPipe, NgTemplateOutlet],
+  imports: [NgStyle, NgTemplateOutlet],
   host: {
     class:
       'group block h-full overflow-hidden rounded-lg bg-secondary-color p-6',
@@ -23,7 +23,7 @@ import { CardDirective } from './card.directive';
       [style.background-image]="'url(' + src() + ')'"
     ></div>
     <div
-      class="card-content supports-hover:translate-y-[95%] supports-hover:transition-transform supports-hover:duration-500 supports-hover:ease-in-out flex h-[calc(100%-125px)] flex-col justify-between gap-2 group-focus-within:translate-y-0 group-hover:translate-y-0"
+      class="flex h-[calc(100%-125px)] flex-col justify-between gap-2 group-focus-within:translate-y-0 group-hover:translate-y-0 supports-hover:translate-y-[95%] supports-hover:transition-transform supports-hover:duration-500 supports-hover:ease-in-out"
     >
       <div>
         <h2 class="mb-2 text-regular">{{ title() }}</h2>
@@ -45,10 +45,9 @@ import { CardDirective } from './card.directive';
             src="assets/images/icons/link.svg"
             alt="Link logo"
             [ngStyle]="{
-              filter:
-                (ts.isDarkMode$ | async)
-                  ? 'invert(100%) grayscale(100%)'
-                  : 'grayscale(100%)',
+              filter: isDarkMode()
+                ? 'invert(100%) grayscale(100%)'
+                : 'grayscale(100%)'
             }"
           />
         </a>
@@ -56,7 +55,7 @@ import { CardDirective } from './card.directive';
           <img
             class="w-10 select-none"
             [src]="
-              (ts.isDarkMode$ | async)
+              isDarkMode()
                 ? 'assets/images/icons/github-light.svg'
                 : 'assets/images/icons/github-dark.svg'
             "
@@ -69,7 +68,7 @@ import { CardDirective } from './card.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
-  protected ts = inject(ThemeService);
+  protected isDarkMode = inject(ThemeService).isDarkMode;
   src = input.required<string>();
   title = input.required<string>();
   tags = input.required<string[]>();

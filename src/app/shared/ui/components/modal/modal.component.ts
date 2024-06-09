@@ -6,7 +6,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { AsyncPipe, NgClass, NgTemplateOutlet } from '@angular/common';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +24,7 @@ import { ModalService } from './modal.service';
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [AsyncPipe, NgClass, NgTemplateOutlet],
+  imports: [NgClass, NgTemplateOutlet],
   host: {
     '[@hostAnimation]': 'true',
     '(document:keydown.escape)': 'onEscapeKeydown()',
@@ -35,9 +35,7 @@ import { ModalService } from './modal.service';
       class="fixed inset-0 z-10 h-full w-full overflow-auto backdrop-blur-sm"
       tabindex="0"
       [ngClass]="
-        (ts.isDarkMode$ | async)
-          ? 'bg-white bg-opacity-20'
-          : 'bg-black bg-opacity-40'
+        isDarkMode() ? 'bg-white bg-opacity-20' : 'bg-black bg-opacity-40'
       "
       (click)="ms.close()"
       (keyup.Escape)="ms.close()"
@@ -72,7 +70,7 @@ import { ModalService } from './modal.service';
 })
 export class ModalComponent {
   protected ms = inject(ModalService);
-  protected ts = inject(ThemeService);
+  protected isDarkMode = inject(ThemeService).isDarkMode;
   private renderer = inject(Renderer2);
   contentTemplate = input.required<TemplateRef<HTMLElement>>();
   private modalElement = viewChild.required<ElementRef>('modalElement');

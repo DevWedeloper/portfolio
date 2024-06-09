@@ -1,9 +1,4 @@
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  afterNextRender,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
@@ -17,7 +12,6 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,
     NavbarComponent,
     HomeComponent,
     AboutComponent,
@@ -26,9 +20,6 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
     ScrollIndicatorComponent,
     PageNavComponent,
   ],
-  host: {
-    '(window:resize)': 'onResize()',
-  },
   template: `
     <main>
       <app-navbar />
@@ -38,24 +29,15 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
       <app-contact />
     </main>
     <app-page-nav />
-    @if (isWideScreen) {
-      <app-scroll-indicator />
-    }
+    <app-scroll-indicator class="block max-lg:hidden" />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   title = 'portfolio';
-  protected isWideScreen!: boolean;
 
   constructor() {
-    afterNextRender(() => {
-      this.addScrollAnimation();
-      this.isWideScreen = window.innerWidth >= 991;
-    });
-  }
-
-  private addScrollAnimation(): void {
+    if (typeof IntersectionObserver === 'undefined') return;
     const appearOnScroll = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -89,9 +71,5 @@ export class AppComponent {
 
     const elements = document.querySelectorAll('[appInitialAnimation]');
     elements.forEach((element) => appearOnScroll.observe(element));
-  }
-
-  protected onResize(): void {
-    this.isWideScreen = window.innerWidth >= 991;
   }
 }

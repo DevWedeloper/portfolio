@@ -8,7 +8,7 @@ import {
 } from '@angular/animations';
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { concat, delay, of, switchMap } from 'rxjs';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 
@@ -50,10 +50,9 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutHeroImageComponent {
-  private ts = inject(ThemeService);
-  protected isDarkMode = toSignal(this.ts.isDarkMode$);
+  protected isDarkMode = inject(ThemeService).isDarkMode;
   protected blurAnimationState = toSignal(
-    this.ts.isDarkMode$.pipe(
+    toObservable(this.isDarkMode).pipe(
       switchMap(() => concat(of('animated'), of('').pipe(delay(700)))),
     ),
   );

@@ -1,14 +1,13 @@
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from '../../../../shared/data-access/theme.service';
 import { IconWrapperComponent } from '../../../../shared/ui/components/icon-wrapper/icon-wrapper.component';
 
-const iconsContainer = 'flex gap-2 max-md:justify-center';
+const iconsContainer = 'flex items-center gap-2 max-md:justify-center';
 
 @Component({
   selector: 'app-skills-tab',
   standalone: true,
-  imports: [AsyncPipe, IconWrapperComponent],
+  imports: [IconWrapperComponent],
   template: `
     <ul
       class="grid grid-cols-[repeat(2,min-content)] gap-2 text-main-color max-md:grid-cols-[1fr]"
@@ -55,14 +54,14 @@ const iconsContainer = 'flex gap-2 max-md:justify-center';
           alt="SASS Logo"
           tooltipText="SASS"
         />
+        <app-icon-wrapper
+          src="assets/images/icons/tailwind.svg"
+          alt="Tailwind Logo"
+          tooltipText="Tailwind"
+        />
       </li>
       <li>Back-End:</li>
       <li class="${iconsContainer}">
-        <app-icon-wrapper
-          src="assets/images/icons/mongodb.svg"
-          alt="MongoDB Logo"
-          tooltipText="MongoDB"
-        />
         <app-icon-wrapper
           src="assets/images/icons/express-js.svg"
           alt="Express.js Logo"
@@ -80,6 +79,38 @@ const iconsContainer = 'flex gap-2 max-md:justify-center';
           tooltipText="TypeScript"
         />
       </li>
+      <li>Full-Stack:</li>
+      <li class="${iconsContainer}">
+        <app-icon-wrapper
+          src="assets/images/icons/nextjs.svg"
+          alt="Next.js Logo"
+          tooltipText="Next.js"
+          blackAndWhite
+        />
+        <app-icon-wrapper
+          src="assets/images/icons/analogjs.svg"
+          alt="Analog.js Logo"
+          tooltipText="Analog.js"
+        />
+      </li>
+      <li>Database & ORMs:</li>
+      <li class="${iconsContainer}">
+        <app-icon-wrapper
+          src="assets/images/icons/mongodb.svg"
+          alt="MongoDB Logo"
+          tooltipText="MongoDB"
+        />
+        <app-icon-wrapper
+          src="assets/images/icons/postgresql.svg"
+          alt="PostgreSQL Logo"
+          tooltipText="PostgreSQL"
+        />
+        <app-icon-wrapper
+          src="assets/images/icons/drizzle-orm.svg"
+          alt="Drizzle ORM Logo"
+          tooltipText="Drizzle ORM"
+        />
+      </li>
       <li>Tools:</li>
       <li class="${iconsContainer}">
         <app-icon-wrapper
@@ -89,19 +120,24 @@ const iconsContainer = 'flex gap-2 max-md:justify-center';
         />
         <app-icon-wrapper
           [src]="
-            (ts.isDarkMode$ | async)
+            isDarkMode()
               ? 'assets/images/icons/github-light.svg'
               : 'assets/images/icons/github-dark.svg'
           "
           alt="GitHub logo"
           tooltipText="GitHub"
         />
+        <app-icon-wrapper
+          src="assets/images/icons/trpc.svg"
+          alt="tRPC logo"
+          tooltipText="tRPC"
+        />
       </li>
       <li>Technologies:</li>
       <li class="${iconsContainer}">
         <app-icon-wrapper
           [src]="
-            (ts.isDarkMode$ | async)
+            isDarkMode()
               ? 'assets/images/icons/aws-light.svg'
               : 'assets/images/icons/aws-dark.svg'
           "
@@ -124,11 +160,16 @@ const iconsContainer = 'flex gap-2 max-md:justify-center';
           alt="OAuth 2.0 logo"
           tooltipText="OAuth 2.0"
         />
+        <app-icon-wrapper
+          src="assets/images/icons/supabase.svg"
+          alt="Supabase logo"
+          tooltipText="Supabase"
+        />
       </li>
     </ul>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SkillsTabComponent {
-  protected ts = inject(ThemeService);
+  protected isDarkMode = inject(ThemeService).isDarkMode;
 }

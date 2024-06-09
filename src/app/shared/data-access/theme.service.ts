@@ -1,26 +1,30 @@
+import { MediaMatcher } from '@angular/cdk/layout';
+import { isPlatformBrowser } from '@angular/common';
 import {
   Injectable,
+  PLATFORM_ID,
   RendererFactory2,
-  afterNextRender,
   inject,
 } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  private rendererFactory = inject(RendererFactory2);
-  private renderer = this.rendererFactory.createRenderer(null, null);
-  private darkThemeMediaQuery!: MediaQueryList;
+  private _platformId = inject(PLATFORM_ID);
+  private renderer = inject(RendererFactory2).createRenderer(null, null);
+  private darkThemeMediaQuery = inject(MediaMatcher).matchMedia(
+    '(prefers-color-scheme: dark)',
+  );
   darkMode$ = new BehaviorSubject<boolean>(true);
-  isDarkMode$: Observable<boolean> = this.darkMode$.asObservable();
+  isDarkMode = toSignal(this.darkMode$.asObservable());
 
   constructor() {
-    afterNextRender(() => {
-      this.darkThemeMediaQuery = matchMedia('(prefers-color-scheme: dark)');
-      this.checkPreferredTheme();
-    });
+    this.darkThemeMediaQuery.onchange = (event: MediaQueryListEvent) =>
+      this.darkMode$.next(event.matches ? true : false);
+    this.syncInitialStateFromLocalStorage();
   }
 
   themeOnClick(): void {
@@ -34,11 +38,13 @@ export class ThemeService {
     localStorage.setItem('preferredTheme', preferredTheme);
   }
 
-  checkPreferredTheme(): void {
-    const preferredTheme = localStorage.getItem('preferredTheme');
-    const isDarkTheme =
-      preferredTheme === 'dark' ||
-      (preferredTheme === null && this.darkThemeMediaQuery.matches);
-    this.darkMode$.next(isDarkTheme);
+  private syncInitialStateFromLocalStorage(): void {
+    if (isPlatformBrowser(this._platformId)) {
+      const preferredTheme = localStorage.getItem('preferredTheme');
+      const isDarkTheme =
+        preferredTheme === 'dark' ||
+        (preferredTheme === null && this.darkThemeMediaQuery.matches);
+      this.darkMode$.next(isDarkTheme);
+    }
   }
 }

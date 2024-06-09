@@ -11,29 +11,15 @@ import {
   selector: `button[custom-button], a[custom-button]`,
   standalone: true,
   host: {
-    '(click)': 'onClick($event)',
+    '(click)': 'onClick()',
+    class:
+      'relative rounded-2xl bg-main-color text-regular text-text-color transition-transform duration-150 ease-in-out active:scale-95',
   },
   template: `
     <ng-content />
   `,
   styles: [
     `
-      :host {
-        position: relative;
-        text-decoration: none;
-        background: var(--main-color);
-        color: var(--text-color);
-        border-radius: 1rem;
-        font-size: var(--font-size-regular);
-        transition: transform 0.3s;
-        cursor: pointer;
-        z-index: 1;
-      }
-
-      :host:active {
-        transform: scale(0.9);
-      }
-
       :host {
         -webkit-tap-highlight-color: transparent;
       }

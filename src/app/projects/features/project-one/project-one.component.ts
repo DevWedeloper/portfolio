@@ -1,4 +1,3 @@
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 import { CardComponent } from '../../ui/card/card.component';
@@ -9,17 +8,11 @@ import { SliderComponent } from '../../ui/slider/slider.component';
 @Component({
   selector: 'app-project-one',
   standalone: true,
-  imports: [
-    AsyncPipe,
-    CardComponent,
-    CardDirective,
-    SliderComponent,
-    SlideDirective,
-  ],
+  imports: [CardComponent, CardDirective, SliderComponent, SlideDirective],
   template: `
     <app-card
       [src]="
-        (ts.isDarkMode$ | async)
+        isDarkMode()
           ? 'assets/images/backgrounds/project-one-background-dark.png'
           : 'assets/images/backgrounds/project-one-background-light.png'
       "
@@ -105,5 +98,5 @@ import { SliderComponent } from '../../ui/slider/slider.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectOneComponent {
-  protected ts = inject(ThemeService);
+  protected isDarkMode = inject(ThemeService).isDarkMode;
 }

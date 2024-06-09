@@ -1,4 +1,4 @@
-import { AsyncPipe, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +24,6 @@ import { FormComponent } from './ui/form/form.component';
   standalone: true,
   imports: [
     NgStyle,
-    AsyncPipe,
     ReactiveFormsModule,
     ModalComponent,
     FormComponent,
@@ -48,10 +47,9 @@ import { FormComponent } from './ui/form/form.component';
             src="assets/images/icons/email.svg"
             alt="Email Icon"
             [ngStyle]="{
-              filter:
-                (ts.isDarkMode$ | async)
-                  ? 'invert(100%) grayscale(100%)'
-                  : 'grayscale(100%)',
+              filter: isDarkMode()
+                ? 'invert(100%) grayscale(100%)'
+                : 'grayscale(100%)'
             }"
           />
           <div class="flex w-full justify-between">
@@ -65,10 +63,9 @@ import { FormComponent } from './ui/form/form.component';
             src="assets/images/icons/phone.svg"
             alt="Phone Icon"
             [ngStyle]="{
-              filter:
-                (ts.isDarkMode$ | async)
-                  ? 'invert(100%) grayscale(100%)'
-                  : 'grayscale(100%)',
+              filter: isDarkMode()
+                ? 'invert(100%) grayscale(100%)'
+                : 'grayscale(100%)'
             }"
           />
           <div class="flex w-full justify-between">
@@ -93,7 +90,7 @@ import { FormComponent } from './ui/form/form.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
-  protected ts = inject(ThemeService);
+  protected isDarkMode = inject(ThemeService).isDarkMode;
   private ms = inject(ModalService);
   protected cs = inject(ContactService);
   private thankYouTemplate =
