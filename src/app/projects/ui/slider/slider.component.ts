@@ -20,38 +20,39 @@ const arrow =
   selector: 'app-slider',
   standalone: true,
   imports: [NgTemplateOutlet],
+  host: {
+    class: 'relative flex h-full justify-center',
+  },
   template: `
-    <div class="relative flex h-full justify-center">
-      <div>
-        @if (index !== 0) {
-          <span
-            class="${arrow} left-0"
-            (click)="goToPrevious()"
-            (keydown.Enter)="goToPrevious()"
-            tabindex="0"
-          >
-            ❰
-          </span>
-        }
-        @if (index !== slider().length - 1) {
-          <span
-            class="${arrow} right-0"
-            (click)="goToNext()"
-            (keydown.Enter)="goToNext()"
-            tabindex="0"
-          >
-            ❱
-          </span>
-        }
-      </div>
-      <div class="flex w-[85%] items-center overflow-x-hidden">
-        <div [@slideAnimation]="index" class="m-auto">
-          @for (slide of slider(); track $index) {
-            @if ($index === index) {
-              <ng-container [ngTemplateOutlet]="slide.template" />
-            }
+    <div>
+      @if (index !== 0) {
+        <span
+          class="${arrow} left-0"
+          (click)="goToPrevious()"
+          (keydown.Enter)="goToPrevious()"
+          tabindex="0"
+        >
+          ❰
+        </span>
+      }
+      @if (index !== slider().length - 1) {
+        <span
+          class="${arrow} right-0"
+          (click)="goToNext()"
+          (keydown.Enter)="goToNext()"
+          tabindex="0"
+        >
+          ❱
+        </span>
+      }
+    </div>
+    <div class="flex w-[85%] items-center overflow-x-hidden">
+      <div [@slideAnimation]="index" class="m-auto">
+        @for (slide of slider(); track $index) {
+          @if ($index === index) {
+            <ng-container [ngTemplateOutlet]="slide.template" />
           }
-        </div>
+        }
       </div>
     </div>
   `,
