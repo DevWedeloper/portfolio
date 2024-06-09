@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from '../../../../shared/data-access/theme.service';
 import { IconWrapperComponent } from '../../../../shared/ui/components/icon-wrapper/icon-wrapper.component';
 
-const iconsContainer = 'flex gap-2 max-md:justify-center';
+const iconsContainer = 'flex items-center gap-2 max-md:justify-center';
 
 @Component({
   selector: 'app-skills-tab',
