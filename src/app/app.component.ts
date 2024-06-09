@@ -26,9 +26,6 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
     ScrollIndicatorComponent,
     PageNavComponent,
   ],
-  host: {
-    '(window:resize)': 'onResize()',
-  },
   template: `
     <main>
       <app-navbar />
@@ -38,20 +35,16 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
       <app-contact />
     </main>
     <app-page-nav />
-    @if (isWideScreen) {
-      <app-scroll-indicator />
-    }
+    <app-scroll-indicator class="block max-lg:hidden" />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   title = 'portfolio';
-  protected isWideScreen!: boolean;
 
   constructor() {
     afterNextRender(() => {
       this.addScrollAnimation();
-      this.isWideScreen = window.innerWidth >= 991;
     });
   }
 
@@ -89,9 +82,5 @@ export class AppComponent {
 
     const elements = document.querySelectorAll('[appInitialAnimation]');
     elements.forEach((element) => appearOnScroll.observe(element));
-  }
-
-  protected onResize(): void {
-    this.isWideScreen = window.innerWidth >= 991;
   }
 }
