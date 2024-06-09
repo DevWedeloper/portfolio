@@ -23,7 +23,7 @@ import { TooltipDirective } from '../tooltip/tooltip.directive';
           ? {
               filter: isDarkMode()
                 ? 'invert(100%) grayscale(100%)'
-                : 'grayscale(100%)',
+                : 'grayscale(100%)'
             }
           : {}
       "

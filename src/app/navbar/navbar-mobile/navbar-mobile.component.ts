@@ -28,7 +28,7 @@ import { NavbarThemeComponent } from '../navbar-theme/navbar-theme.component';
         [ngStyle]="{
           filter: isDarkMode()
             ? 'invert(100%) grayscale(100%)'
-            : 'grayscale(100%)',
+            : 'grayscale(100%)'
         }"
       >
         <img

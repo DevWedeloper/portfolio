@@ -29,7 +29,7 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
       [ngStyle]="{
         filter: isDarkMode()
           ? 'invert(100%) grayscale(100%)'
-          : 'grayscale(100%)',
+          : 'grayscale(100%)'
       }"
     />
   `,

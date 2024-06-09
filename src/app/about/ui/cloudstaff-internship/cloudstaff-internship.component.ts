@@ -28,7 +28,7 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
           [ngStyle]="{
             filter: isDarkMode()
               ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)',
+              : 'grayscale(100%)'
           }"
         />
       </span>

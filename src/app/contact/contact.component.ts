@@ -49,7 +49,7 @@ import { FormComponent } from './ui/form/form.component';
             [ngStyle]="{
               filter: isDarkMode()
                 ? 'invert(100%) grayscale(100%)'
-                : 'grayscale(100%)',
+                : 'grayscale(100%)'
             }"
           />
           <div class="flex w-full justify-between">
@@ -65,7 +65,7 @@ import { FormComponent } from './ui/form/form.component';
             [ngStyle]="{
               filter: isDarkMode()
                 ? 'invert(100%) grayscale(100%)'
-                : 'grayscale(100%)',
+                : 'grayscale(100%)'
             }"
           />
           <div class="flex w-full justify-between">

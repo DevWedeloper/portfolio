@@ -47,7 +47,7 @@ import { CardDirective } from './card.directive';
             [ngStyle]="{
               filter: isDarkMode()
                 ? 'invert(100%) grayscale(100%)'
-                : 'grayscale(100%)',
+                : 'grayscale(100%)'
             }"
           />
         </a>

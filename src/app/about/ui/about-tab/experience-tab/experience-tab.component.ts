@@ -29,7 +29,7 @@ import { CloudstaffInternshipComponent } from '../../cloudstaff-internship/cloud
             [ngStyle]="{
               filter: isDarkMode()
                 ? 'invert(100%) grayscale(100%)'
-                : 'grayscale(100%)',
+                : 'grayscale(100%)'
             }"
           />
         </span>
