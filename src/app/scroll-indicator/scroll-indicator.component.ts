@@ -2,16 +2,7 @@ import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Observable, fromEvent } from 'rxjs';
-import { twMerge } from 'tailwind-merge';
 import { sections } from '../shared/ui/components/page-nav/page-nav.component';
-
-const shapeClass =
-  'relative z-10 block h-2 w-2 rotate-45 bg-transparent outline outline-1 outline-text-color';
-
-const activeShapeClass = twMerge(
-  shapeClass,
-  'h-5 w-5 outline outline-1 outline-main-color',
-);
 
 @Component({
   standalone: true,
@@ -27,7 +18,14 @@ const activeShapeClass = twMerge(
         [style.height.%]="progress()"
       ></span>
       @for (shape of sections(); track $index) {
-        <span [ngClass]="shape.isActive ? activeShapeClass : shapeClass"></span>
+        <span
+          [ngClass]="
+            shape.isActive
+              ? 'h-5 w-5 outline-main-color'
+              : 'h-2 w-2 outline-text-color'
+          "
+          class="relative z-10 block rotate-45 bg-transparent outline outline-1"
+        ></span>
       }
     </div>
   `,
@@ -53,7 +51,4 @@ export class ScrollIndicatorComponent {
       subscriber.add(() => observer.unsubscribe());
     }),
   );
-
-  protected activeShapeClass = activeShapeClass;
-  protected shapeClass = shapeClass;
 }
