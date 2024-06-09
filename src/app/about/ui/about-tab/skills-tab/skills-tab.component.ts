@@ -54,14 +54,14 @@ const iconsContainer = 'flex gap-2 max-md:justify-center';
           alt="SASS Logo"
           tooltipText="SASS"
         />
+        <app-icon-wrapper
+          src="assets/images/icons/tailwind.svg"
+          alt="Tailwind Logo"
+          tooltipText="Tailwind"
+        />
       </li>
       <li>Back-End:</li>
       <li class="${iconsContainer}">
-        <app-icon-wrapper
-          src="assets/images/icons/mongodb.svg"
-          alt="MongoDB Logo"
-          tooltipText="MongoDB"
-        />
         <app-icon-wrapper
           src="assets/images/icons/express-js.svg"
           alt="Express.js Logo"
@@ -79,6 +79,37 @@ const iconsContainer = 'flex gap-2 max-md:justify-center';
           tooltipText="TypeScript"
         />
       </li>
+      <li>Full-Stack:</li>
+      <li class="${iconsContainer}">
+        <app-icon-wrapper
+          src="assets/images/icons/nextjs.svg"
+          alt="Next.js Logo"
+          tooltipText="Next.js"
+        />
+        <app-icon-wrapper
+          src="assets/images/icons/analogjs.svg"
+          alt="Analog.js Logo"
+          tooltipText="Analog.js"
+        />
+      </li>
+      <li>Database & ORMs:</li>
+      <li class="${iconsContainer}">
+        <app-icon-wrapper
+          src="assets/images/icons/mongodb.svg"
+          alt="MongoDB Logo"
+          tooltipText="MongoDB"
+        />
+        <app-icon-wrapper
+          src="assets/images/icons/postgresql.svg"
+          alt="PostgreSQL Logo"
+          tooltipText="PostgreSQL"
+        />
+        <app-icon-wrapper
+          src="assets/images/icons/drizzle-orm.svg"
+          alt="Drizzle ORM Logo"
+          tooltipText="Drizzle ORM"
+        />
+      </li>
       <li>Tools:</li>
       <li class="${iconsContainer}">
         <app-icon-wrapper
@@ -94,6 +125,11 @@ const iconsContainer = 'flex gap-2 max-md:justify-center';
           "
           alt="GitHub logo"
           tooltipText="GitHub"
+        />
+        <app-icon-wrapper
+          src="assets/images/icons/trpc.svg"
+          alt="tRPC logo"
+          tooltipText="tRPC"
         />
       </li>
       <li>Technologies:</li>
@@ -122,6 +158,11 @@ const iconsContainer = 'flex gap-2 max-md:justify-center';
           src="assets/images/icons/oauth.svg"
           alt="OAuth 2.0 logo"
           tooltipText="OAuth 2.0"
+        />
+        <app-icon-wrapper
+          src="assets/images/icons/supabase.svg"
+          alt="Supabase logo"
+          tooltipText="Supabase"
         />
       </li>
     </ul>
