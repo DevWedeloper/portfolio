@@ -23,7 +23,7 @@ import { CardDirective } from './card.directive';
       [style.background-image]="'url(' + src() + ')'"
     ></div>
     <div
-      class="card-content supports-hover:translate-y-[95%] supports-hover:transition-transform supports-hover:duration-500 supports-hover:ease-in-out flex h-[calc(100%-125px)] flex-col justify-between gap-2 group-focus-within:translate-y-0 group-hover:translate-y-0"
+      class="supports-hover:translate-y-[95%] supports-hover:transition-transform supports-hover:duration-500 supports-hover:ease-in-out flex h-[calc(100%-125px)] flex-col justify-between gap-2 group-focus-within:translate-y-0 group-hover:translate-y-0"
     >
       <div>
         <h2 class="mb-2 text-regular">{{ title() }}</h2>
