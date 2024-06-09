@@ -85,6 +85,7 @@ const iconsContainer = 'flex items-center gap-2 max-md:justify-center';
           src="assets/images/icons/nextjs.svg"
           alt="Next.js Logo"
           tooltipText="Next.js"
+          blackAndWhite
         />
         <app-icon-wrapper
           src="assets/images/icons/analogjs.svg"
