@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
@@ -13,7 +12,6 @@ import { PageNavComponent } from './shared/ui/components/page-nav/page-nav.compo
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,
     NavbarComponent,
     HomeComponent,
     AboutComponent,
