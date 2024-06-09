@@ -1,4 +1,4 @@
-import { AsyncPipe, NgOptimizedImage, NgStyle } from '@angular/common';
+import { NgOptimizedImage, NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +12,7 @@ import { TooltipDirective } from '../tooltip/tooltip.directive';
 @Component({
   selector: 'app-icon-wrapper',
   standalone: true,
-  imports: [NgOptimizedImage, NgStyle, AsyncPipe, TooltipDirective],
+  imports: [NgOptimizedImage, NgStyle, TooltipDirective],
   template: `
     <span
       appTooltip
@@ -21,10 +21,9 @@ import { TooltipDirective } from '../tooltip/tooltip.directive';
       [ngStyle]="
         blackAndWhite()
           ? {
-              filter:
-                (ts.isDarkMode$ | async)
-                  ? 'invert(100%) grayscale(100%)'
-                  : 'grayscale(100%)',
+              filter: isDarkMode()
+                ? 'invert(100%) grayscale(100%)'
+                : 'grayscale(100%)',
             }
           : {}
       "
@@ -41,7 +40,7 @@ import { TooltipDirective } from '../tooltip/tooltip.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconWrapperComponent {
-  protected ts = inject(ThemeService);
+  protected isDarkMode = inject(ThemeService).isDarkMode;
   src = input.required<string>();
   alt = input.required<string>();
   tooltipText = input.required<string>();

@@ -1,4 +1,4 @@
-import { AsyncPipe, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from '../../../shared/data-access/theme.service';
 import { IconWrapperComponent } from '../../../shared/ui/components/icon-wrapper/icon-wrapper.component';
@@ -7,7 +7,7 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
 @Component({
   selector: 'app-cloudstaff-internship',
   standalone: true,
-  imports: [NgStyle, AsyncPipe, IconWrapperComponent],
+  imports: [NgStyle, IconWrapperComponent],
   host: {
     class: 'inline-block h-[80vh] w-[80vw] overflow-auto p-8',
   },
@@ -26,10 +26,9 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
           (keydown.Enter)="ms.close()"
           tabindex="0"
           [ngStyle]="{
-            filter:
-              (ts.isDarkMode$ | async)
-                ? 'invert(100%) grayscale(100%)'
-                : 'grayscale(100%)',
+            filter: isDarkMode()
+              ? 'invert(100%) grayscale(100%)'
+              : 'grayscale(100%)',
           }"
         />
       </span>
@@ -85,6 +84,6 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CloudstaffInternshipComponent {
-  protected ts = inject(ThemeService);
+  protected isDarkMode = inject(ThemeService).isDarkMode;
   protected ms = inject(ModalService);
 }

@@ -1,4 +1,3 @@
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from '../../../../shared/data-access/theme.service';
 import { IconWrapperComponent } from '../../../../shared/ui/components/icon-wrapper/icon-wrapper.component';
@@ -8,7 +7,7 @@ const iconsContainer = 'flex gap-2 max-md:justify-center';
 @Component({
   selector: 'app-skills-tab',
   standalone: true,
-  imports: [AsyncPipe, IconWrapperComponent],
+  imports: [IconWrapperComponent],
   template: `
     <ul
       class="grid grid-cols-[repeat(2,min-content)] gap-2 text-main-color max-md:grid-cols-[1fr]"
@@ -89,7 +88,7 @@ const iconsContainer = 'flex gap-2 max-md:justify-center';
         />
         <app-icon-wrapper
           [src]="
-            (ts.isDarkMode$ | async)
+            isDarkMode()
               ? 'assets/images/icons/github-light.svg'
               : 'assets/images/icons/github-dark.svg'
           "
@@ -101,7 +100,7 @@ const iconsContainer = 'flex gap-2 max-md:justify-center';
       <li class="${iconsContainer}">
         <app-icon-wrapper
           [src]="
-            (ts.isDarkMode$ | async)
+            isDarkMode()
               ? 'assets/images/icons/aws-light.svg'
               : 'assets/images/icons/aws-dark.svg'
           "
@@ -130,5 +129,5 @@ const iconsContainer = 'flex gap-2 max-md:justify-center';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SkillsTabComponent {
-  protected ts = inject(ThemeService);
+  protected isDarkMode = inject(ThemeService).isDarkMode;
 }

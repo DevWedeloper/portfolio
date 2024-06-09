@@ -6,7 +6,8 @@ import {
   RendererFactory2,
   inject,
 } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class ThemeService {
     '(prefers-color-scheme: dark)',
   );
   darkMode$ = new BehaviorSubject<boolean>(true);
-  isDarkMode$: Observable<boolean> = this.darkMode$.asObservable();
+  isDarkMode = toSignal(this.darkMode$.asObservable());
 
   constructor() {
     this.darkThemeMediaQuery.onchange = (event: MediaQueryListEvent) =>

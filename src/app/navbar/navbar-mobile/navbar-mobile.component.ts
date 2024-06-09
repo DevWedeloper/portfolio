@@ -1,4 +1,4 @@
-import { AsyncPipe, NgClass, NgStyle } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,14 +16,7 @@ import { NavbarThemeComponent } from '../navbar-theme/navbar-theme.component';
 @Component({
   selector: 'app-navbar-mobile',
   standalone: true,
-  imports: [
-    NgClass,
-    NgStyle,
-    AsyncPipe,
-    RouterLink,
-    UpperFirstPipe,
-    NavbarThemeComponent,
-  ],
+  imports: [NgClass, NgStyle, RouterLink, UpperFirstPipe, NavbarThemeComponent],
   template: `
     <div class="flex">
       <app-navbar-theme />
@@ -33,10 +26,9 @@ import { NavbarThemeComponent } from '../navbar-theme/navbar-theme.component';
         (keydown.Enter)="isMenuOpen.set(!isMenuOpen())"
         tabindex="0"
         [ngStyle]="{
-          filter:
-            (ts.isDarkMode$ | async)
-              ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)',
+          filter: isDarkMode()
+            ? 'invert(100%) grayscale(100%)'
+            : 'grayscale(100%)',
         }"
       >
         <img
@@ -70,7 +62,7 @@ import { NavbarThemeComponent } from '../navbar-theme/navbar-theme.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarMobileComponent {
-  protected ts = inject(ThemeService);
+  protected isDarkMode = inject(ThemeService).isDarkMode;
   private renderer = inject(Renderer2);
   protected sections = sections;
 

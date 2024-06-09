@@ -1,5 +1,5 @@
 import { Clipboard } from '@angular/cdk/clipboard';
-import { AsyncPipe, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,7 +13,7 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
 @Component({
   selector: 'app-copy-text',
   standalone: true,
-  imports: [NgStyle, AsyncPipe],
+  imports: [NgStyle],
   host: {
     '[tabindex]': '0',
     '(click)': 'onEvent()',
@@ -27,17 +27,16 @@ import { ThemeService } from '../../../shared/data-access/theme.service';
       src="assets/images/icons/copy.svg"
       alt="Copy Icon"
       [ngStyle]="{
-        filter:
-          (ts.isDarkMode$ | async)
-            ? 'invert(100%) grayscale(100%)'
-            : 'grayscale(100%)',
+        filter: isDarkMode()
+          ? 'invert(100%) grayscale(100%)'
+          : 'grayscale(100%)',
       }"
     />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CopyTextComponent {
-  protected ts = inject(ThemeService);
+  protected isDarkMode = inject(ThemeService).isDarkMode;
   private elementRef = inject(ElementRef);
   private clipboard = inject(Clipboard);
   text = input.required<string>();

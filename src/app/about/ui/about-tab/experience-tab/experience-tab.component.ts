@@ -1,4 +1,4 @@
-import { AsyncPipe, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from '../../../../shared/data-access/theme.service';
 import { ModalService } from '../../../../shared/ui/components/modal/modal.service';
@@ -7,7 +7,7 @@ import { CloudstaffInternshipComponent } from '../../cloudstaff-internship/cloud
 @Component({
   selector: 'app-experience-tab',
   standalone: true,
-  imports: [AsyncPipe, NgStyle, CloudstaffInternshipComponent],
+  imports: [NgStyle, CloudstaffInternshipComponent],
   template: `
     <ul>
       <li>
@@ -27,10 +27,9 @@ import { CloudstaffInternshipComponent } from '../../cloudstaff-internship/cloud
             alt="Open In New Icon"
             loading="lazy"
             [ngStyle]="{
-              filter:
-                (ts.isDarkMode$ | async)
-                  ? 'invert(100%) grayscale(100%)'
-                  : 'grayscale(100%)',
+              filter: isDarkMode()
+                ? 'invert(100%) grayscale(100%)'
+                : 'grayscale(100%)',
             }"
           />
         </span>
@@ -44,6 +43,6 @@ import { CloudstaffInternshipComponent } from '../../cloudstaff-internship/cloud
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExperienceTabComponent {
-  protected ts = inject(ThemeService);
+  protected isDarkMode = inject(ThemeService).isDarkMode;
   protected ms = inject(ModalService);
 }
