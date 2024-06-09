@@ -13,7 +13,7 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
   },
   template: `
     <div
-      class="header mb-8 flex justify-between border-b-2 border-b-secondary-color [border-bottom-style:solid]"
+      class="mb-8 flex justify-between border-b-2 border-b-secondary-color [border-bottom-style:solid]"
     >
       <h3>Project Name: SuiteView</h3>
       <span>
