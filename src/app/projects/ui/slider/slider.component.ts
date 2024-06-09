@@ -44,8 +44,8 @@ const arrow =
           </span>
         }
       </div>
-      <div class="flex w-[85%] items-center justify-center overflow-hidden">
-        <div [@slideAnimation]="index">
+      <div class="flex w-[85%] items-center overflow-x-hidden">
+        <div [@slideAnimation]="index" class="m-auto">
           @for (slide of slider(); track $index) {
             @if ($index === index) {
               <ng-container [ngTemplateOutlet]="slide.template" />
