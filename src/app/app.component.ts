@@ -1,9 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  afterNextRender,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
@@ -43,12 +39,7 @@ export class AppComponent {
   title = 'portfolio';
 
   constructor() {
-    afterNextRender(() => {
-      this.addScrollAnimation();
-    });
-  }
-
-  private addScrollAnimation(): void {
+    if (typeof IntersectionObserver === 'undefined') return;
     const appearOnScroll = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
