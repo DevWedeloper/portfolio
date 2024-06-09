@@ -71,6 +71,23 @@
   --theme-icon: url('assets/images/icons/sun.svg');
 }
 
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--primary-color);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 100vh;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
