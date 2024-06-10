@@ -16,7 +16,7 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
       <h3>Project Name: SuiteView</h3>
       <span>
         <img
-          class="black-and-white w-icon-adjust cursor-pointer select-none"
+          class="w-icon-adjust cursor-pointer select-none black-and-white"
           style="-webkit-tap-highlight-color: transparent"
           src="assets/images/icons/close.svg"
           alt="Close Logo"

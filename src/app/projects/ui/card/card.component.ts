@@ -41,7 +41,7 @@ import { CardDirective } from './card.directive';
       <div class="flex justify-center gap-14">
         <a [href]="websiteLink()" target="_blank">
           <img
-            class="black-and-white w-10 select-none"
+            class="w-10 select-none black-and-white"
             src="assets/images/icons/link.svg"
             alt="Link logo"
           />

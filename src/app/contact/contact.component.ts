@@ -40,7 +40,7 @@ import { FormComponent } from './ui/form/form.component';
         <h3>Contact Me</h3>
         <div class="mt-6 flex">
           <img
-            class="black-and-white mr-4 w-icon-adjust select-none"
+            class="mr-4 w-icon-adjust select-none black-and-white"
             src="assets/images/icons/email.svg"
             alt="Email Icon"
           />
@@ -51,7 +51,7 @@ import { FormComponent } from './ui/form/form.component';
         </div>
         <div class="mt-6 flex">
           <img
-            class="black-and-white mr-4 w-icon-adjust select-none"
+            class="mr-4 w-icon-adjust select-none black-and-white"
             src="assets/images/icons/phone.svg"
             alt="Phone Icon"
           />

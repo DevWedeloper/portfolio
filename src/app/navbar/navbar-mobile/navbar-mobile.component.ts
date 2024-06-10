@@ -20,7 +20,7 @@ import { NavbarThemeComponent } from '../navbar-theme/navbar-theme.component';
     <div class="flex">
       <app-navbar-theme />
       <span
-        class="black-and-white flex w-8 cursor-pointer select-none items-center"
+        class="flex w-8 cursor-pointer select-none items-center black-and-white"
         (click)="isMenuOpen.set(!isMenuOpen())"
         (keydown.Enter)="isMenuOpen.set(!isMenuOpen())"
         tabindex="0"

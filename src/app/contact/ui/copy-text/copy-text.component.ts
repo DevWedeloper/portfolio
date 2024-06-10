@@ -20,7 +20,7 @@ import {
   template: `
     <img
       #copyImage
-      class="black-and-white w-icon-adjust max-w-none select-none"
+      class="w-icon-adjust max-w-none select-none black-and-white"
       src="assets/images/icons/copy.svg"
       alt="Copy Icon"
     />

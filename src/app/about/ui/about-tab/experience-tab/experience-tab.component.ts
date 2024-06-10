@@ -20,7 +20,7 @@ import { CloudstaffInternshipComponent } from '../../cloudstaff-internship/cloud
           tabindex="0"
         >
           <img
-            class="black-and-white w-icon-adjust cursor-pointer select-none"
+            class="w-icon-adjust cursor-pointer select-none black-and-white"
             src="assets/images/icons/open-in-new.svg"
             alt="Open In New Icon"
             loading="lazy"
