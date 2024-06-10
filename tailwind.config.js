@@ -80,6 +80,9 @@ module.exports = {
             display: 'none',
           },
         },
+        '.black-and-white': {
+          filter: 'var(--black-and-white)',
+        },
       });
     }),
   ],

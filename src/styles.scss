@@ -25,6 +25,7 @@
   --secondary-color: hsl(0, 0%, 95%);
   --text-color: hsl(0, 0%, 0%);
   --text-color-reverse: hsl(0, 0%, 100%);
+  --black-and-white: grayscale(100%);
   --theme-icon: url('assets/images/icons/moon.svg');
   --font-size-big: 3.2rem;
   --font-size-regular: 1.6rem;
@@ -68,6 +69,7 @@
   --secondary-color: hsl(0, 0%, 9%);
   --text-color: hsl(0, 0%, 100%);
   --text-color-reverse: hsl(0, 0%, 0%);
+  --black-and-white: invert(100%) grayscale(100%);
   --theme-icon: url('assets/images/icons/sun.svg');
 }
 
