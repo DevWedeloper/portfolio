@@ -1,4 +1,4 @@
-import { NgClass, NgStyle } from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,7 +8,6 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ThemeService } from '../../shared/data-access/theme.service';
 import { sections } from '../../shared/ui/components/page-nav/page-nav.component';
 import { UpperFirstPipe } from '../../shared/ui/pipes/upper-first.pipe';
 import { NavbarThemeComponent } from '../navbar-theme/navbar-theme.component';
@@ -16,20 +15,15 @@ import { NavbarThemeComponent } from '../navbar-theme/navbar-theme.component';
 @Component({
   selector: 'app-navbar-mobile',
   standalone: true,
-  imports: [NgClass, NgStyle, RouterLink, UpperFirstPipe, NavbarThemeComponent],
+  imports: [NgClass, RouterLink, UpperFirstPipe, NavbarThemeComponent],
   template: `
     <div class="flex">
       <app-navbar-theme />
       <span
-        class="flex w-8 cursor-pointer select-none items-center"
+        class="black-and-white flex w-8 cursor-pointer select-none items-center"
         (click)="isMenuOpen.set(!isMenuOpen())"
         (keydown.Enter)="isMenuOpen.set(!isMenuOpen())"
         tabindex="0"
-        [ngStyle]="{
-          filter: isDarkMode()
-            ? 'invert(100%) grayscale(100%)'
-            : 'grayscale(100%)'
-        }"
       >
         <img
           class="pointer-events-none hidden w-8 select-none max-md:block"
@@ -63,7 +57,6 @@ import { NavbarThemeComponent } from '../navbar-theme/navbar-theme.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarMobileComponent {
-  protected isDarkMode = inject(ThemeService).isDarkMode;
   private renderer = inject(Renderer2);
   protected sections = sections;
 

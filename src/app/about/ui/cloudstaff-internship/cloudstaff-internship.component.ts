@@ -1,13 +1,11 @@
-import { NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ThemeService } from '../../../shared/data-access/theme.service';
 import { IconWrapperComponent } from '../../../shared/ui/components/icon-wrapper/icon-wrapper.component';
 import { ModalService } from '../../../shared/ui/components/modal/modal.service';
 
 @Component({
   selector: 'app-cloudstaff-internship',
   standalone: true,
-  imports: [NgStyle, IconWrapperComponent],
+  imports: [IconWrapperComponent],
   host: {
     class: 'scrollbar-hide inline-block h-[80vh] w-[80vw] overflow-auto p-8',
   },
@@ -18,18 +16,13 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
       <h3>Project Name: SuiteView</h3>
       <span>
         <img
-          class="w-icon-adjust cursor-pointer select-none"
+          class="black-and-white w-icon-adjust cursor-pointer select-none"
           style="-webkit-tap-highlight-color: transparent"
           src="assets/images/icons/close.svg"
           alt="Close Logo"
           (click)="ms.close()"
           (keydown.Enter)="ms.close()"
           tabindex="0"
-          [ngStyle]="{
-            filter: isDarkMode()
-              ? 'invert(100%) grayscale(100%)'
-              : 'grayscale(100%)',
-          }"
         />
       </span>
     </div>
@@ -84,6 +77,5 @@ import { ModalService } from '../../../shared/ui/components/modal/modal.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CloudstaffInternshipComponent {
-  protected isDarkMode = inject(ThemeService).isDarkMode;
   protected ms = inject(ModalService);
 }

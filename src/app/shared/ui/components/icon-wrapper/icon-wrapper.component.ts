@@ -1,4 +1,4 @@
-import { NgOptimizedImage, NgStyle } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,21 +12,13 @@ import { TooltipDirective } from '../tooltip/tooltip.directive';
 @Component({
   selector: 'app-icon-wrapper',
   standalone: true,
-  imports: [NgOptimizedImage, NgStyle, TooltipDirective],
+  imports: [NgOptimizedImage, NgClass, TooltipDirective],
   template: `
     <span
       appTooltip
       [tooltipText]="tooltipText()"
       class="relative block h-8 w-8"
-      [ngStyle]="
-        blackAndWhite()
-          ? {
-              filter: isDarkMode()
-                ? 'invert(100%) grayscale(100%)'
-                : 'grayscale(100%)'
-            }
-          : {}
-      "
+      [ngClass]="{ 'black-and-white': blackAndWhite() }"
     >
       <img
         class="select-none"

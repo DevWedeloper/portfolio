@@ -1,4 +1,4 @@
-import { NgStyle, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +12,7 @@ import { CardDirective } from './card.directive';
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [NgStyle, NgTemplateOutlet],
+  imports: [NgTemplateOutlet],
   host: {
     class:
       'group block h-full overflow-hidden rounded-lg bg-secondary-color p-6',
@@ -41,14 +41,9 @@ import { CardDirective } from './card.directive';
       <div class="flex justify-center gap-14">
         <a [href]="websiteLink()" target="_blank">
           <img
-            class="w-10 select-none"
+            class="black-and-white w-10 select-none"
             src="assets/images/icons/link.svg"
             alt="Link logo"
-            [ngStyle]="{
-              filter: isDarkMode()
-                ? 'invert(100%) grayscale(100%)'
-                : 'grayscale(100%)'
-            }"
           />
         </a>
         <a [href]="githubLink()" target="_blank">

@@ -1,13 +1,11 @@
-import { NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ThemeService } from '../../../../shared/data-access/theme.service';
 import { ModalService } from '../../../../shared/ui/components/modal/modal.service';
 import { CloudstaffInternshipComponent } from '../../cloudstaff-internship/cloudstaff-internship.component';
 
 @Component({
   selector: 'app-experience-tab',
   standalone: true,
-  imports: [NgStyle, CloudstaffInternshipComponent],
+  imports: [CloudstaffInternshipComponent],
   template: `
     <ul>
       <li>
@@ -22,15 +20,10 @@ import { CloudstaffInternshipComponent } from '../../cloudstaff-internship/cloud
           tabindex="0"
         >
           <img
-            class="w-icon-adjust cursor-pointer select-none"
+            class="black-and-white w-icon-adjust cursor-pointer select-none"
             src="assets/images/icons/open-in-new.svg"
             alt="Open In New Icon"
             loading="lazy"
-            [ngStyle]="{
-              filter: isDarkMode()
-                ? 'invert(100%) grayscale(100%)'
-                : 'grayscale(100%)'
-            }"
           />
         </span>
       </li>
@@ -43,6 +36,5 @@ import { CloudstaffInternshipComponent } from '../../cloudstaff-internship/cloud
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExperienceTabComponent {
-  protected isDarkMode = inject(ThemeService).isDarkMode;
   protected ms = inject(ModalService);
 }

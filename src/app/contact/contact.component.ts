@@ -1,4 +1,3 @@
-import { NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,7 +7,6 @@ import {
   viewChild,
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ThemeService } from '../shared/data-access/theme.service';
 import { InitialAnimationDirective } from '../shared/ui/components/initial-animation.directive';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
 import { ModalComponent } from '../shared/ui/components/modal/modal.component';
@@ -23,7 +21,6 @@ import { FormComponent } from './ui/form/form.component';
   selector: 'app-contact',
   standalone: true,
   imports: [
-    NgStyle,
     ReactiveFormsModule,
     ModalComponent,
     FormComponent,
@@ -43,14 +40,9 @@ import { FormComponent } from './ui/form/form.component';
         <h3>Contact Me</h3>
         <div class="mt-6 flex">
           <img
-            class="mr-4 w-icon-adjust select-none"
+            class="black-and-white mr-4 w-icon-adjust select-none"
             src="assets/images/icons/email.svg"
             alt="Email Icon"
-            [ngStyle]="{
-              filter: isDarkMode()
-                ? 'invert(100%) grayscale(100%)'
-                : 'grayscale(100%)'
-            }"
           />
           <div class="flex w-full justify-between">
             <p id="emailText">{{ email }}</p>
@@ -59,14 +51,9 @@ import { FormComponent } from './ui/form/form.component';
         </div>
         <div class="mt-6 flex">
           <img
-            class="mr-4 w-icon-adjust select-none"
+            class="black-and-white mr-4 w-icon-adjust select-none"
             src="assets/images/icons/phone.svg"
             alt="Phone Icon"
-            [ngStyle]="{
-              filter: isDarkMode()
-                ? 'invert(100%) grayscale(100%)'
-                : 'grayscale(100%)'
-            }"
           />
           <div class="flex w-full justify-between">
             <p id="phoneText">{{ phoneNumber }}</p>
@@ -90,7 +77,6 @@ import { FormComponent } from './ui/form/form.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
-  protected isDarkMode = inject(ThemeService).isDarkMode;
   private ms = inject(ModalService);
   protected cs = inject(ContactService);
   private thankYouTemplate =
