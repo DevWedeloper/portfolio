@@ -102,7 +102,7 @@ const input =
       <button
         custom-button
         class="w-full p-2 disabled:pointer-events-none disabled:transform-none disabled:cursor-not-allowed disabled:bg-secondary-color"
-        [disabled]="contactForm.invalid || (cs.submitLoading$ | async)"
+        [disabled]="contactForm.invalid || status() === 'loading'"
       >
         Submit
       </button>
@@ -113,7 +113,7 @@ const input =
 export class FormComponent {
   private formDir = viewChild.required(FormGroupDirective);
   private fb = inject(FormBuilder);
-  protected cs = inject(ContactService);
+  protected status = inject(ContactService).status;
   submitForm = output<Message>();
   protected contactForm = this.fb.nonNullable.group({
     name: ['', Validators.required],
@@ -125,7 +125,7 @@ export class FormComponent {
 
   constructor() {
     effect(() => {
-      if (this.cs.submitData() === true) this.formDir().resetForm();
+      if (this.status() === 'success') this.formDir().resetForm();
     });
   }
 }

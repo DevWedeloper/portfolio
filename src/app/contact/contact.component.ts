@@ -88,9 +88,8 @@ export class ContactComponent {
 
   constructor() {
     effect(() => {
-      if (this.cs.submitData() === true) this.ms.open(this.thankYouTemplate());
-      else if (this.cs.submitData() === false)
-        this.ms.open(this.sorryTemplate());
+      if (this.cs.status() === 'success') this.ms.open(this.thankYouTemplate());
+      else if (this.cs.status() === 'error') this.ms.open(this.sorryTemplate());
     });
   }
 }
