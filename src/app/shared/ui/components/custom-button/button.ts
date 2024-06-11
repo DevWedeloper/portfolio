@@ -3,15 +3,17 @@ import {
   Component,
   ElementRef,
   booleanAttribute,
+  effect,
   inject,
   input,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { concat, delay, filter, fromEvent, of, switchMap } from 'rxjs';
 
 @Component({
   selector: `button[custom-button], a[custom-button]`,
   standalone: true,
   host: {
-    '(click)': 'onClick()',
     class:
       'relative rounded-2xl bg-main-color text-regular text-text-color transition-transform duration-150 ease-in-out active:scale-95',
   },
@@ -199,12 +201,19 @@ export class CustomButtonComponent {
     transform: booleanAttribute,
   });
 
-  protected onClick() {
-    if (!this.disableEffect()) {
-      this.elementRef.nativeElement.classList.add('animate');
-      setTimeout(() => {
+  private animate = toSignal(
+    fromEvent(this.elementRef.nativeElement, 'click').pipe(
+      filter(() => !this.disableEffect()),
+      switchMap(() => concat(of('animate'), of('').pipe(delay(600)))),
+    ),
+  );
+
+  constructor() {
+    effect(() => {
+      if (this.animate() === 'animate')
+        this.elementRef.nativeElement.classList.add('animate');
+      else if (this.animate() === '')
         this.elementRef.nativeElement.classList.remove('animate');
-      }, 600);
-    }
+    });
   }
 }
