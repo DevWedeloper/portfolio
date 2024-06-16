@@ -22,7 +22,7 @@ import { TabDirective } from './tab.directive';
         <li
           #tabLinks
           class="pointer p-2 text-regular"
-          [ngClass]="{ active: activeTabIndex() === $index }"
+          [ngClass]="{ 'text-main-color': activeTabIndex() === $index }"
           (click)="activeTabIndex.set($index)"
           (keydown.Enter)="activeTabIndex.set($index)"
           tabindex="0"
