@@ -36,13 +36,15 @@ const arrow =
       </button>
     }
     <div class="flex w-[85%] items-center overflow-x-hidden">
-      <div [@slideAnimation]="index()" class="m-auto">
-        @for (slide of slider(); track $index) {
-          <div [ngClass]="index() === $index ? 'block' : 'hidden'">
-            <ng-container [ngTemplateOutlet]="slide.template" />
-          </div>
-        }
-      </div>
+      @for (slide of slider(); track $index) {
+        <div
+          [@slideAnimation]="index()"
+          [ngClass]="index() === $index ? 'block' : 'hidden'"
+          class="m-auto"
+        >
+          <ng-container [ngTemplateOutlet]="slide.template" />
+        </div>
+      }
     </div>
   `,
   animations: [
