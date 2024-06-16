@@ -26,24 +26,14 @@ const arrow =
   },
   template: `
     @if (index() !== 0) {
-      <span
-        class="${arrow} left-0"
-        (click)="goToPrevious()"
-        (keydown.Enter)="goToPrevious()"
-        tabindex="0"
-      >
-        ❰
-      </span>
+      <button class="${arrow} left-0" (click)="goToPrevious()">
+        <span>❰</span>
+      </button>
     }
     @if (index() !== slider().length - 1) {
-      <span
-        class="${arrow} right-0"
-        (click)="goToNext()"
-        (keydown.Enter)="goToNext()"
-        tabindex="0"
-      >
-        ❱
-      </span>
+      <button class="${arrow} right-0" (click)="goToNext()">
+        <span>❱</span>
+      </button>
     }
     <div class="flex w-[85%] items-center overflow-x-hidden">
       <div [@slideAnimation]="index()" class="m-auto">
