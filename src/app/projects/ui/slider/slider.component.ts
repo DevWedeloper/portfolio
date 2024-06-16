@@ -10,6 +10,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   contentChildren,
+  signal,
 } from '@angular/core';
 import { SlideDirective } from './slide.directive';
 
@@ -24,7 +25,7 @@ const arrow =
     class: 'relative flex h-full justify-center',
   },
   template: `
-    @if (index !== 0) {
+    @if (index() !== 0) {
       <span
         class="${arrow} left-0"
         (click)="goToPrevious()"
@@ -34,7 +35,7 @@ const arrow =
         ❰
       </span>
     }
-    @if (index !== slider().length - 1) {
+    @if (index() !== slider().length - 1) {
       <span
         class="${arrow} right-0"
         (click)="goToNext()"
@@ -45,9 +46,9 @@ const arrow =
       </span>
     }
     <div class="flex w-[85%] items-center overflow-x-hidden">
-      <div [@slideAnimation]="index" class="m-auto">
+      <div [@slideAnimation]="index()" class="m-auto">
         @for (slide of slider(); track $index) {
-          <div [ngClass]="$index === index ? 'block' : 'hidden'">
+          <div [ngClass]="index() === $index ? 'block' : 'hidden'">
             <ng-container [ngTemplateOutlet]="slide.template" />
           </div>
         }
@@ -70,18 +71,18 @@ const arrow =
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SliderComponent {
-  protected index = 0;
+  protected index = signal(0);
   protected slider = contentChildren(SlideDirective);
 
   protected goToNext(): void {
-    if (this.index < this.slider().length - 1) {
-      this.index += 1;
+    if (this.index() < this.slider().length - 1) {
+      this.index.update((i) => i + 1);
     }
   }
 
   protected goToPrevious(): void {
-    if (this.index > 0) {
-      this.index -= 1;
+    if (this.index() > 0) {
+      this.index.update((i) => i - 1);
     }
   }
 }
