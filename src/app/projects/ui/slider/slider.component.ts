@@ -5,7 +5,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { NgTemplateOutlet } from '@angular/common';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +19,7 @@ const arrow =
 @Component({
   selector: 'app-slider',
   standalone: true,
-  imports: [NgTemplateOutlet],
+  imports: [NgTemplateOutlet, NgClass],
   host: {
     class: 'relative flex h-full justify-center',
   },
@@ -47,9 +47,9 @@ const arrow =
     <div class="flex w-[85%] items-center overflow-x-hidden">
       <div [@slideAnimation]="index" class="m-auto">
         @for (slide of slider(); track $index) {
-          @if ($index === index) {
+          <div [ngClass]="$index === index ? 'block' : 'hidden'">
             <ng-container [ngTemplateOutlet]="slide.template" />
-          }
+          </div>
         }
       </div>
     </div>
