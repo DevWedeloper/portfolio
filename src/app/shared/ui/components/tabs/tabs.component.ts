@@ -37,14 +37,18 @@ import { TabDirective } from './tab.directive';
         [style.top]="linePosition()?.top"
       ></li>
     </ul>
-    <ng-container [ngTemplateOutlet]="selectedTabTpl()" />
+    @for (tab of tabs(); track $index) {
+      <div [ngClass]="activeTabIndex() === $index ? 'block' : 'hidden'">
+        <ng-container [ngTemplateOutlet]="tab.template" />
+      </div>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent {
   private tabLinks = viewChildren<ElementRef<HTMLElement>>('tabLinks');
   protected tabs = contentChildren(TabDirective);
-  protected activeTabIndex = signal<number | null>(null);
+  protected activeTabIndex = signal<number>(0);
 
   protected activeTabElement = computed(() => {
     const tabLinks = this.tabLinks();
@@ -55,17 +59,6 @@ export class TabsComponent {
     if (!selected) return tabLinks[0];
 
     return tabLinks[selected];
-  });
-
-  protected selectedTabTpl = computed(() => {
-    const tabs = this.tabs();
-    if (!tabs.length) return null;
-
-    const selected = this.activeTabIndex();
-
-    if (!selected) return tabs[0].template;
-
-    return tabs[selected].template;
   });
 
   private resize$ = new Observable<{
