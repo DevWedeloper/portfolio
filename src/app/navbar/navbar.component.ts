@@ -18,7 +18,7 @@ import { NavbarThemeComponent } from './navbar-theme/navbar-theme.component';
   ],
   template: `
     <div
-      class="fixed z-10 flex h-12 w-full items-center justify-between px-[9%] py-8 text-text-color before:absolute before:inset-0 before:-z-10 before:backdrop-blur-sm max-lg:px-[3%] max-md:bg-primary-color"
+      class="fixed z-10 flex h-12 w-full items-center justify-between px-[9%] py-8 text-text-color backdrop-blur-sm max-lg:px-[3%] max-md:bg-primary-color"
     >
       <h1 class="text-3xl">Nathan.</h1>
 
@@ -34,7 +34,7 @@ import { NavbarThemeComponent } from './navbar-theme/navbar-theme.component';
                 [routerLink]="[]"
                 [fragment]="section.id"
                 [ngClass]="{ 'text-main-color': section.isActive }"
-                class="-m-2 rounded-lg p-2 text-regular hover:text-main-color hover:backdrop-blur-sm"
+                class="-m-2 rounded-lg p-2 text-regular hover:text-main-color"
               >
                 {{ section.id | upperFirst }}
               </a>

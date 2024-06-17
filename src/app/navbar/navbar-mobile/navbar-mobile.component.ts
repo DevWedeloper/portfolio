@@ -38,7 +38,7 @@ import { NavbarThemeComponent } from '../navbar-theme/navbar-theme.component';
     </div>
     <ul
       [ngClass]="isMenuOpen() ? 'translate-x-0' : '-translate-x-full'"
-      class="fixed left-0 top-12 flex h-[calc(100%-3rem)] w-full flex-col items-center justify-center bg-primary-color transition-transform duration-300 ease-in-out"
+      class="fixed left-0 top-12 flex h-[calc(100vh-3rem)] w-full flex-col items-center justify-center bg-primary-color transition-transform duration-300 ease-in-out"
     >
       @for (section of sections(); track $index) {
         <li class="my-8 text-regular font-bold">
