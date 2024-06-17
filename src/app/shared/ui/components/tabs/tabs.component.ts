@@ -17,26 +17,24 @@ import { TabDirective } from './tab.directive';
   standalone: true,
   imports: [NgClass, NgTemplateOutlet],
   template: `
-    <ul class="relative flex list-none p-2 max-md:justify-center">
+    <div class="relative flex list-none p-2 max-md:justify-center">
       @for (tab of tabs(); track $index) {
-        <li
+        <button
           #tabLinks
           class="pointer p-2 text-regular"
           [ngClass]="{ 'text-main-color': activeTabIndex() === $index }"
           (click)="activeTabIndex.set($index)"
-          (keydown.Enter)="activeTabIndex.set($index)"
-          tabindex="0"
         >
-          <p>{{ tab.title() }}</p>
-        </li>
+          {{ tab.title() }}
+        </button>
       }
-      <li
+      <span
         class="absolute h-1 rounded-2xl bg-main-color transition-all duration-300 ease-in-out"
         [style.width]="linePosition()?.width"
         [style.left]="linePosition()?.left"
         [style.top]="linePosition()?.top"
-      ></li>
-    </ul>
+      ></span>
+    </div>
     @for (tab of tabs(); track $index) {
       <div [ngClass]="activeTabIndex() === $index ? 'block' : 'hidden'">
         <ng-container [ngTemplateOutlet]="tab.template" />
