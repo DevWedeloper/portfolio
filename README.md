@@ -49,6 +49,14 @@ Authentication/Authorization using Supabase with Next.js.
 - [Project Link](https://nextjs-supabase-auth-devwedeloper.vercel.app/)
 - [GitHub Repository](https://github.com/DevWedeloper/nextjs-supabase-auth)
 
+### Angular Form Builder
+
+Creation and management of dynamic forms in Angular.
+
+- Tech-Stack: Angular, Analog.js, Spartan UI, Tailwind CSS, Vercel
+- [Project Link](https://angular-form-builder.vercel.app/)
+- [GitHub Repository](https://github.com/DevWedeloper/angular-form-builder)
+
 Feel free to explore more projects on my [GitHub Profile](https://github.com/DevWedeloper).
 
 ## Contact Me

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MainSectionDirective } from '../shared/ui/components/main-section.directive';
+import { AngularFormBuilderComponent } from './features/angular-form-builder/angular-form-builder.component';
 import { NextjsSupabaseAuthComponent } from './features/nextjs-supabase-auth/nextjs-supabase-auth.component';
 import { ProjectOneComponent } from './features/project-one/project-one.component';
 import { ProjectTwoComponent } from './features/project-two/project-two.component';
@@ -11,6 +12,7 @@ import { ProjectTwoComponent } from './features/project-two/project-two.componen
     ProjectOneComponent,
     ProjectTwoComponent,
     NextjsSupabaseAuthComponent,
+    AngularFormBuilderComponent,
     MainSectionDirective,
   ],
   template: `
@@ -20,6 +22,7 @@ import { ProjectTwoComponent } from './features/project-two/project-two.componen
         <app-project-one />
         <app-project-two />
         <app-nextjs-supabase-auth />
+        <app-angular-form-builder />
       </div>
     </section>
   `,
