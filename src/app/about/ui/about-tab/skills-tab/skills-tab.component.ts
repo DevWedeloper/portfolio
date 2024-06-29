@@ -94,6 +94,29 @@ const iconsContainer =
           tooltipText="Analog.js"
         />
       </li>
+      <li>Testing:</li>
+      <li class="${iconsContainer}">
+        <app-icon-wrapper
+          src="assets/images/icons/jasmine.svg"
+          alt="Jasmine Logo"
+          tooltipText="Jasmine"
+        />
+        <app-icon-wrapper
+          src="assets/images/icons/karma.svg"
+          alt="Karma Logo"
+          tooltipText="Karma"
+        />
+        <app-icon-wrapper
+          src="assets/images/icons/jest.svg"
+          alt="Jest Logo"
+          tooltipText="Jest"
+        />
+        <app-icon-wrapper
+          src="assets/images/icons/vitest.svg"
+          alt="Vitest Logo"
+          tooltipText="Vitest"
+        />
+      </li>
       <li>Database & ORMs:</li>
       <li class="${iconsContainer}">
         <app-icon-wrapper
@@ -132,6 +155,11 @@ const iconsContainer =
           src="assets/images/icons/trpc.svg"
           alt="tRPC logo"
           tooltipText="tRPC"
+        />
+        <app-icon-wrapper
+          src="assets/images/icons/vite.svg"
+          alt="Vite logo"
+          tooltipText="Vite"
         />
       </li>
       <li>Technologies:</li>
