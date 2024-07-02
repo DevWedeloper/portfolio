@@ -45,7 +45,7 @@ An infinite scroll of images using the Pexels API.
 
 Authentication/Authorization using Supabase with Next.js.
 
-- Tech-Stack: Next.js, Supabase, Tailwind CSS, Shadcn UI
+- Tech-Stack: Next.js, Supabase, Tailwind CSS, Shadcn UI, Vercel
 - [Project Link](https://nextjs-supabase-auth-devwedeloper.vercel.app/)
 - [GitHub Repository](https://github.com/DevWedeloper/nextjs-supabase-auth)
 
