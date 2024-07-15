@@ -20,11 +20,11 @@
 }
 
 :root {
-  --main-color: hsl(0, 100%, 65%);
-  --primary-color: hsl(0, 0%, 100%);
-  --secondary-color: hsl(0, 0%, 95%);
-  --text-color: hsl(0, 0%, 0%);
-  --text-color-reverse: hsl(0, 0%, 100%);
+  --main-color: oklch(67.3% 0.215 25.04);
+  --primary-color: oklch(100% 0 102.07);
+  --secondary-color: oklch(96.11% 0 102.07);
+  --text-color: oklch(0% 0 0);
+  --text-color-reverse: oklch(100% 0 102.07);
   --black-and-white: grayscale(100%);
   --theme-icon: url('assets/images/icons/moon.svg');
   --font-size-big: 3.2rem;
@@ -65,10 +65,10 @@
 }
 
 .dark {
-  --primary-color: hsl(210, 5%, 14%);
-  --secondary-color: hsl(0, 0%, 9%);
-  --text-color: hsl(0, 0%, 100%);
-  --text-color-reverse: hsl(0, 0%, 0%);
+  --primary-color: oklch(25.87% 0.003 228.93);
+  --secondary-color: oklch(20.46% 0 102.07);
+  --text-color: oklch(100% 0 102.07);
+  --text-color-reverse: oklch(0% 0 0);
   --black-and-white: invert(100%) grayscale(100%);
   --theme-icon: url('assets/images/icons/sun.svg');
 }
