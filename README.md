@@ -59,6 +59,14 @@ Creation and management of dynamic forms in Angular.
 
 Feel free to explore more projects on my [GitHub Profile](https://github.com/DevWedeloper).
 
+### Gemini Clone
+
+Access and interact with the Gemini API.
+
+- Tech-Stack: Angular, Analog.js, Gemini API, Spartan UI, Tailwind CSS, Vercel
+- [Project Link](https://gemini-clone-devwedeloper.vercel.app/)
+- [GitHub Repository](https://github.com/DevWedeloper/gemini-clone)
+
 ## Contact Me
 
 Interested in working together or have any questions? Feel free to reach out to me:
