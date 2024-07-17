@@ -117,7 +117,7 @@ h6 {
   font-weight: 700;
 }
 
-p {
+p:not(.exclude) {
   font-size: var(--font-size-regular);
   text-wrap: pretty;
 }

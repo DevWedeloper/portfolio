@@ -22,21 +22,23 @@ import { SliderComponent } from '../../ui/slider/slider.component';
       websiteLink="https://angular-form-builder.vercel.app/"
     >
       <app-slider *appCard>
-        <p *appSlide>Creation and management of dynamic forms in Angular.</p>
-        <p *appSlide>
+        <p class="exclude" *appSlide>
+          Creation and management of dynamic forms in Angular.
+        </p>
+        <p class="exclude" *appSlide>
           The Builder page provides a user-friendly interface for creating and
           managing dynamic forms. Users can specify the structure and content of
           their forms by defining the necessary fields and validation rules
           using a JSON configuration.
         </p>
-        <p *appSlide>
+        <p class="exclude" *appSlide>
           The Guide page offers comprehensive instructions and best practices
           for creating a dynamic form. The guide aims to help users understand
           how to leverage the full potential of dynamic forms in Angular,
           ensuring they can create flexible and robust forms tailored to their
           specific needs.
         </p>
-        <p *appSlide>
+        <p class="exclude" *appSlide>
           The Quiz page demonstrates a practical application of dynamic forms in
           the context of a quiz. By utilizing the Angular Form Builder, this
           page can dynamically generate quiz questions based on a JSON

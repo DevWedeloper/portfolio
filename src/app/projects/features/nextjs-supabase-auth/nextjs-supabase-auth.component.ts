@@ -22,7 +22,7 @@ import { SliderComponent } from '../../ui/slider/slider.component';
       [websiteLink]="'https://nextjs-supabase-auth-devwedeloper.vercel.app/'"
     >
       <app-slider *appCard>
-        <p *appSlide>
+        <p class="exclude" *appSlide>
           Authentication/Authorization using Supabase with Next.js.
         </p>
       </app-slider>

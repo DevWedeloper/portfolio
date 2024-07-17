@@ -22,7 +22,9 @@ import { SliderComponent } from '../../ui/slider/slider.component';
       [websiteLink]="'https://project-two-infinite-scroll.vercel.app/'"
     >
       <app-slider *appCard>
-        <p *appSlide>An infinite scroll that uses Pexels API.</p>
+        <p class="exclude" *appSlide>
+          An infinite scroll that uses Pexels API.
+        </p>
       </app-slider>
     </app-card>
   `,
