@@ -20,7 +20,9 @@ import { ProjectTwoComponent } from './features/project-two/project-two.componen
   template: `
     <section appMainSection id="projects" class="flex flex-col gap-2">
       <h2 class="text-center">Projects</h2>
-      <div class="grid grid-cols-3 grid-rows-2 gap-4 max-md:grid-cols-[1fr]">
+      <div
+        class="grid grid-cols-3 grid-rows-2 gap-4 max-lg:grid-cols-2 max-md:grid-cols-[1fr]"
+      >
         <app-project-one />
         <app-project-two />
         <app-nextjs-supabase-auth />
