@@ -50,8 +50,8 @@ const link =
           </span>
         </h2>
         <p>
-          A MEAN stack developer fueled by my passion for coding. Let's turn
-          ideas into reality together!
+          I build full-stack apps with TypeScript and a lot of curiosity.
+          Let&#96;s turn ideas into reality together!
         </p>
         <div class="mt-2 flex gap-2">
           <a
