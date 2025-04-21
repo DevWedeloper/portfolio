@@ -79,6 +79,11 @@ const iconsContainer =
           alt="TypeScript Logo"
           tooltipText="TypeScript"
         />
+        <app-icon-wrapper
+          src="assets/images/icons/bun.svg"
+          alt="Bun Logo"
+          tooltipText="Bun"
+        />
       </li>
       <li>Full-Stack:</li>
       <li class="${iconsContainer}">
@@ -193,6 +198,11 @@ const iconsContainer =
           src="assets/images/icons/supabase.svg"
           alt="Supabase logo"
           tooltipText="Supabase"
+        />
+        <app-icon-wrapper
+          src="assets/images/icons/stripe.svg"
+          alt="Stripe logo"
+          tooltipText="Stripe"
         />
       </li>
     </ul>
