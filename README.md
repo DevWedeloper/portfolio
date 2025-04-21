@@ -57,8 +57,6 @@ Creation and management of dynamic forms in Angular.
 - [Project Link](https://angular-form-builder.vercel.app/)
 - [GitHub Repository](https://github.com/DevWedeloper/angular-form-builder)
 
-Feel free to explore more projects on my [GitHub Profile](https://github.com/DevWedeloper).
-
 ### Gemini Clone
 
 Access and interact with the Gemini API.
@@ -66,6 +64,16 @@ Access and interact with the Gemini API.
 - Tech-Stack: Angular, Analog.js, Gemini API, Spartan UI, Tailwind CSS, Vercel
 - [Project Link](https://gemini-clone-devwedeloper.vercel.app/)
 - [GitHub Repository](https://github.com/DevWedeloper/gemini-clone)
+
+### Stripe eCommerce
+
+A full-stack eCommerce platform inspired by Amazon, Lazada, and Shopee, enabling users to buy and sell products with integrated **Stripe Payments**.
+
+- Tech-Stack: Angular, Analog.js, Spartan UI, Tailwind CSS, Supabase, tRPC, Nitro, h3, PostgreSQL, Drizzle ORM, Stripe, Vite, Vercel
+- [Project Link](https://stripe-ecommerce-devwedeloper.vercel.app/)
+- [GitHub Repository](https://github.com/DevWedeloper/stripe-ecommerce)
+
+Feel free to explore more projects on my [GitHub Profile](https://github.com/DevWedeloper).
 
 ## Contact Me
 
