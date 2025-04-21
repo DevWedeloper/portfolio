@@ -5,6 +5,7 @@ import { GeminiCloneComponent } from './features/gemini-clone/gemini-clone.compo
 import { NextjsSupabaseAuthComponent } from './features/nextjs-supabase-auth/nextjs-supabase-auth.component';
 import { ProjectOneComponent } from './features/project-one/project-one.component';
 import { ProjectTwoComponent } from './features/project-two/project-two.component';
+import { StripeEcommerceComponent } from './features/stripe-ecommerce.component';
 
 @Component({
   selector: 'app-projects',
@@ -15,6 +16,7 @@ import { ProjectTwoComponent } from './features/project-two/project-two.componen
     NextjsSupabaseAuthComponent,
     AngularFormBuilderComponent,
     GeminiCloneComponent,
+    StripeEcommerceComponent,
     MainSectionDirective,
   ],
   template: `
@@ -28,6 +30,7 @@ import { ProjectTwoComponent } from './features/project-two/project-two.componen
         <app-nextjs-supabase-auth />
         <app-angular-form-builder />
         <app-gemini-clone />
+        <app-stripe-ecommerce />
       </div>
     </section>
   `,
