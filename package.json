@@ -10,10 +10,14 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.0",
+    "@astrojs/svelte": "^7.1.0",
     "@tailwindcss/vite": "^4.1.11",
     "astro": "^5.11.0",
     "embla-carousel": "^8.6.0",
-    "tailwindcss": "^4.1.11"
+    "embla-carousel-svelte": "^8.6.0",
+    "svelte": "^5.35.4",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
