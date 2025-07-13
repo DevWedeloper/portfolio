@@ -1,0 +1,42 @@
+---
+import { SITE_TITLE, SITE_AUTHOR } from '../consts';
+import '../styles/global.css';
+
+type Props = {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  author?: string;
+  canonical?: string;
+};
+
+const {
+  title = SITE_TITLE,
+  description = "A MEAN stack developer fueled by my passion for coding. Let's turn ideas into reality together!",
+  keywords = 'Web Developer, Portfolio, MEAN stack, Web Development, Programming Projects',
+  author = SITE_AUTHOR,
+  canonical = 'https://devwedeloper.vercel.app/',
+} = Astro.props;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content={author} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+
+<!-- Social usernames -->
+<meta name="linkedin:username" content="nathan-dungca-94975525a" />
+<meta name="github:username" content="DevWedeloper" />
+
+<link rel="canonical" href={canonical} />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
