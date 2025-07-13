@@ -1,0 +1,15 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { SITE_TITLE } from '../consts';
+import BaseLayout from './BaseLayout.astro';
+
+type Props = CollectionEntry<'projects'>['data'];
+
+const { title, summary } = Astro.props;
+---
+
+<BaseLayout title={`${SITE_TITLE} | ${title}`} description={summary}>
+  <article>
+    <slot />
+  </article>
+</BaseLayout>
