@@ -1,4 +1,5 @@
 ---
+import { CldImage } from 'astro-cloudinary';
 import { getCollection } from 'astro:content';
 import ExperienceCard from '../components/ExperienceCard.astro';
 import ProjectsCard from '../components/ProjectsCard';
@@ -13,10 +14,12 @@ const sortedPosts = posts.sort((a, b) => a.data.order - b.data.order);
   <section
     class="flex items-center gap-10 pt-16 pb-20 max-md:flex-col max-md:text-center"
   >
-    <img
-      src="https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364406/hero_qsehu1.webp"
+    <CldImage
+      src="hero_qsehu1"
       alt="Hero"
       class="border-border h-44 w-44 rounded-full border-2"
+      width={176}
+      height={176}
     />
     <div class="flex flex-col items-start gap-6">
       <h1 class="text-[28px] font-bold tracking-[0.03em]">
