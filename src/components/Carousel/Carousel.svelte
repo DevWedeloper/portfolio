@@ -58,7 +58,7 @@
     use:emblaCarousel={{ options, plugins }}
     onemblaInit={onInit}
   >
-    <div class="flex gap-4">
+    <div class="flex gap-4 justify-center">
       <ImageList {images} />
     </div>
   </div>
