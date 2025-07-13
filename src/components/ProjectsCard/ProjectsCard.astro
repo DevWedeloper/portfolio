@@ -1,10 +1,9 @@
 ---
-import type { ImageMetadata } from 'astro';
-import { Image } from 'astro:assets';
+import { CldImage } from 'astro-cloudinary';
 import ProjectsCardLink from './ProjectsCardLink.astro';
 
 type Props = {
-  heroImage: ImageMetadata;
+  heroImage: string;
   title: string;
   description: string;
   tags: string[];
@@ -21,12 +20,13 @@ const { heroImage, title, description, tags, github, liveDemo, projectPath } =
   <div
     class="border-border flex w-full max-w-[640px] flex-col gap-5 rounded-lg border p-5"
   >
-    <Image
+    <CldImage
       src={heroImage}
       alt={title}
       class="rounded-md object-cover"
-      width={600}
-      height={300}
+      width={640}
+      height={360}
+      sizes="(max-width: 768px) 75vw, (max-width: 1200px) 600px, 600px"
     />
 
     <div class="flex flex-col">

@@ -12,7 +12,7 @@ const projects = defineCollection({
       github: z.string().url(),
       liveDemo: z.string().url(),
       tags: z.array(z.string()),
-      heroImage: image(),
+      heroImage: z.string(),
       images: z.array(z.string()),
       order: z.number().int(),
     }),

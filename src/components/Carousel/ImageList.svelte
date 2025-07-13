@@ -1,18 +1,27 @@
 <script lang="ts">
+  import { CldImage } from 'svelte-cloudinary';
+
   type Prop = {
     images: string[];
   };
 
   const { images }: Prop = $props();
+
+  const cloudName = import.meta.env['PUBLIC_CLOUDINARY_CLOUD_NAME'];
 </script>
 
 {#each images as image, i}
-  <img
+  <CldImage
     src={image}
     alt={`Slide ${i + 1}`}
-    width="700"
-    height="500"
     class="border-2 rounded-xl"
-    loading="lazy"
+    width={640}
+    height={360}
+    sizes="(max-width: 768px) 75vw, (max-width: 1200px) 600px, 600px"
+    config={{
+      cloud: {
+        cloudName,
+      },
+    }}
   />
 {/each}
