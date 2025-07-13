@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE, SITE_AUTHOR } from '../consts';
+import { SITE_AUTHOR, SITE_TITLE } from '../consts';
 import '../styles/global.css';
 
 type Props = {
@@ -7,7 +7,6 @@ type Props = {
   description?: string;
   keywords?: string;
   author?: string;
-  canonical?: string;
 };
 
 const {
@@ -15,8 +14,9 @@ const {
   description = "A MEAN stack developer fueled by my passion for coding. Let's turn ideas into reality together!",
   keywords = 'Web Developer, Portfolio, MEAN stack, Web Development, Programming Projects',
   author = SITE_AUTHOR,
-  canonical = 'https://devwedeloper.vercel.app/',
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <meta charset="utf-8" />
@@ -36,7 +36,7 @@ const {
 <meta name="linkedin:username" content="nathan-dungca-94975525a" />
 <meta name="github:username" content="DevWedeloper" />
 
-<link rel="canonical" href={canonical} />
+<link rel="canonical" href={canonicalURL} />
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
