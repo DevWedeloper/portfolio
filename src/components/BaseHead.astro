@@ -16,7 +16,38 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImageUrl = getCldOgImageUrl({ src: 'hero-og_pgazte' });
+const ogImageUrl = getCldOgImageUrl({
+  src: 'hero-og_pgazte',
+  overlays: [
+    {
+      text: {
+        color: 'black',
+        fontFamily: 'Source Sans Pro',
+        fontSize: 64,
+        fontWeight: 'bold',
+        text: 'DevWedeloper',
+      },
+      position: {
+        x: 60,
+        y: 60,
+        gravity: 'north_west',
+      },
+    },
+    {
+      text: {
+        color: 'black',
+        fontFamily: 'Source Sans Pro',
+        fontSize: 40,
+        text: 'Software Engineer',
+      },
+      position: {
+        x: 60,
+        y: 130,
+        gravity: 'north_west',
+      },
+    },
+  ],
+});
 ---
 
 <!-- Global Metadata -->
