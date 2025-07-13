@@ -1,0 +1,103 @@
+---
+import { SITE_TITLE } from '../consts';
+---
+
+<header>
+  <nav
+    class="text-foreground/60 relative flex h-16 items-center justify-between p-4"
+  >
+    <!-- Site Title -->
+    <a href="/" class="hover:text-foreground text-lg font-bold">{SITE_TITLE}</a>
+
+    <!-- Mobile Hamburger Toggle -->
+    <input type="checkbox" id="nav-toggle" class="peer hidden" />
+
+    <!-- Hamburger Icon -->
+    <label
+      for="nav-toggle"
+      tabindex="0"
+      role="button"
+      aria-label="Open navigation"
+      aria-controls="main-nav"
+      aria-expanded="false"
+      class="hover:text-foreground z-50 cursor-pointer peer-checked:hidden md:hidden"
+    >
+      ☰
+    </label>
+
+    <!-- Close Icon -->
+    <label
+      for="nav-toggle"
+      tabindex="0"
+      role="button"
+      aria-label="Close navigation"
+      aria-controls="main-nav"
+      aria-expanded="false"
+      class="z-50 hidden cursor-pointer peer-checked:block md:hidden"
+    >
+      ✕
+    </label>
+
+    <!-- Navigation Overlay (Mobile) & Inline (Desktop) -->
+    <ul
+      id="main-nav"
+      class="bg-background fixed top-0 left-0 z-40 flex h-full w-full -translate-x-full transform flex-col items-center justify-center gap-4 p-6 text-2xl transition-transform duration-300 peer-checked:translate-x-0 md:static md:z-auto md:h-auto md:w-auto md:translate-x-0 md:flex-row md:items-center md:justify-normal md:gap-6 md:bg-transparent md:p-0 md:text-base"
+    >
+      <!-- Noscript fallback message -->
+      <noscript>
+        <div
+          class="text-foreground absolute top-0 left-0 mt-16 block w-full bg-red-500 p-2 text-center text-sm md:hidden"
+        >
+          JavaScript is disabled. Please manually uncheck the menu toggle to
+          close it.
+        </div>
+      </noscript>
+
+      <li>
+        <a href="/#experience" class="hover:text-foreground">Experience</a>
+      </li>
+      <li><a href="/#projects" class="hover:text-foreground">Projects</a></li>
+      <li><a href="/#contact" class="hover:text-foreground">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.querySelectorAll('#main-nav a');
+    const toggleLabels = document.querySelectorAll('label[for="nav-toggle"]');
+
+    // Update aria-expanded dynamically
+    function updateAriaExpanded() {
+      const expanded = navToggle.checked ? 'true' : 'false';
+      toggleLabels.forEach((label) =>
+        label.setAttribute('aria-expanded', expanded),
+      );
+    }
+
+    // Toggle with keyboard (Enter or Space)
+    toggleLabels.forEach((label) => {
+      label.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          if (e.key === ' ') e.preventDefault(); // Space scrolls page otherwise
+          navToggle.checked = !navToggle.checked;
+          updateAriaExpanded();
+        }
+      });
+    });
+
+    // Close menu on nav link click
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (navToggle.checked) {
+          navToggle.checked = false;
+          updateAriaExpanded();
+        }
+      });
+    });
+
+    // Initialize state on load
+    updateAriaExpanded();
+  });
+</script>
