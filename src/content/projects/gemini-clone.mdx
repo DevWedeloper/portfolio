@@ -1,0 +1,40 @@
+---
+title: 'Gemini Clone'
+summary: '
+  An AI chat interface that allows users to access and interact with the Gemini API in a responsive and intuitive way.'
+github: 'https://github.com/DevWedeloper/gemini-clone'
+liveDemo: 'https://gemini-clone-devwedeloper.vercel.app'
+tags:
+  - Angular
+  - Analog.js
+  - Gemini API
+  - Spartan UI
+  - Tailwind CSS
+  - Vercel
+heroImage: 'https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364406/gemini-clone-hero_va2lch.webp'
+images:
+  - 'https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364406/gemini-clone-hero_va2lch.webp'
+order: 5
+---
+
+import Carousel from '../../components/Carousel'
+import ProjectSummary from '../../components/ProjectSummary.astro';
+
+<ProjectSummary
+  title={frontmatter.title}
+  summary={frontmatter.summary}
+  github={frontmatter.github}
+  liveDemo={frontmatter.liveDemo}
+  tags={frontmatter.tags}
+  heroImage={frontmatter.heroImage}
+/>
+
+## ✨ Features
+
+- **Prompt History**: Prompts are saved in memory during the session.
+- **Voice Input**: Users can create prompts using their microphone.
+- **Streaming Responses**: Enjoy real-time, dynamic feedback as the AI responds.
+
+## 🧠 Showcase
+
+<Carousel client:load images={frontmatter.images} />

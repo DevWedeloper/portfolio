@@ -1,0 +1,49 @@
+---
+title: 'Angular Form Builder'
+summary: '
+  Dynamic forms in Angular enable flexible, data-driven interfaces like questionnaires and quizzes. This project showcases their creation and management using JSON configuration.'
+github: 'https://github.com/DevWedeloper/angular-form-builder'
+liveDemo: 'https://angular-form-builder.vercel.app'
+tags:
+  - Angular
+  - Analog.js
+  - Spartan UI
+  - Tailwind CSS
+  - Vercel
+heroImage: 'https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364407/angular-form-builder-hero_aksh7q.webp'
+images:
+  - 'https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364407/angular-form-builder-hero_aksh7q.webp'
+order: 4
+---
+
+import Carousel from '../../components/Carousel'
+import ProjectSummary from '../../components/ProjectSummary.astro';
+
+<ProjectSummary
+  title={frontmatter.title}
+  summary={frontmatter.summary}
+  github={frontmatter.github}
+  liveDemo={frontmatter.liveDemo}
+  tags={frontmatter.tags}
+  heroImage={frontmatter.heroImage}
+/>
+
+## 🧩 Key Pages
+
+### 🔨 Builder
+
+Provides a user-friendly interface to build and manage dynamic forms using JSON configuration. Users define fields, types, and validation rules without touching the application code.
+
+### 📘 Guide
+
+Contains detailed instructions and best practices for using dynamic forms effectively. Helps users understand how to fully leverage Angular’s reactive form capabilities.
+
+### 🧠 Quiz
+
+A real-world example of dynamic form usage, where quizzes are generated on the fly from a JSON schema. Ideal for learning tools, surveys, and assessments.
+
+## 🧠 Showcase
+
+<Carousel client:load images={frontmatter.images} />
+
+To learn more, see the [official Angular guide on dynamic forms](https://angular.dev/guide/forms/dynamic-forms).

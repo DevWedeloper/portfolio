@@ -1,0 +1,43 @@
+---
+title: 'Next.js + Supabase Auth'
+summary: '
+  Authentication and Authorization system built using Supabase and Next.js, with complete account management features.'
+github: 'https://github.com/DevWedeloper/nextjs-supabase-auth'
+liveDemo: 'https://nextjs-supabase-auth-devwedeloper.vercel.app'
+tags:
+  - Next.js
+  - Supabase
+  - Tailwind CSS
+  - Shadcn UI
+  - Vercel
+heroImage: 'https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364406/nextjs-supabase-auth-hero_kqxckw.webp'
+images:
+  - 'https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364406/nextjs-supabase-auth-hero_kqxckw.webp'
+order: 3
+---
+
+import Carousel from '../../components/Carousel'
+import ProjectSummary from '../../components/ProjectSummary.astro';
+
+<ProjectSummary
+  title={frontmatter.title}
+  summary={frontmatter.summary}
+  github={frontmatter.github}
+  liveDemo={frontmatter.liveDemo}
+  tags={frontmatter.tags}
+  heroImage={frontmatter.heroImage}
+/>
+
+## 🔐 Features
+
+- **Sign-up**: Create an account with email and password. A verification email is sent to activate the account.
+- **Login**: Authenticate via email and password.
+- **Forgot Password**: Receive a reset link via email to recover access.
+- **Reset Password**: Securely reset password using a verified link.
+- **Update Email**: Change account email, confirmed via email verification.
+- **Update Password**: Change password for added security.
+- **Delete Account**: Permanently remove the user account and data.
+
+## 🧠 Showcase
+
+<Carousel client:load images={frontmatter.images} />

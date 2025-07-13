@@ -1,0 +1,39 @@
+---
+title: 'Project Two'
+summary: '
+  An infinite scroll that uses Pexels API to dynamically load and display stunning photography.'
+github: 'https://github.com/DevWedeloper/projectTwo'
+liveDemo: 'https://project-two-infinite-scroll.vercel.app'
+tags:
+  - Angular
+  - NgRx
+  - Pexels API
+  - Angular Material
+  - Vercel
+heroImage: 'https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364406/project-two-hero_ygchwe.webp'
+images:
+  - 'https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364406/project-two-hero_ygchwe.webp'
+order: 2
+---
+
+import Carousel from '../../components/Carousel'
+import ProjectSummary from '../../components/ProjectSummary.astro';
+
+<ProjectSummary
+  title={frontmatter.title}
+  summary={frontmatter.summary}
+  github={frontmatter.github}
+  liveDemo={frontmatter.liveDemo}
+  tags={frontmatter.tags}
+  heroImage={frontmatter.heroImage}
+/>
+
+## ✨ Features
+
+- **Infinite Scroll**: Seamlessly loads more images as the user scrolls, offering a smooth user experience without pagination.
+- **Photo Download**: Allows users to download their favorite images directly from the app.
+- **Photographer’s Link**: Each image includes a link to the original photo, enabling users to explore more work by the photographer.
+
+## 🧠 Showcase
+
+<Carousel client:load images={frontmatter.images} />

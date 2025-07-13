@@ -1,0 +1,66 @@
+---
+title: 'Stripe Ecommerce'
+summary: '
+  A full-stack eCommerce web application inspired by Amazon, Lazada, and Shopee — built for retail-style purchasing and powered by Stripe for secure payments.'
+github: 'https://github.com/DevWedeloper/stripe-ecommerce'
+liveDemo: 'https://stripe-ecommerce-devwedeloper.vercel.app'
+tags:
+  - Angular
+  - Analog.js
+  - Spartan UI
+  - Tailwind CSS
+  - Supabase
+  - Nitro
+  - h3
+  - PostgreSQL
+  - Drizzle ORM
+  - Stripe
+  - Vite
+  - Vercel
+heroImage: 'https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364406/stripe-ecommerce-hero_rndgjy.webp'
+images:
+  - 'https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364406/stripe-ecommerce-hero_rndgjy.webp'
+order: 6
+---
+
+import Carousel from '../../components/Carousel';
+import ProjectSummary from '../../components/ProjectSummary.astro';
+
+<ProjectSummary
+  title={frontmatter.title}
+  summary={frontmatter.summary}
+  github={frontmatter.github}
+  liveDemo={frontmatter.liveDemo}
+  tags={frontmatter.tags}
+  heroImage={frontmatter.heroImage}
+/>
+
+## 🚀 Features
+
+- **User Authentication** via Supabase Auth
+- **Product Browsing** with variation selection
+- **Cart Management** and quantity control
+- **Order History** tracking for buyers
+- **Checkout** with shipping & payment details
+- **Secure Payments** using Stripe Elements
+
+## 🧾 Order Flow
+
+1. Browse and select product variations
+2. Add to cart and manage items
+3. Proceed to checkout with address + payment info
+4. Stripe securely processes payment
+5. Confirmation of order is displayed
+
+## 🔐 Security
+
+- Sensitive payment data is handled exclusively by **Stripe**
+- **Supabase Auth** manages authentication and session data
+
+## 🧠 Showcase
+
+<Carousel client:load images={frontmatter.images} />
+
+---
+
+_Note: This project is a side project and may not yet be optimized for large-scale production._

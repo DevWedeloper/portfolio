@@ -1,0 +1,55 @@
+---
+title: 'Project One'
+summary: '
+  A game statistic simulator with dashboard and complex CRUD, also comes
+  with Authentication/Authorization.'
+github: 'https://github.com/DevWedeloper/projectOneFrontEnd'
+liveDemo: 'https://project-one-front-end.vercel.app'
+tags:
+  - MEAN
+  - ChartJS
+  - Cloud Functions
+  - Vercel
+  - MongoDB Atlas
+  - NgRx
+  - OAuth 2.0
+heroImage: 'https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364406/project-one-hero_lzbrzd.png'
+images:
+  - 'https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364406/project-one-hero_lzbrzd.png'
+order: 1
+---
+
+import Carousel from '../../components/Carousel'
+import ProjectSummary from '../../components/ProjectSummary.astro';
+
+<ProjectSummary
+  title={frontmatter.title}
+  summary={frontmatter.summary}
+  github={frontmatter.github}
+  liveDemo={frontmatter.liveDemo}
+  tags={frontmatter.tags}
+  heroImage={frontmatter.heroImage}
+/>
+
+## 🖥️ Features
+
+- **Dashboard Page**: Provides an overview of game statistics and important metrics.
+  - Real-time updates on player and guild data.
+- **Characters Page**: Manage characters with full CRUD support.
+  - View detailed character statistics.
+- **Guilds Page**: Manage guilds and member roles.
+- **Authentication/Authorization**:
+  - User registration and login
+  - Role-based access control
+
+## 🔌 Back-end Integration
+
+For implementation details on the back-end logic, character/guild handling, and rule enforcement, visit the [Project One Backend repository](https://github.com/DevWedeloper/projectOneBackEnd).
+
+## 🔐 Authentication
+
+This project uses a secure, custom identity provider with robust token handling and Google OAuth support. Learn more in the [Identity Provider repository](https://github.com/DevWedeloper/auth).
+
+## 🧠 Showcase
+
+<Carousel client:load images={frontmatter.images} />
