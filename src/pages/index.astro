@@ -1,16 +1,143 @@
 ---
+import { getCollection } from 'astro:content';
+import ExperienceCard from '../components/ExperienceCard.astro';
+import ProjectsCard from '../components/ProjectsCard';
+import TechCard from '../components/TechCard.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
+const posts = await getCollection('projects');
+const sortedPosts = posts.sort((a, b) => a.data.order - b.data.order);
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>Astro</h1>
-  </body>
-</html>
+<BaseLayout>
+  <section
+    class="flex items-center gap-10 pt-16 pb-20 max-md:flex-col max-md:text-center"
+  >
+    <img
+      src="https://res.cloudinary.com/dhfi3jxq8/image/upload/v1752364406/hero_qsehu1.webp"
+      alt="Hero"
+      class="border-border h-44 w-44 rounded-full border-2"
+    />
+    <div class="flex flex-col items-start gap-6">
+      <h1 class="text-[28px] font-bold tracking-[0.03em]">
+        Hi, I'm Nathan.
+        <span class="text-primary">
+          I'm a Software
+          <br />Engineer.
+        </span>
+      </h1>
+      <div class="flex w-full justify-center gap-4 md:justify-end">
+        <a
+          href="https://www.linkedin.com/in/nathan-dungca-94975525a"
+          target="_blank"
+          class="text-foreground/60 hover:text-foreground flex items-center gap-1"
+        >
+          <img
+            src="icons/linkedin.svg"
+            alt="LinkedIn Icon"
+            class="h-6 w-6"
+            width="24"
+            height="24"
+          />
+          LinkedIn
+        </a>
+        <a
+          href="https://github.com/DevWedeloper"
+          target="_blank"
+          class="text-foreground/60 hover:text-foreground flex items-center gap-1"
+        >
+          <img src="icons/github.svg" alt="GitHub Icon" class="h-6 w-6" />
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="mb-6 text-3xl font-semibold">Tech Stack</h2>
+    <ul
+      class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+    >
+      <!-- Front-End -->
+      <TechCard icon="icons/html.svg" name="HTML" />
+      <TechCard icon="icons/css.svg" name="CSS" />
+      <TechCard icon="icons/javascript.svg" name="JavaScript" />
+      <TechCard icon="icons/angular.svg" name="Angular" />
+      <TechCard icon="icons/rxjs.svg" name="RxJS" />
+      <TechCard icon="icons/ngrx.svg" name="NgRx" lazy />
+      <TechCard icon="icons/typescript.svg" name="TypeScript" lazy />
+      <TechCard icon="icons/sass.svg" name="SASS" lazy />
+      <TechCard icon="icons/tailwind.svg" name="Tailwind" lazy />
+
+      <!-- Back-End -->
+      <TechCard icon="icons/expressjs.svg" name="Express.js" highlighted lazy />
+      <TechCard icon="icons/nodejs.svg" name="Node.js" lazy />
+      <TechCard icon="icons/bun.svg" name="Bun" lazy />
+
+      <!-- Full-Stack -->
+      <TechCard icon="icons/nextjs.svg" name="Next.js" highlighted lazy />
+      <TechCard icon="icons/analogjs.svg" name="Analog.js" lazy />
+      <TechCard icon="icons/astro.svg" name="Astro" highlighted lazy />
+      <TechCard icon="icons/svelte.svg" name="Svelte" lazy />
+
+      <!-- Testing -->
+      <TechCard icon="icons/jasmine.svg" name="Jasmine" lazy />
+      <TechCard icon="icons/karma.svg" name="Karma" lazy />
+      <TechCard icon="icons/jest.svg" name="Jest" lazy />
+      <TechCard icon="icons/vitest.svg" name="Vitest" lazy />
+
+      <!-- Database & ORMs -->
+      <TechCard icon="icons/mongodb.svg" name="MongoDB" lazy />
+      <TechCard icon="icons/postgresql.svg" name="PostgreSQL" lazy />
+      <TechCard icon="icons/drizzle-orm.svg" name="Drizzle ORM" lazy />
+
+      <!-- Tools -->
+      <TechCard icon="icons/git.svg" name="Git" lazy />
+      <TechCard icon="icons/github.svg" name="GitHub" lazy />
+      <TechCard icon="icons/trpc.svg" name="tRPC" lazy />
+      <TechCard icon="icons/vite.svg" name="Vite" lazy />
+
+      <!-- Technologies -->
+      <TechCard icon="icons/aws.svg" name="AWS" lazy />
+      <TechCard icon="icons/oauth.svg" name="OAuth 2.0" lazy />
+      <TechCard icon="icons/supabase.svg" name="Supabase" lazy />
+      <TechCard icon="icons/stripe.svg" name="Stripe" lazy />
+    </ul>
+  </section>
+
+  <section id="experience" class="flex flex-col">
+    <h2 class="mb-6 text-3xl font-semibold">Experience</h2>
+    <div class="flex flex-col gap-6">
+      <ExperienceCard
+        startYear={2023}
+        endYear={2023}
+        jobTitle="Software Engineer"
+        company="Cloudstaff"
+        employmentType="Internship"
+        techStack={['Angular', 'Laravel', 'Lumen', 'AWS S3 Bucket']}
+        description="Collaborated with team members to develop a high-performance web application with a focus on intuitive UI design and optimized frontend performance. Led the end-to-end development of a cross-device solution, creating adaptable, user-focused interfaces that delivered fast load times, smooth interactions, and consistent experiences across platforms. The project concluded with a successful presentation to the CEO and was deployed for company-wide use."
+      />
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="mb-6 text-3xl font-semibold">Projects</h2>
+    <ul class="flex flex-col items-center gap-6">
+      {
+        sortedPosts.map((post) => (
+          <li>
+            <ProjectsCard
+              heroImage={post.data.heroImage}
+              title={post.data.title}
+              description={post.data.summary}
+              tags={post.data.tags}
+              github={post.data.github}
+              liveDemo={post.data.liveDemo}
+              projectPath={`/projects/${post.id}`}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
