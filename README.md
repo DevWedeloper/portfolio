@@ -1,4 +1,4 @@
-# devwedeloper — Portfolio Website
+# DevWedeloper — Portfolio Website
 
 This is the source code for my personal portfolio site built with Astro, Svelte, and Tailwind CSS.
 
