@@ -5,7 +5,6 @@
     type EmblaPluginType,
   } from 'embla-carousel';
   import emblaCarousel from 'embla-carousel-svelte';
-  import { onMount } from 'svelte';
   import CarouselNext from './CarouselNext.svelte';
   import CarouselPrev from './CarouselPrev.svelte';
   import ImageList from './ImageList.svelte';
@@ -19,7 +18,6 @@
   let emblaApi: EmblaCarouselType;
   let options: EmblaOptionsType = { loop: false };
   let plugins: EmblaPluginType[] = [];
-  let emblaWrapper: HTMLElement;
 
   let canScrollPrev = $state(false);
   let canScrollNext = $state(false);
@@ -44,13 +42,9 @@
   function scrollNext() {
     emblaApi && emblaApi.scrollNext();
   }
-
-  onMount(() => {
-    emblaWrapper.classList.add('js-enabled');
-  });
 </script>
 
-<div bind:this={emblaWrapper} class="relative hidden [&.js-enabled]:block">
+<div class="relative">
   <CarouselPrev onClick={scrollPrev} disabled={!canScrollPrev} />
 
   <div
@@ -65,7 +59,3 @@
 
   <CarouselNext onClick={scrollNext} disabled={!canScrollNext} />
 </div>
-
-<noscript>
-  <ImageList {images} />
-</noscript>

@@ -1,0 +1,16 @@
+---
+import Carousel from './Carousel.svelte';
+import ImageList from './ImageList.svelte';
+
+type Props = {
+  images: string[];
+};
+
+const { images } = Astro.props;
+---
+
+<Carousel client:only="svelte" images={images} />
+
+<noscript>
+  <ImageList images={images} />
+</noscript>
