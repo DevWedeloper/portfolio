@@ -1,0 +1,45 @@
+---
+type Props = {
+  startYear: number;
+  endYear: number;
+  jobTitle: string;
+  company: string;
+  employmentType: string;
+  techStack: string[];
+  description: string;
+};
+
+const {
+  startYear,
+  endYear,
+  jobTitle,
+  company,
+  employmentType,
+  techStack,
+  description,
+} = Astro.props as Props;
+---
+
+<div class="text-foreground/60 flex gap-10">
+  <p class="whitespace-nowrap max-sm:hidden">
+    {startYear} - {endYear}
+  </p>
+  <div class="flex flex-col">
+    <p class="text-foreground text-lg font-semibold">
+      {jobTitle}
+    </p>
+    <p class="mb-4">
+      {company} • {employmentType}
+      <span class="ml-2 hidden whitespace-nowrap">
+        • ({startYear} - {endYear})
+      </span>
+    </p>
+    <p class="text-md mb-2">
+      <span class="font-semibold">Tech Stack:</span>
+      {' '}{techStack.join(', ')}
+    </p>
+    <p class="">
+      {description}
+    </p>
+  </div>
+</div>
