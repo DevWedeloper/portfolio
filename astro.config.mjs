@@ -1,6 +1,5 @@
 // @ts-check
 import mdx from '@astrojs/mdx';
-import svelte from '@astrojs/svelte';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
 import { visualizer } from 'rollup-plugin-visualizer';
@@ -17,5 +16,5 @@ export default defineConfig({
       }),
     ],
   },
-  integrations: [mdx(), svelte()],
+  integrations: [mdx()],
 });

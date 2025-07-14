@@ -17,7 +17,7 @@ images:
 order: 5
 ---
 
-import Carousel from '../../components/Carousel';
+import ImageList from '../../components/ImageList.astro';
 import ProjectSummary from '../../components/ProjectSummary.astro';
 
 <ProjectSummary
@@ -37,4 +37,4 @@ import ProjectSummary from '../../components/ProjectSummary.astro';
 
 ## 🧠 Showcase
 
-<Carousel images={frontmatter.images} />
+<ImageList images={frontmatter.images} />

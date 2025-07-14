@@ -19,7 +19,7 @@ images:
 order: 1
 ---
 
-import Carousel from '../../components/Carousel';
+import ImageList from '../../components/ImageList.astro';
 import ProjectSummary from '../../components/ProjectSummary.astro';
 
 <ProjectSummary
@@ -52,4 +52,4 @@ This project uses a secure, custom identity provider with robust token handling 
 
 ## 🧠 Showcase
 
-<Carousel images={frontmatter.images} />
+<ImageList images={frontmatter.images} />
