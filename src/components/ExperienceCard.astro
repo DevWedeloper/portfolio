@@ -21,7 +21,7 @@ const {
 ---
 
 <div class="text-foreground/60 flex gap-10">
-  <p class="whitespace-nowrap max-sm:hidden">
+  <p class="hidden whitespace-nowrap sm:block">
     {startYear} - {endYear}
   </p>
   <div class="flex flex-col">
@@ -30,7 +30,7 @@ const {
     </p>
     <p class="mb-4">
       {company} • {employmentType}
-      <span class="ml-2 hidden whitespace-nowrap">
+      <span class="inline-block whitespace-nowrap sm:hidden">
         • ({startYear} - {endYear})
       </span>
     </p>
