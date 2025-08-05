@@ -1,5 +1,6 @@
 // @ts-check
 import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
 import { visualizer } from 'rollup-plugin-visualizer';
@@ -16,5 +17,5 @@ export default defineConfig({
       }),
     ],
   },
-  integrations: [mdx()],
+  integrations: [mdx(), sitemap()],
 });

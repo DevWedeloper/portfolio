@@ -1,2 +1,3 @@
 User-agent: *
 Disallow:
+Sitemap: https://devwedeloper.vercel.app/sitemap-index.xml
