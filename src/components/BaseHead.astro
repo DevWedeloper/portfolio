@@ -1,21 +1,21 @@
 ---
-import { getCldOgImageUrl } from 'astro-cloudinary/helpers';
-import { SITE_AUTHOR, SITE_TITLE } from '../consts';
-import '../styles/global.css';
+import { getCldOgImageUrl } from 'astro-cloudinary/helpers'
+import { SITE_AUTHOR, SITE_TITLE } from '../consts'
+import '../styles/global.css'
 
 type Props = {
-  title?: string;
-  description?: string;
-  author?: string;
-};
+  title?: string
+  description?: string
+  author?: string
+}
 
 const {
   title = SITE_TITLE,
   description = "Self-taught full stack developer passionate about building modern web applications with JavaScript and TypeScript. Always learning, always building—let's turn ideas into reality together!",
   author = SITE_AUTHOR,
-} = Astro.props;
+} = Astro.props
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const ogImageUrl = getCldOgImageUrl({
   src: 'hero-og_pgazte',
   overlays: [
@@ -47,7 +47,7 @@ const ogImageUrl = getCldOgImageUrl({
       },
     },
   ],
-});
+})
 ---
 
 <!-- Global Metadata -->

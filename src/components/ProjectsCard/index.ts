@@ -1,1 +1,1 @@
-export { default } from './ProjectsCard.astro';
+export { default } from './ProjectsCard.astro'

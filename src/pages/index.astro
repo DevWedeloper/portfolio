@@ -1,23 +1,21 @@
 ---
-import { CldImage } from 'astro-cloudinary';
-import { getCollection } from 'astro:content';
-import ExperienceCard from '../components/ExperienceCard.astro';
-import ProjectsCard from '../components/ProjectsCard';
-import TechCard from '../components/TechCard.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import { CldImage } from 'astro-cloudinary'
+import { getCollection } from 'astro:content'
+import ExperienceCard from '../components/ExperienceCard.astro'
+import ProjectsCard from '../components/ProjectsCard'
+import TechCard from '../components/TechCard.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
 
-const posts = await getCollection('projects');
-const sortedPosts = posts.sort((a, b) => b.data.order - a.data.order);
+const posts = await getCollection('projects')
+const sortedPosts = posts.sort((a, b) => b.data.order - a.data.order)
 ---
 
 <BaseLayout>
-  <section
-    class="flex items-center gap-10 pt-16 pb-20 max-md:flex-col max-md:text-center"
-  >
+  <section class="flex items-center gap-10 pt-16 pb-20 max-md:flex-col max-md:text-center">
     <CldImage
       src="hero_qsehu1"
       alt="Hero"
-      class="border-border h-44 w-44 rounded-full border-2"
+      class="h-44 w-44 rounded-full border-2 border-border"
       width={176}
       height={176}
     />
@@ -33,21 +31,15 @@ const sortedPosts = posts.sort((a, b) => b.data.order - a.data.order);
         <a
           href="https://www.linkedin.com/in/nathan-dungca-94975525a"
           target="_blank"
-          class="text-foreground/60 hover:text-foreground flex items-center gap-1"
+          class="flex items-center gap-1 text-foreground/60 hover:text-foreground"
         >
-          <img
-            src="icons/linkedin.svg"
-            alt="LinkedIn Icon"
-            class="h-6 w-6"
-            width="24"
-            height="24"
-          />
+          <img src="icons/linkedin.svg" alt="LinkedIn Icon" class="h-6 w-6" width="24" height="24" />
           LinkedIn
         </a>
         <a
           href="https://github.com/DevWedeloper"
           target="_blank"
-          class="text-foreground/60 hover:text-foreground flex items-center gap-1"
+          class="flex items-center gap-1 text-foreground/60 hover:text-foreground"
         >
           <img src="icons/github.svg" alt="GitHub Icon" class="h-6 w-6" />
           GitHub
@@ -58,9 +50,7 @@ const sortedPosts = posts.sort((a, b) => b.data.order - a.data.order);
 
   <section>
     <h2 class="mb-6 text-3xl font-semibold">Tech Stack</h2>
-    <ul
-      class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
-    >
+    <ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       <!-- Front-End -->
       <TechCard icon="icons/html.svg" name="HTML" />
       <TechCard icon="icons/css.svg" name="CSS" />

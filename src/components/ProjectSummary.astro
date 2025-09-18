@@ -1,24 +1,20 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content'
 
-type Props = CollectionEntry<'projects'>['data'];
+type Props = CollectionEntry<'projects'>['data']
 
-const { title, github, liveDemo, summary, tags } = Astro.props;
+const { title, github, liveDemo, summary, tags } = Astro.props
 ---
 
-<div
-  class="mb-10 flex w-full flex-col items-center justify-between gap-5 md:flex-row"
->
+<div class="mb-10 flex w-full flex-col items-center justify-between gap-5 md:flex-row">
   <h1 class="!m-0">{title}</h1>
 
-  <div
-    class="flex w-full flex-col items-center gap-3 text-sm md:w-fit md:flex-row"
-  >
+  <div class="flex w-full flex-col items-center gap-3 text-sm md:w-fit md:flex-row">
     <a
       href={github}
       target="_blank"
       rel="noopener noreferrer"
-      class="nowrap bg-secondary text-secondary-foreground flex w-full items-center justify-center gap-1 rounded-full px-6 py-1 no-underline transition-all md:w-fit"
+      class="flex w-full items-center justify-center gap-1 rounded-full bg-secondary px-6 py-1 whitespace-nowrap text-secondary-foreground no-underline transition-all md:w-fit"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +40,7 @@ const { title, github, liveDemo, summary, tags } = Astro.props;
       href={liveDemo}
       target="_blank"
       rel="noopener noreferrer"
-      class="nowrap bg-secondary text-secondary-foreground flex w-full items-center justify-center gap-1 rounded-full px-6 py-1 no-underline transition-all md:w-fit"
+      class="flex w-full items-center justify-center gap-1 rounded-full bg-secondary px-6 py-1 whitespace-nowrap text-secondary-foreground no-underline transition-all md:w-fit"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -57,10 +53,8 @@ const { title, github, liveDemo, summary, tags } = Astro.props;
         stroke-linecap="round"
         stroke-linejoin="round"
       >
-        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71">
-        </path>
-        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71">
-        </path>
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"> </path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"> </path>
       </svg>
       Live Demo
     </a>
@@ -72,11 +66,5 @@ const { title, github, liveDemo, summary, tags } = Astro.props;
 <h2>🛠️ Tech Stack</h2>
 
 <div class="mt-5 mb-4 flex flex-wrap gap-2">
-  {
-    tags.map((tag: any) => (
-      <span class="bg-accent text-accent-foreground rounded px-2 py-1 text-sm">
-        {tag}
-      </span>
-    ))
-  }
+  {tags.map((tag: any) => <span class="rounded bg-accent px-2 py-1 text-sm text-accent-foreground">{tag}</span>)}
 </div>

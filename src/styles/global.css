@@ -26,8 +26,7 @@
 :root {
   --font-sans: Inter, sans-serif;
   --radius: 0.35rem;
-  --shadow: 0px 2px 0px 0px hsl(0 0% 20% / 0.15),
-    0px 1px 2px -1px hsl(0 0% 20% / 0.15);
+  --shadow: 0px 2px 0px 0px hsl(0 0% 20% / 0.15), 0px 1px 2px -1px hsl(0 0% 20% / 0.15);
 
   --background: oklch(0.2178 0 0);
   --foreground: oklch(0.8853 0 0);
