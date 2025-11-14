@@ -1,0 +1,49 @@
+---
+title: 'SvelteKit Pokédex'
+summary: '
+  A personal implementation of a Pokédex built with SvelteKit. Explore Pokémon with a modern interface, powered by the PokéAPI and GraphQL for smooth browsing.'
+github: 'https://github.com/DevWedeloper/sveltekit-pokedex'
+liveDemo: 'https://sveltekit-pokedex-devwedeloper.vercel.app'
+tags:
+  - SvelteKit
+  - Tailwind CSS
+  - PokéAPI
+  - GraphQL
+  - Tanstack Query
+  - Vercel
+heroImage: 'sveltekit-pokedex-hero_gmsdn8'
+images:
+  - 'sveltekit-pokedex-hero_gmsdn8'
+  - 'sveltekit-pokedex-1_cic3zq'
+  - 'sveltekit-pokedex-2_q53hgu'
+  - 'sveltekit-pokedex-3_qehpyy'
+order: 7
+---
+
+import ImageList from '../../components/ImageList.astro';
+import ProjectSummary from '../../components/ProjectSummary.astro';
+
+<ProjectSummary
+  title={frontmatter.title}
+  summary={frontmatter.summary}
+  github={frontmatter.github}
+  liveDemo={frontmatter.liveDemo}
+  tags={frontmatter.tags}
+  heroImage={frontmatter.heroImage}
+/>
+
+## 🚀 Features
+
+- **Pokémon List** – browse through all Pokémon with smooth infinite scrolling
+- **Filter by Type or Region** – quickly narrow down Pokémon
+- **Detailed Pokémon Pages** – view stats, types, abilities, and more
+- **Modern Interface** built with SvelteKit and TailwindCSS
+- **Data Fetching** powered by PokéAPI and GraphQL via Tanstack Query
+
+## 🧠 Showcase
+
+<ImageList images={frontmatter.images} />
+
+---
+
+_Note: This project is a personal exploration and may not yet be optimized for large-scale production._
