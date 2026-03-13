@@ -3,6 +3,8 @@ import { CldImage } from 'astro-cloudinary'
 import { getCollection } from 'astro:content'
 import ExperienceCard from '../components/ExperienceCard.astro'
 import ProjectsCard from '../components/ProjectsCard'
+import TabItem from '../components/TabItem.astro'
+import Tabs from '../components/Tabs.astro'
 import TechCard from '../components/TechCard.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 
@@ -125,22 +127,30 @@ const sortedPosts = posts.sort((a, b) => b.data.order - a.data.order)
 
   <section id="projects">
     <h2 class="mb-6 text-3xl font-semibold">Projects</h2>
-    <ul class="flex flex-col items-center gap-6">
-      {
-        sortedPosts.map((post) => (
-          <li>
-            <ProjectsCard
-              heroImage={post.data.heroImage}
-              title={post.data.title}
-              description={post.data.summary}
-              tags={post.data.tags}
-              github={post.data.github}
-              liveDemo={post.data.liveDemo}
-              projectPath={`/projects/${post.id}`}
-            />
-          </li>
-        ))
-      }
-    </ul>
+    <Tabs>
+      <TabItem label="Websites">
+        <ul class="flex flex-col items-center gap-6">
+          {
+            sortedPosts.map((post) => (
+              <li class="w-full">
+                <ProjectsCard
+                  heroImage={post.data.heroImage}
+                  title={post.data.title}
+                  description={post.data.summary}
+                  tags={post.data.tags}
+                  github={post.data.github}
+                  liveDemo={post.data.liveDemo}
+                  projectPath={`/projects/${post.id}`}
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </TabItem>
+
+      <TabItem label="Automations">
+        <div>Automations</div>
+      </TabItem>
+    </Tabs>
   </section>
 </BaseLayout>
