@@ -18,4 +18,18 @@ const applications = defineCollection({
     }),
 })
 
-export const collections = { applications }
+const automations = defineCollection({
+  loader: glob({ base: './src/content/automations', pattern: '**/*.{md,mdx}' }),
+  schema: () =>
+    z.object({
+      title: z.string(),
+      summary: z.string(),
+      trigger: z.string(),
+      patterns: z.array(z.string()),
+      categories: z.array(z.string()),
+      tools: z.array(z.string()),
+      order: z.number().int(),
+    }),
+})
+
+export const collections = { applications, automations }
