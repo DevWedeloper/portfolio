@@ -1,10 +1,11 @@
 ---
+import type { CollectionEntry } from 'astro:content'
 import { getCollection, render } from 'astro:content'
 import Prose from '../../components/Prose.astro'
-import ProjectsLayout from '../../layouts/ProjectsLayout.astro'
+import ProjectLayout from '../../layouts/ProjectLayout.astro'
 
 export async function getStaticPaths() {
-  const posts = await getCollection('projects')
+  const posts = await getCollection('applications')
 
   return posts.map((post) => ({
     params: { slug: post.id },
@@ -12,12 +13,14 @@ export async function getStaticPaths() {
   }))
 }
 
-const post = Astro.props
+type Props = CollectionEntry<'applications'>
+
+const post = Astro.props as Props
 const { Content } = await render(post)
 ---
 
-<ProjectsLayout {...post.data}>
+<ProjectLayout {...post.data}>
   <Prose>
     <Content />
   </Prose>
-</ProjectsLayout>
+</ProjectLayout>

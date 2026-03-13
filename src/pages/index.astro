@@ -8,8 +8,11 @@ import Tabs from '../components/Tabs.astro'
 import TechCard from '../components/TechCard.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 
-const posts = await getCollection('projects')
-const sortedPosts = posts.sort((a, b) => b.data.order - a.data.order)
+const applications = await getCollection('applications')
+const sortedApplications = applications.sort((a, b) => b.data.order - a.data.order)
+
+const automations = await getCollection('automations')
+const sortedAutomations = automations.sort((a, b) => b.data.order - a.data.order)
 ---
 
 <BaseLayout>
@@ -131,16 +134,16 @@ const sortedPosts = posts.sort((a, b) => b.data.order - a.data.order)
       <TabItem label="Applications">
         <ul class="flex flex-col items-center gap-6">
           {
-            sortedPosts.map((post) => (
+            sortedApplications.map((application) => (
               <li class="w-full">
                 <ApplicationProjectCard
-                  heroImage={post.data.heroImage}
-                  title={post.data.title}
-                  description={post.data.summary}
-                  tags={post.data.tags}
-                  github={post.data.github}
-                  liveDemo={post.data.liveDemo}
-                  projectPath={`/projects/${post.id}`}
+                  heroImage={application.data.heroImage}
+                  title={application.data.title}
+                  description={application.data.summary}
+                  tags={application.data.tags}
+                  github={application.data.github}
+                  liveDemo={application.data.liveDemo}
+                  projectPath={`/applications/${application.id}`}
                 />
               </li>
             ))
@@ -150,15 +153,21 @@ const sortedPosts = posts.sort((a, b) => b.data.order - a.data.order)
 
       <TabItem label="Automations">
         <ul class="flex flex-col items-center gap-6">
-          <AutomationProjectCard
-            title="Lead Intake - CRM - Follow-Up Engine"
-            description="Automatically intake leads, enrich and score them, then route to CRM and communication channels based on lead quality."
-            trigger="New form submission"
-            tools={['Jotform', 'Slack', 'Airtable', 'AbstractAPI']}
-            patterns={['Data Ingestion', 'Branching Flow', 'Notification']}
-            categories={['Lead Capture']}
-            projectPath="/automations/lead-intake"
-          />
+          {
+            sortedAutomations.map((automation) => (
+              <li class="w-full">
+                <AutomationProjectCard
+                  title={automation.data.title}
+                  description={automation.data.description}
+                  trigger={automation.data.trigger}
+                  tools={automation.data.tools}
+                  patterns={automation.data.patterns}
+                  categories={automation.data.categories}
+                  projectPath={`/automations/${automation.id}`}
+                />
+              </li>
+            ))
+          }
         </ul>
       </TabItem>
     </Tabs>
