@@ -1,0 +1,59 @@
+---
+title: Lead Intake - CRM - Follow-Up Engine
+summary: Automatically intake leads from a form, enrich and score them, then route to CRM and communication channels based on lead quality.
+trigger: New form submission
+patterns:
+  - data-ingestion
+  - branching-flow
+  - notification
+categories:
+  - lead-capture
+tools:
+  - jotform
+  - slack
+  - airtable
+  - abstractapi
+order: 1
+---
+
+# Lead Intake - CRM - Follow-Up Engine
+
+## Purpose
+Automatically intake leads from a form, enrich and score them, then route to CRM and communication channels based on lead quality.
+
+## Trigger
+New form submission in Jotform
+
+## Workflow
+```
+Jotform (New Submission)
+    ↓
+JS Normalize
+    ↓
+Enrich API
+    ↓
+Score
+    ↓
+Dedup (Storage)
+    ↓
+Paths
+    ├─ High → Slack + CRM + Follow-Up
+    ├─ Medium → CRM + Delayed Email
+    └─ Low → CRM only
+```
+
+## Steps
+1. Trigger: New submission in Jotform
+2. Normalize data using JS script
+3. Enrich lead info via Enrich API
+4. Score lead
+5. Deduplicate against storage
+6. Route based on lead score:
+   - High: Slack notification + CRM entry + Follow-up workflow
+   - Medium: CRM entry + Delayed email
+   - Low: CRM entry only
+
+## Notes
+- Paths are determined by lead scoring thresholds
+- Ensure API rate limits are handled in JS Normalize and Enrich steps
+- Delayed email can be scheduled via Zapier or Make depending on preference

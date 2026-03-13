@@ -1,0 +1,53 @@
+---
+title: AI-Powered Summarizer
+summary: Automatically summarize submissions from a form using AI, storing both the original and summarized data, with optional notifications.
+trigger: New form submission
+patterns:
+  - data-ingestion
+  - ai-processing
+  - notification
+categories:
+  - data-processing
+tools:
+  - jotform
+  - openai
+  - airtable
+  - slack
+order: 2
+---
+
+# AI-Powered Summarizer
+
+## Purpose
+Automatically summarize submissions from a form using AI, storing both the original and summarized data, with optional notifications.
+
+## Trigger
+New form submission
+
+## Workflow
+
+```
+Form Submission (Jotform)
+↓
+Normalize Data (JS)
+↓
+AI Summarization (OpenAI)
+↓
+Store Original + Summary (Airtable)
+↓
+Optional Notification
+├─ Slack
+└─ Email
+```
+
+## Steps
+1. Trigger: New submission in Jotform
+2. Normalize form data using JS script
+3. Summarize content via OpenAI API
+4. Store original and summary in Airtable
+5. Optional: Send notification to Slack or Email
+
+## Notes
+- Ensure rate limits are respected when calling the AI API
+- Notifications can be customized based on content type or priority
+- Can be extended to multiple channels or reporting dashboards
