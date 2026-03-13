@@ -2,7 +2,7 @@
 import { CldImage } from 'astro-cloudinary'
 import { getCollection } from 'astro:content'
 import ExperienceCard from '../components/ExperienceCard.astro'
-import ProjectsCard from '../components/ProjectsCard'
+import { AutomationProjectsCard, WebsiteProjectsCard } from '../components/ProjectsCard'
 import TabItem from '../components/TabItem.astro'
 import Tabs from '../components/Tabs.astro'
 import TechCard from '../components/TechCard.astro'
@@ -133,7 +133,7 @@ const sortedPosts = posts.sort((a, b) => b.data.order - a.data.order)
           {
             sortedPosts.map((post) => (
               <li class="w-full">
-                <ProjectsCard
+                <WebsiteProjectsCard
                   heroImage={post.data.heroImage}
                   title={post.data.title}
                   description={post.data.summary}
@@ -149,7 +149,17 @@ const sortedPosts = posts.sort((a, b) => b.data.order - a.data.order)
       </TabItem>
 
       <TabItem label="Automations">
-        <div>Automations</div>
+        <ul class="flex flex-col items-center gap-6">
+          <AutomationProjectsCard
+            title="Lead Intake - CRM - Follow-Up Engine"
+            description="Automatically intake leads, enrich and score them, then route to CRM and communication channels based on lead quality."
+            trigger="New form submission"
+            tools={['Jotform', 'Slack', 'Airtable', 'AbstractAPI']}
+            patterns={['Data Ingestion', 'Branching Flow', 'Notification']}
+            categories={['Lead Capture']}
+            projectPath="/automations/lead-intake"
+          />
+        </ul>
       </TabItem>
     </Tabs>
   </section>

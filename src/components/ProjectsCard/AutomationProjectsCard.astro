@@ -1,0 +1,76 @@
+---
+import ProjectsCardLink from './ProjectsCardLink.astro'
+
+type Props = {
+  title: string
+  description: string
+  trigger: string
+  tools: string[]
+  patterns: string[]
+  categories: string[]
+  projectPath: string
+}
+
+const { title, description, trigger, tools, patterns, categories, projectPath } = Astro.props
+---
+
+<div class="flex w-full flex-col gap-5 rounded-lg border border-border p-5">
+  <p class="text-xl font-semibold tracking-widest">{title}</p>
+
+  <p class="text-foreground/60">{description}</p>
+
+  <div class="rounded-md bg-accent/30 p-3 text-sm">
+    <span class="font-semibold">Trigger:</span>
+    {trigger}
+  </div>
+
+  <div>
+    <p class="mb-2 text-xs font-bold text-foreground/50 uppercase">Patterns</p>
+    <div class="flex flex-wrap gap-2">
+      {
+        patterns.map((pattern) => (
+          <span class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground">{pattern}</span>
+        ))
+      }
+    </div>
+  </div>
+
+  <div>
+    <p class="mb-2 text-xs font-bold text-foreground/50 uppercase">Categories</p>
+    <div class="flex flex-wrap gap-2">
+      {
+        categories.map((category) => (
+          <span class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground">{category}</span>
+        ))
+      }
+    </div>
+  </div>
+
+  <div>
+    <p class="mb-2 text-xs font-bold text-foreground/50 uppercase">Tools</p>
+    <div class="flex flex-wrap gap-2">
+      {tools.map((tool) => <span class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground">{tool}</span>)}
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <ProjectsCardLink link={projectPath} newTab={false}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M5 12h14"></path>
+        <path d="m12 5 7 7-7 7"></path>
+      </svg>
+
+      View Workflow
+      <span class="sr-only">View automation {title}</span>
+    </ProjectsCardLink>
+  </div>
+</div>
