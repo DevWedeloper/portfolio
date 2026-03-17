@@ -1,0 +1,64 @@
+---
+title: YouTube Transcript & Summary
+summary: Automatically extract transcripts from YouTube videos, summarize them using AI, and store both the transcript and summary with metadata, with optional notifications.
+trigger: Manual form submission with YouTube video URL
+patterns:
+  - data-ingestion
+  - ai-processing
+  - web-scraping
+  - notification
+  - prompt-engineering
+  - batching
+categories:
+  - data-processing
+  - content-automation
+tools:
+  - web-scraping
+  - gemini
+  - airtable
+  - slack
+order: 3
+---
+
+# YouTube Transcript & Summary
+
+## Purpose
+Automatically extract transcripts from YouTube videos, summarize them using AI, and store both the transcript and summary along with metadata. Optimized for longer content.
+
+## Trigger
+Manual form submission with YouTube video URL
+
+## Workflow
+
+```
+YouTube Video URL (Form Submission)
+↓
+Extract Transcript (Web Scraping)
+↓
+Normalize/Chunk Transcript (JS)
+↓
+AI Summarization (Gemini LLM)
+↓
+Store Original Transcript + Summary + Metadata (Airtable)
+↓
+Optional Notification
+├─ Slack
+└─ Email
+```
+
+## Steps
+1. Trigger: User submits a YouTube video URL via a form  
+2. Extract transcript using web-scraping  
+3. Normalize and chunk transcript for AI processing  
+4. Generate detailed summary using Gemini LLM  
+5. Store original transcript, summary, and metadata in Airtable (e.g., video title, creator name, YouTube link)  
+6. Optional: Send notification to Slack or Email  
+
+## Notes
+- Currently manual URL input; future enhancement could include automatic detection of new videos from channels or playlists  
+- AI summarization can be adjusted for level of detail  
+- Works best on longer videos due to chunked summarization (transcripts are split for AI processing)  
+- Respect LLM limits by keeping inputs within the model’s token capacity  
+- Chunks can be combined if the LLM can handle larger inputs, allowing longer transcript sections to be summarized at once  
+- Optional notifications can be added or customized  
+- Only English transcripts are supported
