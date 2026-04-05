@@ -1,0 +1,71 @@
+---
+title: Agentic Gmail Executive Assistant
+summary: Handle personal emails by automatically triaging, creating tasks, scheduling meetings, and drafting responses based on email content. Designed to streamline inbox management and task organization.
+trigger: New Gmail email (polling)
+patterns:
+  - ai-processing
+  - notification
+  - prompt-engineering
+  - scheduling
+  - human-in-the-loop
+categories:
+  - productivity
+  - email-management
+  - ai-assistant
+tools:
+  - gmail
+  - gemini
+  - slack
+  - airtable
+  - google-calendar
+  - webhook
+order: 4
+---
+
+# Agentic Gmail Executive Assistant
+
+## Purpose
+Handle personal emails by automatically triaging, creating tasks, scheduling meetings, and drafting responses based on email content. Designed to streamline inbox management and task organization.
+
+## Trigger
+New Gmail email (polling)
+
+## Workflow
+
+```
+New Gmail Email
+↓
+Classify Email Actions (AI)
+├─ create_task → Create Task in Trello (AI priority)
+├─ schedule_meeting → Suggest Meeting Times (AI checks availability, proposes multiple options)
+└─ draft_reply → Draft Reply (HITL approval/edit/reject)
+↓
+Notify via Slack (HITL required actions)
+```
+
+## Steps
+1. Detect new email in Gmail.
+2. AI analyzes content to determine possible actions:
+   - Task creation
+   - Meeting scheduling
+   - Drafting reply
+3. For **draft_reply** actions:
+   - AI generates a draft
+   - User approves, edits, or rejects via HITL
+   - No default action if no intervention
+4. For **schedule_meeting** actions:
+   - AI checks available calendar slots
+   - Suggests multiple tentative times
+   - Receiver chooses a preferred slot via email link (books automatically)
+5. For **create_task** actions:
+   - AI creates a task in Trello if email contains actionable items
+   - Assigns AI-determined priority (low, medium, high)
+   - Priority can be manually overridden in Trello
+6. Slack notifications sent for HITL-required actions (draft review, scheduling approvals)
+
+## Notes
+- AI determines which actions are possible per email; workflow handles array of actions automatically
+- Branching exists for different action types and HITL approvals
+- Emails may trigger multiple actions simultaneously (e.g., task creation + meeting scheduling)
+- Privacy and API rate limits must be respected
+- Workflow is extensible to additional notification channels or task management platforms in the future
