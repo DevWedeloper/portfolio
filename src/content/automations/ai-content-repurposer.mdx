@@ -1,0 +1,71 @@
+---
+title: AI Content Repurposer
+summary: Transform a single transcript into multiple high-quality content formats including blog articles, LinkedIn posts, and tweet threads. Uses advanced AI-driven rewriting to extract core ideas, restructure narratives, and adapt tone and format per content type. Outputs are stored as drafts for human review before publishing.
+trigger: Manual prompt (user-submitted transcript)
+patterns:
+  - ai-processing
+  - prompt-engineering
+  - content-generation
+  - human-in-the-loop
+categories:
+  - content-creation
+  - repurposing
+  - ai-assistant
+  - content-automation
+  - data-processing
+tools:
+  - openrouter
+  - slack
+  - airtable
+  - webhook
+order: 5
+---
+
+# AI Content Repurposer
+
+## Purpose
+Transform a single transcript into multiple high-quality content formats including blog articles, LinkedIn posts, and tweet threads. Uses advanced AI-driven rewriting to extract core ideas, restructure narratives, and adapt tone and format per content type. Outputs are stored as drafts for human review before publishing.
+
+## Trigger
+Manual prompt (user-submitted transcript)
+
+## Workflow
+
+```
+Manual Transcript Input
+↓
+Preprocess & Clean Transcript
+↓
+Extract Core Ideas + Key Themes (AI)
+↓
+Generate Content Variants (AI - parallel)
+├─ Blog Article Draft
+├─ LinkedIn Post Draft
+└─ Twitter Thread (3–5 tweets)
+↓
+Store Drafts in Airtable
+↓
+Human-in-the-Loop Review (Approve / Edit / Reject per format)
+```
+
+## Steps
+1. User submits transcript via manual prompt.
+2. Transcript is cleaned and preprocessed (removes noise, structures text if needed). // manual, not AI
+3. AI extracts core ideas, key arguments, and supporting points.
+4. AI generates multiple content formats in parallel:
+   - Blog article (long-form structured narrative)
+   - LinkedIn post (professional, concise insight-driven version)
+   - Twitter thread (hook + 3–5 structured tweets)
+5. All generated drafts are stored in Airtable as separate entries.
+6. Human reviews each content type independently:
+   - Approve
+   - Edit
+   - Reject and regenerate
+7. Approved content is immediately published or routed to the next publishing step (depending on platform rules and availability).
+
+## Notes
+- All outputs are derived from a shared core idea extraction step to maintain narrative consistency.
+- Generation runs in parallel for efficiency but remains grounded in a single source transcript.
+- No automatic publishing is performed; all outputs require human approval.
+- System is extensible to additional formats (e.g. short-form video scripts, newsletters, carousel posts).
+- Designed for high-fidelity repurposing rather than simple summarization.
